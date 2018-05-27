@@ -207,16 +207,7 @@
 				<!-- /.row -->
 
 			</div>
-			<div class="col-lg-3">
-
-				<h1 class="my-4">인터뷰</h1>
-				<div class="list-group">
-					<a href="#" class="list-group-item">Category 1</a> <a href="#"
-						class="list-group-item">Category 2</a> <a href="#"
-						class="list-group-item">Category 3</a>
-				</div>
-
-			</div>
+			
 			<!-- /.col-lg-9 -->
 
 		</div>
