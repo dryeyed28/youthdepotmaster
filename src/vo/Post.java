@@ -5,7 +5,7 @@ import java.util.Date;
 public class Post {
 	private int post_id;
 	private Board board;
-	private Members member;
+	private Member member;
 /*	private int mem_id;
 	private String mem_nickNsame;*/
 	private String post_title;
@@ -17,7 +17,7 @@ public class Post {
 	public Post() {
 		super();
 	}
-	public Post(int post_id, Board board, Members member, String post_title, String post_content, Date post_dateTime,
+	public Post(int post_id, Board board, Member member, String post_title, String post_content, Date post_dateTime,
 			int post_comment_count, int post_view_count, int post_del) {
 		super();
 		this.post_id = post_id;
@@ -42,10 +42,10 @@ public class Post {
 	public void setBoard(Board board) {
 		this.board = board;
 	}
-	public Members getMember() {
+	public Member getMember() {
 		return member;
 	}
-	public void setMember(Members member) {
+	public void setMember(Member member) {
 		this.member = member;
 	}
 	public String getPost_title() {
