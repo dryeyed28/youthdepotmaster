@@ -67,18 +67,6 @@ String root = request.getContextPath();
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 매출현황<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="<%=root%>/pages/flot.html">Flot Charts</a>
-                            </li>
-                            <li>
-                                <a href="<%=root%>/pages/morris.jsp">Morris Charts</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->
