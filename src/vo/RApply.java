@@ -1,17 +1,17 @@
 package vo;
 
-public class RAplly {
+public class RApply {
 	RKeeper rKeeper;
 	RMeta rMeta;
 	ROption rOption;
 	RProject rProject;
 	RStory rStory;
 	
-	public RAplly() {
+	public RApply() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public RAplly(RKeeper rKeeper, RMeta rMeta, ROption rOption, RProject rProject, RStory rStory) {
+	public RApply(RKeeper rKeeper, RMeta rMeta, ROption rOption, RProject rProject, RStory rStory) {
 		super();
 		this.rKeeper = rKeeper;
 		this.rMeta = rMeta;
