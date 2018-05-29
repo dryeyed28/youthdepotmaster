@@ -6,7 +6,7 @@ import dao.MemberDAO;
 import dao.MemberDAOOracle;
 import vo.Member;
 
-public class MemberService {
+public class MemberService implements MemberInterface{
 	/*
 	 	1. 인터페이스 타입의 DAOOracle 객체 생성
 	 	2. findXX메소드를 생성하고 컨트롤러로 1, -1값 리턴
@@ -14,15 +14,18 @@ public class MemberService {
 	
 	private MemberDAO dao = new MemberDAOOracle();
 	
+	@Override
 	public List<Member> findByAll() throws Exception {
 		return dao.selectAll();
 	}
 	
+	@Override
 	public Member findById(String mem_userId) throws Exception {
 		Member member = dao.selectById(mem_userId);
 		return member;
 	}
 	
+	@Override
 	public int findCount() throws Exception{
 		//멤버테이블 행수 출력
 		return dao.selectCount();

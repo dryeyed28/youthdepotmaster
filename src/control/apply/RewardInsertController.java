@@ -33,7 +33,7 @@ public class RewardInsertController implements YouthDepotController {
 			System.out.println("RewardInsertController seccec");
 			service.applyinsert(rApply);
 		} catch (Exception e) {
-			System.out.println("RewardInsertControllert fale");
+			System.out.println("RewardInsertControllert fele");
 			e.printStackTrace();
 		}
 		String forwardURL = "redirect:keeperindext.jsp";
