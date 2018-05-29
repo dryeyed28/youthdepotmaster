@@ -15,7 +15,7 @@ public class MemberService implements MemberInterface{
 	private MemberDAO dao = new MemberDAOOracle();
 	
 	@Override
-	public List<Member> findByAll() throws Exception {
+	public List<Member> findAll() throws Exception {
 		return dao.selectAll();
 	}
 	
