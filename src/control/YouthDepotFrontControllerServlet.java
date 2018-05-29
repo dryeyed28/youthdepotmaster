@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.MemberService;
 import service.RewardService;
 
 
@@ -22,6 +23,8 @@ public class YouthDepotFrontControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Properties env;
 	private RewardService RewardService;
+	private MemberService memberService = new MemberService();
+	
 	public YouthDepotFrontControllerServlet() {}
 	
 	public void init() throws ServletException {
@@ -78,7 +81,12 @@ public class YouthDepotFrontControllerServlet extends HttpServlet {
 						if("service.RewardService".equals(m.getParameterTypes()[0].getName())){
 							m.invoke(obj, RewardService);
 							break;
-						}/*else if("service.CustomerService".equals(m.getParameterTypes()[0].getName())){
+						} else if("service.MemberService".equals(m.getParameterTypes()[0].getName())) {
+							m.invoke(obj, memberService);
+							break;
+						}
+						
+						/*else if("service.CustomerService".equals(m.getParameterTypes()[0].getName())){
 							m.invoke(obj, productService);
 							break;
 						}else if("service.ZipService".equals(m.getParameterTypes()[0].getName())){
@@ -104,7 +112,10 @@ public class YouthDepotFrontControllerServlet extends HttpServlet {
 						if("service.RewardService".equals(constructor.getParameters()[0].getType().getName())){
 							obj = constructor.newInstance(RewardService);
 
-						}/*else if("service.CustomerService".equals(constructor.getParameters()[0].getType().getName())){
+						} else if("service.MemberService".equals(constructor.getParameterTypes()[0].getTypeName())) {
+							obj = constructor.newInstance(memberService);
+						}
+						/*else if("service.CustomerService".equals(constructor.getParameters()[0].getType().getName())){
 							obj = constructor.newInstance(customerService);
 							
 						}else if("service.ZipService".equals(constructor.getParameters()[0].getType().getName())){
