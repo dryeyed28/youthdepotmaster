@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import control.YouthDepotController;
 import service.RewardService;
+import vo.RApply;
 
 public class RewardInsertController implements YouthDepotController {
 	private RewardService service;
@@ -26,7 +27,15 @@ public class RewardInsertController implements YouthDepotController {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		// rewardapplication.jsp에서 데이터 받은걸 insert
-		
+		String a = request.getParameter("a");
+		RApply rApply = new RApply();
+		try {
+			System.out.println("RewardInsertController seccec");
+			service.applyinsert(rApply);
+		} catch (Exception e) {
+			System.out.println("RewardInsertControllert fale");
+			e.printStackTrace();
+		}
 		String forwardURL = "redirect:keeperindext.jsp";
 		return forwardURL;
 	}
