@@ -15,7 +15,7 @@ public class MemberService implements MemberInterface{
 	private MemberDAO dao = new MemberDAOOracle();
 	
 	@Override
-	public List<Member> findByAll() throws Exception {
+	public List<Member> findAll() throws Exception {
 		return dao.selectAll();
 	}
 	
@@ -31,13 +31,13 @@ public class MemberService implements MemberInterface{
 		return dao.selectCount();
 	}
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		MemberService service = new MemberService();
 		try {
-			List<Member> list = service.findByAll();
+			List<Member> list = service.findAll();
 			System.out.println("findByAll() 결과 : " + list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 }

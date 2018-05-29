@@ -36,7 +36,7 @@ public class MemberController implements YouthDepotController {
 			endPage = totalPage;
 		}
 		
-		List<Member> list = service.findByAll();
+		List<Member> list = service.findAll();
 		PageBean<Member> pb = new PageBean<>();
 		pb.setCurrentPage(intPage);
 		pb.setTotalPage(totalPage);
