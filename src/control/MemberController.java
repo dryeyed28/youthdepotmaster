@@ -24,6 +24,8 @@ public class MemberController implements YouthDepotController {
 		
 		try {
 		int totalCount = service.findCount();
+		System.out.println("총 페이지 수(findCount()) : " + totalCount);
+		
 		int totalPage = 0;
 		int cntPerPage = 3;
 		totalPage = (int)Math.ceil((double)totalCount / cntPerPage);
@@ -31,6 +33,7 @@ public class MemberController implements YouthDepotController {
 		int cntPerPageGroup = 5;
 		int startPage = (int)Math.floor((double)(intPage)/(cntPerPageGroup+1))*cntPerPageGroup+1;
 		int endPage = startPage+cntPerPageGroup-1;
+		System.out.println("스타트페이지 수 : " + startPage);
 		
 		if(endPage > totalPage) {
 			endPage = totalPage;
@@ -45,6 +48,7 @@ public class MemberController implements YouthDepotController {
 		pb.setEndPage(endPage);
 		
 		request.setAttribute("pagebean", pb);
+		
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("result", e.getMessage());

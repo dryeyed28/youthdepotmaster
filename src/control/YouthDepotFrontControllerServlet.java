@@ -179,9 +179,4 @@ public class YouthDepotFrontControllerServlet extends HttpServlet {
 			rd.forward(request, response);
 		}
 	}
-
 }
-
-
-
-
