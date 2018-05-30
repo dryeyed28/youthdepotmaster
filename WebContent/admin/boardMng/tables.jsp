@@ -21,6 +21,17 @@ $(function() {
 		});
 		return false;
 	});
+	
+	$('button#modify').click(function() {
+		$.ajax({
+			url:"boardupdatepagerslt.jsp",
+			success: function(data){ 
+				$("div#page-wrapper").empty();
+				$('div#page-wrapper').html(data.trim());		
+			}
+		});
+		return false;
+	});
 });
 </script>
 <style>
@@ -84,7 +95,7 @@ $(function() {
                     <hr>
                     <div class="btn-center" style="text-align: center">
                       <button id="create" class="btn btn-default btn-outline btn-primary">게시판 생성</button>
-                      <button class="btn btn-default btn-outline btn-primary">게시판 수정</button>
+                      <button id="modify" class="btn btn-default btn-outline btn-primary">게시판 수정</button>
                       <button class="btn btn-default btn-outline btn-primary">게시판 삭제</button>
                     </div>
                 </div>
