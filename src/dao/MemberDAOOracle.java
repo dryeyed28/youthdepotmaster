@@ -30,7 +30,7 @@ public class MemberDAOOracle implements MemberDAO {
 			String selectAll = "select *\r\n" + "from members";
 			pstmt = con.prepareStatement(selectAll);
 			rs = pstmt.executeQuery();
-
+			
 			while (rs.next()) {
 				list.add(new Member(rs.getInt("mem_id"), rs.getString("mem_userId"), rs.getString("mem_email"),
 						rs.getString("mem_password"), rs.getString("mem_userName"), rs.getString("mem_nickName"),

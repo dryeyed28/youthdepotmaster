@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.MemberService;
 import service.RewardService;
+import service.TestService;
 
 
 
@@ -46,7 +47,8 @@ public class YouthDepotFrontControllerServlet extends HttpServlet {
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		TestService service = TestService.getInstance();
+		System.out.println(service.getI());
 		System.out.println(request.getServletPath());
 		String path = request.getServletPath();
 
@@ -156,7 +158,7 @@ public class YouthDepotFrontControllerServlet extends HttpServlet {
 		} catch (InvocationTargetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		
+	
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {

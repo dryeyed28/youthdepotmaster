@@ -23,6 +23,7 @@
 	for(RepBoard b : list){
 %> --%>
  <div class="board">
+ <c:set var="i" value="1"/>
  <c:set var="pagebean" value="${requestScope.pagebean}"/>
  <c:set var="list" value="${pagebean.list}"/>
  <c:forEach var="member" items="${list}"/>
@@ -43,8 +44,8 @@
  <%  
 	}
 %>--%>
- int i=1;
- <c:forEach begin="0" end="${member.level}-1" var="i" step="1" varStatus="status"/>
+
+ <c:forEach begin="i" end="6" var="i" step="1" varStatus="status"/>
  </div>
 
   <div class="mem_id">{member.mem_id}</div>
@@ -67,7 +68,7 @@
  <c:if test="${startPage>1}">
  <a href="#">&laquo;</a>
  </c:if>
- <c:forEach begin="i=startPage" end="endPage-1" step="1">
+ <c:forEach begin="i" end="endPage-1" step="1">
  <a href="#">${i}</a>
  </c:forEach>
  
