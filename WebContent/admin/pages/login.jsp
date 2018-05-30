@@ -47,18 +47,18 @@
                         <form role="form">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="ID" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="ID" required name="id" id="id" type="text" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="Password" required name="pwd" id="pwd" type="password">
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">ID 저장
+                                        <input type="checkbox" >ID 저장
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.jsp" class="btn btn-lg btn-success btn-block">로그인</a>
+                                <button class="btn-lg btn-success btn-block">로그인</button>
                             </fieldset>
                         </form>
                     </div>
