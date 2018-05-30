@@ -27,7 +27,7 @@
     <description></description>
     <display-name>ApplyController</display-name>
     <servlet-name>ApplyController</servlet-name>
-    <servlet-class>admin.apply.ApplyController</servlet-class>
+    <servlet-class>apply.ApplyController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ApplyController</servlet-name>
@@ -35,39 +35,9 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>RewardController</display-name>
-    <servlet-name>RewardController</servlet-name>
-    <servlet-class>user.reward.RewardController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>RewardController</servlet-name>
-    <url-pattern>/RewardController</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>UserMemberController</display-name>
-    <servlet-name>UserMemberController</servlet-name>
-    <servlet-class>user.member.UserMemberController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UserMemberController</servlet-name>
-    <url-pattern>/UserMemberController</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>UserBoardController</display-name>
-    <servlet-name>UserBoardController</servlet-name>
-    <servlet-class>user.board.UserBoardController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UserBoardController</servlet-name>
-    <url-pattern>/UserBoardController</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>PostController</display-name>
     <servlet-name>PostController</servlet-name>
-    <servlet-class>admin.board.PostController</servlet-class>
+    <servlet-class>post.PostController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>PostController</servlet-name>
@@ -77,7 +47,7 @@
     <description></description>
     <display-name>MemberController</display-name>
     <servlet-name>MemberController</servlet-name>
-    <servlet-class>admin.member.MemberController</servlet-class>
+    <servlet-class>member.MemberController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>MemberController</servlet-name>
@@ -87,7 +57,7 @@
     <description></description>
     <display-name>ProjectController</display-name>
     <servlet-name>ProjectController</servlet-name>
-    <servlet-class>admin.projcet.ProjectController</servlet-class>
+    <servlet-class>projcet.ProjectController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ProjectController</servlet-name>
@@ -97,7 +67,7 @@
     <description></description>
     <display-name>BoardController</display-name>
     <servlet-name>BoardController</servlet-name>
-    <servlet-class>admin.table.BoardController</servlet-class>
+    <servlet-class>board.BoardController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>BoardController</servlet-name>
@@ -107,7 +77,7 @@
     <description></description>
     <display-name>TotalPayController</display-name>
     <servlet-name>TotalPayController</servlet-name>
-    <servlet-class>admin.totalpay.TotalPayController</servlet-class>
+    <servlet-class>totalpay.TotalPayController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>TotalPayController</servlet-name>
@@ -117,7 +87,7 @@
     <description></description>
     <display-name>DepositController</display-name>
     <servlet-name>DepositController</servlet-name>
-    <servlet-class>admin.yeoljeongpay.DepositController</servlet-class>
+    <servlet-class>deposit.DepositController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DepositController</servlet-name>
