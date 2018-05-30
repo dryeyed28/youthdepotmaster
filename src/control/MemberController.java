@@ -40,6 +40,7 @@ public class MemberController implements YouthDepotController {
 		}
 		
 		List<Member> list = service.findAll();
+		//request.setAttribute("member", list);
 		PageBean<Member> pb = new PageBean<>();
 		pb.setCurrentPage(intPage);
 		pb.setTotalPage(totalPage);
@@ -54,7 +55,7 @@ public class MemberController implements YouthDepotController {
 			request.setAttribute("result", e.getMessage());
 		}
 		
-		String forwardURL = "memberlistresult.jsp";
+		String forwardURL = "memberlistresult2.jsp";
 		return forwardURL;
 	}
 }
