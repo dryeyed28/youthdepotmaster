@@ -12,5 +12,6 @@ public interface MemberDAO {
 	public void delete(String mem_userid) throws Exception;
 	public void update(Member m) throws Exception;
 	public int selectCount() throws Exception; //멤버테이블 전체행수
+	public Member idCheck(String mem_userid)throws Exception;
 	
 }
