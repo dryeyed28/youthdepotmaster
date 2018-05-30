@@ -122,6 +122,7 @@ public class MemberDAOOracle implements MemberDAO {
 		try {
 		con = OracleConnection.getConnection();
 		pstmt = con.prepareStatement(selectCount);
+		rs = pstmt.executeQuery();
 		rs.next();
 		int totalCount = rs.getInt("totalCount");
 		

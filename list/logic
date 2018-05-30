@@ -1,0 +1,14 @@
+데이터 뿌려줄때 :  vo를 request.getAttribute();로 request에 담아서 jsp단에서 바로 출력
+					Member vo= request.getAttribute("m");
+					
+데이터 전달할때 : "<%=request.getContextPath() %>/Conroller?type=data"  - getContextPath()로 절대경로 전달
+				  1. form 태그를 사용했을때 - 알아서 queryString이 url에 포함되서 전달 건들것 없음
+				  2. jquery로 객체 찾았을때(ex $(div.classname), $(#id), $(document))
+						1) href 속성으로 요청했을때 : 전달 url(경로)에 queryString 포함해서 전달
+						2) ajax 요청 : 
+								URl: "<%=request.getContextPath() %>/Conroller"
+								data:{'type'=data} 만들어서 보냄
+
+forward형식 : Controller에서 forward시킴  -> 기능구현 다됬을때 rediract, URL주소 수정할거 수정
+				RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
+				dispatcher.forward(request, response);
