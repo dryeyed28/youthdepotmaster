@@ -1,0 +1,11 @@
+>>Jquery href 덤프
+$(function(){
+		$('button#apply').click(function(){
+			console.log("성공");
+			location.href = "<%=request.getContextPath() %>/ProjectController?type=apply";
+			return false;
+		});
+});
+
+>> String -> Date
+java.sql.Date.valueOf(String name);

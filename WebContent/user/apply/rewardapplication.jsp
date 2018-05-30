@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <%--RewardInsertController 데이터 전송(href) >> 나의 프로젝트페이지로 이동--%>
 <style>
 .tab-container.full-width-style ul.tabs {
@@ -44,6 +45,15 @@
 			tjq(".edit-profile").hide();
 		});
 	</script>
+	<script>
+	$(function(){
+		$('button#apply').click(function(){
+			console.log("성공");
+			location.href = "<%=request.getContextPath() %>/ProjectController?type=apply";
+			return false;
+		});
+	});
+	</script>
 <%@include file="../template/header.jsp"%>
 		<section id="content" class="gray-area">
 			<div class="container">
@@ -57,12 +67,12 @@
 							<li class=""><a data-toggle="tab" href="#depot_information">창고지기정보</a></li>
 							<li class=""><a data-toggle="tab" href="#calculate">정산</a></li>
 						</ul>
+								<form>
 						<div class="tab-content">
 
 							<div id="basic_information" class="tab-pane fade in active">
 								<h2>기본 정보</h2>
 								<hr>
-								<form>
 									<div class="row form-group">
 										<div class="col-xs-12 col-sm-6 col-md-7">
 											<h4>프로젝트 번호</h4>
@@ -187,14 +197,12 @@
 									<div class="form-group">
 										<button class="btn-medium">저장하기</button>
 									</div>
-								</form>
 							</div>
 
 
 							<div id="reward" class="tab-pane fade">
 								<h2>리워드 정보</h2>
 								<hr>
-								<form>
 									<div class="row form-group">
 										<div class="col-xs-12 col-sm-6 col-md-7">
 											<h4>금액</h4>
@@ -241,7 +249,6 @@
 									<div class="form-group">
 										<button class="btn-medium">저장하기</button>
 									</div>
-								</form>
 							</div>
 
 
@@ -250,7 +257,6 @@
 							<div id="story" class="tab-pane fade">
 								<h2>리워드 스토리</h2>
 								<hr>
-								<form>
 									<div class="row form-group">
 										<div class="col-xs-12 col-sm-6 col-md-7">
 											<h4>영상등록</h4>
@@ -302,13 +308,11 @@
 										<button class="btn-medium">저장하기</button>
 									</div>
 									
-								</form>
 							</div>
 
 							<div id="depot_information" class="tab-pane fade">
 								<h2>창고지기 정보</h2>
 								<hr>
-								<form>
 									<div class="row form-group">
 										<div class="col-xs-12 col-sm-6 col-md-7">
 											<h4>창고지기 이름(법인명)</h4>
@@ -359,7 +363,6 @@
 									<div class="form-group">
 										<button class="btn-medium">저장하기</button>
 									</div>
-								</form>
 							</div>
 
 
@@ -368,7 +371,6 @@
 								<p>아래에 입력한 모든 정보는 정산과 관련된 전자 약정 체결을 위한 정보이니, 꼭 정확하게 기입해 주셔야
 									합니다.</p>
 								<hr>
-								<form>
 									<div class="row form-group">
 										<div>
 											<h4>수수료</h4>
@@ -390,13 +392,13 @@
 									</div>
 
 									<div class="form-group">
-										<button class="btn-medium">저장하기</button>
+										<button class="btn-medium" id="apply">저장하기</button>
 									</div>
-								</form>
 							</div>
 
 
 						</div>
+						</form>
 					</div>
 				</div>
 			</div>

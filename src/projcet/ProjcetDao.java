@@ -1,5 +1,7 @@
 package projcet;
 
-public interface ProjcetDao {
+import vo.RApply;
 
+public interface ProjcetDao {
+	public void apllyinsert(RApply rApply);
 }

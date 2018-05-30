@@ -8,7 +8,7 @@ public class RProject {
 	private String rPJT_key;
 	/*rPJT_state 1.승인  2.검토중  3.반려*/
 	private int rPJT_state;
-	/*rPJT_progress 1.진행  2.마감*/
+	/*rPJT_progress 1.진행  2.마감 3.대기*/
 	private int rPJT_progress;
 	private Date rPJT_submission;
 	public RProject() {
