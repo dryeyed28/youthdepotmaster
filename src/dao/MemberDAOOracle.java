@@ -14,45 +14,31 @@ public class MemberDAOOracle implements MemberDAO {
 	@Override
 	public List<Member> selectAll() throws Exception {
 		/*
-		 * 1. DB연결(getConnection()메소드 활용) 
-		 * 2. pstmt 설정 
-		 * 3. rs 설정
-		 * 4. service에서 findAll()메소드
+		 * 1. DB연결(getConnection()메소드 활용) 2. pstmt 설정 3. rs 설정 4. service에서 findAll()메소드
 		 * 리턴값 가져오기
 		 */
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		List<Member> list = new ArrayList();
 		Member member = new Member();
-		
+
 		try {
-		con = OracleConnection.getConnection();
-		System.out.println("DB 접속");
-		String selectAll = "select *\r\n" + 
-				"from members";
-		pstmt = con.prepareStatement(selectAll);
-		rs = pstmt.executeQuery();
-		
-		while(rs.next()) {
-			list.add(new Member(
-				rs.getInt("mem_id"),
-				rs.getString("mem_userId"),
-				rs.getString("mem_email"),
-				rs.getString("mem_password"),
-				rs.getString("mem_userName"),
-				rs.getString("mem_nickName"),
-				rs.getString("mem_phone"),
-				rs.getInt("mem_sex"),
-				rs.getDate("mem_register_dateTime"),
-				rs.getDate("mem_lastLogin_dateTime"),
-				rs.getInt("mem_treasurer"),
-				rs.getInt("mem_passion")
-				));
-		}
-		System.out.println("selectAll() 결과 : " + list);
-		return list;
+			con = OracleConnection.getConnection();
+			System.out.println("DB 접속");
+			String selectAll = "select *\r\n" + "from members";
+			pstmt = con.prepareStatement(selectAll);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				list.add(new Member(rs.getInt("mem_id"), rs.getString("mem_userId"), rs.getString("mem_email"),
+						rs.getString("mem_password"), rs.getString("mem_userName"), rs.getString("mem_nickName"),
+						rs.getString("mem_phone"), rs.getInt("mem_sex"), rs.getDate("mem_register_dateTime"),
+						rs.getDate("mem_lastLogin_dateTime"), rs.getInt("mem_treasurer"), rs.getInt("mem_passion")));
+			}
+			System.out.println("selectAll() 결과 : " + list);
+			return list;
 		} finally {
 			OracleConnection.close(rs, pstmt, con);
 		}
@@ -109,24 +95,46 @@ public class MemberDAOOracle implements MemberDAO {
 	public void update(Member m) throws Exception {
 
 	}
-	
+
 	@Override
 	public int selectCount() throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		String selectCount = "select count(*) totalCount\r\n" + 
-				"from members";
-		
+
+		String selectCount = "select count(*) totalCount\r\n" + "from members";
+
 		try {
-		con = OracleConnection.getConnection();
-		pstmt = con.prepareStatement(selectCount);
-		rs = pstmt.executeQuery();
-		rs.next();
-		int totalCount = rs.getInt("totalCount");
+			con = OracleConnection.getConnection();
+			pstmt = con.prepareStatement(selectCount);
+			rs = pstmt.executeQuery();
+			rs.next();
+			int totalCount = rs.getInt("totalCount");
+
+			return totalCount;
+		} finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
+	}
+
+	@Override
+	public Member idCheck(String mem_userid) throws Exception {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		
-		return totalCount;
+		Member member = new Member();
+
+		String idCheck = "SELECT mem_userid\r\n" + "FROM members\r\n" + "WHERE mem_userid='id1'";
+
+		try {
+			con = OracleConnection.getConnection();
+			pstmt = con.prepareStatement(idCheck);
+			rs = pstmt.executeQuery();
+
+			return member;
+			
 		} finally {
 			OracleConnection.close(rs, pstmt, con);
 		}

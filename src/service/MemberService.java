@@ -40,4 +40,21 @@ public class MemberService implements MemberInterface{
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public Member idCheck(String mem_userId) throws Exception {
+		Member member = dao.idCheck(mem_userId);
+		
+		if(member != null ) {
+			throw new Exception("이미 사용중인 아이디 입니다");
+		} else {
+			throw new Exception("사용 가능한 아이디 입니다.");
+			
+		}
+
+		
+	
+	
+	}
+	
 }
