@@ -16,60 +16,60 @@
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     
     <!-- Theme Styles -->
-    <link rel="stylesheet" href="../Resources/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../Resources/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/user/Resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/user/Resources/css/font-awesome.min.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="../Resources/css/animate.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/user/Resources/css/animate.min.css">
     
     <!-- Current Page Styles -->
-    <link rel="stylesheet" type="text/css" href="../Resources/components/revolution_slider/css/settings.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="../Resources/components/revolution_slider/css/style.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="../Resources/components/jquery.bxslider/jquery.bxslider.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="../Resources/components/flexslider/flexslider.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/user/Resources/components/revolution_slider/css/settings.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/user/Resources/components/revolution_slider/css/style.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/user/Resources/components/jquery.bxslider/jquery.bxslider.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/user/Resources/components/flexslider/flexslider.css" media="screen" />
     
     
     <!-- Main Style -->
-    <link id="main-style" rel="stylesheet" href="../Resources/css/style.css">
+    <link id="main-style" rel="stylesheet" href="<%=request.getContextPath() %>/user/Resources/css/style.css">
     
     <!-- Updated Styles -->
-    <link rel="stylesheet" href="../Resources/css/updates.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/user/Resources/css/updates.css">
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="../Resources/css/custom.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/user/Resources/css/custom.css">
     
     <!-- Responsive Styles -->
-    <link rel="stylesheet" href="../Resources/css/responsive.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/user/Resources/css/responsive.css">
     
     
-	<script type="text/javascript" src="../Resources/js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="../Resources/js/jquery.noconflict.js"></script>
-    <script type="text/javascript" src="../Resources/js/modernizr.2.7.1.min.js"></script>
-    <script type="text/javascript" src="../Resources/js/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="../Resources/js/jquery.placeholder.js"></script>
-    <script type="text/javascript" src="../Resources/js/jquery-ui.1.10.4.min.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/jquery.noconflict.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/modernizr.2.7.1.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/jquery.placeholder.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/jquery-ui.1.10.4.min.js"></script>
     
     <!-- Twitter Bootstrap -->
-    <script type="text/javascript" src="../Resources/js/bootstrap.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/bootstrap.js"></script>
     
     <!-- load revolution slider scripts -->
-    <script type="text/javascript" src="../Resources/components/revolution_slider/js/jquery.themepunch.tools.min.js"></script>
-    <script type="text/javascript" src="../Resources/components/revolution_slider/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/components/revolution_slider/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/components/revolution_slider/js/jquery.themepunch.revolution.min.js"></script>
     
     <!-- load BXSlider scripts -->
-    <script type="text/javascript" src="../Resources/components/jquery.bxslider/jquery.bxslider.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/components/jquery.bxslider/jquery.bxslider.min.js"></script>
     
 	<!-- load FlexSlider scripts -->
-    <script type="text/javascript" src="../Resources/components/flexslider/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/components/flexslider/jquery.flexslider-min.js"></script>
     
     <!-- parallax -->
-    <script type="text/javascript" src="../Resources/js/jquery.stellar.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/jquery.stellar.min.js"></script>
     
     <!-- waypoint -->
-    <script type="text/javascript" src="../Resources/js/waypoints.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/waypoints.min.js"></script>
 
     <!-- load page Javascript -->
-    <script type="text/javascript" src="../Resources/js/theme-scripts.js"></script>
-    <script type="text/javascript" src="../Resources/js/scripts.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/theme-scripts.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/scripts.js"></script>
     
 </head>
 <boby>
