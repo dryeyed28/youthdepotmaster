@@ -7,27 +7,20 @@
 <script>
 
 
-
-
-
-
 $(function(){
 	
 	$('#idchk').click(function(){
-		console.log('중복확인버튼클릭 id='+$('#idchk').val());
+	
 		$.ajax({ 
 			method:'post',
-			data:'id='+$('#idchk').val(),
-			url:'idcheck.do',
+			data:{id:$('#idchk').val(),type:'idcheck'},
+			URl: "<%=request.getContextPath() %>/MemberConroller",
+			//data.trim()
 			success:function(data){
-				//$('div.id>div.dup').html(data).css('color', 'red').show();
-				data = data.trim();
-				if(data == '1'){
-					var result = '사용가능한 ID입니다.'
-					$('div.id>div.dup').html(result).css('color', 'red').show();
-				}else if(data == '-1'){
-					var result = '이미사용중인ID입니다.'
-					$('div.id>div.dup').html(result).css('color', 'red').show();
+				if(data==0){
+					alert('이미 사용중인 ID입니다');
+				}else {
+					alert('사용가능한 ID입니다.');
 				}
 			}
 		});
