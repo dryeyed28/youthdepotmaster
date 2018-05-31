@@ -12,3 +12,19 @@
 forward형식 : Controller에서 forward시킴  -> 기능구현 다됬을때 rediract, URL주소 수정할거 수정
 				RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 				dispatcher.forward(request, response);
+				
+Controller 코딩할때 :  doPost(request, response)
+					response.setContentType("text/html; charset=UTF-8");
+					request.setCharacterEncoding("UTF-8");
+					response.setCharacterEncoding("UTF-8");
+					ProjcetService service = new ProjcetServiceImpl();
+					String type = request.getParameter("type");
+					String forwardURL = "";
+					
+					if (type.equals("~~~")) {
+					내용작성
+					forwardURL = "~~~.jsp";
+					}else if~~~{
+					}
+					RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
+					dispatcher.forward(request, response);

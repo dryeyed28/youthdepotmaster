@@ -9,3 +9,7 @@ $(function(){
 
 >> String -> Date
 java.sql.Date.valueOf(String name);
+
+>> MAX insert문
+insert into r_project (rpjt_id, mem_id, rrpjt_key, rpjt_state, rpjt_progress, rpjt_submission) values
+((SELECT MAX(rpjt_id)+1 as pjt_id FROM r_project), 1, null, 3, 2, sysdate);
