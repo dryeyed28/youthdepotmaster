@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>login2.jsp</title>
 </head>
 <body>
-<h3>·Î±×ÀÎ</h3>
+<h3>ë¡œê·¸ì¸</h3>
 <form name="f" action="<%=request.getContextPath() %>/admin/pages/login.do" 
 method="post">
 <table border="1">
@@ -20,8 +20,8 @@ method="post">
 <td><input type="password" name="admin_pwd"></td>
 </tr>
 <tr>
-<td colspan="2"><input type="submit" value="·Î±×ÀÎ">
-<a href="<%=request.getContextPath() %>/member/form.jsp">È¸¿ø°¡ÀÔ</a>
+<td colspan="2"><input type="submit" value="ë¡œê·¸ì¸">
+<a href="<%=request.getContextPath() %>/member/form.jsp">íšŒì›ê°€ìž…</a>
 </td>
 </tr>
 </table>
