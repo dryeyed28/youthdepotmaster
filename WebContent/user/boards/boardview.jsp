@@ -13,28 +13,63 @@
 
 <%@include file="../template/header.jsp"%>
 <section id="content" class="gray-area">
-            <div class="container">
-                <div class="row">
-                    <div id="main" class="col-sm-8 col-md-9">
-                        <div class="booking-information travelo-box">
-                            <h2>게시물</h2>
-                            <hr>
-                            <h2>글제목</h2>
-                            <dl class="term-description">
-                                <dt>작성자</dt><dd>지후니</dd>
-                                <dt>작성일</dt><dd>Jessica</dd>
-                                <dt>E-mail </dt><dd>United States of america</dd>
-                            </dl>
-                            <hr>
-                            
-                            <p>Praesent dolor lectus, rutrum sit amet risus vitae, imperdiet cursus neque. Nulla tempor nec lorem eu suscipit. Donec dignissim lectus a nunc molestie consectetur. Nulla eu urna in nisi adipiscing placerat. Nam vel scelerisque magna. Donec justo urna, posuere ut dictum quis.</p>
-                            <br>
-                       </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
+	<div class="container">
+		<div class="row">
+			<div id="main" class="col-sm-8 col-md-9">
+				<div class="booking-information travelo-box">
+					<h3>게시물</h3>
+					<hr>
+					<h2>글제목</h2>
+					<dl class="term-description">
+						<dt>작성자</dt><dd>지후니</dd>
+						<dt>작성일</dt><dd>Jessica</dd>
+						<dt>E-mail</dt><dd>United States of america</dd>
+					</dl>
+					<hr>
+
+					<p>Praesent dolor lectus, rutrum sit amet risus vitae,
+						imperdiet cursus neque. Nulla tempor nec lorem eu suscipit. Donec
+						dignissim lectus a nunc molestie consectetur. Nulla eu urna in
+						nisi adipiscing placerat. Nam vel scelerisque magna. Donec justo
+						urna, posuere ut dictum quis.</p>
+					<br>
+				</div>
+			</div>
+
+			<div class="sidebar col-sm-4 col-md-3">
+				<div class="travelo-box contact-box">
+					<h4>Need Travelo Help?</h4>
+					<p>We would be more than happy to help you. Our team advisor
+						are 24/7 at your service to help you.</p>
+					<address class="contact-details">
+						<span class="contact-phone"><i class="soap-icon-phone"></i>
+							1-800-123-HELLO</span> <br> <a class="contact-email" href="#">help@travelo.com</a>
+					</address>
+				</div>
+				<div class="travelo-box book-with-us-box">
+					<h4>Why Book with us?</h4>
+					<ul>
+						<li><i class="soap-icon-hotel-1 circle"></i>
+							<h5 class="title">
+								<a href="#">135,00+ Hotels</a>
+							</h5>
+							<p>Nunc cursus libero pur congue arut nimspnty.</p></li>
+						<li><i class="soap-icon-savings circle"></i>
+							<h5 class="title">
+								<a href="#">Low Rates &amp; Savings</a>
+							</h5>
+							<p>Nunc cursus libero pur congue arut nimspnty.</p></li>
+						<li><i class="soap-icon-support circle"></i>
+							<h5 class="title">
+								<a href="#">Excellent Support</a>
+							</h5>
+							<p>Nunc cursus libero pur congue arut nimspnty.</p></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 <!-- 
 <section id="content" class="gray-area">
 	<div class="container">
