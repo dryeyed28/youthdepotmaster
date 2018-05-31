@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+div.list {
+	box-sizing: border-box;
+	width: 100%;
+	heigh: 100%;
+	margin: 0px;
+	overflow: auto;
+	/*크기가 길어지면 스크롤*/
+}
+
+div.member {
+	box-sizing: border-box;
+	/*border, padding과 관계없이 크기 설정*/
+	margin: 1px;
+	padding: 0px;
+	border-bottom: 1px solid;
+	display: table-row;
+	width: 50%; 
+	/* 	테이블 태그 tr 효과 */
+}
+
+div.mem_id, div.mem_userid, div.mem_email, div.mem_password, div.mem_username
+, div.mem_nickname, div.mem_phone, div.mem_sex, div.mem_register_datetime
+, div.mem_lastlogin_datetime, div.mem_treasurer, div.mem_passion {
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+	 /* display:inline-block;  */ 
+  	display: table-cell; 
+  	/* 	테이블 태그 td 효과  */
+  	width: 20%;
+ 	border: 1px solid;
+}

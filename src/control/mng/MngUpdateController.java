@@ -14,10 +14,14 @@ public class MngUpdateController implements YouthDepotController {
 //		// ajax요청
 //		String forwardURL = "boardupdatepagerslt.jsp";
 //		return forwardURL;
+		
+		
 //		// board1.jsp 에서 수정버튼
 //		// ajax요청
 //		String forwardURL = "postupdaterslt.jsp";
 //		return forwardURL;
+
+		
 //		// member.jsp 에서 수정버튼
 //		// db update
 //		// ajax요청

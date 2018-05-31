@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class Post {
 	private int post_id;
-	private Board board;
+	private Board board_id;
 	private int mem_id;
-	private String mem_nickNsame;
+	private String mem_nickName;
 	private String admin_id;
 	private String post_title;
 	private String post_content;
@@ -14,16 +14,17 @@ public class Post {
 	private int post_comment_count;
 	private int post_view_count;
 	private int post_del;
+	
 	public Post() {
 		super();
 	}
-	public Post(int post_id, Board board, int mem_id, String mem_nickNsame, String admin_id, String post_title,
+	public Post(int post_id, Board board_id, int mem_id, String mem_nickName, String admin_id, String post_title,
 			String post_content, Date post_dateTime, int post_comment_count, int post_view_count, int post_del) {
 		super();
 		this.post_id = post_id;
-		this.board = board;
+		this.board_id = board_id;
 		this.mem_id = mem_id;
-		this.mem_nickNsame = mem_nickNsame;
+		this.mem_nickName = mem_nickName;
 		this.admin_id = admin_id;
 		this.post_title = post_title;
 		this.post_content = post_content;
@@ -38,11 +39,11 @@ public class Post {
 	public void setPost_id(int post_id) {
 		this.post_id = post_id;
 	}
-	public Board getBoard() {
-		return board;
+	public Board getBoard_id() {
+		return board_id;
 	}
-	public void setBoard(Board board) {
-		this.board = board;
+	public void setBoard_id(Board board_id) {
+		this.board_id = board_id;
 	}
 	public int getMem_id() {
 		return mem_id;
@@ -50,11 +51,11 @@ public class Post {
 	public void setMem_id(int mem_id) {
 		this.mem_id = mem_id;
 	}
-	public String getMem_nickNsame() {
-		return mem_nickNsame;
+	public String getMem_nickName() {
+		return mem_nickName;
 	}
-	public void setMem_nickNsame(String mem_nickNsame) {
-		this.mem_nickNsame = mem_nickNsame;
+	public void setMem_nickName(String mem_nickName) {
+		this.mem_nickName = mem_nickName;
 	}
 	public String getAdmin_id() {
 		return admin_id;
@@ -98,5 +99,5 @@ public class Post {
 	public void setPost_del(int post_del) {
 		this.post_del = post_del;
 	}
-	
+
 }

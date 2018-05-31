@@ -15,6 +15,7 @@ public class Member {
 	private Date mem_lastLogin_dateTime;
 	private int mem_treasurer;
 	private int mem_passion;
+	
 	public Member() {
 		super();
 	}
@@ -107,11 +108,11 @@ public class Member {
 	public void setMem_passion(int mem_passion) {
 		this.mem_passion = mem_passion;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Member [mem_id=" + mem_id + ", mem_userId=" + mem_userId + ", mem_email=" + mem_email
-				+ ", mem_password=" + mem_password + ", mem_username=" + mem_userName + ", mem_nickName=" + mem_nickName
+				+ ", mem_password=" + mem_password + ", mem_userName=" + mem_userName + ", mem_nickName=" + mem_nickName
 				+ ", mem_phone=" + mem_phone + ", mem_sex=" + mem_sex + ", mem_register_dateTime="
 				+ mem_register_dateTime + ", mem_lastLogin_dateTime=" + mem_lastLogin_dateTime + ", mem_treasurer="
 				+ mem_treasurer + ", mem_passion=" + mem_passion + "]";
