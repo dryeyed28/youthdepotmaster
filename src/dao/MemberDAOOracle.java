@@ -3,10 +3,12 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import sql.OracleConnection;
+import vo.Admin;
 import vo.Member;
 
 public class MemberDAOOracle implements MemberDAO {
@@ -55,8 +57,8 @@ public class MemberDAOOracle implements MemberDAO {
 		try {
 			con = OracleConnection.getConnection();
 			String selectById = "select *\r\n" + "from members\r\n" + "where mem_userid = ?";
-			pstmt.setString(1, mem_userId);
 			pstmt = con.prepareStatement(selectById);
+			pstmt.setString(1, mem_userId);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -119,7 +121,6 @@ public class MemberDAOOracle implements MemberDAO {
 
 	@Override
 	public Member idCheck(String mem_userid) throws Exception {
-
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

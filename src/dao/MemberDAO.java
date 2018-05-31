@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import vo.Admin;
 import vo.Member;
 
 public interface MemberDAO {

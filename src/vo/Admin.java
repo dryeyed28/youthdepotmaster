@@ -31,5 +31,10 @@ public class Admin {
    public void setAdmin_name(String admin_name) {
       this.admin_name = admin_name;
    }
-      
+
+   @Override
+   public String toString() {
+	   return "Admin [admin_id=" + admin_id + ", admin_pwd=" + admin_pwd + ", admin_name=" + admin_name + "]";
+   }
+   
 }

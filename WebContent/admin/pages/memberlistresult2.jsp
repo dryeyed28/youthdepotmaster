@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- <title>mermberlistresult2.jsp</title> -->
 <!-- <style src="/css/memberlistresult2.css"></style> -->
-<link rel="stylesheet" type="text/css" href="/youthdepotmaster/css/memberlistresult2.css">
+<link rel="stylesheet" type="text/css" href="/youthdepotmaster/admin/css/memberlistresult2.css">
 <script></script>
 </head>
 <body>
@@ -51,13 +51,13 @@
 %></div>
 </div> --%>
 		
-		<!-- 리퀘스트 어튜리뷰트에 담긴 pagebean(member list 포함) 객체를 jsp에서 받아온다 -->
-		<!-- PageBean pb = (PageBean) request.getAttribute("pagebean")-->
+		<%-- 리퀘스트 어튜리뷰트에 담긴 pagebean(member list 포함) 객체를 jsp에서 받아온다 --%>
+		<%-- PageBean pb = (PageBean) request.getAttribute("pagebean") --%>
 		<c:set var="pb" value="${requestScope.pagebean}"/>
 		<c:set var="list" value="${pb.list}"/>
 		
 <div class="list">
- <div class="member">
+ <div class="member1">
   <div class="mem_id">회원고유번호</div>
   <!-- 테이블행 --> 
    <div class="mem_userid">아이디</div>
@@ -67,16 +67,16 @@
    <div class="mem_nickname">별명</div>
    <div class="mem_phone">연락처</div>
    <div class="mem_sex">성별</div>
-   <div class="mem_register_dateTime">가입일</div>
-   <div class="mem_lastLogin_dateTime">최종 로그인</div>
+   <div class="mem_register_datetime">가입일</div>
+   <div class="mem_lastLogin_datetime">최종 로그인</div>
    <div class="mem_treasurer">창고지기</div>
    <div class="mem_passion">열정</div>
  </div>
 	
 	
  	<c:forEach var="member" items="${list}">
- 		<!--  list에 있는 member 객체 전부 가져와서 반복-->
-  <div class="member">
+ 		<%-- list에 있는 member 객체 전부 가져와서 반복 --%>
+  <div class="member2">
    <div class="mem_id">${member.mem_id}</div>
    <div class="mem_userid">${member.mem_userId}</div>
    <div class="mem_email">${member.mem_email}</div>
