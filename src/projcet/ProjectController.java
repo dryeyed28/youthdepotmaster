@@ -13,7 +13,9 @@ import javax.servlet.http.HttpSession;
 import vo.RApply;
 import vo.RKeeper;
 import vo.RMeta;
+import vo.ROption;
 import vo.RProject;
+import vo.RStory;
 
 
 public class ProjectController extends HttpServlet {
@@ -43,26 +45,41 @@ public class ProjectController extends HttpServlet {
 		String forwardURL = "";
 		if (type.equals("apply")) {
 			HttpSession session = request.getSession();
-			session.setAttribute("id", "1");
+			session.setAttribute("id", 1);
 			RApply ra = new RApply();
 			RKeeper rk = new RKeeper();
 			RMeta rm = new RMeta();
 			RProject rp = new RProject();
+			ROption ro = new ROption();
+			RStory rs = new RStory();
 			rp.setMem_id((int)session.getAttribute("id"));
 			rp.setrPJT_progress(3);
 			rp.setrPJT_state(2);
-//			rk.setR_tel(Integer.parseInt(request.getParameter("r_tel")));
-//			rm.setrPJT_title(request.getParameter("pjt_title"));
-//			rm.setrPJT_subTitle(request.getParameter("pjt_subtitle"));
-//			rm.setrTarget_amount(Integer.parseInt(request.getParameter("target_amount")));
-//			rm.setrPJT_image(request.getParameter("pjt_image"));
-//			rm.setrPJT_category(request.getParameter("pjt_category"));
-//			rm.setrPJT_paper(request.getParameter("pjt_paper"));
-//			rm.setrPJT_endDay(java.sql.Date.valueOf((request.getParameter("pjt_endDay"))));
+			rk.setR_tel(Integer.parseInt(request.getParameter("tel")));
+			rk.setR_name(request.getParameter("kepper_name"));
+			rk.setR_profile(request.getParameter("profile"));
+			rk.setR_email(request.getParameter("email"));
+			rk.setR_url(request.getParameter("siteUrl"));
+			rm.setrPJT_title(request.getParameter("title"));
+			rm.setrPJT_subTitle(request.getParameter("subtitle"));
+			rm.setrTarget_amount(Integer.parseInt(request.getParameter("amount")));
+			rm.setrPJT_image(request.getParameter("image"));
+			rm.setrPJT_category(request.getParameter("category"));
+			rm.setrPJT_paper(request.getParameter("paper"));
+			rm.setrPJT_endDay(java.sql.Date.valueOf((request.getParameter("endDay"))));
+			ro.setrPJT_name(request.getParameter("name"));
+			ro.setrPJT_detail(request.getParameter("detail"));
+			ro.setrPJT_price(Integer.parseInt(request.getParameter("price")));
+			ro.setrPJT_limit(request.getParameter("limit"));
+			ro.setrPJT_send(java.sql.Date.valueOf(request.getParameter("send")));
+			rs.setrPJT_url(request.getParameter("UCCurl"));
+			rs.setrPJT_sumnail(request.getParameter("sumnail"));
+			rs.setrPJT_tag(request.getParameter("tag"));
+			rs.setrPJT_story(request.getParameter("story"));
+			ra.setrProject(rp);
+			service.applyinsert(ra);
 			forwardURL = "user/mypage/made.jsp";
 		}
-//		RApply rApply = null;
-//		service.applyinsert(rApply);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
 //		response.sendRedirect(forwardURL);
