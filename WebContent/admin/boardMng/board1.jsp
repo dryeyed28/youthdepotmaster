@@ -7,7 +7,7 @@
         $('#dataTables-example').DataTable({
             responsive: true
         });
-    	$('button#modify').click(function() {
+    	/* $('button#modify').click(function() {
     		$.ajax({
     			url:"postupdaterslt.jsp",
     			success: function(data){ 
@@ -16,7 +16,7 @@
     			}
     		});
     		return false;
-    	});
+    	}); */
     });
 </script>
 
@@ -78,7 +78,7 @@
       </div>
       <hr>
       <button id="edit" onclick="location.href='edit.jsp'" class="btn btn-outline btn-primary">글쓰기</button>&nbsp;&nbsp;
-      <button id="modify" class="btn btn-outline btn-primary">수정</button>
+      <button id="modify" onclick="location.href='postupdaterslt.jsp'" class="btn btn-outline btn-primary">수정</button>
 	  </div>
       <!-- /.panel-body -->
       </div>

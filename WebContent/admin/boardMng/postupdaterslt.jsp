@@ -1,8 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="../template/top.jsp"%>
+<%@include file="../template/aside.jsp"%>
+
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 <script>
 $(document).ready(function() {
-
+    /* var sendFile = function (file, el) {
+          var form_data = new FormData();
+          form_data.append('file', file);
+          $.ajax({
+            data: form_data,
+            type: "POST",
+            url: '/file',
+            cache: false,
+            contentType: false,
+            enctype: 'multipart/form-data',
+            processData: false,
+            success: function(url) {
+                    $('#summernote').summernote('insertImage', url);
+                $('#imageBoard > ul').append('<li><img src="'+ url +'" width="480" height="auto"/></li>');
+            }
+          });
+        } */
     $('#summernote').summernote({
         height: 300,
         minHeight: null,
@@ -18,9 +39,14 @@ $(document).ready(function() {
       });
 });
 </script>
+
+<div id="page-wrapper">
   <div class="row">
+  
 	<div class="col-lg-12">
+	 
 		<div class="container" style="padding-top: 100px;">
+		<h2 class="page-header">게시글 수정</h2>
 		  <form class="boardSubmit" method="post" enctype="multipart/form-data">
 		    <table class="table table-bordered" style="width: 100%;">
 		      <tr>
@@ -46,9 +72,11 @@ $(document).ready(function() {
 		        <td><label><input type="checkbox"/> 이 글을 공지글로 설정합니다.</label></td>
 		      </tr>
 		    </table>
-		    <button class="btn btn-primary">확인</button>
-		    <button class="btn btn-primary">취소</button>
+		    <button class="btn btn-primary">확인</button><!-- 
+		    <button class="btn btn-primary" type="reset">취소</button> -->
+		    <a class="btn btn-primary" href="board1.jsp">뒤로가기</a>
 		  </form>
 		</div>
 	</div>
   </div>
+</div>
