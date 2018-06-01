@@ -1,6 +1,7 @@
 package projcet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -84,6 +85,8 @@ public class ProjectController extends HttpServlet {
 			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
 			keeper = service.keeper(rPJT_id);
 			meta = service.meta(rPJT_id);
+			ArrayList<ROption> option = service.option(rPJT_id);
+			request.setAttribute("option", option);
 			request.setAttribute("keeper",keeper);
 			request.setAttribute("meta", meta);
 			forwardURL = "user/pages/rewarddetaile.jsp";
