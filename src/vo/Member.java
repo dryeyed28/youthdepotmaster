@@ -1,6 +1,6 @@
 package vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Member {
 	private int mem_id;
