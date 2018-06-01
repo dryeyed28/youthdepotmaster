@@ -1,14 +1,18 @@
 package projcet;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import sql.OracleConnection;
+import vo.Board;
+import vo.Post;
 import vo.RApply;
 import vo.RKeeper;
 import vo.RMeta;
+import vo.ROption;
 import vo.RProject;
 
 public class ProjcetDaoOracle implements ProjcetDao {
@@ -19,10 +23,11 @@ public class ProjcetDaoOracle implements ProjcetDao {
 		try {
 			con = sql.OracleConnection.getConnection();
 			String insertSQL = "insert all\r\n" + 
-					  "into r_project values ((SELECT MAX(rpjt_id)+1 FROM r_project), ?, null, ?, ?, sysdate)\r\n" + 
-					  "into r_keeper values ((SELECT MAX(rpjt_id)+1 FROM r_keeper), ?, ?, ?, null, ?)\r\n" + 
-					  "into R_META values ((SELECT MAX(rpjt_id)+1 FROM R_META),?,?,0,?,?,?,?,null,to_date(?,'RR/MM/DD'))\r\n"
-					+ "into r_optin values ((SELECT MAX(rpjt_id)+1 FROM r_optin), 10,?,?,?,?,to_date(?,'RR/MM/DD'))\r\n"
+					  "into R_project values ((SELECT MAX(rpjt_id)+1 FROM R_project), ?, ?, ?, sysdate)\r\n" + 
+					  "into R_keeper values ((SELECT MAX(rpjt_id)+1 FROM R_keeper), ?, ?, ?, null, ?)\r\n" + 
+					  "into R_meta values ((SELECT MAX(rpjt_id)+1 FROM R_meta),?,?,0,?,?,?,?,null,to_date(?,'RR/MM/DD'))\r\n"
+					+ "into R_OPtion values ((SELECT MAX(rpjt_id)+1 FROM R_OPtion), 10,?,?,?,?,to_date(?,'RR/MM/DD'),?)\r\n"
+					+ "into R_Story values ((SELECT MAX(rpjt_id)+1 FROM R_Story),?,0,?,?,?,?)\r\n"
 					+ "SELECT * FROM DUAL";
 			pstmt = con.prepareStatement(insertSQL);
 			pstmt.setInt(1, rApply.getrProject().getMem_id());
@@ -44,7 +49,12 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			pstmt.setString(17, rApply.getrOption().getrPJT_detail());
 			pstmt.setInt(18, rApply.getrOption().getrPJT_limit());
 			pstmt.setString(19, rApply.getrOption().getrPJT_send());
-			pstmt.setString(20, rApply.getrOption().getrPJT_send());
+			pstmt.setInt(20, rApply.getrOption().getrPJT_charge());
+			pstmt.setString(21, rApply.getrStory().getrPJT_url());
+			pstmt.setString(22, rApply.getrStory().getrPJT_sumnail());
+			pstmt.setString(23, rApply.getrStory().getrPJT_story());
+			pstmt.setString(24, rApply.getrStory().getrPJT_tag());
+			pstmt.setString(25, rApply.getrStory().getrPJT_paper());
 			pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -131,5 +141,43 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			sql.OracleConnection.close(rs, pstmt, con);
 		}
 		return meta;
+	}
+
+	@Override
+	public ArrayList<ROption> getOption(int rPJT_id) {
+		ArrayList<ROption> option = new ArrayList<ROption>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = OracleConnection.getConnection();
+			String sql = "";
+			sql += "select ro.rpjt_id, ro.reward_id, ro.RPJT_PRICE, ro.RPJT_NAME, ro.RPJT_DETAIL, \n";
+			sql += "ro.RPJT_LIMIT, to_char(ro.RPJT_SEND, 'yyyy.mm.dd') RPJT_SEND, ro.RPJT_CHARGE \n";
+			sql += "from r_option ro, r_project rp \n";
+			sql += "where ro.rPJT_id = rp.rPJT_id and ro.rPJT_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rPJT_id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ROption ro = new ROption(
+						new RProject(rs.getInt("rPJT_id"), 0, 0, 0, null),
+						rs.getInt("reward_id"),
+						rs.getInt("rPJT_price"),
+						rs.getString("rPJT_name"),
+						rs.getString("rPJT_detail"),
+						rs.getInt("rPJT_limit"),
+						rs.getString("rPJT_send"),
+						rs.getInt("rPJT_charge")
+						);
+				
+				option.add(ro);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
+		return option;
 	}
 }

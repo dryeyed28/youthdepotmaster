@@ -1,3 +1,5 @@
+<%@page import="vo.ROption"%>
+<%@page import="java.util.ArrayList" %>
 <%@page import="vo.RMeta"%>
 <%@page import="vo.RKeeper"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -166,8 +168,9 @@
 				<article class="detailed-logo">
 					<div class="details">
 						<div class="feedback clearfix">
+						<%int percent = (100 * meta.getrInvesting_amount()) / meta.getrTarget_amount() ;%>
 							<div class="progress-bar" role="progressbar" style="width: 100%;"
-								aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">290%</div>
+								aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%=percent%>%</div>
 						</div>
 						<h2 class="box-title">19일 남음</h2>
 						<span class="price clearfix">
@@ -199,27 +202,20 @@
 						<p><%=keeper.getR_url()%></p>
 					</address>
 				</div>
-				
+				<%ArrayList<ROption> option = (ArrayList)request.getAttribute("option");
+				for(ROption o : option) {%>
 				<div class="travelo-box book-with-us-box">
 					<h4>펀딩 선택</h4>
 					<ul>
-						<li><i class="soap-icon-hotel-1 circle"></i>
-							<h5 class="title">
-								<a href="#">135,00+ Hotels</a>
-							</h5>
-							<p>Nunc cursus libero pur congue arut nimspnty.</p></li>
 						<li><i class="soap-icon-savings circle"></i>
 							<h5 class="title">
-								<a href="#">Low Rates &amp; Savings</a>
+								<a href="#"><%=o.getrPJT_name()%></a>
 							</h5>
-							<p>Nunc cursus libero pur congue arut nimspnty.</p></li>
-						<li><i class="soap-icon-support circle"></i>
-							<h5 class="title">
-								<a href="#">Excellent Support</a>
-							</h5>
-							<p>Nunc cursus libero pur congue arut nimspnty.</p></li>
+							<p><%=o.getrPJT_detail()%></p>
+						</li>
 					</ul>
 				</div>
+				<%} %>
 			</div>
 		</div>
 	</div>

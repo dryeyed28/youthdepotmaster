@@ -1,6 +1,7 @@
 package projcet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -46,6 +47,7 @@ public class ProjectController extends HttpServlet {
 		RKeeper keeper = null;
 		RMeta meta = null;
 		if (type.equals("apply")) {
+			System.out.println("Controller");
 			HttpSession session = request.getSession();
 			session.setAttribute("id", 1);
 			RKeeper rk = new RKeeper();
@@ -73,6 +75,7 @@ public class ProjectController extends HttpServlet {
 			ro.setrPJT_price(Integer.parseInt(request.getParameter("price")));
 			ro.setrPJT_limit(Integer.parseInt(request.getParameter("limit")));
 			ro.setrPJT_send(request.getParameter("send"));
+			ro.setrPJT_charge(Integer.parseInt(request.getParameter("charge")));
 			rs.setrPJT_url(request.getParameter("UCCurl"));
 			rs.setrPJT_sumnail(request.getParameter("sumnail"));
 			rs.setrPJT_tag(request.getParameter("tag"));
@@ -84,6 +87,8 @@ public class ProjectController extends HttpServlet {
 			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
 			keeper = service.keeper(rPJT_id);
 			meta = service.meta(rPJT_id);
+			ArrayList<ROption> option = service.option(rPJT_id);
+			request.setAttribute("option", option);
 			request.setAttribute("keeper",keeper);
 			request.setAttribute("meta", meta);
 			forwardURL = "user/pages/rewarddetaile.jsp";
