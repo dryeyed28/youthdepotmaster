@@ -45,6 +45,7 @@ public class ProjectController extends HttpServlet {
 		int rPJT_id = 0;
 		RKeeper keeper = null;
 		if (type.equals("apply")) {
+			System.out.println("Controller");
 			HttpSession session = request.getSession();
 			session.setAttribute("id", 1);
 			RKeeper rk = new RKeeper();
@@ -72,6 +73,7 @@ public class ProjectController extends HttpServlet {
 			ro.setrPJT_price(Integer.parseInt(request.getParameter("price")));
 			ro.setrPJT_limit(Integer.parseInt(request.getParameter("limit")));
 			ro.setrPJT_send(request.getParameter("send"));
+			ro.setrPJT_charge(Integer.parseInt(request.getParameter("charge")));
 			rs.setrPJT_url(request.getParameter("UCCurl"));
 			rs.setrPJT_sumnail(request.getParameter("sumnail"));
 			rs.setrPJT_tag(request.getParameter("tag"));
