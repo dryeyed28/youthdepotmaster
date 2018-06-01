@@ -13,7 +13,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 $(function(){
-	$("li").click(function(){
+	$("li").on("click",function(){
 		var classValue = $(this).attr("class");
 		$("section").empty();
 		switch(classValue) {
@@ -21,10 +21,10 @@ $(function(){
 		case "member":
 			$.ajax({
 				method: "POST",
-				url: "<%=request.getContextPath() %>/MemberController?type=selectAll",
 				data: "page=1",
+				url: "<%=request.getContextPath() %>/MemberController?type=selectAll",
 				success: function(data) {
-					$("section").html(data);
+					$("section").html(data);				
 				}
 			});
 			break;
@@ -37,10 +37,8 @@ $(function(){
 <header>
  <nav>
   <ul>
-  <section>
   <%-- <form name="f" method="post" action="<%=request.getContextPath() %>/member?type=selectAll" >--%>
    <li class="member"><a href="#">회원</a></li>
-   </section>
   </form>
   </ul>
  </nav>
