@@ -43,7 +43,6 @@ public class PostDaoOracle implements PostDao {
 						);
 				
 				data.add(post);
-				System.out.println("list!!! + " + data);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
