@@ -1,7 +1,6 @@
 package projcet;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,10 +23,11 @@ public class ProjcetDaoOracle implements ProjcetDao {
 		try {
 			con = sql.OracleConnection.getConnection();
 			String insertSQL = "insert all\r\n" + 
-					  "into r_project values ((SELECT MAX(rpjt_id)+1 FROM r_project), ?, null, ?, ?, sysdate)\r\n" + 
-					  "into r_keeper values ((SELECT MAX(rpjt_id)+1 FROM r_keeper), ?, ?, ?, null, ?)\r\n" + 
-					  "into R_META values ((SELECT MAX(rpjt_id)+1 FROM R_META),?,?,0,?,?,?,?,null,to_date(?,'RR/MM/DD'))\r\n"
-					+ "into r_optin values ((SELECT MAX(rpjt_id)+1 FROM r_optin), 10,?,?,?,?,to_date(?,'RR/MM/DD'))\r\n"
+					  "into R_project values ((SELECT MAX(rpjt_id)+1 FROM R_project), ?, ?, ?, sysdate)\r\n" + 
+					  "into R_keeper values ((SELECT MAX(rpjt_id)+1 FROM R_keeper), ?, ?, ?, null, ?)\r\n" + 
+					  "into R_meta values ((SELECT MAX(rpjt_id)+1 FROM R_meta),?,?,0,?,?,?,?,null,to_date(?,'RR/MM/DD'))\r\n"
+					+ "into R_OPtion values ((SELECT MAX(rpjt_id)+1 FROM R_OPtion), 10,?,?,?,?,to_date(?,'RR/MM/DD'),?)\r\n"
+					+ "into R_Story values ((SELECT MAX(rpjt_id)+1 FROM R_Story),?,0,?,?,?,?)\r\n"
 					+ "SELECT * FROM DUAL";
 			pstmt = con.prepareStatement(insertSQL);
 			pstmt.setInt(1, rApply.getrProject().getMem_id());
@@ -49,7 +49,12 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			pstmt.setString(17, rApply.getrOption().getrPJT_detail());
 			pstmt.setInt(18, rApply.getrOption().getrPJT_limit());
 			pstmt.setString(19, rApply.getrOption().getrPJT_send());
-			pstmt.setString(20, rApply.getrOption().getrPJT_send());
+			pstmt.setInt(20, rApply.getrOption().getrPJT_charge());
+			pstmt.setString(21, rApply.getrStory().getrPJT_url());
+			pstmt.setString(22, rApply.getrStory().getrPJT_sumnail());
+			pstmt.setString(23, rApply.getrStory().getrPJT_story());
+			pstmt.setString(24, rApply.getrStory().getrPJT_tag());
+			pstmt.setString(25, rApply.getrStory().getrPJT_paper());
 			pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();
