@@ -8,7 +8,8 @@
 </head>
 <body>
 <h3>로그인</h3>
-<form name="f" action="<%=request.getContextPath() %>/admin/pages/login.do" 
+<%-- <form name="f" action="<%=request.getContextPath() %>/admin/pages/login.do"--%>
+<form name="f" action="<%=request.getContextPath() %>/admin?type=login"  
 method="post">
 <table border="1">
 <tr>

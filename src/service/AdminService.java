@@ -4,9 +4,10 @@ import dao.AdminDAO;
 import dao.AdminDAOOracle;
 import vo.Admin;
 
-public class AdminService {
+public class AdminService implements AdminInterface {
 	private AdminDAO dao = new AdminDAOOracle();
 	
+	@Override
 	public String adminLogin(String admin_id, String admin_pwd) throws Exception{
 		return dao.adminLogin(admin_id, admin_pwd);
 	}
