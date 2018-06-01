@@ -1,5 +1,9 @@
 package board;
 
-public interface BoardService {
+import java.util.ArrayList;
 
+import vo.Board;
+
+public interface BoardService {
+	ArrayList<Board> getBoardList();
 }

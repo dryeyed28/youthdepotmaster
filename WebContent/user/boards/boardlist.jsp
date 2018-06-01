@@ -1,20 +1,16 @@
+<%@page import="java.util.ArrayList" %>
 <%@page import="vo.Post"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="../template/header.jsp"%>
 <%--페이지 요청됬을때 : UserBoardListController >> 받은데이터 출력 --%>
 <%--검색기능 : ajax요청 >> UserBoardSerchController >> boardserchrslt.jsp에서 데이터받아옴  --%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
-
+<%@include file="../template/header.jsp"%>
 <script type="text/javascript">
 	function goUrl(url) {
 		location.href = url;
 	}
 </script>
-<%
-	Post p = (Post)request.getAttribute("p");
-%>
-
 
 <section id="content" class="gray-area">
   <div class="container">
@@ -24,7 +20,7 @@
 				<h1>게시판</h1>
 				<hr><br>
 				<h3>공지사항</h3>
-				<%-- <h3><%=p.getBoard().getBrd_name() %></h3> --%>
+				<%-- <h3><%=p.getBoard_id().getBrd_name() %></h3> --%>
 				<p style="text-align: right">
 					<select name="searchType">
 						<option value="ALL">전체검색</option>
@@ -34,7 +30,7 @@
 					</select> <input type="text" name="searchText" value="" /> <input
 						type="submit" value="검색" />
 				</p>
-				<form name="f2" action="<%=request.getContextPath()%>PostController?type=?boardList" method="post">
+				<form name="f" action="<%=request.getContextPath()%>/PostController?type=boardView" method="post">
 				<table class="table">
 					<thead>
 						<tr>
@@ -51,14 +47,19 @@
 							<td align="center" colspan="5">등록된 게시물이 없습니다.</td>
 						</tr>
 						 -->
+<%
+	ArrayList<Post> data = (ArrayList)request.getAttribute("data");
+	for(Post p : data){
+%>
 						<tr>
-							<td>1</td>
-							<td><a href="boardView.jsp">첫번째 게시글 입니다.</a></td>
-							<td>김연석</td>
-							<td>2013.06.24</td>
-							<td>10</td>
+							<td><%=p.getPost_id() %></td>
+							<td><a id="<%=p.getPost_id() %>" href="<%=request.getContextPath()%>/PostController?type=boardView&id=<%=p.getPost_id()%>"><%=p.getPost_title() %></a></td>
+							<td><%=p.getAdmin_id() %></td>
+							<td><%=p.getPost_dateTime() %></td>
+							<td><%=p.getPost_view_count() %></td>
 						</tr>
 					</tbody>
+<%} %>
 					<tfoot>
 						<tr>
 							<td align="center" colspan="5">1</td>
