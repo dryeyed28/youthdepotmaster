@@ -21,7 +21,8 @@ $(function(){
 		case "member":
 			$.ajax({
 				method: "POST",
-				url: "<%=request.getContextPath() %>/MemberConroller?type=selectAll&page=1,
+				url: "<%=request.getContextPath() %>/MemberController?type=selectAll",
+				data: "page=1",
 				success: function(data) {
 					$("section").html(data);
 				}
@@ -36,8 +37,10 @@ $(function(){
 <header>
  <nav>
   <ul>
+  <section>
   <%-- <form name="f" method="post" action="<%=request.getContextPath() %>/member?type=selectAll" >--%>
    <li class="member"><a href="#">회원</a></li>
+   </section>
   </form>
   </ul>
  </nav>
