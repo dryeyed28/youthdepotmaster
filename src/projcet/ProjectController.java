@@ -44,6 +44,7 @@ public class ProjectController extends HttpServlet {
 		String forwardURL = "";
 		int rPJT_id = 0;
 		RKeeper keeper = null;
+		RMeta meta = null;
 		if (type.equals("apply")) {
 			System.out.println("Controller");
 			HttpSession session = request.getSession();
@@ -84,9 +85,11 @@ public class ProjectController extends HttpServlet {
 		} else if(type.equals("rewardDetail")) {
 			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
 			keeper = service.keeper(rPJT_id);
+			meta = service.meta(rPJT_id);
 			request.setAttribute("keeper",keeper);
+			request.setAttribute("meta", meta);
 			forwardURL = "user/pages/rewarddetaile.jsp";
-		}
+		} 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
 //		response.sendRedirect(forwardURL);

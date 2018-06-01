@@ -128,13 +128,13 @@ public class MemberDaoOracle implements MemberDao {
 		ResultSet rs = null;
 		Member member = new Member();
 
-		String idCheck = "SELECT mem_userid\r\n" + "FROM members\r\n" + "WHERE mem_userid='id1'";
+		String idCheck = "SELECT mem_userid\r\n" + "FROM members\r\n" + "WHERE mem_userid=?";
 
 		try {
 			con = OracleConnection.getConnection();
 			pstmt = con.prepareStatement(idCheck);
 			rs = pstmt.executeQuery();
-
+			System.out.println("member");
 			return member;
 			
 		} finally {
