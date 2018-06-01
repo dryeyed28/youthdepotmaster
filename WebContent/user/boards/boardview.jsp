@@ -1,38 +1,30 @@
+<%@page import="vo.Post"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%-- 페이지 요청됬을때 :  --%>
-<script type="text/javascript">
-	function move(url) {
-		location.href = url;
-	}
-	function boardViewCheck() {
-		var form = document.BoardViewForm;
-		return true;
-	}
-</script>
-
 <%@include file="../template/header.jsp"%>
 <section id="content" class="gray-area">
 	<div class="container">
 		<div class="row">
+		<h3>게시글 상세보기</h3>
 			<div id="main" class="col-sm-8 col-md-9">
 				<div class="booking-information travelo-box">
-					<h3>게시물</h3>
+				<%Post p = (Post)request.getAttribute("p"); %>
+					<h2><%=p.getPost_title()%></h2>
 					<hr>
-					<h2>글제목</h2>
 					<dl class="term-description">
-						<dt>작성자</dt><dd>지후니</dd>
-						<dt>작성일</dt><dd>Jessica</dd>
-						<dt>E-mail</dt><dd>United States of america</dd>
+						<dt>작성자</dt><dd><%=p.getAdmin_id()%></dd>
+						<dt>작성일</dt><dd><%=p.getPost_dateTime()%></dd>
+						<dt>조회수</dt><dd><%=p.getPost_view_count()%></dd>
 					</dl>
 					<hr>
 
-					<p>Praesent dolor lectus, rutrum sit amet risus vitae,
-						imperdiet cursus neque. Nulla tempor nec lorem eu suscipit. Donec
-						dignissim lectus a nunc molestie consectetur. Nulla eu urna in
-						nisi adipiscing placerat. Nam vel scelerisque magna. Donec justo
-						urna, posuere ut dictum quis.</p>
+					<p><%=p.getPost_content()%></p>
 					<br>
+					<div class="form-group row" align="right">
+						<button type="submit" class="green">목록</button>&nbsp;&nbsp;
+						<button type="submit" class="green">수정</button>&nbsp;&nbsp;
+						<button type="submit" class="green">삭제</button>
+					</div>
 				</div>
 			</div>
 
@@ -79,57 +71,36 @@
 					<h2>게시판</h2>
 					<hr />
 					<form name="BoardViewForm" method="post">
-						<table summary="전체 테이블 구성">
+						<h3>게시글 상세보기</h3>
+						<%-- <%Post p = (Post)request.getAttribute("p"); %>
+						<table>
 							<tr>
-								<td><div align="center">
-										<h3>
-											<b>글 읽기</b>
-										</h3>
-									</div></td>
+								<td bgcolor=#dddddd>작성자</td>
+								<td><%=p.getAdmin_id()%></td>
+								<td bgcolor=#dddddd>작성일</td>
+								<td><%=p.getPost_dateTime()%></td>
 							</tr>
 							<tr>
-								<td colspan=2>
-									<table border="1" summary="목록 테이블 구성">
-										<tr>
-											<td align=center bgcolor=#dddddd width=20%>작성자</td>
-											<td bgcolor=#ffffe8 width=40%>지후니</td>
-											<td align=center bgcolor=#dddddd width=50%>작성일</td>
-											<td bgcolor=#ffffe8 width=40%>2015/11/23</td>
-										</tr>
-										<tr>
-											<td align=center bgcolor=#dddddd>E-mail</td>
-											<td bgcolor=#ffffe8>hunit@hunit</td>
-											<td align=center bgcolor=#dddddd>홈페이지</td>
-											<td bgcolor=#ffffe8><a href="http://hunit.tistory.com"
-												target="_new">http://hunit.tistory.com</a></td>
-										</tr>
-										<tr>
-											<td align=center bgcolor=#dddddd>제 목</td>
-											<td bgcolor=#ffffe8 colspan=3>게시판 글입니다</td>
-										</tr>
-										<tr>
-											<td colspan=4><br>가나다라마바사<br></td>
-										</tr>
-										<tr>
-											<td colspan=4 align=right>조회수 :</td>
-										</tr>
-									</table>
-								</td>
+								<td bgcolor=#dddddd>제목</td>
+								<td><%=p.getPost_title()%></td>
+								<td bgcolor=#dddddd>조회수</td>
+								<td><%=p.getPost_view_count()%></td>
 							</tr>
 							<tr>
-								<td align=center colspan=2>
-									<hr size=1>
-									<div align="center">
-										[ <input type="button" value="목록"
-											onclick="move('Board_List.jsp');"> | <input
-											type="button" value="수정" onclick="move('Board_Update.jsp');">
-										| <input type="button" value="답변"
-											onclick="move('Board_Reply.jsp');"> | <input
-											type="button" value="삭제" onclick="move('Board_Delete.jsp');">]<br>
-									</div>
-								</td>
+								<td>내용</td>
+								<td colspan=4><%=p.getPost_content()%></td>
 							</tr>
-						</table>
+						</table> --%>
+						<hr size=1>
+						<div align="center">
+							[ <input type="button" value="목록"
+								onclick="move('Board_List.jsp');"> | <input
+								type="button" value="수정" onclick="move('Board_Update.jsp');">
+							| <input type="button" value="답변"
+								onclick="move('Board_Reply.jsp');"> | <input
+								type="button" value="삭제" onclick="move('Board_Delete.jsp');">]<br>
+						</div>
+
 					</form>
 
 				</div>
@@ -167,5 +138,6 @@
 			</div>
 		</div>
 	</div>
-</section> -->
+</section>
+ -->
 <%@include file="../template/footer.jsp"%>

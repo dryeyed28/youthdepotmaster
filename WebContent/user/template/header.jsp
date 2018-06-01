@@ -123,9 +123,11 @@
 							<ul>
 								<li><a href="car-index.html">Home Cars</a></li>
 							</ul></li>
-						<li class="menu-item-has-children"><a href="community.html">커뮤니티</a>
+						<li class="menu-item-has-children"><a>커뮤니티</a>
 							<ul>
-								<li><a href="car-index.html">Home Cars</a></li>
+								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList">공지사항</a></li>
+								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList">FAQ</a></li>
+								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList">커뮤니티</a></li>
 							</ul></li>
 						<li class="menu-item-has-children"><a href="#">···</a>
 							<ul>
@@ -265,27 +267,11 @@
 			<div class="seperator">
 				<label>OR</label>
 			</div>
-			<form>
-				<div class="form-group">
-					<input type="text" class="input-text full-width"
-						placeholder="email address">
-				</div>
-				<div class="form-group">
-					<input type="password" class="input-text full-width"
-						placeholder="password">
-				</div>
-				<div class="form-group">
-					<a href="#" class="forgot-password pull-right">Forgot password?</a>
-					<div class="checkbox checkbox-inline">
-						<label> <input type="checkbox"> Remember me
-						</label>
-					</div>
-				</div>
-			</form>
 			<div class="seperator"></div>
 			<p>
 				Don't have an account? <a href="#travelo-signup"
 					class="goto-signup soap-popupbox">Sign up</a>
 			</p>
 		</div>
+		<form action=""></form>
 	</header>
