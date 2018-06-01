@@ -67,11 +67,9 @@
 					</tfoot>
 				</table>
 				</form>
-				<p>
-					<input type="button" value="목록" onclick="goUrl('boardlist.jsp');" />
-					<input type="button" value="글쓰기"
-						onclick="goUrl('boardWriteForm.jsp');" />
-				</p>
+				<div align="right">
+				  <input type="button" value="글쓰기" onclick="goUrl('boardWriteForm.jsp');" />
+				</div>
 			</div>
 		</div>
 		

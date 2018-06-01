@@ -1,17 +1,6 @@
 <%@page import="vo.Post"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%-- 페이지 요청됬을때 :  --%>
-<script type="text/javascript">
-	function move(url) {
-		location.href = url;
-	}
-	function boardViewCheck() {
-		var form = document.BoardViewForm;
-		return true;
-	}
-</script>
-
 <%@include file="../template/header.jsp"%>
 <section id="content" class="gray-area">
 	<div class="container">
@@ -32,9 +21,9 @@
 					<p><%=p.getPost_content()%></p>
 					<br>
 					<div class="form-group row" align="right">
-							<button type="submit" class="green">목록</button>&nbsp;&nbsp;
-							<button type="submit" class="green">수정</button>&nbsp;&nbsp;
-							<button type="submit" class="green">삭제</button>
+						<button type="submit" class="green">목록</button>&nbsp;&nbsp;
+						<button type="submit" class="green">수정</button>&nbsp;&nbsp;
+						<button type="submit" class="green">삭제</button>
 					</div>
 				</div>
 			</div>
