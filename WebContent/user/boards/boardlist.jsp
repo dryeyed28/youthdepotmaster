@@ -54,7 +54,7 @@
 						<tr>
 							<td><%=p.getPost_id() %></td>
 							<td><a id="<%=p.getPost_id() %>" href="<%=request.getContextPath()%>/PostController?type=boardView&id=<%=p.getPost_id()%>"><%=p.getPost_title() %></a></td>
-							<td><%=p.getAdmin_id() %></td>
+							<td><%=p.getMem_nickName() %></td>
 							<td><%=p.getPost_dateTime() %></td>
 							<td><%=p.getPost_view_count() %></td>
 						</tr>
