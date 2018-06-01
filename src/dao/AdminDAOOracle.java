@@ -9,15 +9,14 @@ import sql.OracleConnection;
 import vo.Admin;
 
 public class AdminDAOOracle implements AdminDAO {
-	
-	String loginResult;
-	
+			
 	@Override
 	public String adminLogin(String admin_id, String admin_pwd) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+		String loginResult = "";
 		try {
 			con = OracleConnection.getConnection();
 			String adminLogin = "select *\r\n" + 

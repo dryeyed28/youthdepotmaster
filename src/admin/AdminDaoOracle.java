@@ -11,7 +11,7 @@ import dao.AdminDAOOracle;
 import sql.OracleConnection;
 import vo.Admin;
 
-public class AdminDaoImpl implements AdminDao {
+public class AdminDaoOracle implements AdminDao {
 		
 	public Connection con = null;
 	public PreparedStatement pstmt = null;
@@ -19,7 +19,7 @@ public class AdminDaoImpl implements AdminDao {
 	public String jdbc_url;
 	public ResultSet rs = null;
 	
-	public AdminDaoImpl() {
+	public AdminDaoOracle() {
 		jdbc_driver = "oracle.jdbc.driver.OracleDriver";
 		jdbc_url = "jdbc:oracle:thin:@localhost:1521:orcl";
 	}

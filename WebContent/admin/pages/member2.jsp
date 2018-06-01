@@ -21,7 +21,7 @@ $(function(){
 		case "member":
 			$.ajax({
 				method: "POST",
-				url: "member.do",
+				url: "<%=request.getContextPath() %>/member?type=selectAll&page=1",
 				success: function(data) {
 					$("section").html(data);
 				}
@@ -29,7 +29,6 @@ $(function(){
 			break;
 		}
 	});
-	
 });
 </script>
 </head>
@@ -37,7 +36,9 @@ $(function(){
 <header>
  <nav>
   <ul>
+  <%-- <form name="f" method="post" action="<%=request.getContextPath() %>/member?type=selectAll" >--%>
    <li class="member"><a href="#">회원</a></li>
+  </form>
   </ul>
  </nav>
 </header>

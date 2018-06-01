@@ -1,6 +1,7 @@
 package member;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,37 +10,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import service.MemberInterface;
+import vo.Member;
+import vo.PageBean;
 
-/**
- * Servlet implementation class MemberController
- */
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public MemberController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
     
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	
-		response.setContentType("text/html; charset=EUC-KR");
+		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String type = "";
+		String result = "";
 		String forwardURL = "";
 		MemberService service = new MemberServiceImpl();
 		MemberInterface svic = new service.MemberService();
@@ -54,15 +44,51 @@ public class MemberController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(type.equals("selectAll")) {
+			//admin 회원관리
+			String page = request.getParameter("page");
+			int intPage = 1;
 			
+			if(page != null) {
+				intPage = Integer.parseInt(page);
+			}
 			
+			try {
+			int totalCount = service.findCount();
+			System.out.println("총 페이지 수(findCount()) : " + totalCount);
+			
+			int totalPage = 0;
+			int cntPerPage = 3;
+			totalPage = (int)Math.ceil((double)totalCount / cntPerPage);
+			
+			int cntPerPageGroup = 5;
+			int startPage = (int)Math.floor((double)(intPage)/(cntPerPageGroup+1))*cntPerPageGroup+1;
+			int endPage = startPage+cntPerPageGroup-1;
+			System.out.println("스타트페이지 수 : " + startPage);
+			
+			if(endPage > totalPage) {
+				endPage = totalPage;
+			}
+			
+			List<Member> list = service.findAll();
+			//request.setAttribute("member", list);
+			PageBean<Member> pb = new PageBean<>();
+			pb.setCurrentPage(intPage);
+			pb.setTotalPage(totalPage);
+			pb.setList(list);
+			pb.setStartPage(startPage);
+			pb.setEndPage(endPage);
+			
+			request.setAttribute("pagebean", pb);
+			
+			} catch(Exception e) {
+				e.printStackTrace();
+				request.setAttribute("result", e.getMessage());
+			}
+			result = "/admin/pages/memberlistresult2.jsp";
 		}
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
-	
 	}
-
-	
-	
-
 }
