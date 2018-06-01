@@ -2,6 +2,7 @@ package projcet;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,6 +18,7 @@ import vo.RApply;
 import vo.RKeeper;
 import vo.RMeta;
 import vo.ROption;
+import vo.RPost;
 import vo.RProject;
 import vo.RStory;
 
@@ -110,6 +112,10 @@ public class ProjectController extends HttpServlet {
 			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
 			keeper = service.keeper(rPJT_id);
 			meta = service.meta(rPJT_id);
+			ArrayList<ROption> option = service.option(rPJT_id);
+			ArrayList<RPost> rpost = service.rpost(rPJT_id);
+			request.setAttribute("rpost", rpost);
+			request.setAttribute("option", option);
 			request.setAttribute("keeper",keeper);
 			request.setAttribute("meta", meta);
 			forwardURL = "user/pages/rewarddetaile.jsp";

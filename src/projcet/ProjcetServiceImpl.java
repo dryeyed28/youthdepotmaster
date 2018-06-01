@@ -1,8 +1,12 @@
 package projcet;
 
+import java.util.ArrayList;
+
 import vo.RApply;
 import vo.RKeeper;
 import vo.RMeta;
+import vo.ROption;
+import vo.RPost;
 
 public class ProjcetServiceImpl implements ProjcetService {
 	ProjcetDao dao = new ProjcetDaoOracle();
@@ -17,6 +21,14 @@ public class ProjcetServiceImpl implements ProjcetService {
 	@Override
 	public RMeta meta(int rPJT_id) {
 		return dao.getMeta(rPJT_id);
+	}
+	@Override
+	public ArrayList<ROption> option(int rPJT_id) {
+		return dao.getOption(rPJT_id);
+	}
+	@Override
+	public ArrayList<RPost> rpost(int rPJT_id) {
+		return dao.getRPost(rPJT_id);
 	}
 	
 }
