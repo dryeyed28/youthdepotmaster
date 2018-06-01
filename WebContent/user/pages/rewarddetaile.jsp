@@ -147,7 +147,8 @@
 						<br>
 						<h1>100명 서포터</h1>
 						<hr>
-						<a class="button yellow full-width uppercase btn-small">펀딩하기</a>
+						<a class="button yellow full-width uppercase btn-small"
+						href="<%=request.getContextPath()%>/ProjectController?type=pay&rPJT_id=<%=meta.getrProject().getrPJT_id()%>">펀딩하기</a>
 					</div>
 				</article>
 				<%RKeeper keeper = (RKeeper)request.getAttribute("keeper"); %>
