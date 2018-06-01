@@ -1,9 +1,0 @@
-diff a/WebContent/WEB-INF/web.xml b/WebContent/WEB-INF/web.xml	(rejected hunks)
-@@ -51,7 +51,6 @@
-   </servlet>
-   <servlet-mapping>
-     <servlet-name>MemberController</servlet-name>
--    <url-pattern>/MemberController</url-pattern>
-     <url-pattern>/member</url-pattern>
-   </servlet-mapping>
-   <servlet>

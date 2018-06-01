@@ -14,9 +14,10 @@ public class ProjcetDaoOracle implements ProjcetDao {
 		try {
 			con = sql.OracleConnection.getConnection();
 			String insertSQL = "insert all\r\n" + 
-					"into r_project values ((SELECT MAX(rpjt_id)+1 FROM r_project), ?, null, ?, ?, sysdate)\r\n" + 
-					"into r_keeper values ((SELECT MAX(rpjt_id)+1 FROM r_keeper), ?, ?, ?, null, ?)\r\n" + 
-					"into R_META values ((SELECT MAX(rpjt_id)+1 FROM R_META),?,?,0,?,?,?,?,null,?)"
+					  "into r_project values ((SELECT MAX(rpjt_id)+1 FROM r_project), ?, null, ?, ?, sysdate)\r\n" + 
+					  "into r_keeper values ((SELECT MAX(rpjt_id)+1 FROM r_keeper), ?, ?, ?, null, ?)\r\n" + 
+					  "into R_META values ((SELECT MAX(rpjt_id)+1 FROM R_META),?,?,0,?,?,?,?,null,to_date(?,'RR/MM/DD'))\r\n"
+					+ "into r_optin values ((SELECT MAX(rpjt_id)+1 FROM r_optin), 10,?,?,?,?,to_date(?,'RR/MM/DD'))\r\n"
 					+ "SELECT * FROM DUAL";
 			pstmt = con.prepareStatement(insertSQL);
 			pstmt.setInt(1, rApply.getrProject().getMem_id());
@@ -32,12 +33,13 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			pstmt.setString(11,rApply.getrMeta().getrPJT_image());
 			pstmt.setString(12,rApply.getrMeta().getrPJT_category());
 			pstmt.setString(13,rApply.getrMeta().getrPJT_paper());
-			pstmt.setDate(14, rApply.getrMeta().getrPJT_endDay());
+			pstmt.setString(14, rApply.getrMeta().getrPJT_endDay());
 			pstmt.setInt(15, rApply.getrOption().getrPJT_price());
 			pstmt.setString(16, rApply.getrOption().getrPJT_name());
 			pstmt.setString(17, rApply.getrOption().getrPJT_detail());
-			pstmt.setInt(18, Integer.parseInt(rApply.getrOption().getrPJT_limit());
-			pstmt.setDate(19, rApply.getrOption().getrPJT_send());
+			pstmt.setInt(18, rApply.getrOption().getrPJT_limit());
+			pstmt.setString(19, rApply.getrOption().getrPJT_send());
+			pstmt.setString(20, rApply.getrOption().getrPJT_send());
 			pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();
