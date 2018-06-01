@@ -87,4 +87,31 @@ public class PostDaoOracle implements PostDao {
 		return post;
 	}
 
+	@Override
+	public void deletePost(int post_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = OracleConnection.getConnection();
+			con.setAutoCommit(false);
+			String sql = "";
+			sql += "UPDATE post \n";
+			sql += "SET post_del = ? \n";
+			sql += "WHERE post_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, 1);
+			pstmt.setInt(2, post_id);
+			pstmt.executeUpdate();
+			if(pstmt.executeUpdate() == 1) {
+				con.commit();
+			} else {
+				con.rollback();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(pstmt, con);
+		}
+	}
+
 }
