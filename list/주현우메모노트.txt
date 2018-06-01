@@ -29,3 +29,11 @@ var data = $(data);
 if(data.trim() == 1){		  			  
 }]
 -----------------------------------------------------------------------------------------------------------------
+뒤로가기 버튼 
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
+<button onclick="goBack()">목록</button>

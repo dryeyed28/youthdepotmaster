@@ -19,7 +19,7 @@ public class BoardDaoOracle implements BoardDao {
 		ResultSet rs = null;
 		try {
 			con = OracleConnection.getConnection();
-			String sql = "select brd_id, brd_key, brd_name \n"
+			String sql = "select brd_id, brd_name \n"
 					+ "from board \n"
 					+ "order by brd_id";
 			pstmt = con.prepareStatement(sql);
@@ -27,7 +27,6 @@ public class BoardDaoOracle implements BoardDao {
 			while(rs.next()) {
 				Board board = new Board();
 				board.setBrd_id(rs.getInt("brd_id"));
-				board.setBrd_key(rs.getString("brd_key"));
 				board.setBrd_name(rs.getString("brd_name"));
 				
 				list.add(board);

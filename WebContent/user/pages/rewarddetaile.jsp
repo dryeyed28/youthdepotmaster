@@ -1,3 +1,4 @@
+<%@page import="vo.RKeeper"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../template/header.jsp"%>
@@ -27,40 +28,13 @@
 					<div class="tab-content">
 						<div class="col-sm-12">
 							<div class="testimonial style1 box">
-								<ul class="slides ">
-									<li>
-										<h2>창고지기 한마디</h2>
-										<p class="description">This is the 3rd time I’ve used
-											Travelo website and telling you the truth their services are
-											always realiable and it only takes few minutes to plan and
-											finalize your entire trip using their extremely fast website
-											and up to date listings. I’m super excited about my next trip
-											to Paris.</p>
-										<div class="author clearfix">
-											<a href="#"><img src="http://placehold.it/270x270" alt=""
-												width="74" height="74" /></a>
-											<h5 class="name">
-												Jessica Brown<small>guest</small>
-											</h5>
-										</div>
-									</li>
-									<li>
-										<h2>리워드 설명</h2>
-										<p class="description">This is the 3rd time I’ve used
-											Travelo website and telling you the truth their services are
-											always realiable and it only takes few minutes to plan and
-											finalize your entire trip using their extremely fast website
-											and up to date listings. I’m super excited about my next trip
-											to Paris.</p>
-										<div class="author clearfix">
-											<a href="#"><img src="http://placehold.it/270x270" alt=""
-												width="74" height="74" /></a>
-											<h5 class="name">
-												Lisa Kimberly<small>guest</small>
-											</h5>
-										</div>
-									</li>
-								</ul>
+								<h2>창고지기 한마디</h2>
+								<p class="description">This is the 3rd time I’ve used
+									Travelo website and telling you the truth their services are
+									always realiable and it only takes few minutes to plan and
+									finalize your entire trip using their extremely fast website
+									and up to date listings. I’m super excited about my next trip
+									to Paris.</p>
 							</div>
 						</div>
 						<video poster="http://placehold.it/850x500" width="850"
@@ -244,15 +218,24 @@
 						<a class="button yellow full-width uppercase btn-small">펀딩하기</a>
 					</div>
 				</article>
+				<%RKeeper keeper = (RKeeper)request.getAttribute("keeper"); %>
 				<div class="travelo-box contact-box">
 					<h4>창고지기 정보</h4>
-					<p>We would be more than happy to help you. Our team advisor
-						are 24/7 at your service to help you.</p>
+					<div class="author clearfix">
+						<a href="#"><img src="http://placehold.it/270x270" alt=""
+							width="74" height="74" /></a>
+						<h5 class="name">
+							<%=keeper.getR_name()%>&nbsp;<small>guest</small>
+						</h5>
+					</div>
+					<br> 
 					<address class="contact-details">
-						<span class="contact-phone"><i class="soap-icon-phone"></i>
-							1-800-123-HELLO</span> <br> <a class="contact-email" href="#">help@travelo.com</a>
+						<span class="contact-phone"><i class="soap-icon-phone"></i>	<%=keeper.getR_tel()%> </span>
+						<br><p><%=keeper.getR_email()%></p>
+						<p><%=keeper.getR_url()%></p>
 					</address>
 				</div>
+				
 				<div class="travelo-box book-with-us-box">
 					<h4>펀딩 선택</h4>
 					<ul>

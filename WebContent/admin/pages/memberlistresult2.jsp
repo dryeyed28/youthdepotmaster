@@ -73,7 +73,6 @@
    <div class="mem_passion">열정</div>
  </div>
 	
-	
  	<c:forEach var="member" items="${list}">
  		<%-- list에 있는 member 객체 전부 가져와서 반복 --%>
   <div class="member2">

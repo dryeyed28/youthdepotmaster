@@ -3,8 +3,12 @@ package projcet;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import vo.RApply;
+import vo.RKeeper;
+import vo.RProject;
 
 public class ProjcetDaoOracle implements ProjcetDao {
 	@Override
@@ -48,5 +52,43 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			sql.OracleConnection.close(pstmt, con);
 		}
 		
+	}
+	
+	@Override
+	public RKeeper getKeeper(int rPJT_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		RKeeper keeper = null;
+		try {
+			con = sql.OracleConnection.getConnection();
+			String sql = "";
+			sql += "select rk.rpjt_id, rk.R_NAME, rk.R_PROFILE, rk.R_TEL, rk.R_EMAIL, rk.R_URL \n";
+			sql += "from r_keeper rk, r_project rp \n";
+			sql += "where rk.rPJT_id = rp.rPJT_id and rk.rPJT_id = 1";
+			pstmt = con.prepareStatement(sql);
+			//pstmt.setInt(1, rPJT_id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				keeper = new RKeeper(
+				new RProject(rs.getInt("rPJT_id"),
+						0, 0, 0, null),
+				/*rs.getInt("mem_id"),
+				rs.getInt("rPJT_state"),
+				rs.getInt("rPJT_progress"),
+				rs.getString("rPJT_submission")),*/
+				rs.getString("r_name"),
+				rs.getString("r_profile"),
+				rs.getString("r_email"),
+				rs.getString("r_url"),
+				rs.getInt("r_tel")
+						);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			sql.OracleConnection.close(rs, pstmt, con);
+		}
+		return keeper;
 	}
 }

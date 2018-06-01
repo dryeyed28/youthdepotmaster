@@ -28,9 +28,13 @@ public class MemberController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		
+		System.out.println("MemberController doPost() 요청");
+		
 		String type = "";
 		String result = "";
 		String forwardURL = "";
+		int intPage = 0;
 		
 		MemberService svic = new MemberServiceImpl();
 		
@@ -48,7 +52,7 @@ public class MemberController extends HttpServlet {
 		} else if(type.equals("selectAll")) {
 			//admin 회원관리
 			String page = request.getParameter("page");
-			int intPage = 1;
+			System.out.println("page 값은 : " + page);
 			
 			if(page != null) {
 				intPage = Integer.parseInt(page);
@@ -89,7 +93,7 @@ public class MemberController extends HttpServlet {
 			result = "/admin/pages/memberlistresult2.jsp";
 		}
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
+		RequestDispatcher dispatcher = request.getRequestDispatcher(result);
 		dispatcher.forward(request, response);
 	}
 }
