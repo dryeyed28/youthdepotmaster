@@ -7,12 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import sql.OracleConnection;
-import vo.Board;
-import vo.Post;
 import vo.RApply;
 import vo.RKeeper;
 import vo.RMeta;
 import vo.ROption;
+import vo.RPost;
 import vo.RProject;
 
 public class ProjcetDaoOracle implements ProjcetDao {
@@ -179,5 +178,40 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			OracleConnection.close(rs, pstmt, con);
 		}
 		return option;
+	}
+
+	@Override
+	public ArrayList<RPost> getRPost(int rPJT_id) {
+		ArrayList<RPost> rpost = new ArrayList<RPost>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = OracleConnection.getConnection();
+			String sql = "";
+			sql += "select rp.rpjt_id, rp.rpost_title, rp.rpost_content, rp.rpost_userid, "
+					+ "to_char(rp.rpost_datetime, 'yyyy-mm-dd hh:Mi:ss') rpost_datetime \n";
+			sql += "from r_post rp, r_project p \n";
+			sql += "where rp.rPJT_id = p.rPJT_id and rp.rPJT_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rPJT_id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				RPost rp = new RPost(
+						new RProject(rs.getInt("rPJT_id"), 0, 0, 0, null),
+						rs.getString("rPost_title"),
+						rs.getString("rPost_content"),
+						rs.getString("rPost_userID"),
+						rs.getString("rPost_datetime")
+						);
+				
+				rpost.add(rp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
+		return rpost;
 	}
 }
