@@ -1,6 +1,5 @@
 package vo;
 
-import java.sql.Date;
 
 public class RProject {
 	private int rPJT_id;
@@ -10,11 +9,11 @@ public class RProject {
 	private int rPJT_state;
 	/*rPJT_progress 1.진행  2.마감 3.대기*/
 	private int rPJT_progress;
-	private Date rPJT_submission;
+	private String rPJT_submission;
 	public RProject() {
 		super();
 	}
-	public RProject(int rPJT_id, int mem_id, String rPJT_key, int rPJT_state, int rPJT_progress, Date rPJT_submission) {
+	public RProject(int rPJT_id, int mem_id, String rPJT_key, int rPJT_state, int rPJT_progress, String rPJT_submission) {
 		super();
 		this.rPJT_id = rPJT_id;
 		this.mem_id = mem_id;
@@ -53,10 +52,10 @@ public class RProject {
 	public void setrPJT_progress(int rPJT_progress) {
 		this.rPJT_progress = rPJT_progress;
 	}
-	public Date getrPJT_submission() {
+	public String getrPJT_submission() {
 		return rPJT_submission;
 	}
-	public void setrPJT_submission(Date rPJT_submission) {
+	public void setrPJT_submission(String rPJT_submission) {
 		this.rPJT_submission = rPJT_submission;
 	}
 	

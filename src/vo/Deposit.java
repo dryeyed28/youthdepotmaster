@@ -1,6 +1,5 @@
 package vo;
 
-import java.sql.Date;
 
 public class Deposit {
 	private int dep_id;
@@ -9,11 +8,11 @@ public class Deposit {
 	private int dep_type;
 	private int dep_request;
 	private int dep_balance;
-	private Date dep_date;
+	private String dep_date;
 	public Deposit() {
 		super();
 	}
-	public Deposit(int dep_id, int mem_id, int dep_type, int dep_request, int dep_balance, Date dep_date) {
+	public Deposit(int dep_id, int mem_id, int dep_type, int dep_request, int dep_balance, String dep_date) {
 		super();
 		this.dep_id = dep_id;
 		this.mem_id = mem_id;
@@ -52,10 +51,10 @@ public class Deposit {
 	public void setDep_balance(int dep_balance) {
 		this.dep_balance = dep_balance;
 	}
-	public Date getDep_date() {
+	public String getDep_date() {
 		return dep_date;
 	}
-	public void setDep_date(Date dep_date) {
+	public void setDep_date(String dep_date) {
 		this.dep_date = dep_date;
 	}
 	

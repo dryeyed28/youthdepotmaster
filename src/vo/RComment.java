@@ -1,6 +1,5 @@
 package vo;
 
-import java.sql.Date;
 
 public class RComment {
 	private int rCMT_id;
@@ -9,14 +8,14 @@ public class RComment {
 	private int mem_id;
 	private String rCMT_nickname;
 	private String rCMT_content;
-	private Date rCMT_update_dateTime;
+	private String rCMT_update_dateTime;
 	/*rCMT_dle 0.false 1.true(삭제)*/
 	private int rCMT_dle;
 	public RComment() {
 		super();
 	}
 	public RComment(int rCMT_id, String rCMT_parent, RProject rProject, int mem_id, String rCMT_nickname,
-			String rCMT_content, Date rCMT_update_dateTime, int rCMT_dle) {
+			String rCMT_content, String rCMT_update_dateTime, int rCMT_dle) {
 		super();
 		this.rCMT_id = rCMT_id;
 		this.rCMT_parent = rCMT_parent;
@@ -63,10 +62,10 @@ public class RComment {
 	public void setrCMT_content(String rCMT_content) {
 		this.rCMT_content = rCMT_content;
 	}
-	public Date getrCMT_update_dateTime() {
+	public String getrCMT_update_dateTime() {
 		return rCMT_update_dateTime;
 	}
-	public void setrCMT_update_dateTime(Date rCMT_update_dateTime) {
+	public void setrCMT_update_dateTime(String rCMT_update_dateTime) {
 		this.rCMT_update_dateTime = rCMT_update_dateTime;
 	}
 	public int getrCMT_dle() {

@@ -1,6 +1,5 @@
 package vo;
 
-import java.sql.Date;
 
 public class ROption {
 	private RProject rProject;
@@ -9,12 +8,12 @@ public class ROption {
 	private String rPJT_name;
 	private String rPJT_detail;
 	private String rPJT_limit;
-	private Date rPJT_send;
+	private String rPJT_send;
 	public ROption() {
 		super();
 	}
 	public ROption(RProject rProject, int reward_id, int rPJT_price, String rPJT_name, String rPJT_detail,
-			String rPJT_limit, Date rPJT_send) {
+			String rPJT_limit, String rPJT_send) {
 		super();
 		this.rProject = rProject;
 		this.reward_id = reward_id;
@@ -60,10 +59,10 @@ public class ROption {
 	public void setrPJT_limit(String rPJT_limit) {
 		this.rPJT_limit = rPJT_limit;
 	}
-	public Date getrPJT_send() {
+	public String getrPJT_send() {
 		return rPJT_send;
 	}
-	public void setrPJT_send(Date rPJT_send) {
+	public void setrPJT_send(String rPJT_send) {
 		this.rPJT_send = rPJT_send;
 	}
 	

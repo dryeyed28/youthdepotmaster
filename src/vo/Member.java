@@ -1,6 +1,5 @@
 package vo;
 
-import java.sql.Date;
 
 public class Member {
 	private int mem_id;
@@ -11,8 +10,8 @@ public class Member {
 	private String mem_nickName;
 	private String mem_phone;
 	private int mem_sex;
-	private Date mem_register_dateTime;
-	private Date mem_lastLogin_dateTime;
+	private String mem_register_dateTime;
+	private String mem_lastLogin_dateTime;
 	private int mem_treasurer;
 	private int mem_passion;
 	
@@ -20,7 +19,7 @@ public class Member {
 		super();
 	}
 	public Member(int mem_id, String mem_userId, String mem_email, String mem_password, String mem_userName,
-			String mem_nickName, String mem_phone, int mem_sex, Date mem_register_dateTime, Date mem_lastLogin_dateTime,
+			String mem_nickName, String mem_phone, int mem_sex, String mem_register_dateTime, String mem_lastLogin_dateTime,
 			int mem_treasurer, int mem_passion) {
 		super();
 		this.mem_id = mem_id;
@@ -84,16 +83,16 @@ public class Member {
 	public void setMem_sex(int mem_sex) {
 		this.mem_sex = mem_sex;
 	}
-	public Date getMem_register_dateTime() {
+	public String getMem_register_dateTime() {
 		return mem_register_dateTime;
 	}
-	public void setMem_register_dateTime(Date mem_register_dateTime) {
+	public void setMem_register_dateTime(String mem_register_dateTime) {
 		this.mem_register_dateTime = mem_register_dateTime;
 	}
-	public Date getMem_lastLogin_dateTime() {
+	public String getMem_lastLogin_dateTime() {
 		return mem_lastLogin_dateTime;
 	}
-	public void setMem_lastLogin_dateTime(Date mem_lastLogin_dateTime) {
+	public void setMem_lastLogin_dateTime(String mem_lastLogin_dateTime) {
 		this.mem_lastLogin_dateTime = mem_lastLogin_dateTime;
 	}
 	public int getMem_treasurer() {

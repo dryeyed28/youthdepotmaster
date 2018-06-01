@@ -1,6 +1,5 @@
 package vo;
 
-import java.sql.Date;
 
 public class RMeta {
 	private RProject rProject;
@@ -11,13 +10,13 @@ public class RMeta {
 	private String rPJT_image;
 	private String rPJT_category;
 	private String rPJT_paper;
-	private Date rPJT_startDay;
-	private Date rPJT_endDay;
+	private String rPJT_startDay;
+	private String rPJT_endDay;
 	public RMeta() {
 		super();
 	}
 	public RMeta(RProject rProject, String rPJT_title, String rPJT_subTitle, int rInvesting_amount, int rTarget_amount,
-			String rPJT_image, String rPJT_category, String rPJT_paper, Date rPJT_startDay, Date rPJT_endDay) {
+			String rPJT_image, String rPJT_category, String rPJT_paper, String rPJT_startDay, String rPJT_endDay) {
 		super();
 		this.rProject = rProject;
 		this.rPJT_title = rPJT_title;
@@ -78,16 +77,16 @@ public class RMeta {
 	public void setrPJT_paper(String rPJT_paper) {
 		this.rPJT_paper = rPJT_paper;
 	}
-	public Date getrPJT_startDay() {
+	public String getrPJT_startDay() {
 		return rPJT_startDay;
 	}
-	public void setrPJT_startDay(Date rPJT_startDay) {
+	public void setrPJT_startDay(String rPJT_startDay) {
 		this.rPJT_startDay = rPJT_startDay;
 	}
-	public Date getrPJT_endDay() {
+	public String getrPJT_endDay() {
 		return rPJT_endDay;
 	}
-	public void setrPJT_endDay(Date rPJT_endDay) {
+	public void setrPJT_endDay(String rPJT_endDay) {
 		this.rPJT_endDay = rPJT_endDay;
 	}
 	
