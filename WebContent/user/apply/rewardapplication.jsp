@@ -72,7 +72,7 @@
 				</ul>
 				<form name="f"
 					action="<%=request.getContextPath()%>/ProjectController?type=apply"
-					method="post">
+					method="post" enctype="multipart/form-data">
 					<input type="hidden" id="hidden1" name="category"> <input
 						type="hidden" id="hidden2" name="detail">
 					<div class="tab-content">
