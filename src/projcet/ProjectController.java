@@ -42,6 +42,8 @@ public class ProjectController extends HttpServlet {
 		ProjcetService service = new ProjcetServiceImpl();
 		String type = request.getParameter("type");
 		String forwardURL = "";
+		int rPJT_id = 0;
+		RKeeper keeper = null;
 		if (type.equals("apply")) {
 			HttpSession session = request.getSession();
 			session.setAttribute("id", 1);
@@ -77,6 +79,11 @@ public class ProjectController extends HttpServlet {
 			RApply ra = new RApply(rk, rm, ro, rp, rs);
 			service.applyinsert(ra);
 			forwardURL = "user/mypage/made.jsp";
+		} else if(type.equals("rewardDetail")) {
+			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
+			keeper = service.keeper(rPJT_id);
+			request.setAttribute("keeper",keeper);
+			forwardURL = "user/pages/rewarddetaile.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);

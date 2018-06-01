@@ -51,29 +51,6 @@ div.text {
 				</p>
 			</div>
 			<br>
-			<div class="paybox">
-				<h1>1000원 펀딩합니다.</h1>
-				<input type="checkbox" name='pqy1'>
-				<p>
-					펀딩 내용 <br>여러가지내용 <br>이것저것내용
-				</p>
-			</div>
-			<br>
-			<div class="paybox">
-				<h1>1000원 펀딩합니다.</h1>
-				<input type="checkbox" name='pqy1'>
-				<p>
-					펀딩 내용 <br>여러가지내용 <br>이것저것내용
-				</p>
-			</div>
-			<br>
-			<div class="paybox">
-				<h1>1000원 펀딩합니다.</h1>
-				<input type="checkbox" name='pqy1'>
-				<p>
-					펀딩 내용 <br>여러가지내용 <br>이것저것내용
-				</p>
-			</div>
 			<br>
 			<div class="icondiv">리워드 선택</div>
 			<div class="text">후원금을 더하여 후원할수 있습니다 추가로 후원하시겠습니까?</div>
