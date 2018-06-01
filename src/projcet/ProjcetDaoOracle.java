@@ -32,7 +32,12 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			pstmt.setString(11,rApply.getrMeta().getrPJT_image());
 			pstmt.setString(12,rApply.getrMeta().getrPJT_category());
 			pstmt.setString(13,rApply.getrMeta().getrPJT_paper());
-			pstmt.setDate(14, (Date) rApply.getrMeta().getrPJT_endDay());
+			pstmt.setDate(14, rApply.getrMeta().getrPJT_endDay());
+			pstmt.setInt(15, rApply.getrOption().getrPJT_price());
+			pstmt.setString(16, rApply.getrOption().getrPJT_name());
+			pstmt.setString(17, rApply.getrOption().getrPJT_detail());
+			pstmt.setInt(18, Integer.parseInt(rApply.getrOption().getrPJT_limit());
+			pstmt.setDate(19, rApply.getrOption().getrPJT_send());
 			pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();
