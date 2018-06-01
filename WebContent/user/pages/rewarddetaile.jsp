@@ -202,20 +202,21 @@
 						<p><%=keeper.getR_url()%></p>
 					</address>
 				</div>
-				<%ArrayList<ROption> option = (ArrayList)request.getAttribute("option");
-				for(ROption o : option) {%>
 				<div class="travelo-box book-with-us-box">
-					<h4>펀딩 선택</h4>
+					<h4>펀딩 종류</h4>
 					<ul>
+					<%ArrayList<ROption> option = (ArrayList)request.getAttribute("option");
+					for(ROption o : option) {%>
 						<li><i class="soap-icon-savings circle"></i>
 							<h5 class="title">
 								<a href="#"><%=o.getrPJT_name()%></a>
 							</h5>
+							<p><%=o.getrPJT_price()%> 원</p>
 							<p><%=o.getrPJT_detail()%></p>
 						</li>
+					<%} %>
 					</ul>
 				</div>
-				<%} %>
 			</div>
 		</div>
 	</div>
