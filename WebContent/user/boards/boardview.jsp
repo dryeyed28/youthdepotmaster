@@ -2,6 +2,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../template/header.jsp"%>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+<style>
+#button{
+margin:10px;
+}
+</style>
 <section id="content" class="gray-area">
 	<div class="container">
 		<div class="row">
@@ -21,9 +31,9 @@
 					<p><%=p.getPost_content()%></p>
 					<br>
 					<div class="form-group row" align="right">
-						<button type="submit" class="green">목록</button>&nbsp;&nbsp;
-						<button type="submit" class="green">수정</button>&nbsp;&nbsp;
-						<button type="submit" class="green">삭제</button>
+						<button id="button" type="submit" class="green" onclick="goBack()">목록</button>
+						<button id="button" type="submit" class="green">수정</button>
+						<button id="button" type="submit" class="green">삭제</button>
 					</div>
 				</div>
 			</div>
