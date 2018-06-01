@@ -9,8 +9,8 @@
     <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta name="keywords" content="HTML5 Template" />
-    <meta name="description" content="Travelo - Travel, Tour Booking HTML5 Template">
-    <meta name="author" content="SoapTheme">
+    <meta name="description" content="YouthDepot_kitri_2nd_project">
+    <meta name="author" content="kitri25th">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -77,8 +77,8 @@
 	<header id="header" class="navbar-static-top style4">
 		<div class="container">
 			<h1 class="logo navbar-brand">
-				<a href="index.html" title="Travelo - home"> <img
-					src="/images/logo.png" alt="Travelo HTML5 Template" />
+				<a href="index.html" title="YouthDepot"> <img
+					src="/images/logo.png" alt="YouthDeopot welcome" />
 				</a>
 			</h1>
 
@@ -93,9 +93,9 @@
 					</div>
 				</form>
 				<button class="btn-medium blue-bg soap-popupbox"
-					data-target="#travelo-signup">SIGNUP</button>
+					data-target="#travelo-signup">회원가입</button>
 				<button class="btn-medium soap-popupbox"
-					data-target="#travelo-login">LOGIN</button>
+					data-target="#travelo-login">로그인</button>
 			</div>
 		</div>
 		<a href="#mobile-menu-01" data-toggle="collapse"
@@ -106,36 +106,20 @@
 				<nav id="main-menu" role="navigation">
 					<ul class="menu">
 						<li class="menu-item-has-children"><a href="investment.html">청년창고</a>
-							<ul>
-								<li><a href="hotel-index.html">Home Hotels</a></li>
-
-							</ul></li>
+							</li>
 						<li class="menu-item-has-children"><a href="investment.html">투자·후원</a>
-							<ul>
-								<li><a href="hotel-index.html">Home Hotels</a></li>
-
-							</ul></li>
+							</li>
 						<li class="menu-item-has-children"><a href="reward.html">리워드·후원</a>
-							<ul>
-								<li><a href="flight-index.html">Home Flights</a></li>
-							</ul></li>
+							</li>
 						<li class="menu-item-has-children"><a href="community.html">열정창고</a>
-							<ul>
-								<li><a href="car-index.html">Home Cars</a></li>
-							</ul></li>
+							</li>
 						<li class="menu-item-has-children"><a>커뮤니티</a>
 							<ul>
 								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList">공지사항</a></li>
 								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList">FAQ</a></li>
 								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList">커뮤니티</a></li>
-							</ul></li>
-						<li class="menu-item-has-children"><a href="#">···</a>
-							<ul>
-								<li><a href="shortcode-accordions-toggles.html">공지사항</a></li>
-								<li><a href="shortcode-accordions-toggles.html">약관</a></li>
-								<li><a href="shortcode-accordions-toggles.html">창고지기 신청</a></li>
-								<li><a href="shortcode-accordions-toggles.html">프로젝트 신청</a></li>
-							</ul></li>
+							</ul>
+						</li>
 					</ul>
 				</nav>
 				<div class="topnav">
@@ -154,28 +138,13 @@
 		<nav id="mobile-menu-01" class="mobile-menu collapse">
 			<ul id="mobile-primary-menu" class="menu">
 				<li class="menu-item-has-children"><a href="investment.html">청년창고</a>
-					<ul>
-						<li><a href="hotel-index.html">Home Hotels</a></li>
-
-					</ul></li>
+					</li>
 				<li class="menu-item-has-children"><a href="investment.html">투자·후원</a>
-					<ul>
-						<li><a href="hotel-index.html">Home Hotels</a></li>
-
-					</ul></li>
+					</li>
 				<li class="menu-item-has-children"><a href="reward.html">리워드·후원</a>
-					<ul>
-						<li><a href="flight-index.html">Home Flights</a></li>
-					</ul></li>
+					</li>
 				<li class="menu-item-has-children"><a href="community.html">커뮤니티</a>
-					<ul>
-						<li><a href="car-index.html">Home Cars</a></li>
-					</ul></li>
-				<li class="menu-item-has-children"><a href="#">···</a>
-					<ul>
-						<li><a href="shortcode-accordions-toggles.html">Accordions
-								&amp; Toggles</a></li>
-					</ul></li>
+					</li>
 			</ul>
 
 			<ul class="mobile-topnav container">
