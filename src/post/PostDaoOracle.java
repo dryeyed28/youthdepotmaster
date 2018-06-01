@@ -21,7 +21,7 @@ public class PostDaoOracle implements PostDao {
 		try {
 			con = OracleConnection.getConnection();
 			String sql = "";
-			sql += "select p.post_id, p.brd_id, b.brd_name, b.brd_key, p.mem_id, p.mem_nickname, p.admin_id, \n";
+			sql += "select p.post_id, p.brd_id, b.brd_name, p.mem_id, p.mem_nickname, p.admin_id, \n";
 			sql += "p.POST_TITLE, p.POST_CONTENT, TO_CHAR(p.POST_DATETIME, 'yyyy.mm.dd') post_datetime, p.POST_VIEW_COUNT ,p.POST_DEL \n";
 			sql += "from board b, post p \n";
 			sql += "where b.brd_id = p.brd_id and p.post_del=0 and p.brd_id = 20";
@@ -31,8 +31,7 @@ public class PostDaoOracle implements PostDao {
 			while(rs.next()) {
 				Post post = new Post(rs.getInt("post_id"),
 						new Board(rs.getInt("brd_id"),
-								rs.getString("brd_name"),
-								rs.getString("brd_key")),
+								rs.getString("brd_name")),
 						rs.getInt("mem_id"),
 						rs.getString("mem_nickname"),
 						rs.getString("admin_id"),
