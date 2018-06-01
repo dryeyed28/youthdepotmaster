@@ -3,7 +3,7 @@ package member;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.MemberDAO;
+import member.MemberDao;
 
 import member.MemberService;
 import vo.Member;
