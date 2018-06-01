@@ -1,3 +1,4 @@
+<%@page import="vo.RMeta"%>
 <%@page import="vo.RKeeper"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -25,16 +26,12 @@
 						<li class=""><a href="#travel-guide-sports" data-toggle="tab">댓글</a></li>
 						<li><a href="#travel-guide-culture-history" data-toggle="tab">새소식</a></li>
 					</ul>
+					<%RMeta meta = (RMeta)request.getAttribute("meta");%>
 					<div class="tab-content">
 						<div class="col-sm-12">
 							<div class="testimonial style1 box">
-								<h2>창고지기 한마디</h2>
-								<p class="description">This is the 3rd time I’ve used
-									Travelo website and telling you the truth their services are
-									always realiable and it only takes few minutes to plan and
-									finalize your entire trip using their extremely fast website
-									and up to date listings. I’m super excited about my next trip
-									to Paris.</p>
+								<h1><%=meta.getrPJT_title()%></h1>
+								<h3><%=meta.getrPJT_subTitle()%></h3>
 							</div>
 						</div>
 						<video poster="http://placehold.it/850x500" width="850"
@@ -44,81 +41,44 @@
 						</video>
 						<div class="tab-pane fade active in" id="travel-guide-info">
 							<ul>
-								<li><img src="http://placehold.it/900x500" alt="" /></li>
-								<li><img src="http://placehold.it/900x500" alt="" /></li>
-								<li><img src="http://placehold.it/900x500" alt="" /></li>
-								<li><img src="http://placehold.it/900x500" alt="" /></li>
-								<li><img src="http://placehold.it/900x500" alt="" /></li>
-								<li><img src="http://placehold.it/900x500" alt="" /></li>
-								<li><img src="http://placehold.it/900x500" alt="" /></li>
-								<li><img src="http://placehold.it/900x500" alt="" /></li>
-								<li><img src="http://placehold.it/900x500" alt="" /></li>
-								<li><img src="http://placehold.it/900x500" alt="" /></li>
-								<li><img src="http://placehold.it/900x500" alt="" /></li>
+								<li><img src="http://placehold.it/850x500" alt="" /></li>
+								<li><img src="http://placehold.it/850x500" alt="" /></li>
+								<li><img src="http://placehold.it/850x500" alt="" /></li>
+								<li><img src="http://placehold.it/850x500" alt="" /></li>
+								<li><img src="http://placehold.it/850x500" alt="" /></li>
+								<li><img src="http://placehold.it/850x500" alt="" /></li>
+								<li><img src="http://placehold.it/850x500" alt="" /></li>
+								<li><img src="http://placehold.it/850x500" alt="" /></li>
+								<li><img src="http://placehold.it/850x500" alt="" /></li>
+								<li><img src="http://placehold.it/850x500" alt="" /></li>
+								<li><img src="http://placehold.it/850x500" alt="" /></li>
 							</ul>
-							<table id="commentTable" class="table table-condensed"></table>
-							<table class="table table-condensed">
-								<tr>
-									<td><div class="form-inline" role="form">
-											<div>
-												<div class="form-group">
-													<input type="text" id="commentParentName"
-														name="commentParentName" class="form-control col-lg-2"
-														data-rule-required="true" placeholder="이름" maxlength="10">
-												</div>
-												<div class="form-group">
-													<input type="password" id="commentParentPassword"
-														name="commentParentPassword" class="form-control col-lg-2"
-														data-rule-required="true" placeholder="패스워드"
-														maxlength="10">
-												</div>
-												<div class="form-group">
-													<button type="button" id="commentParentSubmit"
-														name="commentParentSubmit" class="btn btn-default">확인</button>
-												</div>
-											</div>
-											<textarea id="commentParentText"
-												class="form-control col-lg-12" style="width: 100%" rows="4"></textarea>
-										</div></td>
-								</tr>
-							</table>
-							<table class="table table-condensed">
-								<thead>
-									<tr>
-										<td><span style='float: right'>
-												<button type="button" id="list" class="btn btn-default">목록</button>
-												<button type="button" id="modify" class="btn btn-default">수정</button>
-												<button type="button" id="delete" class="btn btn-default">삭제</button>
-												<button type="button" id="write" class="btn btn-default">글쓰기</button>
-										</span></td>
-									</tr>
-								</thead>
-							</table>
+							
 						</div>
 						<div class="tab-pane fade" id="travel-guide-sports">
 							<table class="table table-condensed">
 								<tr>
 									<td><div class="form-inline" role="form">
-											<div>
-												<div class="form-group">
-													<input type="text" id="commentParentName"
-														name="commentParentName" class="form-control col-lg-2"
-														data-rule-required="true" placeholder="이름" maxlength="10">
-												</div>
-												<div class="form-group">
-													<input type="password" id="commentParentPassword"
-														name="commentParentPassword" class="form-control col-lg-2"
-														data-rule-required="true" placeholder="패스워드"
-														maxlength="10">
-												</div>
-												<div class="form-group">
-													<button type="button" id="commentParentSubmit"
-														name="commentParentSubmit" class="btn btn-default">확인</button>
-												</div>
+										<div>
+											<div class="form-group">
+												<input type="text" id="commentParentName"
+													name="commentParentName" class="form-control col-lg-2"
+													data-rule-required="true" placeholder="이름" maxlength="10">
 											</div>
-											<textarea id="commentParentText"
-												class="form-control col-lg-12" style="width: 100%" rows="4"></textarea>
-										</div></td>
+											<div class="form-group">
+												<input type="password" id="commentParentPassword"
+													name="commentParentPassword" class="form-control col-lg-2"
+													data-rule-required="true" placeholder="패스워드"
+													maxlength="10">
+											</div>
+											<div class="form-group">
+												<button type="button" id="commentParentSubmit"
+													name="commentParentSubmit" class="btn btn-default">확인</button>
+											</div>
+										</div>
+										<textarea id="commentParentText"
+											class="form-control col-lg-12" style="width: 100%" rows="4"></textarea>
+									</div></td>
 								</tr>
 							</table>
 							<table class="table table-condensed">
@@ -210,9 +170,13 @@
 								aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">290%</div>
 						</div>
 						<h2 class="box-title">19일 남음</h2>
-						<span class="price clearfix"> <small class="pull-left">달성금액
-						</small> <span class="pull-right">999999원</span>
+						<span class="price clearfix">
+							<small class="pull-left">달성금액</small>
+							<span class="pull-right"><%=meta.getrInvesting_amount()%>원</span>
+							<br><small class="pull-left">목표금액</small>
+							<span class="pull-right"><%=meta.getrTarget_amount()%>원</span>
 						</span>
+						<br>
 						<h1>100명 서포터</h1>
 						<hr>
 						<a class="button yellow full-width uppercase btn-small">펀딩하기</a>

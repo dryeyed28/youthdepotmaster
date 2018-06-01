@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import vo.RApply;
 import vo.RKeeper;
+import vo.RMeta;
 import vo.RProject;
 
 public class ProjcetDaoOracle implements ProjcetDao {
@@ -65,11 +66,11 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			String sql = "";
 			sql += "select rk.rpjt_id, rk.R_NAME, rk.R_PROFILE, rk.R_TEL, rk.R_EMAIL, rk.R_URL \n";
 			sql += "from r_keeper rk, r_project rp \n";
-			sql += "where rk.rPJT_id = rp.rPJT_id and rk.rPJT_id = 1";
+			sql += "where rk.rPJT_id = rp.rPJT_id and rk.rPJT_id = ?";
 			pstmt = con.prepareStatement(sql);
-			//pstmt.setInt(1, rPJT_id);
+			pstmt.setInt(1, rPJT_id);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			if(rs.next()) {
 				keeper = new RKeeper(
 				new RProject(rs.getInt("rPJT_id"),
 						0, 0, 0, null),
@@ -90,5 +91,45 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			sql.OracleConnection.close(rs, pstmt, con);
 		}
 		return keeper;
+	}
+
+	@Override
+	public RMeta getMeta(int rPJT_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		RMeta meta = null;
+		try {
+			con = sql.OracleConnection.getConnection();
+			String sql = "";
+			sql += "select rm.rpjt_id, rm.RPJT_TITLE, rm.RPJT_SUBTITLE, rm.RINVESTING_AMOUNT, \n";
+			sql += "rm.RTARGET_AMOUNT, rm.RPJT_IMAGE, rm.RPJT_CATEGORY, rm.RPJT_PAPER, \n";
+			sql += "TO_CHAR(rm.RPJT_STARTDAY, 'yyyy.mm.dd') RPJT_STARTDAY, TO_CHAR(rm.RPJT_ENDDAY, 'yyyy.mm.dd') rPJT_endday \n";
+			sql += "from r_meta rm, r_project rp \n";
+			sql += "where rm.rPJT_id = rp.rPJT_id and rm.rPJT_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rPJT_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				meta = new RMeta(
+				new RProject(rs.getInt("rPJT_id"),
+						0, 0, 0, null),
+				rs.getString("rPJT_title"),
+				rs.getString("rPJT_subTitle"),
+				rs.getInt("rInvesting_amount"),
+				rs.getInt("rTarget_amount"),
+				rs.getString("rPJT_image"),
+				rs.getString("rPJT_category"),
+				rs.getString("rPJT_paper"),
+				rs.getString("rPJT_startday"),
+				rs.getString("rPJT_endday")
+						);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			sql.OracleConnection.close(rs, pstmt, con);
+		}
+		return meta;
 	}
 }
