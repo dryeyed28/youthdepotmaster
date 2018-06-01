@@ -1,7 +1,6 @@
 package projcet;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -46,7 +45,6 @@ public class ProjectController extends HttpServlet {
 		if (type.equals("apply")) {
 			HttpSession session = request.getSession();
 			session.setAttribute("id", 1);
-			RApply ra = new RApply();
 			RKeeper rk = new RKeeper();
 			RMeta rm = new RMeta();
 			RProject rp = new RProject();
@@ -76,7 +74,7 @@ public class ProjectController extends HttpServlet {
 			rs.setrPJT_sumnail(request.getParameter("sumnail"));
 			rs.setrPJT_tag(request.getParameter("tag"));
 			rs.setrPJT_story(request.getParameter("story"));
-			ra.setrProject(rp);
+			RApply ra = new RApply(rk, rm, ro, rp, rs);
 			service.applyinsert(ra);
 			forwardURL = "user/mypage/made.jsp";
 		}

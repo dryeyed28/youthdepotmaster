@@ -46,13 +46,13 @@
 		});
 	</script>
 	<script>
-	$(function(){
+	<%-- $(function(){
 		$('button#apply').click(function(){
 			console.log("성공");
 			location.href = "<%=request.getContextPath() %>/ProjectController?type=apply";
 			return false;
 		});
-	});
+	}); --%>
 	</script>
 <%@include file="../template/header.jsp"%>
 		<section id="content" class="gray-area">
@@ -67,7 +67,7 @@
 							<li class=""><a data-toggle="tab" href="#depot_information">창고지기정보</a></li>
 							<li class=""><a data-toggle="tab" href="#calculate">정산</a></li>
 						</ul>
-								<form>
+					<form name="f" action="<%=request.getContextPath() %>/ProjectController?type=apply" method="post">
 						<div class="tab-content">
 
 							<div id="basic_information" class="tab-pane fade in active">
@@ -195,7 +195,7 @@
 									</div>
 
 									<div class="form-group">
-										<button class="btn-medium">저장하기</button>
+										<button type="button" class="btn-medium">저장하기</button>
 									</div>
 							</div>
 
@@ -247,7 +247,7 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<button class="btn-medium">저장하기</button>
+										<button type="button" class="btn-medium">저장하기</button>
 									</div>
 							</div>
 
@@ -305,7 +305,7 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<button class="btn-medium">저장하기</button>
+										<button type="button" class="btn-medium">저장하기</button>
 									</div>
 									
 							</div>
@@ -317,7 +317,7 @@
 										<div class="col-xs-12 col-sm-6 col-md-7">
 											<h4>창고지기 이름(법인명)</h4>
 											<p>창고지기의 이름을 입력해주세요</p>
-											<input type="text" class="input-text full-width">
+											<input type="text" class="input-text full-width" name="kepper_name">
 										</div>
 									</div>
 									<div class="row form-group">
@@ -326,7 +326,7 @@
 											<p>참여자들에게 프로젝트의 진정성을 표현하기 위해서 창고지기의 사진을 공개합니다.</p>
 											<div class="fileinput col-sm-6 no-float no-padding">
 												<input type="file" class="input-text col-sm-6"
-													data-placeholder="select image/s" />
+													data-placeholder="select image/s" name="profile"/>
 											</div>
 										</div>
 									</div>
@@ -343,25 +343,25 @@
 											<h4>웹사이트 주소</h4>
 											<p>창고지기가 운영하는 웹사이트가 있으시다면 http:// 혹은 https://를 붙여 등록 후,
 												링크확인 버튼을 클릭하여 연결을 확인해 주세요</p>
-											<input type="url" class="input-text full-width">
+											<input type="url" class="input-text full-width" name="siteUrl">
 										</div>
 									</div>
 									<div class="row form-group">
 										<div class="col-xs-12 col-sm-6 col-md-7">
 											<h4>창고지기 이메일</h4>
 											<p>서포터 문의 시 소통이 가능하고, 프로젝트 페이지에 노출가능한 이메일을 입력해주세요.</p>
-											<input type="eamil" class="input-text full-width">
+											<input type="eamil" class="input-text full-width" name="email">
 										</div>
 									</div>
 									<div class="row form-group">
 										<div class="col-xs-12 col-sm-6 col-md-7">
 											<h4>창고지기 전화번호</h4>
 											<p>서포터 문의 시 실시간 연락이 가능하고, 프로젝트 페이지에 노출가능한 대표번호를 입력해주세요.</p>
-											<input type="tel" class="input-text full-width">
+											<input type="tel" class="input-text full-width" name="tel">
 										</div>
 									</div>
 									<div class="form-group">
-										<button class="btn-medium">저장하기</button>
+										<button type="button" class="btn-medium">저장하기</button>
 									</div>
 							</div>
 
@@ -390,13 +390,10 @@
 											</div>
 										</div>
 									</div>
-
 									<div class="form-group">
-										<button class="btn-medium" id="apply">저장하기</button>
+										<button type="submit" class="btn-medium" id="apply">저장하기</button>
 									</div>
 							</div>
-
-
 						</div>
 						</form>
 					</div>
