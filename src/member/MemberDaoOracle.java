@@ -35,8 +35,8 @@ public class MemberDaoOracle implements MemberDao {
 			while (rs.next()) {
 				list.add(new Member(rs.getInt("mem_id"), rs.getString("mem_userId"), rs.getString("mem_email"),
 						rs.getString("mem_password"), rs.getString("mem_userName"), rs.getString("mem_nickName"),
-						rs.getString("mem_phone"), rs.getInt("mem_sex"), rs.getDate("mem_register_dateTime"),
-						rs.getDate("mem_lastLogin_dateTime"), rs.getInt("mem_treasurer"), rs.getInt("mem_passion")));
+						rs.getString("mem_phone"), rs.getInt("mem_sex"), rs.getString("mem_register_dateTime"),
+						rs.getString("mem_lastLogin_dateTime"), rs.getInt("mem_treasurer"), rs.getInt("mem_passion")));
 			}
 			System.out.println("selectAll() 결과 : " + list);
 		} catch (SQLException e) {
@@ -73,8 +73,8 @@ public class MemberDaoOracle implements MemberDao {
 					member.setMem_nickName(rs.getString("mem_nickName"));
 					member.setMem_phone(rs.getString("mem_phone"));
 					member.setMem_sex(rs.getInt("mem_sex"));
-					member.setMem_register_dateTime(rs.getDate("mem_register_dateTime"));
-					member.setMem_lastLogin_dateTime(rs.getDate("mem_lastLogin_dateTime"));
+					member.setMem_register_dateTime(rs.getString("mem_register_dateTime"));
+					member.setMem_lastLogin_dateTime(rs.getString("mem_lastLogin_dateTime"));
 					member.setMem_treasurer(rs.getInt("mem_treasurer"));
 					member.setMem_passion(rs.getInt("mem_passion"));
 				}

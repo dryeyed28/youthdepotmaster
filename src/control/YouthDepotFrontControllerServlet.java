@@ -14,8 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.AdminService;
-import service.MemberService;
+import admin.AdminServiceImpl;
+import member.MemberServiceImpl;
+import member.MemberService;
 import service.RewardService;
 import service.TestService;
 
@@ -25,8 +26,8 @@ public class YouthDepotFrontControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Properties env;
 	private RewardService RewardService;
-	private MemberService memberService = new MemberService();
-	private AdminService adminService = new AdminService();
+	private MemberServiceImpl memberService = new MemberServiceImpl();
+	private AdminServiceImpl adminService = new AdminServiceImpl();
 	
 	public YouthDepotFrontControllerServlet() {}
 	

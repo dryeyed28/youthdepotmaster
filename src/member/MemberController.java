@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.MemberInterface;
+import member.MemberService;
 import vo.Member;
 import vo.PageBean;
 
@@ -31,8 +31,8 @@ public class MemberController extends HttpServlet {
 		String type = "";
 		String result = "";
 		String forwardURL = "";
-		MemberService service = new MemberServiceImpl();
-		MemberInterface svic = new service.MemberService();
+		
+		MemberService svic = new MemberServiceImpl();
 		
 		type = request.getParameter("type");
 		if (type.equals("idcheck")) {
@@ -54,7 +54,7 @@ public class MemberController extends HttpServlet {
 			}
 			
 			try {
-			int totalCount = service.findCount();
+			int totalCount = svic.findCount();
 			System.out.println("총 페이지 수(findCount()) : " + totalCount);
 			
 			int totalPage = 0;
@@ -70,7 +70,7 @@ public class MemberController extends HttpServlet {
 				endPage = totalPage;
 			}
 			
-			List<Member> list = service.findAll();
+			List<Member> list = svic.findAll();
 			//request.setAttribute("member", list);
 			PageBean<Member> pb = new PageBean<>();
 			pb.setCurrentPage(intPage);
