@@ -7,13 +7,13 @@ public class ROption {
 	private int rPJT_price;
 	private String rPJT_name;
 	private String rPJT_detail;
-	private String rPJT_limit;
+	private int rPJT_limit;
 	private String rPJT_send;
 	public ROption() {
 		super();
 	}
 	public ROption(RProject rProject, int reward_id, int rPJT_price, String rPJT_name, String rPJT_detail,
-			String rPJT_limit, String rPJT_send) {
+			int rPJT_limit, String rPJT_send) {
 		super();
 		this.rProject = rProject;
 		this.reward_id = reward_id;
@@ -53,10 +53,10 @@ public class ROption {
 	public void setrPJT_detail(String rPJT_detail) {
 		this.rPJT_detail = rPJT_detail;
 	}
-	public String getrPJT_limit() {
+	public int getrPJT_limit() {
 		return rPJT_limit;
 	}
-	public void setrPJT_limit(String rPJT_limit) {
+	public void setrPJT_limit(int rPJT_limit) {
 		this.rPJT_limit = rPJT_limit;
 	}
 	public String getrPJT_send() {
