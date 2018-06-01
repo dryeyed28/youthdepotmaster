@@ -21,7 +21,7 @@ $(function(){
 		case "member":
 			$.ajax({
 				method: "POST",
-				url: "<%=request.getContextPath() %>/member?type=selectAll&page=1",
+				url: "<%=request.getContextPath() %>/MemberConroller?type=selectAll&page=1,
 				success: function(data) {
 					$("section").html(data);
 				}

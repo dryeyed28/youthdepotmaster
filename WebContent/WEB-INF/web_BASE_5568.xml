@@ -1,113 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	id="WebApp_ID" version="2.5">
-	<display-name>youthdepot</display-name>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
-	</welcome-file-list>
-	<servlet>
-		<description></description>
-		<display-name>YouthDepotFrontControllerServlet</display-name>
-		<servlet-name>YouthDepotFrontControllerServlet</servlet-name>
-		<servlet-class>control.YouthDepotFrontControllerServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/youthdepot.properties</param-value>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>YouthDepotFrontControllerServlet</servlet-name>
-		<url-pattern>*.do</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<description></description>
-		<display-name>ApplyController</display-name>
-		<servlet-name>ApplyController</servlet-name>
-		<servlet-class>apply.ApplyController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ApplyController</servlet-name>
-		<url-pattern>/ApplyController</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<description></description>
-		<display-name>PostController</display-name>
-		<servlet-name>PostController</servlet-name>
-		<servlet-class>post.PostController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>PostController</servlet-name>
-		<url-pattern>/PostController</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<description></description>
-		<display-name>MemberController</display-name>
-		<servlet-name>MemberController</servlet-name>
-		<servlet-class>member.MemberController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>MemberController</servlet-name>
-		<url-pattern>/MemberController</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<description></description>
-		<display-name>ProjectController</display-name>
-		<servlet-name>ProjectController</servlet-name>
-		<servlet-class>projcet.ProjectController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ProjectController</servlet-name>
-		<url-pattern>/ProjectController</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<description></description>
-		<display-name>BoardController</display-name>
-		<servlet-name>BoardController</servlet-name>
-		<servlet-class>board.BoardController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>BoardController</servlet-name>
-		<url-pattern>/BoardController</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<description></description>
-		<display-name>TotalPayController</display-name>
-		<servlet-name>TotalPayController</servlet-name>
-		<servlet-class>totalpay.TotalPayController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>TotalPayController</servlet-name>
-		<url-pattern>/TotalPayController</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<description></description>
-		<display-name>DepositController</display-name>
-		<servlet-name>DepositController</servlet-name>
-		<servlet-class>deposit.DepositController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>DepositController</servlet-name>
-		<url-pattern>/DepositController</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<description></description>
-		<display-name>AdminController</display-name>
-		<servlet-name>AdminController</servlet-name>
-		<servlet-class>admin.AdminController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>AdminController</servlet-name>
-		<url-pattern>/admin</url-pattern>
-	</servlet-mapping>
-=======
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>youthdepot</display-name>
   <welcome-file-list>
@@ -160,7 +51,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>MemberController</servlet-name>
-    <url-pattern>/MemberController</url-pattern>
+    <url-pattern>/member</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -212,5 +103,4 @@
     <servlet-name>AdminController</servlet-name>
     <url-pattern>/admin</url-pattern>
   </servlet-mapping>
->>>>>>> 94699ea08c4e65690d07bc8d909ee5dcf94a4894
 </web-app>

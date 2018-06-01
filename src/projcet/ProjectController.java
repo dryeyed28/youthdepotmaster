@@ -65,11 +65,11 @@ public class ProjectController extends HttpServlet {
 			rm.setrPJT_category(request.getParameter("category"));
 			rm.setrPJT_paper(request.getParameter("paper"));
 			rm.setrPJT_endDay(java.sql.Date.valueOf((request.getParameter("endDay"))));
-//			ro.setrPJT_name(request.getParameter("name"));
-//			ro.setrPJT_detail(request.getParameter("detail"));
-//			ro.setrPJT_price(Integer.parseInt(request.getParameter("price")));
-//			ro.setrPJT_limit(request.getParameter("limit"));
-//			ro.setrPJT_send(java.sql.Date.valueOf(request.getParameter("send")));
+			ro.setrPJT_name(request.getParameter("name"));
+			ro.setrPJT_detail(request.getParameter("detail"));
+			ro.setrPJT_price(Integer.parseInt(request.getParameter("price")));
+			ro.setrPJT_limit(request.getParameter("limit"));
+			ro.setrPJT_send(java.sql.Date.valueOf(request.getParameter("send")));
 //			rs.setrPJT_url(request.getParameter("UCCurl"));
 //			rs.setrPJT_sumnail(request.getParameter("sumnail"));
 //			rs.setrPJT_tag(request.getParameter("tag"));
