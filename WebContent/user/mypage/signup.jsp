@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <%@include file="../template/header.jsp"%>
 
@@ -10,12 +9,12 @@
 
 $(function(){
 	
-	$('#idchk').click(function(){
+	$('#idchkbtn').click(function(){
 		console.log("성공");
 		$.ajax({ 
 			method:'get',
 			URl: '<%=request.getContextPath()%>/MemberController?type=idcheck',
-				//data.trim()
+			data: {'id':$('input[name=id]').val()},
 				success : function(data) {
 					console.log(data);
 					if (data.trim() == 0) {
@@ -29,7 +28,6 @@ $(function(){
 		});
 
 		$('#btnsignup').click(function(){
-			
 		//	if($('#chkConfirm').is(":checked")){	
 		if($('#chkConfirm').prop("checked")){	
 			alert('가입을 진행합니다');
@@ -40,49 +38,61 @@ $(function(){
 			}
 		});
 
-		var count = $("#tel").val().length;
-
-		if (count == 0) {
-			$('#telconfirmbtn').prop("disabled", "disabled");
-			//alert("버튼비활성화");
-		} else {
-
-		}
+	
 
 		$("#telconfirmbtn").click(function() {
-
+			
+			var count = $("#tel").val().length;
+			console.log(count);
 			//alert("tel_val : "  + $("#tel").val());
 			//alert("count : "  + $("#tel").val().length);
 			if (count != "11") {
-				alert("다시확인.");
+				alert("번호를 다시확인해 주세요.");
 			} else {
-				alert("발송");
+				alert("인증번호를 발송하였습니다");
 			}
-
+			return false;
 		});
 		
 		
+		$("#confirmnum").click(function(){
+			
+			var count1 = $("#telconfirmtxt").val().length;
+			console.log(count1);
+			//alert("tel_val : "  + $("#tel").val());
+			//alert("count : "  + $("#tel").val().length);
+			if (count1 != "6") {
+				alert("인증번호를 다시확인해 주세요.");
+			} else {
+				alert("인증되었습니다.");
+			}
+			return false;
+		});
+		
+		
+		
 	 
-	  $('#user_pass').keyup(function(){
+	  $("#user_pass").keyup(function(){
 	   $('#passcorfim').text('');
 	  }); //#user_pass.keyup
 
-	  $('#chpass').keyup(function(){
+	  $("#chpass").keyup(function(){
 	   if($('#user_pass').val()!=$('#chpass').val()){
 	    $('#passcorfim').text('');
 	    $('#passcorfim').html("비밀번호가 일치하지 않습니다");
 	   }else{
-	    $('#passcorfim').text('');
 	    $('#passcorfim').html("비밀번호가 일치합니다");
 	   }
 	  }); //#chpass.keyup
-			
+	  
+	  
 
-
-		
-		
-		
-});
+		  $("#zipSearchbtn").click(function(){
+			  
+				window.open('findZip.html', 'winzip', 'width=200px height=300');
+			});
+	  
+	  });
 </script>
 <section id="content" class="gray-area">
 	<div class="container">
@@ -101,13 +111,12 @@ $(function(){
 							</div>
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
-									<label>아이디</label> <input type="text"
-										class="input-text full-width" value="" placeholder="" />
+									<label>아이디</label> <input type="text" name="id"
+										class="input-text full-width" required value="" />
 								</div>
 								<div class=" form-group col-sm-6 col-md-5">
 									<label> &nbsp; </label>
-									<button type="button" type="button" type="button" type="button"
-										type="button" class="button" id="idchk"
+									<button type="button" class="button" id="idchkbtn"
 										style="width: 150px; height: 30px; font-size: 12px;">아이디
 										중복확인</button>
 								</div>
@@ -115,31 +124,31 @@ $(function(){
 
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
-									<label>별명</label> <input type="text"
-										class="input-text full-width" value="" placeholder="" />
+									<label>별명</label> 
+									<input type="text"	class="input-text full-width" required value="" placeholder="" />
 								</div>
 								<div class=" form-group col-sm-6 col-md-5">
-									<label> &nbsp; </label> <a href="cruise-detailed.html"
-										class="button"
-										style="width: 150px; height: 30px; font-size: 12px;">별명
-										중복확인</a>
+									<label> &nbsp; </label> 
+									<a href="cruise-detailed.html" class="button" style="width: 150px; height: 30px; font-size: 12px;">별명 중복확인</a>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class=" form-group col-sm-6 col-md-5">
-									<label>비밀번호</label> 
-									<input type="password"	id= "user_pass" class="input-text full-width" value="" placeholder="" />
+									<label>비밀번호</label> <input type="password" required id="user_pass" class="input-text full-width" value="" placeholder="" />
 								</div>
 							</div>
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
-									<label>비밀번호 확인</label>
-								<input type="password"	id="chpass"	class="input-text full-width" value="" placeholder="" />
+									<label>비밀번호 확인</label> <input type="password" id="chpass"
+										class="input-text full-width" value="" placeholder="" />
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
 									<!-- <label>비밀번호 일치확인</label> -->
-								<font name="check" type="text"	id="passcorfim"	class="input-text full-width" value=""  readonly></font>
+									<font id="passcorfim"
+										class="input-text full-width"  ></font>
+										
+										
 								</div>
 							</div>
 
@@ -178,8 +187,7 @@ $(function(){
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
 									<label>휴대전화 번호</label> <input type="text"
-										class="input-text full-width" id="tel" value=""
-										placeholder="숫자만 입력하세요" />
+										class="input-text full-width" id="tel" placeholder="숫자만 입력하세요" />
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
 									<label>&nbsp;</label> <a class="button"
@@ -190,39 +198,38 @@ $(function(){
 
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
-									<input type="text" class="input-text full-width" value=""
-										placeholder="인증번호를 입력하세요" />
+									<input type="text" class="input-text full-width"
+										id="telconfirmtxt" placeholder="인증번호를 입력하세요" />
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
 
-									<a href="cruise-detailed.html" class="button"
-										text-align:center;  style="width: 150px; height: 30px; font-size: 12px;">인증번호
+									<a href="cruise-detailed.html" class="button" id="confirmnum"
+										style="width: 150px; height: 30px; font-size: 12px;">인증번호
 										확인</a>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
-									<label>주소</label> <input type="text"
-										class="input-text full-width" value="" placeholder="" readonly />
+									<label>주소</label>
+									 <input type="search"
+										class="input-text full-width"  placeholder="" readonly />
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
-									<label>&nbsp;</label> <a href="cruise-detailed.html"
-										class="button"
-										style="width: 150px; height: 30px; font-size: 12px;">우편번호
-										찾기</a>
+									<label>&nbsp;</label> 
+									<button type="button"  id= "zipSearchbtn" style="width: 150px; height: 30px; font-size: 12px;">우편번호
+										찾기</button>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
 									<input type="text" class="input-text full-width" value=""
-										placeholder="" readonly />
+										placeholder="나머지 주소를 입력해 주세요." id="zipResult"/>
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
 
-									<input type="text" class="input-text full-width" value=""
-										placeholder="나머지 주소를 입력해 주세요." />
+									
 								</div>
 							</div>
 
