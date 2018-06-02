@@ -1,3 +1,4 @@
+<%@page import="vo.RewardPay"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../template/header.jsp"%>
@@ -11,8 +12,9 @@
 					<hr />
 					<div class="booking-confirmation clearfix">
 						<i class="soap-icon-recommend icon circle"></i>
+						<%RewardPay rpay = (RewardPay)request.getAttribute("rpay"); %>
 						<div class="message">
-							<h4 class="main-message">xxx 서포터님 감사합니다</h4>
+							<h4 class="main-message"><%=rpay.getMem_name()%> 서포터님 감사합니다</h4>
 							<p>결제 예약 결과및 배송예상일은 나의 펀딩현황에서 확인하세요</p>
 						</div>
 						<a href="#" class="button print-button btn-small uppercase">펀딩
@@ -21,18 +23,24 @@
 					<hr />
 					<h2>결제 내역</h2>
 					<dl class="term-description">
-						<dt>상품 이름:</dt>
-						<dd>xx상품</dd>
-						<dt>고객 이름:</dt>
-						<dd>제시카</dd>
-						<dt>주소 :</dt>
-						<dd>구로구</dd>
-						<dt>이메일:</dt>
-						<dd>Info@Jessica.com</dd>
-						<dt>결제금액:</dt>
-						<dd>2000열정</dd>
-						<dt>프로젝트이름:</dt>
+						<dt>프로젝트이름 :</dt>
 						<dd>xxx프로젝트</dd>
+						<dt>상품 이름 :</dt>
+						<dd><%=rpay.getrProduct_id()%></dd>
+						<dt>구매 갯수 :</dt>
+						<dd><%=rpay.getrProduct_ea() %></dd>
+						<dt>결제금액 :</dt>
+						<dd><%=rpay.getrPay_total()%>열정</dd>
+					</dl>
+					<hr />
+					<h2>배송지 정보</h2>
+					<dl class="term-description">
+						<dt>수령인 :</dt>
+						<dd><%=rpay.getMem_name()%></dd>
+						<dt>연락처 :</dt>
+						<dd><%=rpay.getrPay_phone() %></dd>
+						<dt>주소 :</dt>
+						<dd><%=rpay.getrPay_address() %></dd>
 					</dl>
 					<hr />
 					<h2>청춘창고 결제 시스템은 이러합니다</h2>

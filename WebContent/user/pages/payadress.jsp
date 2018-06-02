@@ -1,4 +1,3 @@
-<%@page import="vo.RewardPay"%>
 <%@page import="vo.ROption"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -131,13 +130,9 @@ div.right {
 						</div>
 						<input type="text" value="이름">
 						<div class="leftwight">
-							<h2>이메일</h2>
-						</div>
-						<div class="leftwight">아이디@도메인</div>
-						<div class="leftwight">
 							<h2>휴대폰번호</h2>
 						</div>
-						<div class="leftwight">000-0000-0000</div>
+						<input type="text" value="전화번호">
 						<hr>
 					</div>
 					<div class=" col-md-4" style="background: white;">

@@ -37,3 +37,14 @@ function goBack() {
 </script>
 
 <button onclick="goBack()">목록</button>
+-----------------------------------------------------------------------------------------------------------------
+hidden input 태그에 갑넣기
+$(function() {
+		$("#selectCategroy").change(function() {
+			$('#hidden1').val($(this).children("option:selected").text());
+		});
+		$('button#apply').click(function() {
+			$('#hidden2').val($('#textarea1').val());
+			return false;
+		});
+	});

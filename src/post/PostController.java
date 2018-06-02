@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import vo.Board;
 import vo.Post;
 
 public class PostController extends HttpServlet {
@@ -30,6 +31,7 @@ public class PostController extends HttpServlet {
 		String forwardURL = "";
 		PostService service = new PostServiceImpl();
 		Post p = null;
+		Board b = null;
 		int brd_id=20;
 		int post_id = 0;
 		ArrayList<Post> data;
@@ -45,12 +47,27 @@ public class PostController extends HttpServlet {
 			request.setAttribute("p", p);
 			forwardURL = "user/boards/boardview.jsp";
 		}else if(type.equals("boardupdate")) {
-			Post post = new Post();
-			post.setAdmin_id(request.getParameter("id"));
-			post.setPost_title(request.getParameter("title"));
-			post.setPost_content(request.getParameter("content"));
-			request.setAttribute("p", post);
+			p = new Post();
+			p.setAdmin_id(request.getParameter("id"));
+			p.setPost_title(request.getParameter("title"));
+			p.setPost_content(request.getParameter("content"));
+			request.setAttribute("p", p);
 			forwardURL = "user/boards/boardupdate.jsp";
+		} else if (type.equals("boardwrite")) {
+			p = new Post();
+			b = new Board();
+			b.setBrd_id(Integer.parseInt(request.getParameter("bid")));
+			p.setBoard_id(b);
+			p.setAdmin_id(request.getParameter("admin_id"));
+			p.setMem_id(Integer.parseInt(request.getParameter("mem_id")));
+			p.setMem_nickName(request.getParameter("nickname"));
+			p.setPost_title(request.getParameter("title"));
+			p.setPost_content(request.getParameter("content"));
+			
+			forwardURL = "user/boards/boardwrite.jsp";
+		} else if (type.equals("boardwriteok")) {
+			
+			forwardURL = "user/boards/boardview.jsp";
 		}
 
 		

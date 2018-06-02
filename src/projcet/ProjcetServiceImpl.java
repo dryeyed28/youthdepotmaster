@@ -7,6 +7,7 @@ import vo.RKeeper;
 import vo.RMeta;
 import vo.ROption;
 import vo.RPost;
+import vo.RewardPay;
 
 public class ProjcetServiceImpl implements ProjcetService {
 	ProjcetDao dao = new ProjcetDaoOracle();
@@ -33,6 +34,10 @@ public class ProjcetServiceImpl implements ProjcetService {
 	@Override
 	public ROption optionPay(int rPJT_id, int reward_id) {
 		return dao.getOptionPay(rPJT_id, reward_id);
+	}
+	@Override
+	public RewardPay orderReward(int mem_id) {
+		return dao.getOrderReward(mem_id);
 	}
 	
 }

@@ -21,6 +21,7 @@ import vo.ROption;
 import vo.RPost;
 import vo.RProject;
 import vo.RStory;
+import vo.RewardPay;
 
 
 public class ProjectController extends HttpServlet {
@@ -123,6 +124,11 @@ public class ProjectController extends HttpServlet {
 			ROption payaddress = service.optionPay(rPJT_id, reward_id);
 			request.setAttribute("payaddress", payaddress);
 			forwardURL = "user/pages/payadress.jsp";
+		} else if(type.equals("payresult")) {
+			int mem_id = Integer.parseInt(request.getParameter("mem_id"));
+			RewardPay rpay = service.orderReward(mem_id);
+			request.setAttribute("rpay", rpay);
+			forwardURL = "user/pages/paycheck.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);

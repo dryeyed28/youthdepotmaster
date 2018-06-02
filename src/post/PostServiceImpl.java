@@ -28,6 +28,11 @@ public class PostServiceImpl implements PostService {
 		dao.updatePost(post);
 		
 	}
+
+	@Override
+	public void wirtePost(Post post) {
+		dao.insertPost(post);
+	}
 	
 
 }

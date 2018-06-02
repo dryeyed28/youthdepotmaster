@@ -113,7 +113,7 @@ public class PostDaoOracle implements PostDao {
 		}
 	}
 	@Override
-	public void updatePost(vo.Post post) {
+	public void updatePost(Post post) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -137,6 +137,36 @@ public class PostDaoOracle implements PostDao {
 		} finally {
 			OracleConnection.close(pstmt, con);
 		}
+	}
+
+	@Override
+	public void insertPost(Post post) {
+		Connection con = null;
+		PreparedStatement pstmt=null;
+		try {
+			con = OracleConnection.getConnection();
+			con.setAutoCommit(false);
+			String sqlinsert = "Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) \r\n" + 
+							   "values ((SELECT MAX(POST_ID)+1,?,?,?,?,?,?,to_date(sysdate,'RR/MM/DD'),0,0)";
+			pstmt = con.prepareStatement(sqlinsert);
+			pstmt.setInt(1,post.getBoard_id().getBrd_id());
+			pstmt.setInt(2,post.getMem_id());
+			pstmt.setString(3,post.getAdmin_id());
+			pstmt.setString(4,post.getMem_nickName());
+			pstmt.setString(5,post.getPost_title());
+			pstmt.setString(6,post.getPost_content());
+			pstmt.executeUpdate();
+			if(pstmt.executeUpdate() == 1) {
+				con.commit();
+			} else {
+				con.rollback();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(pstmt, con);
+		}
+		
 	}
 
 
