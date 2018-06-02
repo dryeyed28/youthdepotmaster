@@ -52,26 +52,17 @@ public class ProjectController extends HttpServlet {
 		RMeta meta = null;
 		if (type.equals("apply")) {
 			System.out.println("Controller");
-			HttpSession session = request.getSession();
-			session.setAttribute("id", 1);
 			MultipartRequest mr;
-			int maxPostSize = 1024*100;
+			MultipartRequest mr2;
+			int maxPostSize = 1024*10000;
 			String encoding = "UTF-8";
 			try {
 				mr = new MultipartRequest(request, "d:\\files", 
 						maxPostSize, encoding, 
 						new RenamePolicy());
-						//new DefaultFileRenamePolicy());
-				
-				String txt1 = mr.getParameter("txt1");
-				System.out.println(txt1);
-
-				File file1 = mr.getFile("file1");
-				File file2 = mr.getFile("file2");
-
-				System.out.println(file1.getName());
-				System.out.println(file2.getName());
-				
+				mr2 = new MultipartRequest(request, "d:\\files1", 
+						maxPostSize, encoding, 
+						new RenamePolicy());
 			}catch(IOException e) {
 				e.printStackTrace(); //maxPostSize, Posted content length 
 			}
@@ -80,6 +71,8 @@ public class ProjectController extends HttpServlet {
 			RProject rp = new RProject();
 			ROption ro = new ROption();
 			RStory rs = new RStory();
+			HttpSession session = request.getSession();
+			session.setAttribute("id", 1);
 			rp.setMem_id((int)session.getAttribute("id"));
 			rp.setrPJT_progress(3);
 			rp.setrPJT_state(2);
