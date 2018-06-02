@@ -1,5 +1,6 @@
 package projcet;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -10,17 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.oreilly.servlet.MultipartRequest;
+
+import projcet.RenamePolicy;
 import vo.RApply;
 import vo.RKeeper;
 import vo.RMeta;
 import vo.ROption;
+import vo.RPost;
 import vo.RProject;
 import vo.RStory;
 
 
 public class ProjectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
     public ProjectController() {
         super();
         // TODO Auto-generated constructor stub
@@ -50,6 +54,27 @@ public class ProjectController extends HttpServlet {
 			System.out.println("Controller");
 			HttpSession session = request.getSession();
 			session.setAttribute("id", 1);
+			MultipartRequest mr;
+			int maxPostSize = 1024*100;
+			String encoding = "UTF-8";
+			try {
+				mr = new MultipartRequest(request, "d:\\files", 
+						maxPostSize, encoding, 
+						new RenamePolicy());
+						//new DefaultFileRenamePolicy());
+				
+				String txt1 = mr.getParameter("txt1");
+				System.out.println(txt1);
+
+				File file1 = mr.getFile("file1");
+				File file2 = mr.getFile("file2");
+
+				System.out.println(file1.getName());
+				System.out.println(file2.getName());
+				
+			}catch(IOException e) {
+				e.printStackTrace(); //maxPostSize, Posted content length 
+			}
 			RKeeper rk = new RKeeper();
 			RMeta rm = new RMeta();
 			RProject rp = new RProject();
@@ -88,10 +113,17 @@ public class ProjectController extends HttpServlet {
 			keeper = service.keeper(rPJT_id);
 			meta = service.meta(rPJT_id);
 			ArrayList<ROption> option = service.option(rPJT_id);
+			ArrayList<RPost> rpost = service.rpost(rPJT_id);
+			request.setAttribute("rpost", rpost);
 			request.setAttribute("option", option);
 			request.setAttribute("keeper",keeper);
 			request.setAttribute("meta", meta);
 			forwardURL = "user/pages/rewarddetaile.jsp";
+		} else if(type.equals("pay")) {
+			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
+			ArrayList<ROption> option = service.option(rPJT_id);
+			request.setAttribute("option", option);
+			forwardURL = "user/pages/pay.jsp";
 		} 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);

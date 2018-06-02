@@ -129,10 +129,10 @@ ALTER TABLE R_STORY
 /* 리워드 게시물 */
 CREATE TABLE R_POST (
 	RPJT_ID NUMBER(10) NOT NULL, /* 리워드번호 */
-	RPOST_TITLE CLOB, /* 게시글제목 */
+    RPOST_TITLE VARCHAR2(100), /* 게시글제목 */
+	RPOST_CONTENT CLOB, /* 게시글제목 */
 	RPOST_USERID VARCHAR2(50), /* 작성자회원아이디 */
-	RPOST_DATETIME DATE, /* 게시물작성일자 */
-	RPOST_UPDATED_DATETIME DATE /* 최종수정시간 */
+	RPOST_DATETIME DATE /* 게시물작성일자 */
 );
 
 ALTER TABLE R_POST
@@ -425,6 +425,8 @@ Insert into R_PROJECT (RPJT_ID,MEM_ID,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION)
 values (4,4,1,1,to_date('18/05/25','RR/MM/DD'));
 Insert into R_PROJECT (RPJT_ID,MEM_ID,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION) 
 values (5,5,1,1,to_date('18/05/25','RR/MM/DD'));
+Insert into R_PROJECT (RPJT_ID,MEM_ID,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION) 
+values (6,5,1,1,to_date('18/05/25','RR/MM/DD'));
 
 
 
@@ -619,16 +621,16 @@ SELECT /*insert*/ *
 FROM r_post;
 --r_post(리워드 게시물)
 
-Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_USERID,RPOST_DATETIME,RPOST_UPDATED_DATETIME) 
-values (1,'향으로 덮지 않고 실내 악취와 유해 성분 원천 제거, 스멜탄','rid1',to_date('18/05/20','RR/MM/DD'),to_date('18/07/07','RR/MM/DD'));
-Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_USERID,RPOST_DATETIME,RPOST_UPDATED_DATETIME) 
-values (2,'트고 진물나는 피부를 구한! 아빠가 만든 순도 100% 제주마유 제품','rid2',to_date('18/05/21','RR/MM/DD'),to_date('18/07/07','RR/MM/DD'));
-Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_USERID,RPOST_DATETIME,RPOST_UPDATED_DATETIME) 
-values (3,'그린 시그널을 보내는 공기청정기','rid3',to_date('18/05/22','RR/MM/DD'),to_date('18/07/07','RR/MM/DD'));
-Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_USERID,RPOST_DATETIME,RPOST_UPDATED_DATETIME) 
-values (4,'3.1운동 100주년 기념 베개/목베개/방석과 부조액자 제작','rid4',to_date('18/05/23','RR/MM/DD'),to_date('18/07/07','RR/MM/DD'));
-Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_USERID,RPOST_DATETIME,RPOST_UPDATED_DATETIME) 
-values (5,'지금까지 경험해보지 못한 인생 참치회','rid5',to_date('18/05/24','RR/MM/DD'),to_date('18/07/07','RR/MM/DD'));
+Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_CONTENT,RPOST_USERID,RPOST_DATETIME) 
+values (1,'향으로 덮지 않고 실내 악취와 유해 성분 원천 제거, 스멜탄','향으로 덮지 않고 실내 악취와 유해 성분 원천 제거, 스멜탄!! 최고!!!!','rid1',to_date('18/05/20','RR/MM/DD'));
+Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_CONTENT,RPOST_USERID,RPOST_DATETIME) 
+values (2,'트고 진물나는 피부를 구한! 아빠가 만든 순도 100% 제주마유 제품','트고 진물나는 피부를 구한! 아빠가 만든 순도 100% 제주마유 제품이 짱임!!!','rid2',to_date('18/05/21','RR/MM/DD'));
+Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_CONTENT,RPOST_USERID,RPOST_DATETIME) 
+values (3,'그린 시그널을 보내는 공기청정기','그린 시그널을 보내는 공기청정기 왜안삼?!??!','rid3',to_date('18/05/22','RR/MM/DD'));
+Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_CONTENT,RPOST_USERID,RPOST_DATETIME) 
+values (4,'3.1운동 100주년 기념 베개/목베개/방석과 부조액자 제작','3.1운동 100주년 기념 베개/목베개/방석과 부조액자 제작해뜸!!!!!','rid4',to_date('18/05/23','RR/MM/DD'));
+Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_CONTENT,RPOST_USERID,RPOST_DATETIME) 
+values (5,'지금까지 경험해보지 못한 인생 참치회','지금까지 경험해보지 못한 인생 참치회 좀 먹어봐!!!','rid5',to_date('18/05/24','RR/MM/DD'));
 
 
 
@@ -676,8 +678,6 @@ values (4, '양명고등학교 역사지기 동아리', '4_keeper.jpg', 'saddo112@daum.net',
 insert into r_keeper(RPJT_ID, r_name, r_profile, r_email, r_url, r_tel)
 values (5, '김드림(농부대첩)', '5_keeper.jpg', 'saddo112@daum.net', 
 'youthdepot/reward/1', 0113789922);
-
-
 
 
 commit;
