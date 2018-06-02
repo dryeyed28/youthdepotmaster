@@ -24,7 +24,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>YouthDepotFrontControllerServlet</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>*.two</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<description></description>
