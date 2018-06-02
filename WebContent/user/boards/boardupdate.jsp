@@ -27,14 +27,15 @@
 
 									<div class="col-sm-6 col-md-8">
 										<h4>제목</h4>
-										<input type="text" name="title" class="input-text full-width" value="<%=p.getPost_dateTime()%>">
+										<input type="text" name="title" class="input-text full-width" value="<%=p.getPost_title()%>">
 									</div>
 								</div>
 								<div class="form-group row">
 									<div class="col-sm-6 col-md-8">
 										<h4>내용</h4>
 										<textarea name="content"
-											style="margin: 0px; width: 528px; height: 296px;"><%p.getPost_content()%></textarea>
+											style="margin: 0px; width: 528px; height: 296px;"><%=p.getPost_content() %>
+											</textarea>
 
 									</div>
 								</div>
