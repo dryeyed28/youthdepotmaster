@@ -124,7 +124,13 @@ public class ProjectController extends HttpServlet {
 			ArrayList<ROption> option = service.option(rPJT_id);
 			request.setAttribute("option", option);
 			forwardURL = "user/pages/pay.jsp";
-		} 
+		} else if(type.equals("payaddress")) {
+			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
+			int reward_id = Integer.parseInt(request.getParameter("reward_id"));
+			ROption payaddress = service.optionPay(rPJT_id, reward_id);
+			request.setAttribute("payaddress", payaddress);
+			forwardURL = "user/pages/payadress.jsp";
+		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
 //		response.sendRedirect(forwardURL);

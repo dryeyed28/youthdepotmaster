@@ -30,5 +30,9 @@ public class ProjcetServiceImpl implements ProjcetService {
 	public ArrayList<RPost> rpost(int rPJT_id) {
 		return dao.getRPost(rPJT_id);
 	}
+	@Override
+	public ROption optionPay(int rPJT_id, int reward_id) {
+		return dao.getOptionPay(rPJT_id, reward_id);
+	}
 	
 }

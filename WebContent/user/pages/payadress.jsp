@@ -1,3 +1,5 @@
+<%@page import="vo.RewardPay"%>
+<%@page import="vo.ROption"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
@@ -84,25 +86,23 @@ div.right {
 			<div class="box">
 				<div class="icon">리워드</div>
 				<br>
+				<%ROption payaddress = (ROption)request.getAttribute("payaddress"); %>
 				<div>
-					<h2 style="padding-left: 10px">선택항목</h2>
-					<span>선택항목 상세내용</span>
+					<h1 style="padding-left: 10px"><%=payaddress.getrPJT_name()%></h1>
+					<h3 style="padding-left: 10px">선택항목 상세내용</h3>
 					<div class="textright">
 						수량 : 0 개 <span> 00000열정</span>
 					</div>
 					<hr>
-					<div class="left">추가 후원금</div>
-					<div class="right">0원</div>
-					<hr>
 					<div class="left">펀딩금액</div>
-					<div class="right">0원</div>
+					<div class="right"><%=payaddress.getrPJT_price()%>원</div>
 					<hr>
 					<div class="left">추가 후원금</div>
 					<div class="right">0원</div>
 					<br>
 					<br>
 					<div class="left">배송비</div>
-					<div class="right">0원</div>
+					<div class="right"><%=payaddress.getrPJT_charge()%>원</div>
 					<br>
 					<br>
 					<div class="left">차감금액</div>

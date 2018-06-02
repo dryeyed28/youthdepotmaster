@@ -41,6 +41,7 @@ div.text {
 <%@include file="../template/header.jsp"%>
 <section id="content" class="gray-area">
 	<div class="container">
+	<form name="f" action="<%=request.getContextPath()%>/ProjectController?type=payaddress" method="post">
 		<div class="row">
 			<div class="icondiv">리워드 선택</div>
 			<br>
@@ -78,6 +79,7 @@ div.text {
 					단계로</button>
 			</div>
 		</div>
+		</form>
 	</div>
 </section>
 <%@include file="../template/footer.jsp"%>
