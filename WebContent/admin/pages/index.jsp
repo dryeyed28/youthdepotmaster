@@ -12,23 +12,23 @@
 <%-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--%>
 <script>
 $(function(){
-	$("ul.nav in>li").click(function(){
+	$("li").on("click", function(){
 		var classValue = $(this).attr("class");
 		$("section").empty();
+		console.log("classValue 값은 : " + classValue);
 		switch(classValue) {
-		case "fa fa-member fa-fw":
+		
+		case "member":
 			$.ajax({
 				method: "POST",
-				url: "member.do",
+				data: "page=1",
+				url: "<%=request.getContextPath() %>/MemberController?type=selectAll",
 				success: function(data){
 					$("section").html(data);
 				}
 			});
+			break;
 		}
-	});
-	
-	$.ajax({
-		
 	});
 });
 </script>

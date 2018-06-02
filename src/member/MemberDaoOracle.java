@@ -14,10 +14,7 @@ public class MemberDaoOracle implements MemberDao {
 
 	@Override
 	public List<Member> selectAll() {
-		/*
-		 * 1. DB연결(getConnection()메소드 활용) 2. pstmt 설정 3. rs 설정 4. service에서 findAll()메소드
-		 * 리턴값 가져오기
-		 */
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -27,7 +24,6 @@ public class MemberDaoOracle implements MemberDao {
 
 		try {
 			con = OracleConnection.getConnection();
-			System.out.println("DB 접속");
 			String selectAll = "select *\r\n" + "from members";
 			pstmt = con.prepareStatement(selectAll);
 			rs = pstmt.executeQuery();
@@ -38,9 +34,7 @@ public class MemberDaoOracle implements MemberDao {
 						rs.getString("mem_phone"), rs.getInt("mem_sex"), rs.getString("mem_register_dateTime"),
 						rs.getString("mem_lastLogin_dateTime"), rs.getInt("mem_treasurer"), rs.getInt("mem_passion")));
 			}
-			System.out.println("selectAll() 결과 : " + list);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			OracleConnection.close(rs, pstmt, con);

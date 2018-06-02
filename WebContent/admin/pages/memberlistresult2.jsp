@@ -3,8 +3,8 @@
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@include file="../template/top.jsp"%>
+<%@include file="../template/aside.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,50 +12,12 @@
 <!-- <title>mermberlistresult2.jsp</title> -->
 <!-- <style src="/css/memberlistresult2.css"></style> -->
 <link rel="stylesheet" type="text/css" href="/youthdepotmaster/admin/css/memberlistresult2.css">
-<script></script>
+<script>
+</script>
 </head>
 <body>
-<%--<% 
-  //PageBean pb = (PageBean)request.getAttribute("pagebean");
-  //List<RepBoard>list = (List)request.getAttribute("boardlist");
-  List<RepBoard>list = pb.getList();
-  for(RepBoard b:list){	  
-%><div class="board">
-    <div class="board_seq">
-    <%for(int i=1; i<b.getLevel(); i++){
-    %>	<%="▷"%>
-    <%}%><%=b.getBoard_seq()%>
-    </div>
-    <%-- <div class="parent_seq"><%=b.getParent_seq()%></div> 
-    <div class="board_subject"><%=b.getBoard_subject()%></div>
-    <div class="board_writer"><%=b.getBoard_writer()%></div>
-    <div class="board_date"><%=b.getBoard_date()%></div>
-    <div class="board_viewcount"><%=b.getBoard_viewcount()%></div>
-  </div>  
-<%	  
-  }
-%><div class="pagination">  
-<%int startPage = pb.getStartPage();
-  int endPage = pb.getEndPage();
-  if(startPage > 1){%>
-	  <a href="#">&laquo;</a>  
-<%}  
-  for(int i=startPage; i<=endPage; i++){  
-%><a href="#"><%=i%></a>	  
-<%}  
-  System.out.println(pb);
-  
-  if(endPage < pb.getTotalPage()){%>
-	<a href="#">&raquo;</a>  
-<%}
-%></div>
-</div> --%>
-		
-		<%-- 리퀘스트 어튜리뷰트에 담긴 pagebean(member list 포함) 객체를 jsp에서 받아온다 --%>
-		<%-- PageBean pb = (PageBean) request.getAttribute("pagebean") --%>
-		<c:set var="pb" value="${requestScope.pagebean}"/>
-		<c:set var="list" value="${pb.list}"/>
-		
+<c:set var="pb" value="${requestScope.pagebean}"/>
+<c:set var="list" value="${pb.list}"/>
 <div class="list">
  <div class="member1">
   <div class="mem_id">회원고유번호</div>
@@ -72,9 +34,9 @@
    <div class="mem_treasurer">창고지기</div>
    <div class="mem_passion">열정</div>
  </div>
+</div>
 	
- 	<c:forEach var="member" items="${list}">
- 		<%-- list에 있는 member 객체 전부 가져와서 반복 --%>
+ <c:forEach var="member" items="${list}">s
   <div class="member2">
    <div class="mem_id">${member.mem_id}</div>
    <div class="mem_userid">${member.mem_userId}</div>

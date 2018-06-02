@@ -29,8 +29,6 @@ public class MemberController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		System.out.println("MemberController doPost() 요청");
-		
 		String type = "";
 		String result = "";
 		String forwardURL = "";
@@ -52,7 +50,6 @@ public class MemberController extends HttpServlet {
 		} else if(type.equals("selectAll")) {
 			//admin 회원관리
 			String page = request.getParameter("page");
-			System.out.println("page 값은 : " + page);
 			
 			if(page != null) {
 				intPage = Integer.parseInt(page);
@@ -60,7 +57,6 @@ public class MemberController extends HttpServlet {
 			
 			try {
 			int totalCount = svic.findCount();
-			System.out.println("총 페이지 수(findCount()) : " + totalCount);
 			
 			int totalPage = 0;
 			int cntPerPage = 3;
@@ -69,7 +65,6 @@ public class MemberController extends HttpServlet {
 			int cntPerPageGroup = 5;
 			int startPage = (int)Math.floor((double)(intPage)/(cntPerPageGroup+1))*cntPerPageGroup+1;
 			int endPage = startPage+cntPerPageGroup-1;
-			System.out.println("스타트페이지 수 : " + startPage);
 			
 			if(endPage > totalPage) {
 				endPage = totalPage;
@@ -90,7 +85,7 @@ public class MemberController extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("result", e.getMessage());
 			}
-			result = "/admin/pages/memberlistresult2.jsp";
+			result = "/admin/pages/memberlistresult.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(result);
