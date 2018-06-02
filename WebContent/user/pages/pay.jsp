@@ -1,3 +1,5 @@
+<%@page import="vo.ROption"%>
+<%@page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
@@ -39,23 +41,28 @@ div.text {
 <%@include file="../template/header.jsp"%>
 <section id="content" class="gray-area">
 	<div class="container">
+	<form name="f" action="<%=request.getContextPath()%>/ProjectController?type=payaddress" method="post">
 		<div class="row">
 			<div class="icondiv">리워드 선택</div>
 			<br>
 			<div class="text">펀딩해주시는 금액에 따라 감사의 의미로 리워드를 제공해드립니다</div>
+			<%ArrayList<ROption> option = (ArrayList)request.getAttribute("option");
+			for(ROption o : option) {%>
 			<div class="paybox">
-				<h1>1000원 펀딩합니다.</h1>
+				<h1><%=o.getrPJT_price()%>원 펀딩합니다.</h1>
 				<input type="checkbox" name='pqy1'>
 				<p>
-					펀딩 내용 <br>여러가지내용 <br>이것저것내용
+					<%=o.getrPJT_name()%> <br>
+					<%=o.getrPJT_detail()%> <br>
 				</p>
 			</div>
+			<%} %>
 			<br>
 			<br>
 			<div class="icondiv">리워드 선택</div>
 			<div class="text">후원금을 더하여 후원할수 있습니다 추가로 후원하시겠습니까?</div>
 			<div class="text">
-				<input type="number">원을 추가로 후원합니다.
+				<input type="number" value="">원을 추가로 후원합니다.
 			</div>
 			<div class="icondiv">공개여부 선택</div>
 			<div class="text">참여자 목록에 참여자 이름과 펀딩금액이 공개됩니다. 혹시, 조용히 후원하고
@@ -72,6 +79,7 @@ div.text {
 					단계로</button>
 			</div>
 		</div>
+		</form>
 	</div>
 </section>
 <%@include file="../template/footer.jsp"%>

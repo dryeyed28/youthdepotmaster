@@ -1,3 +1,6 @@
+<%@page import="vo.RPost"%>
+<%@page import="vo.ROption"%>
+<%@page import="java.util.ArrayList" %>
 <%@page import="vo.RMeta"%>
 <%@page import="vo.RKeeper"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -95,69 +98,33 @@
 							</table>
 						</div>
 						<div class="tab-pane fade" id="travel-guide-culture-history">
+							<%ArrayList<RPost> rpost = (ArrayList)request.getAttribute("rpost");
+							for(RPost rp : rpost){%>
 							<table class="table table-condensed">
 								<thead>
 									<tr align="center">
 										<th width="10%">제목</th>
-										<th width="60%">게시판 제목 입니다.</th>
+										<th width="60%"><%=rp.getrPost_title()%></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<td>작성일</td>
-										<td>2014-12-15 04:45:23</td>
+										<td><%=rp.getrPost_dateTime()%></td>
 									</tr>
 									<tr>
 										<td>글쓴이</td>
-										<td>husk <span style='float: right'>조회 : 0</span>
-										</td>
+										<td><%=rp.getrPost_userID()%> </td>
 									</tr>
 									<tr>
 										<td colspan="2">
-											<p>이름, 패스워드 내용을 적으시고 확인버튼을 누르세요.</p>
+											<p><%=rp.getrPost_content()%></p>
 
 										</td>
 									</tr>
 								</tbody>
 							</table>
-							<table id="commentTable" class="table table-condensed"></table>
-							<table class="table table-condensed">
-								<tr>
-									<td><div class="form-inline" role="form">
-											<div>
-												<div class="form-group">
-													<input type="text" id="commentParentName"
-														name="commentParentName" class="form-control col-lg-2"
-														data-rule-required="true" placeholder="이름" maxlength="10">
-												</div>
-												<div class="form-group">
-													<input type="password" id="commentParentPassword"
-														name="commentParentPassword" class="form-control col-lg-2"
-														data-rule-required="true" placeholder="패스워드"
-														maxlength="10">
-												</div>
-												<div class="form-group">
-													<button type="button" id="commentParentSubmit"
-														name="commentParentSubmit" class="btn btn-default">확인</button>
-												</div>
-											</div>
-											<textarea id="commentParentText"
-												class="form-control col-lg-12" style="width: 100%" rows="4"></textarea>
-										</div></td>
-								</tr>
-							</table>
-							<table class="table table-condensed">
-								<thead>
-									<tr>
-										<td><span style='float: right'>
-												<button type="button" id="list" class="btn btn-default">목록</button>
-												<button type="button" id="modify" class="btn btn-default">수정</button>
-												<button type="button" id="delete" class="btn btn-default">삭제</button>
-												<button type="button" id="write" class="btn btn-default">글쓰기</button>
-										</span></td>
-									</tr>
-								</thead>
-							</table>
+							<%} %>
 						</div>
 					</div>
 				</div>
@@ -166,8 +133,9 @@
 				<article class="detailed-logo">
 					<div class="details">
 						<div class="feedback clearfix">
+						<%int percent = (100 * meta.getrInvesting_amount()) / meta.getrTarget_amount() ;%>
 							<div class="progress-bar" role="progressbar" style="width: 100%;"
-								aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">290%</div>
+								aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%=percent%>%</div>
 						</div>
 						<h2 class="box-title">19일 남음</h2>
 						<span class="price clearfix">
@@ -179,7 +147,8 @@
 						<br>
 						<h1>100명 서포터</h1>
 						<hr>
-						<a class="button yellow full-width uppercase btn-small">펀딩하기</a>
+						<a class="button yellow full-width uppercase btn-small"
+						href="<%=request.getContextPath()%>/ProjectController?type=pay&rPJT_id=<%=meta.getrProject().getrPJT_id()%>">펀딩하기</a>
 					</div>
 				</article>
 				<%RKeeper keeper = (RKeeper)request.getAttribute("keeper"); %>
@@ -199,25 +168,19 @@
 						<p><%=keeper.getR_url()%></p>
 					</address>
 				</div>
-				
 				<div class="travelo-box book-with-us-box">
-					<h4>펀딩 선택</h4>
+					<h4>펀딩 종류</h4>
 					<ul>
-						<li><i class="soap-icon-hotel-1 circle"></i>
-							<h5 class="title">
-								<a href="#">135,00+ Hotels</a>
-							</h5>
-							<p>Nunc cursus libero pur congue arut nimspnty.</p></li>
+					<%ArrayList<ROption> option = (ArrayList)request.getAttribute("option");
+					for(ROption o : option) {%>
 						<li><i class="soap-icon-savings circle"></i>
 							<h5 class="title">
-								<a href="#">Low Rates &amp; Savings</a>
+								<%=o.getrPJT_name()%>
 							</h5>
-							<p>Nunc cursus libero pur congue arut nimspnty.</p></li>
-						<li><i class="soap-icon-support circle"></i>
-							<h5 class="title">
-								<a href="#">Excellent Support</a>
-							</h5>
-							<p>Nunc cursus libero pur congue arut nimspnty.</p></li>
+							<p><%=o.getrPJT_price()%> 원</p>
+							<p><%=o.getrPJT_detail()%></p>
+						</li>
+					<%} %>
 					</ul>
 				</div>
 			</div>

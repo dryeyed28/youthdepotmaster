@@ -1,6 +1,8 @@
 package projcet;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,17 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.oreilly.servlet.MultipartRequest;
+
+import projcet.RenamePolicy;
 import vo.RApply;
 import vo.RKeeper;
 import vo.RMeta;
 import vo.ROption;
+import vo.RPost;
 import vo.RProject;
 import vo.RStory;
 
 
 public class ProjectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
     public ProjectController() {
         super();
         // TODO Auto-generated constructor stub
@@ -47,13 +52,27 @@ public class ProjectController extends HttpServlet {
 		RMeta meta = null;
 		if (type.equals("apply")) {
 			System.out.println("Controller");
-			HttpSession session = request.getSession();
-			session.setAttribute("id", 1);
+			MultipartRequest mr;
+			MultipartRequest mr2;
+			int maxPostSize = 1024*10000;
+			String encoding = "UTF-8";
+			try {
+				mr = new MultipartRequest(request, "d:\\files", 
+						maxPostSize, encoding, 
+						new RenamePolicy());
+				mr2 = new MultipartRequest(request, "d:\\files1", 
+						maxPostSize, encoding, 
+						new RenamePolicy());
+			}catch(IOException e) {
+				e.printStackTrace(); //maxPostSize, Posted content length 
+			}
 			RKeeper rk = new RKeeper();
 			RMeta rm = new RMeta();
 			RProject rp = new RProject();
 			ROption ro = new ROption();
 			RStory rs = new RStory();
+			HttpSession session = request.getSession();
+			session.setAttribute("id", 1);
 			rp.setMem_id((int)session.getAttribute("id"));
 			rp.setrPJT_progress(3);
 			rp.setrPJT_state(2);
@@ -86,10 +105,25 @@ public class ProjectController extends HttpServlet {
 			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
 			keeper = service.keeper(rPJT_id);
 			meta = service.meta(rPJT_id);
+			ArrayList<ROption> option = service.option(rPJT_id);
+			ArrayList<RPost> rpost = service.rpost(rPJT_id);
+			request.setAttribute("rpost", rpost);
+			request.setAttribute("option", option);
 			request.setAttribute("keeper",keeper);
 			request.setAttribute("meta", meta);
 			forwardURL = "user/pages/rewarddetaile.jsp";
-		} 
+		} else if(type.equals("pay")) {
+			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
+			ArrayList<ROption> option = service.option(rPJT_id);
+			request.setAttribute("option", option);
+			forwardURL = "user/pages/pay.jsp";
+		} else if(type.equals("payaddress")) {
+			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
+			int reward_id = Integer.parseInt(request.getParameter("reward_id"));
+			ROption payaddress = service.optionPay(rPJT_id, reward_id);
+			request.setAttribute("payaddress", payaddress);
+			forwardURL = "user/pages/payadress.jsp";
+		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
 //		response.sendRedirect(forwardURL);

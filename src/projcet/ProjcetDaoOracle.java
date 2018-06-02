@@ -4,10 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import sql.OracleConnection;
 import vo.RApply;
 import vo.RKeeper;
 import vo.RMeta;
+import vo.ROption;
+import vo.RPost;
 import vo.RProject;
 
 public class ProjcetDaoOracle implements ProjcetDao {
@@ -136,5 +140,115 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			sql.OracleConnection.close(rs, pstmt, con);
 		}
 		return meta;
+	}
+
+	@Override
+	public ArrayList<ROption> getOption(int rPJT_id) {
+		ArrayList<ROption> option = new ArrayList<ROption>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = OracleConnection.getConnection();
+			String sql = "";
+			sql += "select ro.rpjt_id, ro.reward_id, ro.RPJT_PRICE, ro.RPJT_NAME, ro.RPJT_DETAIL, \n";
+			sql += "ro.RPJT_LIMIT, to_char(ro.RPJT_SEND, 'yyyy.mm.dd') RPJT_SEND, ro.RPJT_CHARGE \n";
+			sql += "from r_option ro, r_project rp \n";
+			sql += "where ro.rPJT_id = rp.rPJT_id and ro.rPJT_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rPJT_id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ROption ro = new ROption(
+						new RProject(rs.getInt("rPJT_id"), 0, 0, 0, null),
+						rs.getInt("reward_id"),
+						rs.getInt("rPJT_price"),
+						rs.getString("rPJT_name"),
+						rs.getString("rPJT_detail"),
+						rs.getInt("rPJT_limit"),
+						rs.getString("rPJT_send"),
+						rs.getInt("rPJT_charge")
+						);
+				
+				option.add(ro);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
+		return option;
+	}
+
+	@Override
+	public ArrayList<RPost> getRPost(int rPJT_id) {
+		ArrayList<RPost> rpost = new ArrayList<RPost>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = OracleConnection.getConnection();
+			String sql = "";
+			sql += "select rp.rpjt_id, rp.rpost_title, rp.rpost_content, rp.rpost_userid, "
+					+ "to_char(rp.rpost_datetime, 'yyyy-mm-dd hh:Mi:ss') rpost_datetime \n";
+			sql += "from r_post rp, r_project p \n";
+			sql += "where rp.rPJT_id = p.rPJT_id and rp.rPJT_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rPJT_id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				RPost rp = new RPost(
+						new RProject(rs.getInt("rPJT_id"), 0, 0, 0, null),
+						rs.getString("rPost_title"),
+						rs.getString("rPost_content"),
+						rs.getString("rPost_userID"),
+						rs.getString("rPost_datetime")
+						);
+				
+				rpost.add(rp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
+		return rpost;
+	}
+
+	@Override
+	public ROption getOptionPay(int rPJT_id, int reward_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ROption payaddress = null;
+		try {
+			con = OracleConnection.getConnection();
+			String sql = "";
+			sql += "select ro.rpjt_id, ro.reward_id, ro.RPJT_PRICE, ro.RPJT_NAME, ro.RPJT_DETAIL, \n";
+			sql += "ro.RPJT_LIMIT, to_char(ro.RPJT_SEND, 'yyyy.mm.dd') RPJT_SEND, ro.RPJT_CHARGE \n";
+			sql += "from r_option ro, r_project rp \n";
+			sql += "where ro.rPJT_id = rp.rPJT_id and ro.rPJT_id = ? and ro.reward_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rPJT_id);
+			pstmt.setInt(2, reward_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				payaddress = new ROption(
+						new RProject(rs.getInt("rPJT_id"), 0, 0, 0, null),
+						rs.getInt("reward_id"),
+						rs.getInt("rPJT_price"),
+						rs.getString("rPJT_name"),
+						rs.getString("rPJT_detail"),
+						rs.getInt("rPJT_limit"),
+						rs.getString("rPJT_send"),
+						rs.getInt("rPJT_charge")
+						);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
+		return payaddress;
 	}
 }

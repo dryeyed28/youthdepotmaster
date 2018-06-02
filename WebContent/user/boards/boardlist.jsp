@@ -15,7 +15,6 @@
 <section id="content" class="gray-area">
   <div class="container">
 	<div class="row">
-		<div id="main" class="col-sm-8 col-md-9">
 			<div class="booking-information travelo-box">
 				<h1>게시판</h1>
 				<hr><br>
@@ -53,8 +52,8 @@
 %>
 						<tr>
 							<td><%=p.getPost_id() %></td>
-							<td><a id="<%=p.getPost_id() %>" href="<%=request.getContextPath()%>/PostController?type=boardView&id=<%=p.getPost_id()%>"><%=p.getPost_title() %></a></td>
-							<td><%=p.getAdmin_id() %></td>
+							<td><a href="<%=request.getContextPath()%>/PostController?type=boardView&id=<%=p.getPost_id()%>"><%=p.getPost_title() %></a></td>
+							<td><%=p.getMem_nickName() %></td>
 							<td><%=p.getPost_dateTime() %></td>
 							<td><%=p.getPost_view_count() %></td>
 						</tr>
@@ -71,39 +70,6 @@
 				  <input type="button" value="글쓰기" onclick="goUrl('boardWriteForm.jsp');" />
 				</div>
 			</div>
-		</div>
-		
-		<div class="sidebar col-sm-4 col-md-3">
-			<div class="travelo-box contact-box">
-				<h4>도움이 필요하신가요?</h4>
-				<p>We would be more than happy to help you. Our team advisor
-					are 24/7 at your service to help you.</p>
-				<address class="contact-details">
-					<span class="contact-phone"><i class="soap-icon-phone"></i>
-						1-800-123-HELLO</span> <br> <a class="contact-email" href="#">help@travelo.com</a>
-				</address>
-			</div>
-			<div class="travelo-box book-with-us-box">
-				<h4>Why Book with us?</h4>
-				<ul>
-					<li><i class="soap-icon-hotel-1 circle"></i>
-						<h5 class="title">
-							<a href="#">135,00+ Hotels</a>
-						</h5>
-						<p>Nunc cursus libero pur congue arut nimspnty.</p></li>
-					<li><i class="soap-icon-savings circle"></i>
-						<h5 class="title">
-							<a href="#">Low Rates &amp; Savings</a>
-						</h5>
-						<p>Nunc cursus libero pur congue arut nimspnty.</p></li>
-					<li><i class="soap-icon-support circle"></i>
-						<h5 class="title">
-							<a href="#">Excellent Support</a>
-						</h5>
-						<p>Nunc cursus libero pur congue arut nimspnty.</p></li>
-				</ul>
-			</div>
-		</div>
 	</div>
   </div>
 </section>

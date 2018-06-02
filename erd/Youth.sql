@@ -65,8 +65,8 @@ CREATE TABLE R_COMMENT (
 /* 리워드결제 */
 CREATE TABLE REWARD_PAY (
 	RPAY_ID NUMBER(10) NOT NULL, /* PAY_PK */
-	RPROJECT_PAY_AMOUNT NUMBER(10) NOT NULL, /* 프로젝트 구분코드 */
 	MEM_ID NUMBER(10), /* MEM_ID */
+    MEM_NAME VARCHAR2(20), /*주문자 이름*/
 	RPJT_ID NUMBER(10), /* 리워드번호 */
 	RPRODUCT_ID NUMBER(10), /* 아이템번호 */
 	RPRODUCT_EA NUMBER(10), /* 수량 */
@@ -81,8 +81,7 @@ ALTER TABLE REWARD_PAY
 	ADD
 		CONSTRAINT REWARD_PAY
 		PRIMARY KEY (
-			RPAY_ID,
-			RPROJECT_PAY_AMOUNT
+			RPAY_ID
 		);
 
 /* 회원 */
@@ -129,10 +128,10 @@ ALTER TABLE R_STORY
 /* 리워드 게시물 */
 CREATE TABLE R_POST (
 	RPJT_ID NUMBER(10) NOT NULL, /* 리워드번호 */
-	RPOST_TITLE CLOB, /* 게시글제목 */
+    RPOST_TITLE VARCHAR2(100), /* 게시글제목 */
+	RPOST_CONTENT CLOB, /* 게시글제목 */
 	RPOST_USERID VARCHAR2(50), /* 작성자회원아이디 */
-	RPOST_DATETIME DATE, /* 게시물작성일자 */
-	RPOST_UPDATED_DATETIME DATE /* 최종수정시간 */
+	RPOST_DATETIME DATE /* 게시물작성일자 */
 );
 
 ALTER TABLE R_POST
@@ -485,16 +484,16 @@ SELECT /*insert*/ *
 FROM REWARD_PAY;
 --REWARD_PAY--
 
-Insert into REWARD_PAY (RPAY_ID,RPROJECT_PAY_AMOUNT,MEM_ID,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
-values (1,2,1,1,1,1,10000,'경기도 성남시 분당구 판교로 242','01012332255','부재시 경비실에 맡겨주세요',433600);
-Insert into REWARD_PAY (RPAY_ID,RPROJECT_PAY_AMOUNT,MEM_ID,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
-values (2,2,2,2,2,2,20000,'경기도 성남시 분당구 불정로 90','01099887744','부재시 경비실에 맡겨주세요',189000);
-Insert into REWARD_PAY (RPAY_ID,RPROJECT_PAY_AMOUNT,MEM_ID,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
-values (3,2,3,3,3,1,50000,'서울특별시 종로구 종로 26','01054548787','부재시 경비실에 맡겨주세요',227000);
-Insert into REWARD_PAY (RPAY_ID,RPROJECT_PAY_AMOUNT,MEM_ID,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
-values (4,2,4,4,4,2,20000,'서울특별시 마포구 성암로 267 ','01022553377','배송전연락바랍니다',109000);
-Insert into REWARD_PAY (RPAY_ID,RPROJECT_PAY_AMOUNT,MEM_ID,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
-values (5,2,5,5,5,1,30000,'서울특별시 양천구 목동서로 161','01025663322','배송전연락바랍니다',79800);
+Insert into REWARD_PAY (RPAY_ID,MEM_ID,MEM_NAME,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
+values (1,1,'사람1',1,1,1,10000,'경기도 성남시 분당구 판교로 242','01012332255','부재시 경비실에 맡겨주세요',433600);
+Insert into REWARD_PAY (RPAY_ID,MEM_ID,MEM_NAME,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
+values (2,2,'사람2',2,2,2,20000,'경기도 성남시 분당구 불정로 90','01099887744','부재시 경비실에 맡겨주세요',189000);
+Insert into REWARD_PAY (RPAY_ID,MEM_ID,MEM_NAME,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
+values (3,3,'사람3',3,3,1,50000,'서울특별시 종로구 종로 26','01054548787','부재시 경비실에 맡겨주세요',227000);
+Insert into REWARD_PAY (RPAY_ID,MEM_ID,MEM_NAME,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
+values (4,4,'사람4',4,4,2,20000,'서울특별시 마포구 성암로 267 ','01022553377','배송전연락바랍니다',109000);
+Insert into REWARD_PAY (RPAY_ID,MEM_ID,MEM_NAME,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
+values (5,5,'사람5',5,5,1,30000,'서울특별시 양천구 목동서로 161','01025663322','배송전연락바랍니다',79800);
 
 
 SELECT /*insert*/ *
@@ -619,16 +618,16 @@ SELECT /*insert*/ *
 FROM r_post;
 --r_post(리워드 게시물)
 
-Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_USERID,RPOST_DATETIME,RPOST_UPDATED_DATETIME) 
-values (1,'향으로 덮지 않고 실내 악취와 유해 성분 원천 제거, 스멜탄','rid1',to_date('18/05/20','RR/MM/DD'),to_date('18/07/07','RR/MM/DD'));
-Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_USERID,RPOST_DATETIME,RPOST_UPDATED_DATETIME) 
-values (2,'트고 진물나는 피부를 구한! 아빠가 만든 순도 100% 제주마유 제품','rid2',to_date('18/05/21','RR/MM/DD'),to_date('18/07/07','RR/MM/DD'));
-Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_USERID,RPOST_DATETIME,RPOST_UPDATED_DATETIME) 
-values (3,'그린 시그널을 보내는 공기청정기','rid3',to_date('18/05/22','RR/MM/DD'),to_date('18/07/07','RR/MM/DD'));
-Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_USERID,RPOST_DATETIME,RPOST_UPDATED_DATETIME) 
-values (4,'3.1운동 100주년 기념 베개/목베개/방석과 부조액자 제작','rid4',to_date('18/05/23','RR/MM/DD'),to_date('18/07/07','RR/MM/DD'));
-Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_USERID,RPOST_DATETIME,RPOST_UPDATED_DATETIME) 
-values (5,'지금까지 경험해보지 못한 인생 참치회','rid5',to_date('18/05/24','RR/MM/DD'),to_date('18/07/07','RR/MM/DD'));
+Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_CONTENT,RPOST_USERID,RPOST_DATETIME) 
+values (1,'향으로 덮지 않고 실내 악취와 유해 성분 원천 제거, 스멜탄','향으로 덮지 않고 실내 악취와 유해 성분 원천 제거, 스멜탄!! 최고!!!!','rid1',to_date('18/05/20','RR/MM/DD'));
+Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_CONTENT,RPOST_USERID,RPOST_DATETIME) 
+values (2,'트고 진물나는 피부를 구한! 아빠가 만든 순도 100% 제주마유 제품','트고 진물나는 피부를 구한! 아빠가 만든 순도 100% 제주마유 제품이 짱임!!!','rid2',to_date('18/05/21','RR/MM/DD'));
+Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_CONTENT,RPOST_USERID,RPOST_DATETIME) 
+values (3,'그린 시그널을 보내는 공기청정기','그린 시그널을 보내는 공기청정기 왜안삼?!??!','rid3',to_date('18/05/22','RR/MM/DD'));
+Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_CONTENT,RPOST_USERID,RPOST_DATETIME) 
+values (4,'3.1운동 100주년 기념 베개/목베개/방석과 부조액자 제작','3.1운동 100주년 기념 베개/목베개/방석과 부조액자 제작해뜸!!!!!','rid4',to_date('18/05/23','RR/MM/DD'));
+Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_CONTENT,RPOST_USERID,RPOST_DATETIME) 
+values (5,'지금까지 경험해보지 못한 인생 참치회','지금까지 경험해보지 못한 인생 참치회 좀 먹어봐!!!','rid5',to_date('18/05/24','RR/MM/DD'));
 
 
 
@@ -676,8 +675,6 @@ values (4, '양명고등학교 역사지기 동아리', '4_keeper.jpg', 'saddo112@daum.net',
 insert into r_keeper(RPJT_ID, r_name, r_profile, r_email, r_url, r_tel)
 values (5, '김드림(농부대첩)', '5_keeper.jpg', 'saddo112@daum.net', 
 'youthdepot/reward/1', 0113789922);
-
-
 
 
 commit;
