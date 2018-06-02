@@ -119,10 +119,9 @@ public class PostDaoOracle implements PostDao {
 		try {
 			con = OracleConnection.getConnection();
 			con.setAutoCommit(false);
-			String sql = "";
-			sql += "UPDATE post \n";
-			sql += "SET POST_TITLE = ?,POST_CONTENT = ? \n";
-			sql += "WHERE post_id = ?";
+			String sql = "UPDATE post "
+					+ "SET POST_TITLE = ?,POST_CONTENT = ? "
+					+ "WHERE post_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,post.getPost_title());
 			pstmt.setString(2, post.getPost_content());
