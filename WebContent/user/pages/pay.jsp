@@ -49,13 +49,14 @@ div.text {
 			<%ArrayList<ROption> option = (ArrayList)request.getAttribute("option");
 			for(ROption o : option) {%>
 			<div class="paybox">
-				<h1><%=o.getrPJT_price()%>원 펀딩합니다.</h1>
 				<input type="checkbox" name='pqy1'>
+				<h1><%=o.getrPJT_price()%>원 펀딩합니다.</h1>
 				<p>
 					<%=o.getrPJT_name()%> <br>
 					<%=o.getrPJT_detail()%> <br>
 				</p>
 			</div>
+			<input type="hidden">
 			<%} %>
 			<br>
 			<br>
@@ -64,14 +65,6 @@ div.text {
 			<div class="text">
 				<input type="number" value="">원을 추가로 후원합니다.
 			</div>
-			<div class="icondiv">공개여부 선택</div>
-			<div class="text">참여자 목록에 참여자 이름과 펀딩금액이 공개됩니다. 혹시, 조용히 후원하고
-				싶으시다면, 비공개로 선택해주세요.</div>
-			<div style="padding-left: 40%">
-				<label class="paylb"><input type="checkbox"> 이름 비공개
-				</label> <label class="paylb"><input type="checkbox"> 금액 비공개
-				</label>
-			</div>
 			<hr>
 			<div class="text">집에서도,밖에서도 자유로운 당신만의 라이프웨어에 0 원을 펀딩합니다.</div>
 			<div style="margin: 0 auto; width: 200px; height: 100px;">
@@ -79,7 +72,7 @@ div.text {
 					단계로</button>
 			</div>
 		</div>
-		</form>
+	</form>
 	</div>
 </section>
 <%@include file="../template/footer.jsp"%>

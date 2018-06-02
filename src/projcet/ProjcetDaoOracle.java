@@ -13,6 +13,7 @@ import vo.RMeta;
 import vo.ROption;
 import vo.RPost;
 import vo.RProject;
+import vo.RewardPay;
 
 public class ProjcetDaoOracle implements ProjcetDao {
 	@Override
@@ -250,5 +251,36 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			OracleConnection.close(rs, pstmt, con);
 		}
 		return payaddress;
+	}
+
+	@Override
+	public RewardPay getOrderReward(int mem_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		RewardPay rpay = new RewardPay();
+		try {
+			con = OracleConnection.getConnection();
+			String sql = "";
+			sql += "select rp.MEM_NAME, rp.RPRODUCT_EA, rp.RPAY_TOTAL, rp.RPAY_PHONE, rp.RPAY_ADDRESS, rp.RPAY_REQUEST \n";
+			sql += "from reward_pay rp, members m \n";
+			sql += "where rp.mem_id = m.mem_id and rp.mem_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, mem_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				rpay.setMem_name(rs.getString(1));
+				rpay.setrProduct_ea(rs.getInt(2));
+				rpay.setrPay_total(rs.getInt(3));
+				rpay.setrPay_phone(rs.getString(4));
+				rpay.setrPay_address(rs.getString(5));
+				rpay.setrPay_request(rs.getString(6));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
+		return rpay;
 	}
 }
