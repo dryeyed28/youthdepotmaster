@@ -32,7 +32,7 @@ margin:10px;
 					<br>
 					<div class="form-group row" align="right">
 						<button id="button" type="submit" class="green" onclick="goBack()">목록</button>
-						<button id="button" type="submit" class="green">수정</button>
+						<a id="button" type="submit" class="green" href="<%=request.getContextPath()%>/PostController?type=boardupdate&id=<%=p.getAdmin_id()%>">수정</a>
 						<button id="button" type="submit" class="green">삭제</button>
 					</div>
 				</div>

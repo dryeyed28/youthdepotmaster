@@ -112,5 +112,33 @@ public class PostDaoOracle implements PostDao {
 			OracleConnection.close(pstmt, con);
 		}
 	}
+	@Override
+	public void updatePost(vo.Post post) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = OracleConnection.getConnection();
+			con.setAutoCommit(false);
+			String sql = "";
+			sql += "UPDATE post \n";
+			sql += "SET POST_TITLE = ?,POST_CONTENT = ? \n";
+			sql += "WHERE post_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,post.getPost_title());
+			pstmt.setString(2, post.getPost_content());
+			pstmt.setInt(3,post.getPost_id());
+			pstmt.executeUpdate();
+			if(pstmt.executeUpdate() == 1) {
+				con.commit();
+			} else {
+				con.rollback();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(pstmt, con);
+		}
+	}
+
 
 }

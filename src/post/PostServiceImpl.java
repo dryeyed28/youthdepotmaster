@@ -22,6 +22,12 @@ public class PostServiceImpl implements PostService {
 	public void deletePost(int post_id) {
 		
 	}
+
+	@Override
+	public void updatePost(Post post) {
+		dao.updatePost(post);
+		
+	}
 	
 
 }

@@ -44,7 +44,15 @@ public class PostController extends HttpServlet {
 			p = service.getPostMenu(post_id);
 			request.setAttribute("p", p);
 			forwardURL = "user/boards/boardview.jsp";
+		}else if(type.equals("boardupdate")) {
+			Post post = new Post();
+			post.setAdmin_id(request.getParameter("id"));
+			post.setPost_title(request.getParameter("title"));
+			post.setPost_content(request.getParameter("content"));
+			request.setAttribute("p", post);
+			forwardURL = "user/boards/boardupdate.jsp";
 		}
+
 		
 		RequestDispatcher  dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
