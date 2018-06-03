@@ -23,17 +23,10 @@ public class BoardController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-<<<<<<< HEAD
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		String type = "";
-=======
-		response.setContentType("text/html; charset=EUC-KR");
-		request.setCharacterEncoding("EUC-KR");
-		response.setCharacterEncoding("EUC-KR");
 		String type = request.getParameter("type");
->>>>>>> 8baae7cb4c3dd8f8baf1e4f19a355b3375268a49
 		String forwardURL = "";
 		BoardService service = new BoardServiceImpl();
 		Board b = null;
@@ -41,7 +34,6 @@ public class BoardController extends HttpServlet {
 		if (type.equals("boardmenu")) {
 			boardlist = service.getBoardList();
 			request.setAttribute("boardlist", boardlist);
-<<<<<<< HEAD
 			forwardURL = "template/header.jsp";
 		} else if (type.equals("make")) {
 			Board board = new Board();
@@ -49,13 +41,7 @@ public class BoardController extends HttpServlet {
 			service.makeboard(board);
 			forwardURL = "admin/boardMng/tables.jsp";
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
-=======
-			forwardURL = "admin/boardMng/tables.jsp";
-		}
-		
 		RequestDispatcher  dispatcher = request.getRequestDispatcher(forwardURL);
->>>>>>> 8baae7cb4c3dd8f8baf1e4f19a355b3375268a49
 		dispatcher.forward(request, response);
 	}
 
