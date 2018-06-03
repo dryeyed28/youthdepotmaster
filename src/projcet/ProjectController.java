@@ -48,25 +48,31 @@ public class ProjectController extends HttpServlet {
 		ProjcetService service = new ProjcetServiceImpl();
 		String type = request.getParameter("type");
 		String forwardURL = "";
+		String root = "C:/";
 		int rPJT_id = 0;
 		RKeeper keeper = null;
 		RMeta meta = null;
 		if (type.equals("apply")) {
 			System.out.println("Controller");
-			MultipartRequest mr;
-			MultipartRequest mr2;
+			MultipartRequest mr = null;
 			int maxPostSize = 1024*10000;
 			String encoding = "UTF-8";
 			try {
-				mr = new MultipartRequest(request, "d:\\files", 
-						maxPostSize, encoding, 
-						new RenamePolicy());
-				mr2 = new MultipartRequest(request, "d:\\files1", 
+				mr = new MultipartRequest(request, root +"files", 
 						maxPostSize, encoding, 
 						new RenamePolicy());
 			}catch(IOException e) {
 				e.printStackTrace(); //maxPostSize, Posted content length 
 			}
+			File image = mr.getFile("image");
+			File paper = mr.getFile("paper");
+			File profile = mr.getFile("profile");
+			String imageroot = root + "files/image/" + image.getName();
+			String paperroot = root + "files/paper/" + paper.getName();
+			String profileroot = root + "files/profile/" + profile.getName();
+			image.renameTo(new File(imageroot));
+			paper.renameTo(new File(paperroot));
+			profile.renameTo(new File(profileroot));
 			RKeeper rk = new RKeeper();
 			RMeta rm = new RMeta();
 			RProject rp = new RProject();
@@ -77,28 +83,28 @@ public class ProjectController extends HttpServlet {
 			rp.setMem_id((int)session.getAttribute("id"));
 			rp.setrPJT_progress(3);
 			rp.setrPJT_state(2);
-			rk.setR_tel(Integer.parseInt(request.getParameter("tel")));
-			rk.setR_name(request.getParameter("kepper_name"));
-			rk.setR_profile(request.getParameter("profile"));
-			rk.setR_email(request.getParameter("email"));
-			rk.setR_url(request.getParameter("siteUrl"));
-			rm.setrPJT_title(request.getParameter("title"));
-			rm.setrPJT_subTitle(request.getParameter("subtitle"));
-			rm.setrTarget_amount(Integer.parseInt(request.getParameter("amount")));
-			rm.setrPJT_image(request.getParameter("image"));
-			rm.setrPJT_category(request.getParameter("category"));
-			rm.setrPJT_paper(request.getParameter("paper"));
-			rm.setrPJT_endDay((request.getParameter("endDay")));
-			ro.setrPJT_name(request.getParameter("name"));
-			ro.setrPJT_detail(request.getParameter("detail"));
-			ro.setrPJT_price(Integer.parseInt(request.getParameter("price")));
-			ro.setrPJT_limit(Integer.parseInt(request.getParameter("limit")));
-			ro.setrPJT_send(request.getParameter("send"));
-			ro.setrPJT_charge(Integer.parseInt(request.getParameter("charge")));
-			rs.setrPJT_url(request.getParameter("UCCurl"));
-			rs.setrPJT_sumnail(request.getParameter("sumnail"));
-			rs.setrPJT_tag(request.getParameter("tag"));
-			rs.setrPJT_story(request.getParameter("story"));
+			rk.setR_tel(Integer.parseInt(mr.getParameter("tel")));
+			rk.setR_name(mr.getParameter("kepper_name"));
+			rk.setR_profile(profileroot);
+			rk.setR_email(mr.getParameter("email"));
+			rk.setR_url(mr.getParameter("siteUrl"));
+			rm.setrPJT_title(mr.getParameter("title"));
+			rm.setrPJT_subTitle(mr.getParameter("subtitle"));
+			rm.setrTarget_amount(Integer.parseInt(mr.getParameter("amount")));
+			rm.setrPJT_image(imageroot);
+			rm.setrPJT_category(mr.getParameter("category"));
+			rm.setrPJT_paper(paperroot);
+			rm.setrPJT_endDay((mr.getParameter("endDay")));
+			ro.setrPJT_name(mr.getParameter("name"));
+			ro.setrPJT_detail(mr.getParameter("detail"));
+			ro.setrPJT_price(Integer.parseInt(mr.getParameter("price")));
+			ro.setrPJT_limit(Integer.parseInt(mr.getParameter("limit")));
+			ro.setrPJT_send(mr.getParameter("send"));
+			ro.setrPJT_charge(Integer.parseInt(mr.getParameter("charge")));
+			rs.setrPJT_url(mr.getParameter("UCCurl"));
+			rs.setrPJT_sumnail(mr.getParameter("sumnail"));
+			rs.setrPJT_tag(mr.getParameter("tag"));
+			rs.setrPJT_story(mr.getParameter("story"));
 			RApply ra = new RApply(rk, rm, ro, rp, rs);
 			service.applyinsert(ra);
 			forwardURL = "user/mypage/made.jsp";

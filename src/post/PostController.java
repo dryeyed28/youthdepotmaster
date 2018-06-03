@@ -31,7 +31,7 @@ public class PostController extends HttpServlet {
 		ArrayList<Post> data;
 		String type = request.getParameter("type");
 		String forwardURL = "";
-		String page = request.getParameter(page);
+		String page = request.getParameter("page");
 		Post p = null;
 		Board b = null;
 		int intPage = 1;

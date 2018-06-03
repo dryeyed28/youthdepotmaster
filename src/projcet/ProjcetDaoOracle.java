@@ -22,39 +22,36 @@ public class ProjcetDaoOracle implements ProjcetDao {
 		PreparedStatement pstmt=null;
 		try {
 			con = sql.OracleConnection.getConnection();
+			pjtinsert(rApply.getrProject());
 			String insertSQL = "insert all\r\n" + 
-					  "into R_project values ((SELECT MAX(rpjt_id)+1 FROM R_project), ?, ?, ?, sysdate)\r\n" + 
 					  "into R_keeper values ((SELECT MAX(rpjt_id)+1 FROM R_keeper), ?, ?, ?, null, ?)\r\n" + 
 					  "into R_meta values ((SELECT MAX(rpjt_id)+1 FROM R_meta),?,?,0,?,?,?,?,null,to_date(?,'RR/MM/DD'))\r\n"
 					+ "into R_OPtion values ((SELECT MAX(rpjt_id)+1 FROM R_OPtion), 10,?,?,?,?,to_date(?,'RR/MM/DD'),?)\r\n"
 					+ "into R_Story values ((SELECT MAX(rpjt_id)+1 FROM R_Story),?,0,?,?,?,?)\r\n"
 					+ "SELECT * FROM DUAL";
 			pstmt = con.prepareStatement(insertSQL);
-			pstmt.setInt(1, rApply.getrProject().getMem_id());
-			pstmt.setInt(2, rApply.getrProject().getrPJT_state());
-			pstmt.setInt(3, rApply.getrProject().getrPJT_progress());
-			pstmt.setString(4, rApply.getrKeeper().getR_name());
-			pstmt.setString(5, rApply.getrKeeper().getR_profile());
-			pstmt.setString(6, rApply.getrKeeper().getR_email());
-			pstmt.setInt(7, rApply.getrKeeper().getR_tel());
-			pstmt.setString(8,rApply.getrMeta().getrPJT_title());
-			pstmt.setString(9,rApply.getrMeta().getrPJT_subTitle());
-			pstmt.setInt(10,rApply.getrMeta().getrTarget_amount());
-			pstmt.setString(11,rApply.getrMeta().getrPJT_image());
-			pstmt.setString(12,rApply.getrMeta().getrPJT_category());
-			pstmt.setString(13,rApply.getrMeta().getrPJT_paper());
-			pstmt.setString(14, rApply.getrMeta().getrPJT_endDay());
-			pstmt.setInt(15, rApply.getrOption().getrPJT_price());
-			pstmt.setString(16, rApply.getrOption().getrPJT_name());
-			pstmt.setString(17, rApply.getrOption().getrPJT_detail());
-			pstmt.setInt(18, rApply.getrOption().getrPJT_limit());
-			pstmt.setString(19, rApply.getrOption().getrPJT_send());
-			pstmt.setInt(20, rApply.getrOption().getrPJT_charge());
-			pstmt.setString(21, rApply.getrStory().getrPJT_url());
-			pstmt.setString(22, rApply.getrStory().getrPJT_sumnail());
-			pstmt.setString(23, rApply.getrStory().getrPJT_story());
-			pstmt.setString(24, rApply.getrStory().getrPJT_tag());
-			pstmt.setString(25, rApply.getrStory().getrPJT_paper());
+			pstmt.setString(1, rApply.getrKeeper().getR_name());
+			pstmt.setString(2, rApply.getrKeeper().getR_profile());
+			pstmt.setString(3, rApply.getrKeeper().getR_email());
+			pstmt.setInt(4, rApply.getrKeeper().getR_tel());
+			pstmt.setString(5,rApply.getrMeta().getrPJT_title());
+			pstmt.setString(6,rApply.getrMeta().getrPJT_subTitle());
+			pstmt.setInt(7,rApply.getrMeta().getrTarget_amount());
+			pstmt.setString(8,rApply.getrMeta().getrPJT_image());
+			pstmt.setString(9,rApply.getrMeta().getrPJT_category());
+			pstmt.setString(10,rApply.getrMeta().getrPJT_paper());
+			pstmt.setString(11, rApply.getrMeta().getrPJT_endDay());
+			pstmt.setInt(12, rApply.getrOption().getrPJT_price());
+			pstmt.setString(13, rApply.getrOption().getrPJT_name());
+			pstmt.setString(14, rApply.getrOption().getrPJT_detail());
+			pstmt.setInt(15, rApply.getrOption().getrPJT_limit());
+			pstmt.setString(16, rApply.getrOption().getrPJT_send());
+			pstmt.setInt(17, rApply.getrOption().getrPJT_charge());
+			pstmt.setString(18, rApply.getrStory().getrPJT_url());
+			pstmt.setString(19, rApply.getrStory().getrPJT_sumnail());
+			pstmt.setString(20, rApply.getrStory().getrPJT_story());
+			pstmt.setString(21, rApply.getrStory().getrPJT_tag());
+			pstmt.setString(22, rApply.getrStory().getrPJT_paper());
 			pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -282,5 +279,26 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			OracleConnection.close(rs, pstmt, con);
 		}
 		return rpay;
+	}
+
+	@Override
+	public void pjtinsert(RProject rProject) {
+		Connection con = null;
+		PreparedStatement pstmt=null;
+		try {
+			con = sql.OracleConnection.getConnection();
+			String insertSQL = "insert into R_project values ((SELECT MAX(rpjt_id)+1 FROM R_project), ?, ?, ?, sysdate)";
+			pstmt = con.prepareStatement(insertSQL);
+			pstmt.setInt(1, rProject.getMem_id());
+			pstmt.setInt(2, rProject.getrPJT_state());
+			pstmt.setInt(3, rProject.getrPJT_progress());
+			pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			sql.OracleConnection.close(pstmt, con);
+		}
+		
 	}
 }
