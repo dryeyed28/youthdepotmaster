@@ -67,7 +67,7 @@
 				</table>
 				</form>
 				<div align="right">
-				  <input type="button" value="글쓰기" onclick="goUrl('boardWriteForm.jsp');" />
+				  <a href="<%=request.getContextPath()%>/user/boards/boardwrite.jsp?id=<%=data.get(0).getPost_id()%>"><button>글쓰기</button></a>
 				</div>
 			</div>
 	</div>

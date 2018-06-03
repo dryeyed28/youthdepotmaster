@@ -186,10 +186,6 @@
 									<input type="date" class="input-text full-width" name="endDay">
 								</div>
 							</div>
-
-							<div class="form-group">
-								<button type="button" class="btn-medium">저장하기</button>
-							</div>
 						</div>
 
 
@@ -239,9 +235,6 @@
 									<input type="date" class="input-text full-width" name="send">
 								</div>
 							</div>
-							<div class="form-group">
-								<button type="button" class="btn-medium">저장하기</button>
-							</div>
 						</div>
 
 
@@ -260,17 +253,6 @@
 									<input type="url" class="input-text full-width" name="UCCurl">
 								</div>
 							</div>
-							<div class="row form-group">
-								<div class="col-xs-12 col-sm-6 col-md-7">
-									<h4>영상대체이미지</h4>
-									<p>제목만으로도 프로젝트 성격이나 리워드를 예상 할 수 있도록 직관적이고 정확하게 작성해주세요</p>
-									<div class="fileinput col-sm-6 no-float no-padding">
-										<input type="file" class="input-text col-sm-6"
-											data-placeholder="select image/s" name="sumnail" />
-									</div>
-								</div>
-							</div>
-
 							<div class="row form-group">
 								<div class="col-xs-12 col-sm-6 col-md-7">
 									<h4>핵심메시지</h4>
@@ -297,10 +279,6 @@
 									<input type="text" class="input-text full-width" name="tag">
 								</div>
 							</div>
-							<div class="form-group">
-								<button type="button" class="btn-medium">저장하기</button>
-							</div>
-
 						</div>
 
 						<div id="depot_information" class="tab-pane fade">
@@ -326,14 +304,6 @@
 							</div>
 							<div class="row form-group">
 								<div class="col-xs-12 col-sm-6 col-md-7">
-									<h4>창고지기 멤버 Email</h4>
-									<p>>프로젝트를 함께 준비하시는 팀원분이 있다면 청춘창고에 가입하신 계정을 등록해 주세요. 프로젝트 상세
-										페이지 우측에 창고지기분과 함께 노출됩니다.</p>
-									<input type="email" class="input-text full-width">
-								</div>
-							</div>
-							<div class="row form-group">
-								<div class="col-xs-12 col-sm-6 col-md-7">
 									<h4>웹사이트 주소</h4>
 									<p>창고지기가 운영하는 웹사이트가 있으시다면 http:// 혹은 https://를 붙여 등록 후,
 										링크확인 버튼을 클릭하여 연결을 확인해 주세요</p>
@@ -353,9 +323,6 @@
 									<p>서포터 문의 시 실시간 연락이 가능하고, 프로젝트 페이지에 노출가능한 대표번호를 입력해주세요.</p>
 									<input type="tel" class="input-text full-width" name="tel">
 								</div>
-							</div>
-							<div class="form-group">
-								<button type="button" class="btn-medium">저장하기</button>
 							</div>
 						</div>
 
@@ -385,12 +352,10 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<!-- <button type="submit" class="btn-medium" id="apply">저장하기</button> -->
+								<button>저장하기</button>
 							</div>
 						</div>
 					</div>
-					<button type="submit" class="btn-medium" id="apply">저장하기</button>
-					<button>ㄹㅇ저장하기</button>
 				</form>
 			</div>
 		</div>

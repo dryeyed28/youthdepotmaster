@@ -186,7 +186,7 @@ CREATE TABLE R_META (
 	RPJT_SUBTITLE VARCHAR2(50), /* 프로젝트짧은제목 */
 	RINVESTING_AMOUNT NUMBER(10), /* 투자금액 */
 	RTARGET_AMOUNT NUMBER(10), /* 목표금액 */
-	RPJT_IMAGE VARCHAR2(50), /* 프로젝트대표이미지 */
+	RPJT_IMAGE VARCHAR2(100), /* 프로젝트대표이미지 */
 	RPJT_CATEGORY VARCHAR2(20), /* 카테고리 */
 	RPJT_PAPER VARCHAR2(50), /* 인증서류 */
 	RPJT_STARTDAY DATE, /* 프로젝트시작일 */
@@ -204,7 +204,7 @@ ALTER TABLE R_META
 CREATE TABLE R_KEEPER (
 	RPJT_ID NUMBER(10) NOT NULL, /* 리워드번호 */
 	R_NAME VARCHAR2(50), /* 창고지기 이름 */
-	R_PROFILE VARCHAR2(50), /* 창고지기 프로필 사진 */
+	R_PROFILE VARCHAR2(100), /* 창고지기 프로필 사진 */
 	R_EMAIL VARCHAR2(100), /* 창고지기 email */
 	R_URL VARCHAR2(100), /* 웹사이트 주소 */
 	R_TEL NUMBER(20) /* 창고지기 전화번호 */
