@@ -24,9 +24,9 @@ public class PostDaoOracle implements PostDao {
 			sql += "select rownum, p.brd_id, b.brd_name, p.mem_id, p.mem_nickname, p.admin_id, \n";
 			sql += "p.POST_TITLE, p.POST_CONTENT, TO_CHAR(p.POST_DATETIME, 'yyyy.mm.dd') post_datetime, p.POST_VIEW_COUNT ,p.POST_DEL \n";
 			sql += "from board b, post p \n";
-			sql += "where b.brd_id = p.brd_id and p.post_del=0 and p.brd_id = 20 and rownum <= 10";
+			sql += "where b.brd_id = p.brd_id and p.post_del=0 and p.brd_id = ? and rownum <= 10";
 			pstmt = con.prepareStatement(sql);
-			//pstmt.setInt(1, brd_id);
+			pstmt.setInt(1, brd_id);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Post post = new Post(rs.getInt("rownum"),
@@ -53,7 +53,7 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public Post postMenu(int post_id) {
+	public Post postMenu(int brd_id, int post_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -64,9 +64,10 @@ public class PostDaoOracle implements PostDao {
 			sql += "select post_id, mem_id, mem_nickname, admin_id, \n";
 			sql += "POST_TITLE, POST_CONTENT, TO_CHAR(POST_DATETIME, 'yyyy.mm.dd') post_datetime, POST_VIEW_COUNT \n";
 			sql += "from post \n";
-			sql += "where post_id = ?";
+			sql += "where brd_id = ? and post_id = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, post_id);
+			pstmt.setInt(1, brd_id);
+			pstmt.setInt(2, post_id);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				post.setPost_id(Integer.parseInt(rs.getString(1)));

@@ -35,7 +35,7 @@ String root = request.getContextPath();
                         <!-- <a href="tables.html"><i class="fa fa-table fa-fw"></i> 커뮤니티 관리</a> -->
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="<%=root%>/admin/boardMng/tables.jsp">게시판 관리</a>
+                                <a href="<%=root%>/BoardController?type=boardmenu">게시판 관리</a>
                             </li>
                             <li>
                                 <a href="#"> 게시 관리<span class="fa arrow"></span></a>

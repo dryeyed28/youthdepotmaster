@@ -31,21 +31,22 @@ public class PostController extends HttpServlet {
 		ArrayList<Post> data;
 		String type = request.getParameter("type");
 		String forwardURL = "";
-		String page = request.getParameter(page);
+		String page = request.getParameter("page");
 		Post p = null;
 		Board b = null;
 		int intPage = 1;
-		int brd_id=20;
+		int brd_id = 0;
 		int post_id = 0;
 		if(type.equals("boardList")) {
-			//brd_id = Integer.parseInt(request.getParameter("brd_id"));
+			brd_id = Integer.parseInt(request.getParameter("brd_id"));
 			data = service.boardList(brd_id);
 			request.setAttribute("data", data);
 			//System.out.println("data!!! + " + data);
 			forwardURL = "user/boards/boardlist.jsp";
 		} else if(type.equals("boardView")) {
+			brd_id = Integer.parseInt(request.getParameter("brd"));
 			post_id = Integer.parseInt(request.getParameter("id"));
-			p = service.getPostMenu(post_id);
+			p = service.getPostMenu(brd_id, post_id);
 			request.setAttribute("p", p);
 			forwardURL = "user/boards/boardview.jsp";
 		}else if(type.equals("boardupdate")) {
