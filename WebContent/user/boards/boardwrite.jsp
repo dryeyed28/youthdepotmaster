@@ -35,8 +35,8 @@ session1.setAttribute("nicname", "닉네임입니다.");%>
 								<div class="form-group row">
 									<div class="col-sm-6 col-md-8">
 										<h4>내용</h4>
-										<input type="textarea" name="content"
-											style="margin: 0px; width: 528px; height: 296px;">
+										<textarea name="content"
+											style="margin: 0px; width: 528px; height: 296px;"></textarea>
 
 									</div>
 								</div>
