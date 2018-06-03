@@ -14,7 +14,7 @@ session1.setAttribute("nicname", "닉네임입니다.");%>
 					<div class="booking-section travelo-box">
 
 						<form name="f" action="<%=request.getContextPath()%>/PostController?type=boardwrite" method="post">
-						  <input type="hidden" name="bid" value="10">
+						  <input type="hidden" name="bid" value="20">
 							<div class="alert small-box" style="display: none;"></div>
 							<div class="person-information">
 								<h2>게시판</h2>

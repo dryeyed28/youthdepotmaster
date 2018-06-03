@@ -36,7 +36,7 @@ public class PostController extends HttpServlet {
 		Post p = null;
 		Board b = null;
 		int intPage = 1;
-		int brd_id=20;
+		int brd_id=10;
 		int post_id = 0;
 		if(type.equals("boardList")) {
 			//brd_id = Integer.parseInt(request.getParameter("brd_id"));
@@ -70,13 +70,8 @@ public class PostController extends HttpServlet {
 			p.setPost_title(request.getParameter("title"));
 			p.setPost_content(request.getParameter("content"));
 			service.wirtePost(p);
-			forwardURL = "user/boards/boardwrite.jsp";
-		} else if (type.equals("boardwriteok")) {
-			
-			forwardURL = "user/boards/boardview.jsp";
-		}
-
-		
+			forwardURL = "/PostController?type=boardList";
+		} 
 		RequestDispatcher  dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
 	}
