@@ -14,8 +14,8 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Post getPostMenu(int post_id) {
-		return dao.postMenu(post_id);
+	public Post getPostMenu(int brd_id, int post_id) {
+		return dao.postMenu(brd_id ,post_id);
 	}
 
 	@Override

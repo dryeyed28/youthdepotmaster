@@ -1,14 +1,9 @@
+<%@page import="vo.Board"%>
+<%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../template/top.jsp"%>
 <%@include file="../template/aside.jsp"%>
-<script>
-$(document).ready(function() {
-    $('#dataTables-example').DataTable({
-        responsive: true
-    });
-});   
-</script>
 <script>
 $(function() {
 	$('button#create').click(function() {
@@ -58,7 +53,7 @@ $(function() {
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <table width="100%" class="table table-bordered table-hover" id="dataTables-example">
+                    <table class="table table-bordered table-hover" id="dataTables-example">
                         <thead>
                             <tr>
                             	<th><input type="checkbox"></th>
@@ -69,27 +64,16 @@ $(function() {
                             </tr>
                         </thead>
                         <tbody>
+                        <% ArrayList<Board> boardlist = (ArrayList) request.getAttribute("boardlist");
+                        for(Board b : boardlist){%>
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td>3</td>
-                                <td>커뮤니티</td>
+                                <td><%=b.getBrd_id()%></td>
+                                <td><%=b.getBrd_name()%></td>
                                 <td class="center">일반</td>
-                                <td class="center">76</td>
+                                <td class="center"><%=b.getBrd_count()%></td>
                             </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>2</td>
-                                <td>FAQ</td>
-                                <td class="center">운영</td>
-                                <td class="center">15</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>1</td>
-                                <td>공지사항</td>
-                                <td class="center">운영</td>
-                                <td class="center">8</td>
-                            </tr>
+                        <% } %>
                         </tbody>
                     </table>
                     <hr>

@@ -6,7 +6,7 @@ import vo.Post;
 
 public interface PostService {
 	public ArrayList<Post> boardList(int brd_id);
-	public Post getPostMenu(int post_id);
+	public Post getPostMenu(int brd_id, int post_id);
 	public void deletePost (int post_id);
 	public void updatePost(Post post);
 	public void wirtePost(Post post);
