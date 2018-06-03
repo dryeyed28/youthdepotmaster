@@ -21,19 +21,19 @@ select{
 	      <tr>
 	        <th>아이디</th>
 	        <td>
-	          <input type="text" name="id" readonly="readonly" value="">
+	          <input type="text" name="id" readonly="readonly" value="${member.mem_id}">
 	        </td>
 	      </tr>
 	      <tr>
 	        <th>패스워드</th>
 	        <td>
-	          <input type="password" name="pass" value="jsp_expression">
+	          <input type="password" name="pass" value="${member.mem_password} }">
 	        </td>
 	      </tr>
 	      <tr>
 	        <th>이름</th>
 	        <td>
-	          <input type="text" name="name" value="jsp_expression">
+	          <input type="text" name="name" value="${member.mem_userName}">
 	        </td>
 	      </tr>
 	      <tr>
