@@ -1,13 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<script>
+$(function() {
+	$('button#create').click(function() {
+		$.ajax({
+			url:"makeboard.jsp",
+			success: function(data){ 
+				$("div#page-wrapper").empty();
+				$('div#page-wrapper').html(data.trim());		
+			}
+		});
+		return false;
+	});
+	$('button#modify').click(function() {
+		$.ajax({
+			url:"boardupdatepagerslt.jsp",
+			success: function(data){ 
+				$("div#page-wrapper").empty();
+				$('div#page-wrapper').html(data.trim());		
+			}
+		});
+		return false;
+	});
+});
+</script>
 	<div class="col-lg-12">
 		<div class="container" style="padding-top: 100px;">
-		  <form class="boardSubmit">
+		  <form class="boardSubmit" action="<%=request.getContextPath()%>/BoardController?type=make" method="post">
 		    <table class="table table-bordered">
 		      <tr>
 		        <th>게시판 이름</th>
-		        <td><input type="text" name="title" class="form-control" /></td>
+		        <td><input type="text" name="title" class="form-control" value="공지사항2"/></td>
 		      </tr>
 		      <tr>
 		        <th>분류</th>
@@ -18,7 +41,7 @@
 		      </tr>
 		    </table>
 		    <button class="btn btn-primary">확인</button>
-		    <button class="btn btn-primary">취소</button>
+		    <button class="btn btn-primary" id="cencel">취소</button>
 		  </form>
 		</div>
 	</div>

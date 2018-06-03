@@ -39,4 +39,22 @@ public class BoardDaoOracle implements BoardDao {
 		return list;
 	}
 
+	@Override
+	public void insertboard(Board board) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = OracleConnection.getConnection();
+			String sql = "Insert into BOARD (BRD_ID,BRD_NAME) \r\n" + 
+						 "values ((SELECT MAX(BRD_ID)+10 FROM BOARD),?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, board.getBrd_name());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(pstmt, con);
+		}
+	}
+
 }
