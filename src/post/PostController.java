@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import vo.Board;
 import vo.Post;
@@ -56,16 +57,19 @@ public class PostController extends HttpServlet {
 			request.setAttribute("p", p);
 			forwardURL = "user/boards/boardupdate.jsp";
 		} else if (type.equals("boardwrite")) {
+			System.out.println("서블릿 호출");
+			HttpSession session = request.getSession();
+			int mem_id = (int)session.getAttribute("id");
 			p = new Post();
 			b = new Board();
 			b.setBrd_id(Integer.parseInt(request.getParameter("bid")));
 			p.setBoard_id(b);
 			p.setAdmin_id(request.getParameter("admin_id"));
-			p.setMem_id(Integer.parseInt(request.getParameter("mem_id")));
+			p.setMem_id(mem_id);
 			p.setMem_nickName(request.getParameter("nickname"));
 			p.setPost_title(request.getParameter("title"));
 			p.setPost_content(request.getParameter("content"));
-			
+			service.wirtePost(p);
 			forwardURL = "user/boards/boardwrite.jsp";
 		} else if (type.equals("boardwriteok")) {
 			
