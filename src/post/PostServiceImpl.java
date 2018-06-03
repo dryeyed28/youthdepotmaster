@@ -33,6 +33,11 @@ public class PostServiceImpl implements PostService {
 	public void wirtePost(Post post) {
 		dao.insertPost(post);
 	}
+
+	@Override
+	public int findCount(int brd_id) {
+		return dao.selectCount(brd_id);
+	}
 	
 
 }

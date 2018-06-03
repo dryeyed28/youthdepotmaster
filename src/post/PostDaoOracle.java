@@ -169,5 +169,27 @@ public class PostDaoOracle implements PostDao {
 		
 	}
 
+	@Override
+	public int selectCount(int brd_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		try {
+			con = OracleConnection.getConnection();
+			String selectCountSQL = "SELECT count(*) totalcnt " 
+					+ "FROM post "
+					+ "WHERE brd_id = ?";
+			pstmt = con.prepareStatement(selectCountSQL);
+			rs = pstmt.executeQuery();
+			rs.next();
+			int totalCount = rs.getInt("totalcnt");
+			return totalCount;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(rs, pstmt, con);
+		} return 0;
+	}
+
 
 }

@@ -27,14 +27,16 @@ public class PostController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		PostService service = new PostServiceImpl();
+		ArrayList<Post> data;
 		String type = request.getParameter("type");
 		String forwardURL = "";
-		PostService service = new PostServiceImpl();
+		String page = request.getParameter(page);
 		Post p = null;
 		Board b = null;
+		int intPage = 1;
 		int brd_id=20;
 		int post_id = 0;
-		ArrayList<Post> data;
 		if(type.equals("boardList")) {
 			//brd_id = Integer.parseInt(request.getParameter("brd_id"));
 			data = service.boardList(brd_id);

@@ -10,4 +10,5 @@ public interface PostService {
 	public void deletePost (int post_id);
 	public void updatePost(Post post);
 	public void wirtePost(Post post);
+	public int findCount(int brd_id);
 }
