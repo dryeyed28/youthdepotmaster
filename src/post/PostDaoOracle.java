@@ -31,7 +31,7 @@ public class PostDaoOracle implements PostDao {
 			while(rs.next()) {
 				Post post = new Post(rs.getInt("rownum"),
 						new Board(rs.getInt("brd_id"),
-								rs.getString("brd_name")),
+								rs.getString("brd_name"), 0),
 						rs.getInt("mem_id"),
 						rs.getString("mem_nickname"),
 						rs.getString("admin_id"),

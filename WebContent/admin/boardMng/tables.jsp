@@ -5,13 +5,6 @@
 <%@include file="../template/top.jsp"%>
 <%@include file="../template/aside.jsp"%>
 <script>
-$(document).ready(function() {
-    $('#dataTables-example').DataTable({
-        responsive: true
-    });
-});   
-</script>
-<script>
 $(function() {
 	$('button#create').click(function() {
 		$.ajax({
@@ -60,7 +53,7 @@ $(function() {
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <table width="100%" class="table table-bordered table-hover" id="dataTables-example">
+                    <table class="table table-bordered table-hover" id="dataTables-example">
                         <thead>
                             <tr>
                             	<th><input type="checkbox"></th>
@@ -78,7 +71,7 @@ $(function() {
                                 <td><%=b.getBrd_id()%></td>
                                 <td><%=b.getBrd_name()%></td>
                                 <td class="center">일반</td>
-                                <td class="center">76</td>
+                                <td class="center"><%=b.getBrd_count()%></td>
                             </tr>
                         <% } %>
                         </tbody>
