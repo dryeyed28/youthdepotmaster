@@ -23,11 +23,15 @@
 				<p style="text-align: right">
 					<select name="searchType">
 						<option value="ALL">전체검색</option>
-						<option value="SUBJECT">제목</option>
+						<option value="TITLE">제목</option>
 						<option value="WRITER">작성자</option>
 						<option value="CONTENTS">내용</option>
-					</select> <input type="text" name="searchText" value="" /> <input
+					</select> 
+					<% String root = request.getContextPath(); %>
+					<form name="f" method="GET" action="<%= root %>PostController?type=search">
+					<input type="text" name="searchText" value="" /> <input
 						type="submit" value="검색" />
+					</form>
 				</p>
 				<form name="f" action="<%=request.getContextPath()%>/PostController?type=boardView" method="get">
 				<table class="table">

@@ -116,6 +116,8 @@ public class PostController extends HttpServlet {
 			p.setAdmin_id("admin");
 			service.wirtePost(p);
 			forwardURL = "/BoardController?type=boardmenu";
+		} else if(type.equals("search")) {
+			String searchText = request.getParameter("searchText");
 		}
 		RequestDispatcher  dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
