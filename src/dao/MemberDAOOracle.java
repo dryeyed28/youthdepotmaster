@@ -46,7 +46,6 @@ public class MemberDAOOracle implements MemberDAO {
 		}
 	}
 
-	@Override
 	public Member selectById(String mem_userId) throws Exception {
 		Connection con = null;
 		PreparedStatement pstmt = null;

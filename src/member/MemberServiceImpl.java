@@ -1,16 +1,11 @@
 package member;
 
-<<<<<<< HEAD
-import java.util.List;
-
-=======
 import java.util.ArrayList;
 import java.util.List;
 
 import member.MemberDao;
 
 import member.MemberService;
->>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
 import vo.Member;
 
 public class MemberServiceImpl implements MemberService {
@@ -18,7 +13,7 @@ public class MemberServiceImpl implements MemberService {
 	 * 1. 인터페이스 타입의 DAOOracle 객체 생성 2. findXX메소드를 생성하고 컨트롤러로 1, -1값 리턴
 	 */
 
-	private MemberDao dao = new MemberDaoOracle();
+	private static MemberDao dao = new MemberDaoOracle();
 
 	@Override
 	public List<Member> findAll() {
@@ -37,11 +32,7 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectCount();
 	}
 
-<<<<<<< HEAD
-=======
-	@Override
->>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
-	public int idCheck(String mem_userId) throws Exception {
+	public static int idCheck(String mem_userId) throws Exception {
 		Member member = dao.idCheck(mem_userId);
 
 		if (member == null) {
