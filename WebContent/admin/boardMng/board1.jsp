@@ -7,16 +7,6 @@
         $('#dataTables-example').DataTable({
             responsive: true
         });
-    	/* $('button#modify').click(function() {
-    		$.ajax({
-    			url:"postupdaterslt.jsp",
-    			success: function(data){ 
-    				$("div#page-wrapper").empty();
-    				$('div#page-wrapper').html(data.trim());		
-    			}
-    		});
-    		return false;
-    	}); */
     });
 </script>
 
