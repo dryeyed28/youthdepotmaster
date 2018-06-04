@@ -12,7 +12,7 @@
 				<div id="main" class="col-sms-6 col-sm-8 col-md-9">
 					<div class="booking-section travelo-box">
 
-						<form name="f" action="<%=request.getContextPath()%>/PostController?type=boardView" method="post">
+						<form name="f" action="<%=request.getContextPath()%>/PostController?type=boardupdateok" method="post">
 							<div class="alert small-box" style="display: none;"></div>
 							<div class="person-information">
 								<h2>게시판</h2>
@@ -20,7 +20,7 @@
 								<div class="form-group row">
 									<div class="col-sm-6 col-md-4">
 										<h4>작성자</h4>
-										<input type="text" name="name" class="input-text full-width" value="<%=p.getAdmin_id()%>" readonly>
+										<input type="text" name="name" class="input-text full-width" value="<%="admin"%>" readonly>
 									</div>
 								</div>
 								<div class="form-group row">
