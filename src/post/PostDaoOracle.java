@@ -20,6 +20,7 @@ public class PostDaoOracle implements PostDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
+			brd_id = 20;
 			con = OracleConnection.getConnection();
 			String sql = "";
 			sql += "select rownum, p.brd_id, b.brd_name, b.brd_type, p.mem_id, p.mem_nickname, p.admin_id, \n";
@@ -47,7 +48,7 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public Post postMenu(int brd_id, int post_id) {
+	public Post postMenu(int brd_id, int post_id) { //게시글 상세보기
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -82,7 +83,7 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public void deletePost(int post_id) {
+	public void deletePost(int post_id) { //게시글 삭제
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -109,7 +110,7 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public void updatePost(Post post) {
+	public void updatePost(Post post) { //게시글 수정하기
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -136,7 +137,7 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public void insertPost(Post post) {
+	public void insertPost(Post post) { //게시글 작성하기
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -166,7 +167,7 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public int selectCount(int brd_id) {
+	public int selectCount(int brd_id) { //게시판에서 게시글 수 확인
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
