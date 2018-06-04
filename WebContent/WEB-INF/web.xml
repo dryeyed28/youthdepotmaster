@@ -14,20 +14,6 @@
 	</welcome-file-list>
 	<servlet>
 		<description></description>
-		<display-name>YouthDepotFrontControllerServlet</display-name>
-		<servlet-name>YouthDepotFrontControllerServlet</servlet-name>
-		<servlet-class>control.YouthDepotFrontControllerServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/youthdepot.properties</param-value>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>YouthDepotFrontControllerServlet</servlet-name>
-		<url-pattern>*.two</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<description></description>
 		<display-name>ApplyController</display-name>
 		<servlet-name>ApplyController</servlet-name>
 		<servlet-class>apply.ApplyController</servlet-class>
