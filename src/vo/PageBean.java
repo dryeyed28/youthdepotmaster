@@ -9,16 +9,24 @@ public class PageBean<T> {
 	private List<T> list;
 	private int startPage;
 	private int endPage;
-	
-	public PageBean() {}
+	private int totalCount; //총 게시물 갯수
+	private int cntPerPage; //한 페이지 당 보여줄 갯수
 
-	public PageBean(int currentPage, int totalPage, List<T> list, int startPage, int endPage) {
+
+	public PageBean() {
+		super();
+	}
+
+	public PageBean(int currentPage, int totalPage, List<T> list, int startPage, int endPage, int totalCount,
+			int cntPerPage) {
 		super();
 		this.currentPage = currentPage;
 		this.totalPage = totalPage;
 		this.list = list;
 		this.startPage = startPage;
 		this.endPage = endPage;
+		this.totalCount = totalCount;
+		this.cntPerPage = cntPerPage;
 	}
 
 	public int getCurrentPage() {
@@ -61,9 +69,29 @@ public class PageBean<T> {
 		this.endPage = endPage;
 	}
 
+
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
+
+	public int getCntPerPage() {
+		return cntPerPage;
+	}
+
+	public void setCntPerPage(int cntPerPage) {
+		this.cntPerPage = cntPerPage;
+	}
+
 	@Override
 	public String toString() {
 		return "PageBean [currentPage=" + currentPage + ", totalPage=" + totalPage + ", list=" + list + ", startPage="
-				+ startPage + ", endPage=" + endPage + "]";
+				+ startPage + ", endPage=" + endPage + ", totalCount=" + totalCount + ", cntPerPage=" + cntPerPage
+				+ "]";
 	}
+	
+	
 }
