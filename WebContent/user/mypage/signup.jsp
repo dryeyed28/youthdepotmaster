@@ -44,7 +44,7 @@ $(function(){
 				
 		
 		
-		console.log($('input[name=id]').val());
+		//console.log($('input[name=id]').val());
 		
 		if(idfield<=2 || idfield>=14){
 		alert("아이디를 3자-13자 사이로 입력해 주세요")	
@@ -52,10 +52,10 @@ $(function(){
 			
 		$.ajax({ 
 			method:'get',
-			data:{'id':$('input[name=id]').val()},
+			data:{'id':$('input[name=userid]').val()},
 			url:'IdchkServlet',
 				success : function(data) {
-				console.log(data);
+			//	console.log(data);
 					if (data.trim() == 0) {
 						alert('이미 사용중인 ID입니다');
 					} else{
@@ -87,7 +87,7 @@ $(function(){
 					},
 			
 				success : function(data) {
-					console.log(data);
+				//	console.log(data);
 					if (data.trim() == 0) {
 						alert('이미 사용중인 닉네임입니다');
 					} else{
@@ -101,9 +101,8 @@ $(function(){
 
 		$('#btnsignup').click(function(){
 		//	if($('#chkConfirm').is(":checked")){	
-		if($('#chkConfirm').prop("checked")){	
+		if($('#chkConfirm').prop("checked")){
 			alert('가입을 진행합니다');
-				
 			} else {
 				alert('약관에 동의해 주세요');
 				return false;
@@ -184,14 +183,13 @@ $(function(){
 		<div class="row">
 			<div id="main" class="col-sm-8 col-md-9">
 				<div class="booking-section travelo-box">
-					<form class="cruise-booking-form">
+					<form class="cruise-booking-form" name="f" action="<%=request.getContextPath()%>/PostController?type=signup" method="post">
 						<div class="person-information">
 
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
-
-									<label>이름</label> <input type="text" id="username"
-										class="input-text full-width"  maxlength= 6 value="" placeholder="" required/>
+									<label>이름</label> 
+									<input type="text" id="username" name="username" class="input-text full-width"  maxlength= 6 value="" placeholder="" required/>
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
 									<font id="namecorfim" class="input-text full-width"  ></font>	
@@ -201,14 +199,11 @@ $(function(){
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
 									<label>아이디</label> 
-									<input type="text" name="id" id="userid"
-										class="input-text full-width" required value="" />
-
+									<input type="text" name="userid" id="userid" class="input-text full-width" required value="" />
 								</div>
 								<div class=" form-group col-sm-6 col-md-5">
 									<label> &nbsp; </label>
-									<button type="button" class="button" id="idchkbtn"
-										style="width: 150px; height: 30px; font-size: 12px;">아이디
+									<button type="button" class="button" id="idchkbtn" style="width: 150px; height: 30px; font-size: 12px;">아이디
 										중복확인</button>
 								</div>
 							</div>
@@ -222,30 +217,24 @@ $(function(){
 								<div class=" form-group col-sm-6 col-md-5">
 									<label> &nbsp; </label>
 									<button type="button" class="button" id="nicknamechkbtn" style="width: 150px; height: 30px; font-size: 12px;">닉네임 중복확인</button>
-
 								</div>
 							</div>
 
 							<div class="row">
 								<div class=" form-group col-sm-6 col-md-5">
-
-									<label>비밀번호</label> <input type="password" required id="user_pass" class="input-text full-width" value="" placeholder="" required/>
-
+									<label>비밀번호</label> 
+									<input type="password" name="password" id="user_pass" class="input-text full-width" value="" placeholder="" required/>
 								</div>
 							</div>
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
-									<label>비밀번호 확인</label> <input type="password" id="chpass"
-
-										class="input-text full-width" value="" placeholder="" required/>
+									<label>비밀번호 확인</label> 
+									<input type="password" id="chpass" class="input-text full-width" value="" placeholder="" required/>
 
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
 									<!-- <label>비밀번호 일치확인</label> -->
-									<font id="passcorfim"
-										class="input-text full-width"  ></font>
-										
-										
+									<font id="passcorfim" class="input-text full-width"  ></font>
 								</div>
 							</div>
 
@@ -254,21 +243,17 @@ $(function(){
 									<div class="col-xs-6">
 										<label>생년월일</label>
 										<div class="datepicker-wrap">
-											<input type="text" class="input-text full-width"
-
-												placeholder="일/월/년&nbsp" data-min-date="01/01/1900" required>
-
+											<input type="text" name="birth" class="input-text full-width" placeholder="일/월/년&nbsp" data-min-date="01/01/1900" required>
 										</div>
 									</div>
 									<div class="col-xs-6">
 										<label>성별</label>
 										<div>
-
 											<label class="radio radio-inline radio-square"> 
 											<input type="radio" name="radioAnswer" value="1">남자
-											</label> <label class="radio radio-inline radio-square"> 
+											</label>
+											<label class="radio radio-inline radio-square"> 
 											<input type="radio" name="radioAnswer" value="2">여자
-
 											</label>
 										</div>
 									</div>
@@ -287,14 +272,12 @@ $(function(){
 
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
-
 									<label>휴대전화 번호</label> 
-									<input type="text" class="input-text full-width" id="tel" placeholder="숫자만 입력하세요" required/>
+									<input type="text" class="input-text full-width" name="tel " id="tel" placeholder="숫자만 입력하세요" required/>
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
 									<label>&nbsp;</label> 
 									<a class="button" style="width: 150px; height: 30px; font-size: 12px;" id="telconfirmbtn" >인증하기</a>
-
 								</div>
 							</div>
 
@@ -303,14 +286,13 @@ $(function(){
 									<input type="text" class="input-text full-width" id="telconfirm" placeholder="인증번호를 입력하세요" required/>
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
-									<button style="width: 150px; height: 30px; font-size: 12px;" id="confirmnumbtn" >인증번호 확인</button>
+									<button type="button" style="width: 150px; height: 30px; font-size: 12px;" id="confirmnumbtn" >인증번호 확인</button>
 								</div>
 							</div>
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
 									<label>EMAIL</label> 
-									<input type="text" id="email"
-										class="input-text full-width"   value="" placeholder="" required/>
+									<input type="text" id="email" name="email" class="input-text full-width"   value="" placeholder="" required/>
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
 									<font id="namecorfim" class="input-text full-width"  ></font>	
@@ -319,24 +301,19 @@ $(function(){
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
 									<label>주소</label>
-									 <input type="search" class="input-text full-width"  placeholder="" readonly required/>
+									 <input type="search" class="input-text full-width"  placeholder="" readonly />
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
 									<label>&nbsp;</label> 
 									<button type="button"  id= "zipSearchbtn" style="width:150px; height: 30px; font-size: 12px;">우편번호 찾기</button>
-
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
-
-									<input type="text" class="input-text full-width" value="" placeholder="나머지 주소를 입력해 주세요." id="zipResult" required/>
-
+									<input type="text" class="input-text full-width" value="" placeholder="나머지 주소를 입력해 주세요." id="zipResult" />
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
-
-									
 								</div>
 							</div>
 
@@ -354,9 +331,7 @@ $(function(){
 
 						<div class="form-group row">
 							<div class="col-sm-6 col-md-5">
-
 								<button  class="full-width btn-large" style="font-size: 20px; font-weight: bold;" id="btnsignup">가입하기</button>
-
 							</div>
 						</div>
 					</form>

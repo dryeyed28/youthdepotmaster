@@ -135,4 +135,11 @@ public class MemberDaoOracle implements MemberDao {
 			OracleConnection.close(rs, pstmt, con);
 		}
 	}
+
+	@Override
+	public void memberInsert(Member member) {
+		Connection con = null;
+		PreparedStatement pstmt=null;
+		
+	}
 }

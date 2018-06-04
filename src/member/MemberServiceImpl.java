@@ -53,6 +53,12 @@ public class MemberServiceImpl implements MemberService {
 
 		}
 	}
+
+	@Override
+	public void signup(Member member) {
+		dao.memberInsert(member);
+		
+	}
 }
 
 
