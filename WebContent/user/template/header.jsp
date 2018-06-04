@@ -109,7 +109,7 @@
 							</li>
 						<li class="menu-item-has-children"><a href="investment.html">투자·후원</a>
 							</li>
-						<li class="menu-item-has-children"><a href="reward.html">리워드·후원</a>
+						<li class="menu-item-has-children"><a href="<%=request.getContextPath()%>/ProjectController?type=rewardMain">리워드·후원</a>
 							</li>
 						<li class="menu-item-has-children"><a href="community.html">열정창고</a>
 							</li>

@@ -109,7 +109,7 @@ public class ProjcetDaoOracle implements ProjcetDao {
 		try {
 			con = sql.OracleConnection.getConnection();
 			String sql = "";
-			sql += "select rm.rpjt_id, rm.RPJT_TITLE, rm.RPJT_SUBTITLE, rm.RINVESTING_AMOUNT, \n";
+			sql += "select rm.rpjt_id, rp.rpjt_progress, rm.RPJT_TITLE, rm.RPJT_SUBTITLE, rm.RINVESTING_AMOUNT, \n";
 			sql += "rm.RTARGET_AMOUNT, rm.RPJT_IMAGE, rm.RPJT_CATEGORY, rm.RPJT_PAPER, \n";
 			sql += "TO_CHAR(rm.RPJT_STARTDAY, 'yyyy.mm.dd') RPJT_STARTDAY, TO_CHAR(rm.RPJT_ENDDAY, 'yyyy.mm.dd') rPJT_endday \n";
 			sql += "from r_meta rm, r_project rp \n";
@@ -120,7 +120,7 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			if(rs.next()) {
 				meta = new RMeta(
 				new RProject(rs.getInt("rPJT_id"),
-						0, 0, 0, null),
+						0, 0, rs.getInt("rpjt_progress"), null),
 				rs.getString("rPJT_title"),
 				rs.getString("rPJT_subTitle"),
 				rs.getInt("rInvesting_amount"),
@@ -300,5 +300,46 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			sql.OracleConnection.close(pstmt, con);
 		}
 		
+	}
+
+	@Override
+	public ArrayList<RMeta> getMetaList() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<RMeta> list = new ArrayList<RMeta>();
+		try {
+			con = sql.OracleConnection.getConnection();
+			String sql = "";
+			sql += "select rm.rpjt_id, rp.rpjt_state, rp.rpjt_progress, rm.RPJT_TITLE, rm.RPJT_SUBTITLE, rm.RINVESTING_AMOUNT, \n";
+			sql += "rm.RTARGET_AMOUNT, rm.RPJT_IMAGE, rm.RPJT_CATEGORY, rm.RPJT_PAPER, \n";
+			sql += "TO_CHAR(rm.RPJT_STARTDAY, 'yyyy.mm.dd') RPJT_STARTDAY, TO_CHAR(rm.RPJT_ENDDAY, 'yyyy.mm.dd') rPJT_endday \n";
+			sql += "from r_meta rm join r_project rp on  rm.rPJT_id = rp.rPJT_id \n";
+			sql += "join r_keeper rk on rm.rPJT_id = rk.rpjt_id \n";
+			sql += "where rp.rpjt_state = 1 and rp.rpjt_progress = 1 or rp.rpjt_progress = 2";
+			sql += "order by rp.rpjt_progress";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				RMeta meta = new RMeta(
+				new RProject(rs.getInt("rPJT_id"),
+						0, rs.getInt("rPJT_state"), rs.getInt("rPJT_progress"), null),
+				rs.getString("rPJT_title"),
+				rs.getString("rPJT_subTitle"),
+				rs.getInt("rInvesting_amount"),
+				rs.getInt("rTarget_amount"),
+				rs.getString("rPJT_image"),
+				rs.getString("rPJT_category"),
+				rs.getString("rPJT_paper"),
+				rs.getString("rPJT_startday"),
+				rs.getString("rPJT_endday"));
+				list.add(meta);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			sql.OracleConnection.close(rs, pstmt, con);
+		}
+		return list;
 	}
 }

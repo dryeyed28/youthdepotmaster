@@ -39,5 +39,9 @@ public class ProjcetServiceImpl implements ProjcetService {
 	public RewardPay orderReward(int mem_id) {
 		return dao.getOrderReward(mem_id);
 	}
+	@Override
+	public ArrayList<RMeta> metalist() {
+		return dao.getMetaList();
+	}
 	
 }

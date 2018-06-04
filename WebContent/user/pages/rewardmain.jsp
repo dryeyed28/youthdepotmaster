@@ -1,3 +1,5 @@
+<%@page import="vo.RMeta"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../template/header.jsp"%>
@@ -63,145 +65,39 @@
                         <div class="col-sm-12 col-md-8">
                             <div class="cruise-list image-box style3 cruise listing-style1">
                                 <div class="row">
+                                <%ArrayList<RMeta> metalist = (ArrayList)request.getAttribute("metalist");
+                                for(RMeta meta : metalist) {%>
                                     <div class="col-sm-6 col-md-4">
                                         <article class="box">
                                             <figure>
                                                 <a href="ajax/cruise-slideshow-popup.html" class="hover-effect popup-gallery"><img width="270" height="160" alt="" src="http://placehold.it/270x160"></a>
                                             </figure>
                                             <div class="details">
-												<span class="">모인 금액 10000원</span>
-												<h4 class="box-title">프로젝트명</h4>
+												<h4 class="box-title"><%=meta.getrPJT_title()%></h4>
 												<hr>
+												<span class="">모인 금액 <%=meta.getrInvesting_amount()%>원</span>
 												<div class="progress">
-													<div class="progress-bar" role="progressbar"
-														style="width: 70%;" aria-valuenow="25" aria-valuemin="0"
-														aria-valuemax="100">70%</div>
+													<%int percent = (100 * meta.getrInvesting_amount()) / meta.getrTarget_amount();%>
+													<div class="progress-bar" role="progressbar" style="width: <%=percent%>%"
+														aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+													<p style="text-align:center"><%=percent%>%</p>
 												</div>
 												<hr>
-												<span class="price">카테고리</span> <span>회사</span><br> <br>
+												<span class="price">
+												<%if (meta.getrProject().getrPJT_progress() == 1) {%>
+												진행중
+												<%} else if(meta.getrProject().getrPJT_progress() == 2) { %>
+												마감
+												<%} %>
+												</span> <span><%=meta.getrPJT_category()%></span><br> <br>
 												<div class="action">
 													<a class="button btn-small full-width"
-														href="cruise-detailed.html">펀딩하기</a>
-												</div>
-											</div>
-                                            
-                                        </article>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <article class="box">
-                                            <figure>
-                                                <a href="ajax/cruise-slideshow-popup.html" class="hover-effect popup-gallery"><img width="270" height="160" alt="" src="http://placehold.it/270x160"></a>
-                                            </figure>
-                                            <div class="details">
-												<span class="">모인 금액 10000원</span>
-												<h4 class="box-title">프로젝트명</h4>
-												<hr>
-												<div class="progress">
-													<div class="progress-bar" role="progressbar"
-														style="width: 70%;" aria-valuenow="25" aria-valuemin="0"
-														aria-valuemax="100">70%</div>
-												</div>
-												<hr>
-												<span class="price">카테고리</span> <span>회사</span><br> <br>
-												<div class="action">
-													<a class="button btn-small full-width"
-														href="cruise-detailed.html">펀딩하기</a>
+														href="<%=request.getContextPath()%>/ProjectController?type=rewardDetail&rPJT_id=<%=meta.getrProject().getrPJT_id()%>">펀딩하기</a>
 												</div>
 											</div>
                                         </article>
                                     </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <article class="box">
-                                            <figure>
-                                                <a href="ajax/cruise-slideshow-popup.html" class="hover-effect popup-gallery"><img width="270" height="160" alt="" src="http://placehold.it/270x160"></a>
-                                            </figure>
-                                            <div class="details">
-												<span class="">모인 금액 10000원</span>
-												<h4 class="box-title">프로젝트명</h4>
-												<hr>
-												<div class="progress">
-													<div class="progress-bar" role="progressbar"
-														style="width: 70%;" aria-valuenow="25" aria-valuemin="0"
-														aria-valuemax="100">70%</div>
-												</div>
-												<hr>
-												<span class="price">카테고리</span> <span>회사</span><br> <br>
-												<div class="action">
-													<a class="button btn-small full-width"
-														href="cruise-detailed.html">펀딩하기</a>
-												</div>
-											</div>
-                                        </article>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <article class="box">
-                                            <figure>
-                                                <a href="ajax/cruise-slideshow-popup.html" class="hover-effect popup-gallery"><img width="270" height="160" alt="" src="http://placehold.it/270x160"></a>
-                                            </figure>
-                                            <div class="details">
-												<span class="">모인 금액 10000원</span>
-												<h4 class="box-title">프로젝트명</h4>
-												<hr>
-												<div class="progress">
-													<div class="progress-bar" role="progressbar"
-														style="width: 70%;" aria-valuenow="25" aria-valuemin="0"
-														aria-valuemax="100">70%</div>
-												</div>
-												<hr>
-												<span class="price">카테고리</span> <span>회사</span><br> <br>
-												<div class="action">
-													<a class="button btn-small full-width"
-														href="cruise-detailed.html">펀딩하기</a>
-												</div>
-											</div>
-                                        </article>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <article class="box">
-                                            <figure>
-                                                <a href="ajax/cruise-slideshow-popup.html" class="hover-effect popup-gallery"><img width="270" height="160" alt="" src="http://placehold.it/270x160"></a>
-                                            </figure>
-                                            <div class="details">
-												<span class="">모인 금액 10000원</span>
-												<h4 class="box-title">프로젝트명</h4>
-												<hr>
-												<div class="progress">
-													<div class="progress-bar" role="progressbar"
-														style="width: 70%;" aria-valuenow="25" aria-valuemin="0"
-														aria-valuemax="100">70%</div>
-												</div>
-												<hr>
-												<span class="price">카테고리</span> <span>회사</span><br> <br>
-												<div class="action">
-													<a class="button btn-small full-width"
-														href="cruise-detailed.html">펀딩하기</a>
-												</div>
-											</div>
-                                        </article>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <article class="box">
-                                            <figure>
-                                                <a href="ajax/cruise-slideshow-popup.html" class="hover-effect popup-gallery"><img width="270" height="160" alt="" src="http://placehold.it/270x160"></a>
-                                            </figure>
-                                            <div class="details">
-												<span class="">모인 금액 10000원</span>
-												<h4 class="box-title">프로젝트명</h4>
-												<hr>
-												<div class="progress">
-													<div class="progress-bar" role="progressbar"
-														style="width: 70%;" aria-valuenow="25" aria-valuemin="0"
-														aria-valuemax="100">70%</div>
-												</div>
-												<hr>
-												<span class="price">카테고리</span> <span>회사</span><br> <br>
-												<div class="action">
-													<a class="button btn-small full-width"
-														href="cruise-detailed.html">펀딩하기</a>
-												</div>
-											</div>
-                                        </article>
-                                    </div>
+                                    <%} %>
                                 </div>
                             </div>
                             <a href="#" class="uppercase full-width button btn-large">load more listing</a>

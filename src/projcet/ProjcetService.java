@@ -17,4 +17,5 @@ public interface ProjcetService {
 	public ArrayList<RPost> rpost(int rPJT_id);
 	public ROption optionPay(int rPJT_id, int reward_id);
 	public RewardPay orderReward(int mem_id);
+	public ArrayList<RMeta> metalist();
 }
