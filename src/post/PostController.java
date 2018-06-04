@@ -95,10 +95,9 @@ public class PostController extends HttpServlet {
 			b = new Board();
 			p = new Post();
 			b.setBrd_id(Integer.parseInt(request.getParameter("bid")));
-			p.setMem_nickName(request.getParameter("nickname"));
 			p.setPost_title(request.getParameter("title"));
 			p.setPost_content(request.getParameter("content"));
-			p.setAdmin_id(request.getParameter("admin_id"));
+			p.setAdmin_id("admin");
 			service.wirtePost(p);
 			forwardURL = "/BoardController?type=?";
 		}
