@@ -26,7 +26,7 @@ String root1 = request.getContextPath();
     <link href="<%=root1%>/admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
     <!-- DataTables CSS -->
-    <%-- <link href="<%=root1%>/admin/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet"> --%>
+    <link href="<%=root1%>/admin/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 
     <!-- DataTables Responsive CSS -->
     <link href="<%=root1%>/admin/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">

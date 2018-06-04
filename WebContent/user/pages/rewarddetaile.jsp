@@ -132,10 +132,11 @@
 			<div class="sidebar col-md-3">
 				<article class="detailed-logo">
 					<div class="details">
-						<div class="feedback clearfix">
-						<%int percent = (100 * meta.getrInvesting_amount()) / meta.getrTarget_amount() ;%>
-							<div class="progress-bar" role="progressbar" style="width: 100%;"
-								aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%=percent%>%</div>
+						<div class="progress">
+						<%int percent = (100 * meta.getrInvesting_amount()) / meta.getrTarget_amount();%>
+							<div class="progress-bar" role="progressbar" style="width: <%=percent%>%"
+								aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+							<p style="text-align:center"><%=percent%>%</p>
 						</div>
 						<h2 class="box-title">19일 남음</h2>
 						<span class="price clearfix">
