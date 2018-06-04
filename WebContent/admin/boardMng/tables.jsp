@@ -70,7 +70,7 @@ $(function() {
                                 <td><input type="checkbox"></td>
                                 <td><%=b.getBrd_id()%></td>
                                 <td><%=b.getBrd_name()%></td>
-                                <td class="center">일반</td>
+                                <td class="center"><%=b.getBrd_type()%></td>
                                 <td class="center"><%=b.getBrd_count()%></td>
                             </tr>
                         <% } %>

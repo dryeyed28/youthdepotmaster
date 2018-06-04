@@ -1,4 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%int falg = (int)request.getAttribute("rslt"); %>
+<%String falg = String.valueOf(request.getAttribute("result")); %>
 <%= falg%> 

@@ -68,7 +68,7 @@ CREATE TABLE REWARD_PAY (
 	MEM_ID NUMBER(10), /* MEM_ID */
     MEM_NAME VARCHAR2(20), /*주문자 이름*/
 	RPJT_ID NUMBER(10), /* 리워드번호 */
-	RPRODUCT_ID NUMBER(10), /* 아이템번호 */
+    RPRODUCT_ID NUMBER(10), /* 아이템번호 */
 	RPRODUCT_EA NUMBER(10), /* 수량 */
 	RADDPAY NUMBER(10), /* 추가후원금 */
 	RPAY_ADDRESS VARCHAR2(50), /* 배송지 */
@@ -186,7 +186,7 @@ CREATE TABLE R_META (
 	RPJT_SUBTITLE VARCHAR2(50), /* 프로젝트짧은제목 */
 	RINVESTING_AMOUNT NUMBER(10), /* 투자금액 */
 	RTARGET_AMOUNT NUMBER(10), /* 목표금액 */
-	RPJT_IMAGE VARCHAR2(100), /* 프로젝트대표이미지 */
+	RPJT_IMAGE VARCHAR2(50), /* 프로젝트대표이미지 */
 	RPJT_CATEGORY VARCHAR2(20), /* 카테고리 */
 	RPJT_PAPER VARCHAR2(50), /* 인증서류 */
 	RPJT_STARTDAY DATE, /* 프로젝트시작일 */
@@ -204,7 +204,7 @@ ALTER TABLE R_META
 CREATE TABLE R_KEEPER (
 	RPJT_ID NUMBER(10) NOT NULL, /* 리워드번호 */
 	R_NAME VARCHAR2(50), /* 창고지기 이름 */
-	R_PROFILE VARCHAR2(100), /* 창고지기 프로필 사진 */
+	R_PROFILE VARCHAR2(50), /* 창고지기 프로필 사진 */
 	R_EMAIL VARCHAR2(100), /* 창고지기 email */
 	R_URL VARCHAR2(100), /* 웹사이트 주소 */
 	R_TEL NUMBER(20) /* 창고지기 전화번호 */
@@ -256,7 +256,8 @@ ALTER TABLE DEPOSIT
 /* 게시판 */
 CREATE TABLE BOARD (
 	BRD_ID NUMBER(10) NOT NULL, /* BRD_ID */
-	BRD_NAME VARCHAR2(20) /* 게시판명 */
+	BRD_NAME VARCHAR2(20), /* 게시판명 */
+    BRD_TYPE VARCHAR2(10) NOT NULL /* 게시판 분류 */
 );
 
 ALTER TABLE BOARD
@@ -435,12 +436,12 @@ values (5,5,1,1,to_date('18/05/25','RR/MM/DD'));
 SELECT /*insert*/ *
 FROM BOARD;
 --board--
-Insert into BOARD (BRD_ID,BRD_NAME) 
-values (10,'공지사항');
-Insert into BOARD (BRD_ID,BRD_NAME) 
-values (20,'큐앤에이');
-Insert into BOARD (BRD_ID,BRD_NAME) 
-values (30,'커뮤니티');
+Insert into BOARD (BRD_ID,BRD_NAME,BRD_TYPE) 
+values (10,'공지사항','운영');
+Insert into BOARD (BRD_ID,BRD_NAME,BRD_TYPE) 
+values (20,'큐앤에이','운영');
+Insert into BOARD (BRD_ID,BRD_NAME,BRD_TYPE) 
+values (30,'커뮤니티','일반');
 
 SELECT /*insert*/ *
 FROM ADMIN;
@@ -452,11 +453,11 @@ FROM POST;
 Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) 
 values (1,10,1,'admin','에인젤','조장으로서한마디','열심히하세요',to_date('18/05/25','RR/MM/DD'),1,0);
 Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) 
-values (2,20,2,'admin','빠른94','리워드어떻게하나요','ㅈㄱㄴ',to_date('18/05/25','RR/MM/DD'),2,0);
+values (1,20,2,'admin','빠른94','리워드어떻게하나요','ㅈㄱㄴ',to_date('18/05/25','RR/MM/DD'),2,0);
 Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) 
-values (3,20,3,'admin','별명없음','리워드가뭐여','투자는어떻게하나요',to_date('18/05/25','RR/MM/DD'),3,0);
+values (2,20,3,'admin','별명없음','리워드가뭐여','투자는어떻게하나요',to_date('18/05/25','RR/MM/DD'),3,0);
 Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) 
-values (4,30,2,'admin','빠른94','나빠른94임ㅋㅋ','ㅈㄱㄴ',to_date('18/05/25','RR/MM/DD'),4,0);
+values (1,30,2,'admin','빠른94','나빠른94임ㅋㅋ','ㅈㄱㄴ',to_date('18/05/25','RR/MM/DD'),4,0);
 Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) 
 values (5,30,1,'admin','에인젤','조장못해먹겠슴','너무힘들어',to_date('18/05/25','RR/MM/DD'),5,1);
 
@@ -678,3 +679,5 @@ values (5, '김드림(농부대첩)', '5_keeper.jpg', 'saddo112@daum.net',
 
 
 commit;
+
+

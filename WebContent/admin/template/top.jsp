@@ -26,7 +26,7 @@ String root1 = request.getContextPath();
     <link href="<%=root1%>/admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
     <!-- DataTables CSS -->
-    <%-- <link href="<%=root1%>/admin/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet"> --%>
+    <link href="<%=root1%>/admin/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 
     <!-- DataTables Responsive CSS -->
     <link href="<%=root1%>/admin/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
@@ -49,19 +49,8 @@ String root1 = request.getContextPath();
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="../pages/login.jsp"><i class="fa fa-sign-out fa-fw"></i> 로그인</a>
-                        </li>
-                        <li><a href="../pages/index.jsp"><i class="fa fa-sign-out fa-fw"></i> 로그아웃</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
+               <li><a href="<%=root1%>/admin/pages/login.jsp"><i class="fa fa-sign-out fa-fw"></i> 로그아웃</a>
+               </li>
             </ul>
             <!-- /.navbar-top-links -->  
          </nav>    
