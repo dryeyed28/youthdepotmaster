@@ -54,6 +54,7 @@ public class ProjectController extends HttpServlet {
 		String forwardURL = "";
 		int rPJT_id = 0;
 		RKeeper keeper = null;
+		ArrayList<RMeta> metalist = null;
 		RMeta meta = null;
 		if (type.equals("apply")) {
 			String root = "C:/";
@@ -118,6 +119,10 @@ public class ProjectController extends HttpServlet {
 			RApply ra = new RApply(rk, rm, ro, rp, rs);
 			service.applyinsert(ra);
 			forwardURL = "user/mypage/made.jsp";
+		} else if(type.equals("rewardMain")) {
+			metalist = service.metalist();
+			request.setAttribute("metalist", metalist);
+			forwardURL = "user/pages/rewardmain.jsp";
 		} else if (type.equals("rewardDetail")) {
 			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
 			keeper = service.keeper(rPJT_id);

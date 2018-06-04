@@ -19,4 +19,5 @@ public interface ProjcetDao {
 	ArrayList<RPost> getRPost(int rPJT_id);
 	public ROption getOptionPay(int rPJT_id, int reward_id);
 	public RewardPay getOrderReward(int mem_id);
+	public ArrayList<RMeta> getMetaList();
 }

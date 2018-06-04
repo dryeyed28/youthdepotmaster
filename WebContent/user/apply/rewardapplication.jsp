@@ -123,19 +123,13 @@
 									<div class="selector full-width">
 										<select id="selectCategroy">
 											<option>테크/가전</option>
-											<option>페션/잡화</option>
-											<option>뷰티</option>
+											<option>패션/뷰티</option>
 											<option>푸드</option>
-											<option>홈리빙</option>
 											<option>디자인소품</option>
-											<option>여행/레저</option>
-											<option>스포/모빌리티</option>
 											<option>공연/컬쳐</option>
 											<option>소셜/캠페인</option>
 											<option>교육/키즈</option>
 											<option>게임/취미</option>
-											<option>출판</option>
-											<option>기부/후원</option>
 										</select>
 									</div>
 								</div>
