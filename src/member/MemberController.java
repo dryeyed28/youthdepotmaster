@@ -1,6 +1,7 @@
 package member;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,61 +9,87 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.MemberInterface;
+import member.MemberService;
+import vo.Member;
+import vo.PageBean;
 
-/**
- * Servlet implementation class MemberController
- */
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public MemberController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
     
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	
-		response.setContentType("text/html; charset=EUC-KR");
+		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		
 		String type = "";
+		String result = "";
 		String forwardURL = "";
-		MemberService service = new MemberServiceImpl();
-		MemberInterface svic = new service.MemberService();
+		int intPage = 0;
+		
+		MemberService svic = new MemberServiceImpl();
 		
 		type = request.getParameter("type");
+		System.out.println("성공");
 		if (type.equals("idcheck")) {
 			String id = request.getParameter("id");
 			try {
+				System.out.println("아이디체크");
 				int rslt = svic.idCheck(id);
 				request.setAttribute("rslt", rslt);
-				forwardURL = "idcheckrslt.jsp";
+				forwardURL = "user/mypage/idcheckrslt.jsp";
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(type.equals("selectAll")) {
+			//admin 회원관리
+			String page = request.getParameter("page");
 			
+			if(page != null) {
+				intPage = Integer.parseInt(page);
+			}
 			
+			try {
+			int totalCount = svic.findCount();
+			
+			int totalPage = 0;
+			int cntPerPage = 3;
+			totalPage = (int)Math.ceil((double)totalCount / cntPerPage);
+			
+			int cntPerPageGroup = 5;
+			int startPage = (int)Math.floor((double)(intPage)/(cntPerPageGroup+1))*cntPerPageGroup+1;
+			int endPage = startPage+cntPerPageGroup-1;
+			
+			if(endPage > totalPage) {
+				endPage = totalPage;
+			}
+			
+			List<Member> list = svic.findAll();
+			//request.setAttribute("member", list);
+			PageBean<Member> pb = new PageBean<>();
+			pb.setCurrentPage(intPage);
+			pb.setTotalPage(totalPage);
+			pb.setList(list);
+			pb.setStartPage(startPage);
+			pb.setEndPage(endPage);
+			
+			request.setAttribute("pagebean", pb);
+			
+			} catch(Exception e) {
+				e.printStackTrace();
+				request.setAttribute("result", e.getMessage());
+			}
+			result = "/admin/pages/memberlistresult.jsp";
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(result);
 		dispatcher.forward(request, response);
-	
 	}
-
-	
-	
-
 }
