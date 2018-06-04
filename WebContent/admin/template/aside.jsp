@@ -7,35 +7,28 @@ String root = request.getContextPath();
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li class="sidebar-search">
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                        <!-- /input-group -->
-                    </li>
                     <li>
                         <a href="<%=root%>/admin/pages/index.jsp"><i class="fa fa-dashboard fa-fw"></i> home</a>
                     </li>
-                    <li>
-                        <a href="<%=root%>/admin/pages/member.jsp"><i class="fa fa-member fa-fw"></i>회원관리</a>
+                    <li class=member>
+                        <a href="#"><i class="fa fa-user fa-fw"></i>회원관리</a>
                     </li>
                     <li>
-                        <a href="<%=root%>/admin/pages/projectrequest.jsp"><i class="fa fa-table fa-fw"></i>프로젝트 신청관리</a>
+                        <a href="#"><i class="fa fa-table fa-fw"></i> 프로젝트 관리<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="<%=root%>/projectMgr/projectrequest.jsp">프로젝트 신청관리</a>
+                            <li>
+                                <a href="<%=root%>/projectMgr/projectNews.jsp">프로젝트 새소식관리</a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="<%=root%>/admin/pages/projectrequestcontent.jsp"><i class="fa fa-edit fa-fw"></i>프로젝트 신청서</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-table fa-fw"></i> 커뮤니티 관리<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-heart fa-fw"></i> 커뮤니티 관리<span class="fa arrow"></span></a>
                         <!-- <a href="tables.html"><i class="fa fa-table fa-fw"></i> 커뮤니티 관리</a> -->
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="<%=root%>/admin/boardMng/tables.jsp">게시판 관리</a>
+                                <a href="<%=root%>/BoardController?type=boardmenu">게시판 관리</a>
                             </li>
                             <li>
                                 <a href="#"> 게시 관리<span class="fa arrow"></span></a>
@@ -48,13 +41,10 @@ String root = request.getContextPath();
                              	  </li>
                             	  </ul>
                             </li>
-                            <li>
-                                <a href="<%=root%>/admin/boardMng/spam.jsp">스팸 관리</a>
-                            </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-table fa-fw"></i> 결제현황 관리<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-credit-card fa-fw"></i> 결제현황 관리<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="<%=root%>/admin/payMng/totalpay.jsp">전체결제 관리</a>
@@ -68,7 +58,7 @@ String root = request.getContextPath();
                         </ul>
                     </li>
                     <li>
-                        <a href="<%=root%>/admin/pages/morris.jsp"><i class="fa fa-table fa-fw"></i>통계</a>
+                        <a href="<%=root%>/admin/pages/morris.jsp"><i class="fa fa-bar-chart-o fa-fw"></i>통계</a>
                     </li>
                 </ul>
             </div>

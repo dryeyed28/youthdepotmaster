@@ -1,7 +1,16 @@
 package member;
 
+<<<<<<< HEAD
 import java.util.List;
 
+=======
+import java.util.ArrayList;
+import java.util.List;
+
+import member.MemberDao;
+
+import member.MemberService;
+>>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
 import vo.Member;
 
 public class MemberServiceImpl implements MemberService {
@@ -28,6 +37,10 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectCount();
 	}
 
+<<<<<<< HEAD
+=======
+	@Override
+>>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
 	public int idCheck(String mem_userId) throws Exception {
 		Member member = dao.idCheck(mem_userId);
 

@@ -26,7 +26,7 @@
         <!-- /.panel-heading -->
         
       <div class="panel-body">
-		<table width="100%" class="table table-bordered table-hover" id="dataTables-example">
+		<table class="table table-bordered table-hover" id="dataTables-example">
            <thead>
               <tr>
             	<th><input type="checkbox"></th>
@@ -136,11 +136,13 @@
            </tbody>
         </table>
       <hr>
-      <div class="btn-center" style="text-align: center">
-        <a class="btn btn-default btn-lg btn-outline btn-primary" id="projectdelet">프로젝트 삭제</a>
-        <a class="btn btn-default btn-lg btn-outline btn-primary">게시판 삭제</a>
+      <div class="btn-center" style="text-align: right">
+        <!-- 자세히 보기를 누르면 선택한 프로젝트의 내용 (projectrequestcontent.jsp) 보여주기 -->
+        <button onclick="location.href='projectrequestcontent.jsp'" class="btn btn-outline btn-primary" >자세히 보기</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-primary">진행사항 수정</button>&nbsp;
+        <button class="btn btn-primary">삭제</button>
       </div>
-
 	  </div>
       <!-- /.panel-body -->
       </div>

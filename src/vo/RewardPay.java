@@ -2,8 +2,8 @@ package vo;
 
 public class RewardPay {
 	private int rPay_id;
-	private int rProject_pay_amount;
 	private int mem_id;
+	private String mem_name;
 	private int rPJT_id;
 	private int rProduct_id;
 	private int rProduct_ea;
@@ -15,12 +15,12 @@ public class RewardPay {
 	public RewardPay() {
 		super();
 	}
-	public RewardPay(int rPay_id, int rProject_pay_amount, int mem_id, int rPJT_id, int rProduct_id, int rProduct_ea,
+	public RewardPay(int rPay_id, int mem_id, String mem_name, int rPJT_id, int rProduct_id, int rProduct_ea,
 			int rAddPay, String rPay_address, String rPay_phone, String rPay_request, int rPay_total) {
 		super();
 		this.rPay_id = rPay_id;
-		this.rProject_pay_amount = rProject_pay_amount;
 		this.mem_id = mem_id;
+		this.mem_name = mem_name;
 		this.rPJT_id = rPJT_id;
 		this.rProduct_id = rProduct_id;
 		this.rProduct_ea = rProduct_ea;
@@ -36,17 +36,17 @@ public class RewardPay {
 	public void setrPay_id(int rPay_id) {
 		this.rPay_id = rPay_id;
 	}
-	public int getrProject_pay_amount() {
-		return rProject_pay_amount;
-	}
-	public void setrProject_pay_amount(int rProject_pay_amount) {
-		this.rProject_pay_amount = rProject_pay_amount;
-	}
 	public int getMem_id() {
 		return mem_id;
 	}
 	public void setMem_id(int mem_id) {
 		this.mem_id = mem_id;
+	}
+	public String getMem_name() {
+		return mem_name;
+	}
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
 	}
 	public int getrPJT_id() {
 		return rPJT_id;

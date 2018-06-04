@@ -6,12 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import dao.AdminDAO;
-import dao.AdminDAOOracle;
+import admin.AdminDao;
+import admin.AdminDaoOracle;
 import sql.OracleConnection;
 import vo.Admin;
 
-public class AdminDaoImpl implements AdminDao {
+public class AdminDaoOracle implements AdminDao {
 		
 	public Connection con = null;
 	public PreparedStatement pstmt = null;
@@ -19,7 +19,7 @@ public class AdminDaoImpl implements AdminDao {
 	public String jdbc_url;
 	public ResultSet rs = null;
 	
-	public AdminDaoImpl() {
+	public AdminDaoOracle() {
 		jdbc_driver = "oracle.jdbc.driver.OracleDriver";
 		jdbc_url = "jdbc:oracle:thin:@localhost:1521:orcl";
 	}
@@ -76,7 +76,7 @@ public class AdminDaoImpl implements AdminDao {
 	}
 	
 	public static void main(String[] args) {
-		AdminDAOOracle dao = new AdminDAOOracle();
+		AdminDaoOracle dao = new AdminDaoOracle();
 		String admin_id = "admin";
 		String admin_pwd = "admin";
 		String result;

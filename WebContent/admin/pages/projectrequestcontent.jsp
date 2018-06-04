@@ -75,6 +75,7 @@
                          </div>
                          <!-- /.col-lg-6 (nested) -->
 					      <button>목록</button>
+					      <button>저장</button>
                      </div>
                      <!-- /.row (nested) -->
                  </div>

@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.AdminService;
-import service.MemberService;
 import service.RewardService;
 import service.TestService;
 
@@ -25,8 +23,6 @@ public class YouthDepotFrontControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Properties env;
 	private RewardService RewardService;
-	private MemberService memberService = new MemberService();
-	private AdminService adminService = new AdminService();
 	
 	public YouthDepotFrontControllerServlet() {}
 	
@@ -85,13 +81,13 @@ public class YouthDepotFrontControllerServlet extends HttpServlet {
 						if("service.RewardService".equals(m.getParameterTypes()[0].getName())){
 							m.invoke(obj, RewardService);
 							break;
-						} else if("service.MemberService".equals(m.getParameterTypes()[0].getName())) {
-							m.invoke(obj, memberService);
-							break;
-						} else if("sevice.AdminService".equals(m.getParameterTypes()[0].getName())) {
-							m.invoke(obj, adminService);
-							break;
-						}
+						}// else if("service.MemberService".equals(m.getParameterTypes()[0].getName())) {
+//							m.invoke(obj, memberService);
+//							break;
+//						} else if("sevice.AdminService".equals(m.getParameterTypes()[0].getName())) {
+//							m.invoke(obj, adminService);
+//							break;
+//						}
 						/*else if("service.CustomerService".equals(m.getParameterTypes()[0].getName())){
 							m.invoke(obj, productService);
 							break;
@@ -118,11 +114,12 @@ public class YouthDepotFrontControllerServlet extends HttpServlet {
 						if("service.RewardService".equals(constructor.getParameters()[0].getType().getName())){
 							obj = constructor.newInstance(RewardService);
 
-						} else if("service.MemberService".equals(constructor.getParameterTypes()[0].getTypeName())) {
-							obj = constructor.newInstance(memberService);
-						} else if("service.AdminService".equals(constructor.getParameterTypes()[0].getTypeName())) {
-							obj = constructor.newInstance(adminService);
-						}
+						} 
+//						else if("service.MemberService".equals(constructor.getParameterTypes()[0].getTypeName())) {
+//							obj = constructor.newInstance(memberService);
+//						} else if("service.AdminService".equals(constructor.getParameterTypes()[0].getTypeName())) {
+//							obj = constructor.newInstance(adminService);
+//						}
 							/*else if("service.CustomerService".equals(constructor.getParameters()[0].getType().getName())){
 						}
 							obj = constructor.newInstance(customerService);

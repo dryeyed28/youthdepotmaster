@@ -29,16 +29,13 @@
                                 <a href="#" class="button print-button btn-small uppercase">열정 충전하기</a>
                             </div>
                             <hr />
-                            <h2>열정 거래내역 보기</h2>
-                            
-                                <dt><img src="./images/use.PNG">사용</a></dt> <hr>
-                               
-                                <dt><img src="./images/save.PNG">적립</a></dt> <hr>
-                                <dt><img src="./images/cancle.PNG">취소</a></dt> <hr>
-                               
-                               
+                            <h2>열정 거래내역 보기</h2>  
+                            <dl>                     
+                                <dt><i class="soap-icon-star icon circle"></i>&nbsp;&nbsp;사용 </dt> <hr>                               
+                                <dt><i class="soap-icon-savings icon circle"></i>&nbsp;&nbsp;적립</dt> <hr>
+                                <dt><i class="soap-icon-restricted icon circle"></i>&nbsp;&nbsp;취소</dt> <hr>
                             </dl>
-                            <hr />
+                            <br>
                             <h2>열정 이용 안내</h2>
                             <p>1. 적립하신 포인트는 리워드 펀딩 참여시 결제금액에서 차감 사용할 수 있습니다.<br>
 								2. 1 Point 당 1 원과 동일한 가치로 사용할 수 있으며, 100 Point 이상 사용 가능합니다.<br>

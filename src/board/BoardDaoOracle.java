@@ -10,7 +10,7 @@ import sql.OracleConnection;
 import vo.Board;
 
 public class BoardDaoOracle implements BoardDao {
-
+	
 	@Override
 	public ArrayList<Board> boardList() {
 		ArrayList<Board> list = new ArrayList<Board>();
@@ -19,7 +19,38 @@ public class BoardDaoOracle implements BoardDao {
 		ResultSet rs = null;
 		try {
 			con = OracleConnection.getConnection();
-			String sql = "select brd_id, brd_key, brd_name \n"
+			String sql = "select b.brd_id, b.brd_name, count(p.post_id) \n" + 
+					"from board b join post p on b.brd_id = p.brd_id \n" + 
+					"where p.post_del=0 \n" + 
+					"group by b.brd_id, b.brd_name \n" + 
+					"order by b.brd_id";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Board board = new Board();
+				board.setBrd_id(rs.getInt(1));
+				board.setBrd_name(rs.getString(2));
+				board.setBrd_count(rs.getInt(3));
+				
+				list.add(board);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
+		return list;
+	}
+
+	/*@Override
+	public ArrayList<Board> boardList() {
+		ArrayList<Board> list = new ArrayList<Board>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = OracleConnection.getConnection();
+			String sql = "select brd_id, brd_name \n"
 					+ "from board \n"
 					+ "order by brd_id";
 			pstmt = con.prepareStatement(sql);
@@ -27,7 +58,6 @@ public class BoardDaoOracle implements BoardDao {
 			while(rs.next()) {
 				Board board = new Board();
 				board.setBrd_id(rs.getInt("brd_id"));
-				board.setBrd_key(rs.getString("brd_key"));
 				board.setBrd_name(rs.getString("brd_name"));
 				
 				list.add(board);
@@ -38,6 +68,24 @@ public class BoardDaoOracle implements BoardDao {
 			OracleConnection.close(rs, pstmt, con);
 		}
 		return list;
+	}*/
+
+	@Override
+	public void insertboard(Board board) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = OracleConnection.getConnection();
+			String sql = "Insert into BOARD (BRD_ID,BRD_NAME) \r\n" + 
+						 "values ((SELECT MAX(BRD_ID)+10 FROM BOARD),?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, board.getBrd_name());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(pstmt, con);
+		}
 	}
 
 }

@@ -65,8 +65,8 @@ CREATE TABLE R_COMMENT (
 /* 리워드결제 */
 CREATE TABLE REWARD_PAY (
 	RPAY_ID NUMBER(10) NOT NULL, /* PAY_PK */
-	RPROJECT_PAY_AMOUNT NUMBER(10) NOT NULL, /* 프로젝트 구분코드 */
 	MEM_ID NUMBER(10), /* MEM_ID */
+    MEM_NAME VARCHAR2(20), /*주문자 이름*/
 	RPJT_ID NUMBER(10), /* 리워드번호 */
 	RPRODUCT_ID NUMBER(10), /* 아이템번호 */
 	RPRODUCT_EA NUMBER(10), /* 수량 */
@@ -81,8 +81,7 @@ ALTER TABLE REWARD_PAY
 	ADD
 		CONSTRAINT REWARD_PAY
 		PRIMARY KEY (
-			RPAY_ID,
-			RPROJECT_PAY_AMOUNT
+			RPAY_ID
 		);
 
 /* 회원 */
@@ -114,7 +113,6 @@ CREATE TABLE R_STORY (
 	RPJT_URL VARCHAR2(100), /* 영상url */
 	RPJT_PRICE VARCHAR2(20), /* 금액 */
 	RPJT_THUMBNAIL VARCHAR2(50), /* 썸네일이미지 */
-	RPJT_MESSAGE VARCHAR2(100), /* 새소식 */
 	RPJT_STORY CLOB, /* 프로젝트스토리 */
 	RPJT_TAG VARCHAR2(50), /* 검색용태그 */
 	RPJT_PAPER CLOB /* 교환/환불/as정책 */
@@ -130,10 +128,10 @@ ALTER TABLE R_STORY
 /* 리워드 게시물 */
 CREATE TABLE R_POST (
 	RPJT_ID NUMBER(10) NOT NULL, /* 리워드번호 */
-	RPOST_TITLE CLOB, /* 게시글제목 */
+    RPOST_TITLE VARCHAR2(100), /* 게시글제목 */
+	RPOST_CONTENT CLOB, /* 게시글제목 */
 	RPOST_USERID VARCHAR2(50), /* 작성자회원아이디 */
-	RPOST_DATETIME DATE, /* 게시물작성일자 */
-	RPOST_UPDATED_DATETIME DATE /* 최종수정시간 */
+	RPOST_DATETIME DATE /* 게시물작성일자 */
 );
 
 ALTER TABLE R_POST
@@ -169,7 +167,6 @@ ALTER TABLE POST
 CREATE TABLE R_PROJECT (
 	RPJT_ID NUMBER(10) NOT NULL, /* 리워드번호 */
 	MEM_ID NUMBER(10), /* MEM_ID */
-	RRPJT_KEY VARCHAR2(100), /* 프로젝트KEY */
 	RPJT_STATE NUMBER(10), /* 프로젝트상태 */
 	RPJT_PROGRESS NUMBER(10), /* (진행중/마감) */
 	RPJT_SUBMISSION DATE /* 제출일 */
@@ -189,7 +186,7 @@ CREATE TABLE R_META (
 	RPJT_SUBTITLE VARCHAR2(50), /* 프로젝트짧은제목 */
 	RINVESTING_AMOUNT NUMBER(10), /* 투자금액 */
 	RTARGET_AMOUNT NUMBER(10), /* 목표금액 */
-	RPJT_IMAGE VARCHAR2(50), /* 프로젝트대표이미지 */
+	RPJT_IMAGE VARCHAR2(100), /* 프로젝트대표이미지 */
 	RPJT_CATEGORY VARCHAR2(20), /* 카테고리 */
 	RPJT_PAPER VARCHAR2(50), /* 인증서류 */
 	RPJT_STARTDAY DATE, /* 프로젝트시작일 */
@@ -207,7 +204,7 @@ ALTER TABLE R_META
 CREATE TABLE R_KEEPER (
 	RPJT_ID NUMBER(10) NOT NULL, /* 리워드번호 */
 	R_NAME VARCHAR2(50), /* 창고지기 이름 */
-	R_PROFILE VARCHAR2(50), /* 창고지기 프로필 사진 */
+	R_PROFILE VARCHAR2(100), /* 창고지기 프로필 사진 */
 	R_EMAIL VARCHAR2(100), /* 창고지기 email */
 	R_URL VARCHAR2(100), /* 웹사이트 주소 */
 	R_TEL NUMBER(20) /* 창고지기 전화번호 */
@@ -228,7 +225,8 @@ CREATE TABLE R_OPTION (
 	RPJT_NAME VARCHAR2(50), /* 아이템이름 */
 	RPJT_DETAIL CLOB, /* 상세설명 */
 	RPJT_LIMIT NUMBER(10), /* 제한수량 */
-	RPJT_SEND DATE /* 발송시작일 */
+	RPJT_SEND DATE, /* 발송시작일 */
+	RPJT_CHARGE NUMBER(10) /* 배송비 */
 );
 
 ALTER TABLE R_OPTION
@@ -258,7 +256,6 @@ ALTER TABLE DEPOSIT
 /* 게시판 */
 CREATE TABLE BOARD (
 	BRD_ID NUMBER(10) NOT NULL, /* BRD_ID */
-	BRD_KEY VARCHAR2(50) NOT NULL, /* 게시판주소 */
 	BRD_NAME VARCHAR2(20) /* 게시판명 */
 );
 
@@ -394,8 +391,6 @@ ALTER TABLE DEPOSIT
 		);
         
         
-        
-        
 SELECT /*insert*/ *
 FROM MEMBERS;
 
@@ -419,16 +414,16 @@ FROM R_PROJECT;
 
 
 --R_PROJECT--
-Insert into R_PROJECT (RPJT_ID,MEM_ID,RRPJT_KEY,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION) 
-values (1,1,'www.naver.com',1,1,to_date('18/05/25','RR/MM/DD'));
-Insert into R_PROJECT (RPJT_ID,MEM_ID,RRPJT_KEY,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION) 
-values (2,2,'www.naver.com',2,1,to_date('18/05/25','RR/MM/DD'));
-Insert into R_PROJECT (RPJT_ID,MEM_ID,RRPJT_KEY,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION) 
-values (3,3,'www.naver.com',3,1,to_date('18/05/25','RR/MM/DD'));
-Insert into R_PROJECT (RPJT_ID,MEM_ID,RRPJT_KEY,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION) 
-values (4,4,'www.naver.com',1,1,to_date('18/05/25','RR/MM/DD'));
-Insert into R_PROJECT (RPJT_ID,MEM_ID,RRPJT_KEY,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION) 
-values (5,5,'www.naver.com',1,1,to_date('18/05/25','RR/MM/DD'));
+Insert into R_PROJECT (RPJT_ID,MEM_ID,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION) 
+values (1,1,1,1,to_date('18/05/25','RR/MM/DD'));
+Insert into R_PROJECT (RPJT_ID,MEM_ID,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION) 
+values (2,2,2,1,to_date('18/05/25','RR/MM/DD'));
+Insert into R_PROJECT (RPJT_ID,MEM_ID,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION) 
+values (3,3,3,1,to_date('18/05/25','RR/MM/DD'));
+Insert into R_PROJECT (RPJT_ID,MEM_ID,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION) 
+values (4,4,1,1,to_date('18/05/25','RR/MM/DD'));
+Insert into R_PROJECT (RPJT_ID,MEM_ID,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION) 
+values (5,5,1,1,to_date('18/05/25','RR/MM/DD'));
 
 
 
@@ -440,12 +435,12 @@ values (5,5,'www.naver.com',1,1,to_date('18/05/25','RR/MM/DD'));
 SELECT /*insert*/ *
 FROM BOARD;
 --board--
-Insert into BOARD (BRD_ID,BRD_KEY,BRD_NAME) 
-values (10,'0','공지사항');
-Insert into BOARD (BRD_ID,BRD_KEY,BRD_NAME) 
-values (20,'0','큐앤에이');
-Insert into BOARD (BRD_ID,BRD_KEY,BRD_NAME) 
-values (30,'0','커뮤니티');
+Insert into BOARD (BRD_ID,BRD_NAME) 
+values (10,'공지사항');
+Insert into BOARD (BRD_ID,BRD_NAME) 
+values (20,'큐앤에이');
+Insert into BOARD (BRD_ID,BRD_NAME) 
+values (30,'커뮤니티');
 
 SELECT /*insert*/ *
 FROM ADMIN;
@@ -489,16 +484,16 @@ SELECT /*insert*/ *
 FROM REWARD_PAY;
 --REWARD_PAY--
 
-Insert into REWARD_PAY (RPAY_ID,RPROJECT_PAY_AMOUNT,MEM_ID,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
-values (1,2,1,1,1,1,10000,'경기도 성남시 분당구 판교로 242','01012332255','부재시 경비실에 맡겨주세요',433600);
-Insert into REWARD_PAY (RPAY_ID,RPROJECT_PAY_AMOUNT,MEM_ID,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
-values (2,2,2,2,2,2,20000,'경기도 성남시 분당구 불정로 90','01099887744','부재시 경비실에 맡겨주세요',189000);
-Insert into REWARD_PAY (RPAY_ID,RPROJECT_PAY_AMOUNT,MEM_ID,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
-values (3,2,3,3,3,1,50000,'서울특별시 종로구 종로 26','01054548787','부재시 경비실에 맡겨주세요',227000);
-Insert into REWARD_PAY (RPAY_ID,RPROJECT_PAY_AMOUNT,MEM_ID,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
-values (4,2,4,4,4,2,20000,'서울특별시 마포구 성암로 267 ','01022553377','배송전연락바랍니다',109000);
-Insert into REWARD_PAY (RPAY_ID,RPROJECT_PAY_AMOUNT,MEM_ID,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
-values (5,2,5,5,5,1,30000,'서울특별시 양천구 목동서로 161','01025663322','배송전연락바랍니다',79800);
+Insert into REWARD_PAY (RPAY_ID,MEM_ID,MEM_NAME,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
+values (1,1,'사람1',1,1,1,10000,'경기도 성남시 분당구 판교로 242','01012332255','부재시 경비실에 맡겨주세요',433600);
+Insert into REWARD_PAY (RPAY_ID,MEM_ID,MEM_NAME,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
+values (2,2,'사람2',2,2,2,20000,'경기도 성남시 분당구 불정로 90','01099887744','부재시 경비실에 맡겨주세요',189000);
+Insert into REWARD_PAY (RPAY_ID,MEM_ID,MEM_NAME,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
+values (3,3,'사람3',3,3,1,50000,'서울특별시 종로구 종로 26','01054548787','부재시 경비실에 맡겨주세요',227000);
+Insert into REWARD_PAY (RPAY_ID,MEM_ID,MEM_NAME,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
+values (4,4,'사람4',4,4,2,20000,'서울특별시 마포구 성암로 267 ','01022553377','배송전연락바랍니다',109000);
+Insert into REWARD_PAY (RPAY_ID,MEM_ID,MEM_NAME,RPJT_ID,RPRODUCT_ID,RPRODUCT_EA,RADDPAY,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL) 
+values (5,5,'사람5',5,5,1,30000,'서울특별시 양천구 목동서로 161','01025663322','배송전연락바랍니다',79800);
 
 
 SELECT /*insert*/ *
@@ -524,8 +519,9 @@ FROM r_story;
 
 REM INSERTING into R_STORY
 SET DEFINE OFF;
-Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_MESSAGE,RPJT_STORY,RPJT_TAG,RPJT_PAPER) 
-values (1,'https://www.youtube.com/watch?v=GMMu8bgKwbc','10000000','1_thumbnail.jpg','스멜탄이 앵콜로 돌아왔습니다','안녕하세요? 한 평생 화학연구를 해오신 진 교수님의 닥터진랩 연구소와 스타트업 파쉐어입니다.
+Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_STORY,RPJT_TAG,RPJT_PAPER) 
+values (1,'https://www.youtube.com/watch?v=GMMu8bgKwbc','10000000','1_thumbnail.jpg',
+'안녕하세요? 한 평생 화학연구를 해오신 진 교수님의 닥터진랩 연구소와 스타트업 파쉐어입니다.
 실제 실생활에 쉽게 퍼져있는 냄새와 관련 유해 성분들 알고나면 방치하기 쉽지 않습니다. 
 스멜탄은 가벼운 비치로 실내에 잔류해있는 악취와 유해 성분들을 강력하게 제거하여 줍니다.
 악취의 유해성에 관한 이야기로 스멜탄 이야기를 시작하도록 하겠습니다.','HomeLiving','교환 / 환불 / AS 정책
@@ -541,8 +537,8 @@ values (1,'https://www.youtube.com/watch?v=GMMu8bgKwbc','10000000','1_thumbnail.
 - 메이커를 통한 교환/환불/AS 접수 절차 없이 임의로 반송한 경우
 - 복제가 가능한 리워드의 포장을 훼손한 경우
 - 펀딩/판매/생산방식 특성상, 교환/반품 시, 메이커에게 회복할 수 없는 손해가 발생한 경우 (펀딩마감 후, 개별 생산, 맞춤 제작 등)');
-Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_MESSAGE,RPJT_STORY,RPJT_TAG,RPJT_PAPER) 
-values (2,'https://www.youtube.com/watch?v=-yKqurpmCRs','1000000','2_thumbnail.jpg','화장품','세상엔 정말 수많은 화장품 원료가 있지만, 절실했던 만큼 확실한 효과와 안전성이 입증된 원료가 필요했습니다. 다양한 원료를 연구하고 사용해보며 선택한 "마유"는 이미 연구된 입증자료가 많은 가장 믿을 수 있는 원료였습니다.
+Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_STORY,RPJT_TAG,RPJT_PAPER) 
+values (2,'https://www.youtube.com/watch?v=-yKqurpmCRs','1000000','2_thumbnail.jpg','세상엔 정말 수많은 화장품 원료가 있지만, 절실했던 만큼 확실한 효과와 안전성이 입증된 원료가 필요했습니다. 다양한 원료를 연구하고 사용해보며 선택한 "마유"는 이미 연구된 입증자료가 많은 가장 믿을 수 있는 원료였습니다.
 피부 세포 성장을 촉진하는 재생효과, 손상된 피부를 회복할 수 있는 항염(진정) 효과, 높은 피부 친화력으로 세포 생존력이 높은 안전한 성분으로 알려져 딸을 위해 원하던 부분을 모두 채워주었습니다.','Beauty','교환 / 환불 / AS 정책
 
 - 리워드 수령 14일 이내 제품 하자로 인한 교환 문의는 kitri@kitri.com 로 신청 가능합니다. 
@@ -556,8 +552,8 @@ values (2,'https://www.youtube.com/watch?v=-yKqurpmCRs','1000000','2_thumbnail.j
 - 메이커를 통한 교환/환불/AS 접수 절차 없이 임의로 반송한 경우
 - 복제가 가능한 리워드의 포장을 훼손한 경우
 - 펀딩/판매/생산방식 특성상, 교환/반품 시, 메이커에게 회복할 수 없는 손해가 발생한 경우 (펀딩마감 후, 개별 생산, 맞춤 제작 등)');
-Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_MESSAGE,RPJT_STORY,RPJT_TAG,RPJT_PAPER)
-values (3,'https://www.youtube.com/watch?v=-yKqurpmCRs','3000000','3_thumbnail.jpg','미세먼자를 확인하세요','아침에 눈 뜨면 제일 먼저 하는 일, 스마트폰을 켜고 미세먼지 앱을 체크하는 것이 어느새 일상이 되었습니다. 앱 속 이모티콘은 한 달에 절반은 찡그린 표정이고 초미세먼지와 이산화질소 등 오염물질은 세계보건기구 기준치를 한참 웃돕니다. 내 방, 우리 집, 자동차 안, 지하철 안. 내 일상의 공간들을 쾌적하게 만들 수는 없을까요?
+Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_STORY,RPJT_TAG,RPJT_PAPER)
+values (3,'https://www.youtube.com/watch?v=-yKqurpmCRs','3000000','3_thumbnail.jpg','아침에 눈 뜨면 제일 먼저 하는 일, 스마트폰을 켜고 미세먼지 앱을 체크하는 것이 어느새 일상이 되었습니다. 앱 속 이모티콘은 한 달에 절반은 찡그린 표정이고 초미세먼지와 이산화질소 등 오염물질은 세계보건기구 기준치를 한참 웃돕니다. 내 방, 우리 집, 자동차 안, 지하철 안. 내 일상의 공간들을 쾌적하게 만들 수는 없을까요?
 차량용 공기청정기 에어링은 ‘내 일상의 공간에서 제대로 호흡할 수 없을까’라는 고민에서 출발한 제품입니다. 세라믹 필터 공기정화마스크, 오테라를 만든 (주)골드트룹스의 노하우가 이번에는 차량용 공기청정기에 담겼습니다.  ','Tech/Electronic','교환 / 환불 / AS 정책
 
 - 리워드 수령 14일 이내 제품 하자로 인한 교환 문의는 kitri@kitri.com 로 신청 가능합니다. 
@@ -571,8 +567,8 @@ values (3,'https://www.youtube.com/watch?v=-yKqurpmCRs','3000000','3_thumbnail.j
 - 메이커를 통한 교환/환불/AS 접수 절차 없이 임의로 반송한 경우
 - 복제가 가능한 리워드의 포장을 훼손한 경우
 - 펀딩/판매/생산방식 특성상, 교환/반품 시, 메이커에게 회복할 수 없는 손해가 발생한 경우 (펀딩마감 후, 개별 생산, 맞춤 제작 등)');
-Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_MESSAGE,RPJT_STORY,RPJT_TAG,RPJT_PAPER) 
-values (4,'https://www.youtube.com/watch?v=-yKqurpmCRs','1200000','4_thumbnail.jpg','양명고 역사문화지킴이','안녕하세요. 저희는 역사 주권을 수호하는 마음을 갖고 모인 양명고의 역사지킴이 모임입니다. 학창시절에 역사 (한국사)에 대해서 루즈하고, 흥미없고, 필요없는 과목이라고 생각해 보신적이 있으신가요?  3.1운동이나 3.1운동 100주년에 대해서 어떻게 생각하시나요? 혹시 3.1운동에 대해서 생각해볼 겨를도 없으신가요? 현재 헌법에서는 3.1운동과 4.19 두 사건을 우리 민족정신의 근거로 한다는 것을 알고 계신가요? 몰랐다고 해도 괜찮습니다. 이제부터 알면 되니까요~ 지금부터 알고 다른사람에게 전달한다면 당신도 애국지사가 될 수 있습니다.','Social/Campaign','교환 / 환불 / AS 정책
+Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_STORY,RPJT_TAG,RPJT_PAPER) 
+values (4,'https://www.youtube.com/watch?v=-yKqurpmCRs','1200000','4_thumbnail.jpg','안녕하세요. 저희는 역사 주권을 수호하는 마음을 갖고 모인 양명고의 역사지킴이 모임입니다. 학창시절에 역사 (한국사)에 대해서 루즈하고, 흥미없고, 필요없는 과목이라고 생각해 보신적이 있으신가요?  3.1운동이나 3.1운동 100주년에 대해서 어떻게 생각하시나요? 혹시 3.1운동에 대해서 생각해볼 겨를도 없으신가요? 현재 헌법에서는 3.1운동과 4.19 두 사건을 우리 민족정신의 근거로 한다는 것을 알고 계신가요? 몰랐다고 해도 괜찮습니다. 이제부터 알면 되니까요~ 지금부터 알고 다른사람에게 전달한다면 당신도 애국지사가 될 수 있습니다.','Social/Campaign','교환 / 환불 / AS 정책
 
 - 리워드 수령 14일 이내 제품 하자로 인한 교환 문의는 kitri@kitri.com 로 신청 가능합니다. 
 - 교환/환불/AS 요청자 정보와 서포터 정보의 일치 여부 확인 후, 진행됩니다.
@@ -585,8 +581,8 @@ values (4,'https://www.youtube.com/watch?v=-yKqurpmCRs','1200000','4_thumbnail.j
 - 메이커를 통한 교환/환불/AS 접수 절차 없이 임의로 반송한 경우
 - 복제가 가능한 리워드의 포장을 훼손한 경우
 - 펀딩/판매/생산방식 특성상, 교환/반품 시, 메이커에게 회복할 수 없는 손해가 발생한 경우 (펀딩마감 후, 개별 생산, 맞춤 제작 등)');
-Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_MESSAGE,RPJT_STORY,RPJT_TAG,RPJT_PAPER) 
-values (5,'https://www.youtube.com/watch?v=-yKqurpmCRs','1000000','5_thumbnail.jpg','최고급 참치어종인 혼마구로(참다랑어)','인생 참치회는 최고급 참치어종인 혼마구로(참다랑어)의 최고급부위(가마도로)를 유통과정과 불필요한 상품들 줄여 기존 식당대비 최대 3분의1가격으로 만들어내는 혁신을 이루었습니다.','Food','교환 / 환불 / AS 정책
+Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_STORY,RPJT_TAG,RPJT_PAPER) 
+values (5,'https://www.youtube.com/watch?v=-yKqurpmCRs','1000000','5_thumbnail.jpg','인생 참치회는 최고급 참치어종인 혼마구로(참다랑어)의 최고급부위(가마도로)를 유통과정과 불필요한 상품들 줄여 기존 식당대비 최대 3분의1가격으로 만들어내는 혁신을 이루었습니다.','Food','교환 / 환불 / AS 정책
 
 - 리워드 수령 14일 이내 제품 하자로 인한 교환 문의는 kitri@kitri.com 로 신청 가능합니다. 
 - 교환/환불/AS 요청자 정보와 서포터 정보의 일치 여부 확인 후, 진행됩니다.
@@ -605,16 +601,16 @@ SELECT /*insert*/ *
 FROM r_option;
 --r_option(리워드 옵션) 부모키r_project
 
-Insert into R_OPTION (RPJT_ID,REWARD_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND) 
-values (1,10,30000,'스멜탄 3개 세트','스멜탄 1SET(검정/베이지/흰색 중 택1)',50,to_date('18/05/28','RR/MM/DD'));
-Insert into R_OPTION (RPJT_ID,REWARD_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND) 
-values (2,20,16900,'마유 케어 프로그램 세트/스타트팩','마유 마스크팩10개+2개<총12개>',100,to_date('18/05/28','RR/MM/DD'));
-Insert into R_OPTION (RPJT_ID,REWARD_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND) 
-values (3,30,118800,'수퍼커플얼리버드','리워드A:가격-198,000원/2개',30,to_date('18/05/28','RR/MM/DD'));
-Insert into R_OPTION (RPJT_ID,REWARD_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND) 
-values (4,40,5000,'감사메일','후원 감사드립니다!',1000,to_date('18/05/28','RR/MM/DD'));
-Insert into R_OPTION (RPJT_ID,REWARD_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND) 
-values (5,50,45900,'인생참치회 1~2인세트','손질참치회250그람1세트+참치해동법팜플렛+초데리+간장와사비',40,to_date('18/05/28','RR/MM/DD'));
+Insert into R_OPTION (RPJT_ID,REWARD_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND,RPJT_CHARGE) 
+values (1,10,30000,'스멜탄 3개 세트','스멜탄 1SET(검정/베이지/흰색 중 택1)',50,to_date('18/05/28','RR/MM/DD'),2500);
+Insert into R_OPTION (RPJT_ID,REWARD_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND,RPJT_CHARGE) 
+values (2,20,16900,'마유 케어 프로그램 세트/스타트팩','마유 마스크팩10개+2개<총12개>',100,to_date('18/05/28','RR/MM/DD'),2500);
+Insert into R_OPTION (RPJT_ID,REWARD_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND,RPJT_CHARGE) 
+values (3,30,118800,'수퍼커플얼리버드','리워드A:가격-198,000원/2개',30,to_date('18/05/28','RR/MM/DD'),2500);
+Insert into R_OPTION (RPJT_ID,REWARD_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND,RPJT_CHARGE) 
+values (4,40,5000,'감사메일','후원 감사드립니다!',1000,to_date('18/05/28','RR/MM/DD'),2500);
+Insert into R_OPTION (RPJT_ID,REWARD_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND,RPJT_CHARGE) 
+values (5,50,45900,'인생참치회 1~2인세트','손질참치회250그람1세트+참치해동법팜플렛+초데리+간장와사비',40,to_date('18/05/28','RR/MM/DD'),2500);
 
 
 
@@ -622,16 +618,16 @@ SELECT /*insert*/ *
 FROM r_post;
 --r_post(리워드 게시물)
 
-Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_USERID,RPOST_DATETIME,RPOST_UPDATED_DATETIME) 
-values (1,'향으로 덮지 않고 실내 악취와 유해 성분 원천 제거, 스멜탄','rid1',to_date('18/05/20','RR/MM/DD'),to_date('18/07/07','RR/MM/DD'));
-Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_USERID,RPOST_DATETIME,RPOST_UPDATED_DATETIME) 
-values (2,'트고 진물나는 피부를 구한! 아빠가 만든 순도 100% 제주마유 제품','rid2',to_date('18/05/21','RR/MM/DD'),to_date('18/07/07','RR/MM/DD'));
-Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_USERID,RPOST_DATETIME,RPOST_UPDATED_DATETIME) 
-values (3,'그린 시그널을 보내는 공기청정기','rid3',to_date('18/05/22','RR/MM/DD'),to_date('18/07/07','RR/MM/DD'));
-Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_USERID,RPOST_DATETIME,RPOST_UPDATED_DATETIME) 
-values (4,'3.1운동 100주년 기념 베개/목베개/방석과 부조액자 제작','rid4',to_date('18/05/23','RR/MM/DD'),to_date('18/07/07','RR/MM/DD'));
-Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_USERID,RPOST_DATETIME,RPOST_UPDATED_DATETIME) 
-values (5,'지금까지 경험해보지 못한 인생 참치회','rid5',to_date('18/05/24','RR/MM/DD'),to_date('18/07/07','RR/MM/DD'));
+Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_CONTENT,RPOST_USERID,RPOST_DATETIME) 
+values (1,'향으로 덮지 않고 실내 악취와 유해 성분 원천 제거, 스멜탄','향으로 덮지 않고 실내 악취와 유해 성분 원천 제거, 스멜탄!! 최고!!!!','rid1',to_date('18/05/20','RR/MM/DD'));
+Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_CONTENT,RPOST_USERID,RPOST_DATETIME) 
+values (2,'트고 진물나는 피부를 구한! 아빠가 만든 순도 100% 제주마유 제품','트고 진물나는 피부를 구한! 아빠가 만든 순도 100% 제주마유 제품이 짱임!!!','rid2',to_date('18/05/21','RR/MM/DD'));
+Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_CONTENT,RPOST_USERID,RPOST_DATETIME) 
+values (3,'그린 시그널을 보내는 공기청정기','그린 시그널을 보내는 공기청정기 왜안삼?!??!','rid3',to_date('18/05/22','RR/MM/DD'));
+Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_CONTENT,RPOST_USERID,RPOST_DATETIME) 
+values (4,'3.1운동 100주년 기념 베개/목베개/방석과 부조액자 제작','3.1운동 100주년 기념 베개/목베개/방석과 부조액자 제작해뜸!!!!!','rid4',to_date('18/05/23','RR/MM/DD'));
+Insert into R_POST (RPJT_ID,RPOST_TITLE,RPOST_CONTENT,RPOST_USERID,RPOST_DATETIME) 
+values (5,'지금까지 경험해보지 못한 인생 참치회','지금까지 경험해보지 못한 인생 참치회 좀 먹어봐!!!','rid5',to_date('18/05/24','RR/MM/DD'));
 
 
 
@@ -679,8 +675,6 @@ values (4, '양명고등학교 역사지기 동아리', '4_keeper.jpg', 'saddo112@daum.net',
 insert into r_keeper(RPJT_ID, r_name, r_profile, r_email, r_url, r_tel)
 values (5, '김드림(농부대첩)', '5_keeper.jpg', 'saddo112@daum.net', 
 'youthdepot/reward/1', 0113789922);
-
-
 
 
 commit;

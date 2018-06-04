@@ -37,14 +37,14 @@ $(document).ready(function() {
           }
         }
       });
+    $
 });
 </script>
-
 <div id="page-wrapper">
   <div class="row">
 	<div class="col-lg-12">
 		<div class="container" style="padding-top: 100px;">
-		  <form class="boardSubmit" method="post" enctype="multipart/form-data">
+		  <form class="boardSubmit" action="<%=request.getContextPath()%>/PostController?type=adminboardwrite" method="post" enctype="multipart/form-data">
 		    <table class="table table-bordered" style="width: 100%;">
 		      <tr>
 		        <th>글 제목</th>
@@ -70,7 +70,6 @@ $(document).ready(function() {
 		      </tr>
 		    </table>
 		    <button class="btn btn-primary">확인</button>
-		    <button class="btn btn-primary">취소</button>
 		  </form>
 		</div>
 	</div>

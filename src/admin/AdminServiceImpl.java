@@ -5,7 +5,7 @@ public class AdminServiceImpl implements AdminService {
 	private AdminDao dao;
 	
 	public AdminServiceImpl() {
-		dao = new AdminDaoImpl();
+		dao = new AdminDaoOracle();
 	}
 		
 	@Override

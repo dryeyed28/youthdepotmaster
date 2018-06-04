@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
 select{
 	border:solid 1px;
 }
 </style>
-
+<c:set var="pagebean" value="${requestScope.pagebean}"/>
+<c:set var="list" value="${pagebean.list}"/>
+<c:forEach var="member" items="${list}"/>
 <div class="col-lg-12">
   <h2 class="page-header">회원수정</h2>
 </div>
@@ -17,19 +21,19 @@ select{
 	      <tr>
 	        <th>아이디</th>
 	        <td>
-	          <input type="text" name="id" readonly="readonly" value = "jsp_expression">
+	          <input type="text" name="id" readonly="readonly" value="${member.mem_id}">
 	        </td>
 	      </tr>
 	      <tr>
 	        <th>패스워드</th>
 	        <td>
-	          <input type="password" name="pass" value="jsp_expression">
+	          <input type="password" name="pass" value="${member.mem_password} }">
 	        </td>
 	      </tr>
 	      <tr>
 	        <th>이름</th>
 	        <td>
-	          <input type="text" name="name" value="jsp_expression">
+	          <input type="text" name="name" value="${member.mem_userName}">
 	        </td>
 	      </tr>
 	      <tr>
