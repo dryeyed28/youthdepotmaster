@@ -29,7 +29,7 @@
 					</select> <input type="text" name="searchText" value="" /> <input
 						type="submit" value="검색" />
 				</p>
-				<form name="f" action="<%=request.getContextPath()%>/PostController?type=boardView" method="post">
+				<form name="f" action="<%=request.getContextPath()%>/PostController?type=boardView" method="get">
 				<table class="table">
 					<thead>
 						<tr>
@@ -52,7 +52,7 @@
 %>
 						<tr>
 							<td><%=p.getPost_id() %></td>
-							<td><a href="<%=request.getContextPath()%>/PostController?type=boardView&brd=<%=p.getBoard_id()%>&id=<%=p.getPost_id()%>"><%=p.getPost_title() %></a></td>
+							<td><a href="<%=request.getContextPath()%>/PostController?type=boardView&brd=<%=p.getBoard_id().getBrd_id()%>&id=<%=p.getPost_id()%>"><%=p.getPost_title() %></a></td>
 							<td><%=p.getMem_nickName() %></td>
 							<td><%=p.getPost_dateTime() %></td>
 							<td><%=p.getPost_view_count() %></td>

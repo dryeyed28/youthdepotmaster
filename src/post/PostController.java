@@ -49,7 +49,7 @@ public class PostController extends HttpServlet {
 			//System.out.println("data!!! + " + data);
 			forwardURL = "user/boards/boardlist.jsp";
 		} else if(type.equals("boardView")) {
-			brd_id = Integer.parseInt(request.getParameter("brd"));
+			//brd_id = Integer.parseInt(request.getParameter("brd"));
 			post_id = Integer.parseInt(request.getParameter("id"));
 			p = service.getPostMenu(brd_id, post_id);
 			request.setAttribute("p", p);
@@ -59,8 +59,15 @@ public class PostController extends HttpServlet {
 			p.setAdmin_id(request.getParameter("id"));
 			p.setPost_title(request.getParameter("title"));
 			p.setPost_content(request.getParameter("content"));
-			request.setAttribute("p", p);
+			service.updatePost(p);
 			forwardURL = "user/boards/boardupdate.jsp";
+		}else if(type.equals("boardupdateok")) {
+			p = new Post();
+			p.setAdmin_id(request.getParameter("id"));
+			p.setPost_title(request.getParameter("title"));
+			p.setPost_content(request.getParameter("content"));
+			request.setAttribute("p", p);
+			forwardURL = "/PostController?type=boardView.jsp?id="+ request.getParameter("id");
 		} else if (type.equals("boardwrite")) {
 			System.out.println("서블릿 호출");
 			HttpSession session = request.getSession();
