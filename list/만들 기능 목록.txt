@@ -38,13 +38,13 @@ PayListController.java
 PayaddressController.java
 RewardViewController.java
 IndexListController.java//user
-UserBoardViewController.java
-UserBoardListController.java
+UserBoardViewController.java 
+UserBoardListController.java 
 
 저장하기 - 주현우
-MngAddController.java
-MngMakeController.java
-RewardCommentInsertController.java
-PayCheckController.java
-UserBoardWrietController.java
-RewardInsertController.java
+MngAddController.java 
+MngMakeController.java // 완료
+RewardCommentInsertController.java // 보류
+PayCheckController.java // 보류
+UserBoardWrietController.java // 완료
+RewardInsertController.java // 완료

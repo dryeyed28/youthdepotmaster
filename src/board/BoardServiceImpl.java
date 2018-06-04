@@ -13,5 +13,10 @@ public class BoardServiceImpl implements BoardService {
 		return dao.boardList();
 	}
 
+	@Override
+	public void makeboard(Board board) {
+		dao.insertboard(board);
+	}
+
 
 }

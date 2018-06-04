@@ -6,4 +6,5 @@ import vo.Board;
 
 public interface BoardService {
 	ArrayList<Board> getBoardList();
+	void makeboard(Board board);
 }

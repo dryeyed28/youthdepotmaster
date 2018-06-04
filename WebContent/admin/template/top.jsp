@@ -26,7 +26,7 @@ String root1 = request.getContextPath();
     <link href="<%=root1%>/admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
     <!-- DataTables CSS -->
-    <link href="<%=root1%>/admin/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <%-- <link href="<%=root1%>/admin/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet"> --%>
 
     <!-- DataTables Responsive CSS -->
     <link href="<%=root1%>/admin/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
@@ -44,7 +44,7 @@ String root1 = request.getContextPath();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.jsp">청춘창고</a>
+                <a class="navbar-brand" href="<%=root1%>/admin/pages/index.jsp">청춘창고</a>
             </div>
             <!-- /.navbar-header -->
 

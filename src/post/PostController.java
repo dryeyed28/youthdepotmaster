@@ -1,5 +1,6 @@
 package post;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -10,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.oreilly.servlet.MultipartRequest;
+
+import projcet.RenamePolicy;
 import vo.Board;
 import vo.Post;
 
@@ -36,10 +40,10 @@ public class PostController extends HttpServlet {
 		Post p = null;
 		Board b = null;
 		int intPage = 1;
-		int brd_id = 0;
+		int brd_id = 20;
 		int post_id = 0;
 		if(type.equals("boardList")) {
-			brd_id = Integer.parseInt(request.getParameter("brd_id"));
+			//brd_id = Integer.parseInt(request.getParameter("brd_id"));
 			data = service.boardList(brd_id);
 			request.setAttribute("data", data);
 			//System.out.println("data!!! + " + data);
@@ -60,19 +64,44 @@ public class PostController extends HttpServlet {
 		} else if (type.equals("boardwrite")) {
 			System.out.println("서블릿 호출");
 			HttpSession session = request.getSession();
-			int mem_id = (int)session.getAttribute("id");
+			session.setAttribute("id", "1");
+			int mem_id = Integer.parseInt(session.getAttribute("id").toString());
 			p = new Post();
 			b = new Board();
 			b.setBrd_id(Integer.parseInt(request.getParameter("bid")));
 			p.setBoard_id(b);
-			p.setAdmin_id(request.getParameter("admin_id"));
 			p.setMem_id(mem_id);
 			p.setMem_nickName(request.getParameter("nickname"));
 			p.setPost_title(request.getParameter("title"));
 			p.setPost_content(request.getParameter("content"));
 			service.wirtePost(p);
 			forwardURL = "/PostController?type=boardList";
-		} 
+		} else if (type.equals("adminboardwrite")) {
+			String root = "C:/";
+			MultipartRequest mr = null;
+			int maxPostSize = 1024 * 10000;
+			String encoding = "UTF-8";
+			try {
+				mr = new MultipartRequest(request, root + "files", maxPostSize, encoding, new RenamePolicy());
+			} catch (IOException e) {
+				e.printStackTrace(); // maxPostSize, Posted content length
+			}
+			File attachedfile = mr.getFile("uploadFiles");
+			File dir = new File(root + "files/attachedfile");
+			if (!dir.exists())
+				dir.mkdirs();
+			String attachedfileroot = root + "files/attachedfile/" + attachedfile.getName();
+			attachedfile.renameTo(new File(attachedfileroot));
+			b = new Board();
+			p = new Post();
+			b.setBrd_id(Integer.parseInt(request.getParameter("bid")));
+			p.setMem_nickName(request.getParameter("nickname"));
+			p.setPost_title(request.getParameter("title"));
+			p.setPost_content(request.getParameter("content"));
+			p.setAdmin_id(request.getParameter("admin_id"));
+			service.wirtePost(p);
+			forwardURL = "/BoardController?type=?";
+		}
 		RequestDispatcher  dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
 	}

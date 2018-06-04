@@ -23,50 +23,60 @@ import vo.RProject;
 import vo.RStory;
 import vo.RewardPay;
 
-
 public class ProjectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public ProjectController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	public ProjectController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doPost(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		ProjcetService service = new ProjcetServiceImpl();
 		String type = request.getParameter("type");
 		String forwardURL = "";
-		String root = "C:/";
 		int rPJT_id = 0;
 		RKeeper keeper = null;
 		RMeta meta = null;
 		if (type.equals("apply")) {
-			System.out.println("Controller");
+			String root = "C:/";
 			MultipartRequest mr = null;
-			int maxPostSize = 1024*10000;
+			int maxPostSize = 1024 * 10000;
 			String encoding = "UTF-8";
 			try {
-				mr = new MultipartRequest(request, root +"files", 
-						maxPostSize, encoding, 
-						new RenamePolicy());
-			}catch(IOException e) {
-				e.printStackTrace(); //maxPostSize, Posted content length 
+				mr = new MultipartRequest(request, root + "files", maxPostSize, encoding, new RenamePolicy());
+			} catch (IOException e) {
+				e.printStackTrace(); // maxPostSize, Posted content length
 			}
 			File image = mr.getFile("image");
 			File paper = mr.getFile("paper");
 			File profile = mr.getFile("profile");
+			File dir1 = new File(root + "files/image");
+			File dir2 = new File(root + "files/paper");
+			File dir3 = new File(root + "files/profile");
+			if (!dir1.exists())
+				dir1.mkdirs();
+			if (!dir2.exists())
+				dir2.mkdirs();
+			if (!dir3.exists())
+				dir3.mkdirs();
 			String imageroot = root + "files/image/" + image.getName();
 			String paperroot = root + "files/paper/" + paper.getName();
 			String profileroot = root + "files/profile/" + profile.getName();
@@ -80,7 +90,7 @@ public class ProjectController extends HttpServlet {
 			RStory rs = new RStory();
 			HttpSession session = request.getSession();
 			session.setAttribute("id", 1);
-			rp.setMem_id((int)session.getAttribute("id"));
+			rp.setMem_id((int) session.getAttribute("id"));
 			rp.setrPJT_progress(3);
 			rp.setrPJT_state(2);
 			rk.setR_tel(Integer.parseInt(mr.getParameter("tel")));
@@ -108,7 +118,7 @@ public class ProjectController extends HttpServlet {
 			RApply ra = new RApply(rk, rm, ro, rp, rs);
 			service.applyinsert(ra);
 			forwardURL = "user/mypage/made.jsp";
-		} else if(type.equals("rewardDetail")) {
+		} else if (type.equals("rewardDetail")) {
 			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
 			keeper = service.keeper(rPJT_id);
 			meta = service.meta(rPJT_id);
@@ -116,21 +126,21 @@ public class ProjectController extends HttpServlet {
 			ArrayList<RPost> rpost = service.rpost(rPJT_id);
 			request.setAttribute("rpost", rpost);
 			request.setAttribute("option", option);
-			request.setAttribute("keeper",keeper);
+			request.setAttribute("keeper", keeper);
 			request.setAttribute("meta", meta);
 			forwardURL = "user/pages/rewarddetaile.jsp";
-		} else if(type.equals("pay")) {
+		} else if (type.equals("pay")) {
 			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
 			ArrayList<ROption> option = service.option(rPJT_id);
 			request.setAttribute("option", option);
 			forwardURL = "user/pages/pay.jsp";
-		} else if(type.equals("payaddress")) {
+		} else if (type.equals("payaddress")) {
 			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
 			int reward_id = Integer.parseInt(request.getParameter("reward_id"));
 			ROption payaddress = service.optionPay(rPJT_id, reward_id);
 			request.setAttribute("payaddress", payaddress);
 			forwardURL = "user/pages/payadress.jsp";
-		} else if(type.equals("payresult")) {
+		} else if (type.equals("payresult")) {
 			int mem_id = Integer.parseInt(request.getParameter("mem_id"));
 			RewardPay rpay = service.orderReward(mem_id);
 			request.setAttribute("rpay", rpay);
@@ -138,7 +148,7 @@ public class ProjectController extends HttpServlet {
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
-//		response.sendRedirect(forwardURL);
+		// response.sendRedirect(forwardURL);
 	}
 
 }

@@ -13,7 +13,7 @@ public class MemberServiceImpl implements MemberService {
 	 * 1. 인터페이스 타입의 DAOOracle 객체 생성 2. findXX메소드를 생성하고 컨트롤러로 1, -1값 리턴
 	 */
 
-	private MemberDao dao = new MemberDaoOracle();
+	private static MemberDao dao = new MemberDaoOracle();
 
 	@Override
 	public List<Member> findAll() {
@@ -32,8 +32,7 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectCount();
 	}
 
-	@Override
-	public int idCheck(String mem_userId) throws Exception {
+	public static int idCheck(String mem_userId) throws Exception {
 		Member member = dao.idCheck(mem_userId);
 
 		if (member == null) {
