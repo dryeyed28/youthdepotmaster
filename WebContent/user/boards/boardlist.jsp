@@ -29,6 +29,10 @@
 					</select> <input type="text" name="searchText" value="" /> <input
 						type="submit" value="검색" />
 				</p>
+<<<<<<< HEAD
+=======
+				<form name="f" action="<%=request.getContextPath()%>/PostController?type=boardView" method="get">
+>>>>>>> 10c6b61ba0ac1e4e068553f2f43e2e470a02f73a
 				<table class="table">
 					<thead>
 						<tr>
