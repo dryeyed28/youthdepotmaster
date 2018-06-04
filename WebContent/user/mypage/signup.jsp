@@ -8,8 +8,7 @@
 
 
 $(function(){
-	
-<<<<<<< HEAD
+
 	$('#username').keyup(function(){
 		 var field =$('#username').val().length;
 			
@@ -40,42 +39,32 @@ $(function(){
 		var idfield=$('#userid').val().length;
 		if(idfield==0){	
 		    alert("이름을 입력해주세요");
-	 }
+		    return false;
+		}
+				
 		if(idfield<=2 || idfield>=14){
 		alert("아이디를 3자-13자 사이로 입력해 주세요")	
 		}else {
 		$.ajax({ 
 			method:'get',
-			url:'idchk.do.two',
+			data:{'id':$('input[name=id]').val()},
+			url:'IdchkServlet',
 				success : function(data) {
 				console.log(data);
 					if (data.trim() == 0) {
 						alert('이미 사용중인 ID입니다');
 					} else{
-=======
-	$('#idchkbtn').click(function(){
-		console.log("성공");
-		$.ajax({ 
-			method:'get',
-			URl: '<%=request.getContextPath()%>/MemberController?type=idcheck',
-			data: {'id':$('input[name=id]').val()},
-				success : function(data) {
-					console.log(data);
-					if (data.trim() == 0) {
-						alert('이미 사용중인 ID입니다');
-					} else {
->>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
+
 						alert('사용가능한 ID입니다.');
 					}
 
 				}
 			});
-<<<<<<< HEAD
 		}
 		});
 	
-	
-	$('#nucknamechkbtn').click(function(){
+
+	$('#nicknamechkbtn').click(function(){
 		
 		var nickfield=$('#nickname').val().length;
 		
@@ -88,7 +77,6 @@ $(function(){
 		}else {
 		$.ajax({ 
 			method:'get',
-		<%-- 	URl: '<%=request.getContextPath()%>/MemberController?type='nicknamecheck', --%>
 			data: {'nickname':$('input[name=nickname]').val(),
 					'type':'nicknamecheck'
 					},
@@ -120,25 +108,7 @@ $(function(){
 	
 		$("#telconfirmbtn").click(function() {
 			
-=======
-		});
 
-		$('#btnsignup').click(function(){
-		//	if($('#chkConfirm').is(":checked")){	
-		if($('#chkConfirm').prop("checked")){	
-			alert('가입을 진행합니다');
-				
-			} else {
-				alert('약관에 동의해 주세요');
-				return false;
-			}
-		});
-
-	
-
-		$("#telconfirmbtn").click(function() {
-			
->>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
 			var count = $("#tel").val().length;
 			console.log(count);
 			//alert("tel_val : "  + $("#tel").val());
@@ -151,26 +121,27 @@ $(function(){
 			return false;
 		});
 		
-<<<<<<< HEAD
+
 		//전번 숫자만입력가능
 		$("#tel").keyup(function(){
 			$(this).val($(this).val().replace(/[^0-9]/g,"")); 
 			}); 
-			return false;		
+			/* return false; */		
 		
+			
+		$("#telconfirm").keyup(function(){
+			$(this).val($(this).val().replace(/[^0-9]/g,"")); 
+			}); 
+			/* return false; */		
+			
+			
+			
+			
 		$("#confirmnumbtn").click(function(){
 			var count1 = $("#telconfirm").val().length;
 			
-			alert("count : "  + $("#telconfirm").val().length);
-=======
-		
-		$("#confirmnum").click(function(){
-			
-			var count1 = $("#telconfirmtxt").val().length;
-			console.log(count1);
-			//alert("tel_val : "  + $("#tel").val());
-			//alert("count : "  + $("#tel").val().length);
->>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
+		//	alert("count : "  + $("#telconfirm").val().length);
+
 			if (count1 != "6") {
 				alert("인증번호를 다시확인해 주세요.");
 			} else {
@@ -183,16 +154,14 @@ $(function(){
 		
 	 
 	  $("#user_pass").keyup(function(){
-	   $('#passcorfim').text('');
+	  	$('#passcorfim').text('');
 	  }); //#user_pass.keyup
 
 	  $("#chpass").keyup(function(){
 	   if($('#user_pass').val()!=$('#chpass').val()){
-<<<<<<< HEAD
+
 	    $('#passcorfim').html('');
-=======
-	    $('#passcorfim').text('');
->>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
+
 	    $('#passcorfim').html("비밀번호가 일치하지 않습니다");
 	   }else{
 	    $('#passcorfim').html("비밀번호가 일치합니다");
@@ -202,13 +171,7 @@ $(function(){
 	  
 
 		  $("#zipSearchbtn").click(function(){
-<<<<<<< HEAD
 				window.open('findZip.html', 'winzip', 'width=500px height=200px, top=300px, left=700px');
-			
-=======
-			  
-				window.open('findZip.html', 'winzip', 'width=200px height=300');
->>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
 			});
 	  
 	  });
@@ -223,7 +186,7 @@ $(function(){
 
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
-<<<<<<< HEAD
+
 									<label>이름</label> <input type="text" id="username"
 										class="input-text full-width"  maxlength= 6 value="" placeholder="" required/>
 								</div>
@@ -231,21 +194,13 @@ $(function(){
 									<font id="namecorfim" class="input-text full-width"  ></font>	
 								</div>
 							</div>
+							
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
-									<label>아이디</label> <input type="text" name="id" id="userid"
-										class="input-text full-width"  value="" required/>
-=======
-									<label>이름</label> <input type="text"
-										class="input-text full-width" value="" placeholder="" />
-								</div>
-
-							</div>
-							<div class="row">
-								<div class="form-group col-sm-6 col-md-5">
-									<label>아이디</label> <input type="text" name="id"
+									<label>아이디</label> 
+									<input type="text" name="id" id="userid"
 										class="input-text full-width" required value="" />
->>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
+
 								</div>
 								<div class=" form-group col-sm-6 col-md-5">
 									<label> &nbsp; </label>
@@ -257,41 +212,30 @@ $(function(){
 
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
-<<<<<<< HEAD
+
 									<label>닉네임</label> 
-									<input type="text"	class="input-text full-width" id="nickname" name="nickname" value="" placeholder="" required/>
+									<input type="text"	class="input-text full-width" id="nickname" name="nickname" value="" placeholder="" maxlength=13 required/>
 								</div>
 								<div class=" form-group col-sm-6 col-md-5">
 									<label> &nbsp; </label>
 									<button type="button" class="button" id="nicknamechkbtn" style="width: 150px; height: 30px; font-size: 12px;">닉네임 중복확인</button>
-=======
-									<label>별명</label> 
-									<input type="text"	class="input-text full-width" required value="" placeholder="" />
-								</div>
-								<div class=" form-group col-sm-6 col-md-5">
-									<label> &nbsp; </label> 
-									<a href="cruise-detailed.html" class="button" style="width: 150px; height: 30px; font-size: 12px;">별명 중복확인</a>
->>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
+
 								</div>
 							</div>
 
 							<div class="row">
 								<div class=" form-group col-sm-6 col-md-5">
-<<<<<<< HEAD
+
 									<label>비밀번호</label> <input type="password" required id="user_pass" class="input-text full-width" value="" placeholder="" required/>
-=======
-									<label>비밀번호</label> <input type="password" required id="user_pass" class="input-text full-width" value="" placeholder="" />
->>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
+
 								</div>
 							</div>
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
 									<label>비밀번호 확인</label> <input type="password" id="chpass"
-<<<<<<< HEAD
+
 										class="input-text full-width" value="" placeholder="" required/>
-=======
-										class="input-text full-width" value="" placeholder="" />
->>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
+
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
 									<!-- <label>비밀번호 일치확인</label> -->
@@ -308,27 +252,20 @@ $(function(){
 										<label>생년월일</label>
 										<div class="datepicker-wrap">
 											<input type="text" class="input-text full-width"
-<<<<<<< HEAD
+
 												placeholder="일/월/년&nbsp" data-min-date="01/01/1900" required>
-=======
-												placeholder="일/월/년&nbsp" data-min-date="01/01/1900">
->>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
+
 										</div>
 									</div>
 									<div class="col-xs-6">
 										<label>성별</label>
 										<div>
-<<<<<<< HEAD
+
 											<label class="radio radio-inline radio-square"> 
 											<input type="radio" name="radioAnswer" value="1">남자
 											</label> <label class="radio radio-inline radio-square"> 
 											<input type="radio" name="radioAnswer" value="2">여자
-=======
-											<label class="radio radio-inline radio-square"> <input
-												type="radio" name="radioAnswer" value="1">남자
-											</label> <label class="radio radio-inline radio-square"> <input
-												type="radio" name="radioAnswer" value="2">여자
->>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
+
 											</label>
 										</div>
 									</div>
@@ -347,28 +284,19 @@ $(function(){
 
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
-<<<<<<< HEAD
+
 									<label>휴대전화 번호</label> 
 									<input type="text" class="input-text full-width" id="tel" placeholder="숫자만 입력하세요" required/>
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
 									<label>&nbsp;</label> 
 									<a class="button" style="width: 150px; height: 30px; font-size: 12px;" id="telconfirmbtn" >인증하기</a>
-=======
-									<label>휴대전화 번호</label> <input type="text"
-										class="input-text full-width" id="tel" placeholder="숫자만 입력하세요" />
-								</div>
-								<div class="form-group col-sm-6 col-md-5">
-									<label>&nbsp;</label> <a class="button"
-										style="width: 150px; height: 30px; font-size: 12px;"
-										id="telconfirmbtn">인증하기</a>
->>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
+
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
-<<<<<<< HEAD
 									<input type="text" class="input-text full-width" id="telconfirm" placeholder="인증번호를 입력하세요" required/>
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
@@ -393,40 +321,15 @@ $(function(){
 								<div class="form-group col-sm-6 col-md-5">
 									<label>&nbsp;</label> 
 									<button type="button"  id= "zipSearchbtn" style="width:150px; height: 30px; font-size: 12px;">우편번호 찾기</button>
-=======
-									<input type="text" class="input-text full-width"
-										id="telconfirmtxt" placeholder="인증번호를 입력하세요" />
-								</div>
-								<div class="form-group col-sm-6 col-md-5">
 
-									<a href="cruise-detailed.html" class="button" id="confirmnum"
-										style="width: 150px; height: 30px; font-size: 12px;">인증번호
-										확인</a>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
-									<label>주소</label>
-									 <input type="search"
-										class="input-text full-width"  placeholder="" readonly />
-								</div>
-								<div class="form-group col-sm-6 col-md-5">
-									<label>&nbsp;</label> 
-									<button type="button"  id= "zipSearchbtn" style="width: 150px; height: 30px; font-size: 12px;">우편번호
-										찾기</button>
->>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
-								</div>
-							</div>
 
-							<div class="row">
-								<div class="form-group col-sm-6 col-md-5">
-<<<<<<< HEAD
 									<input type="text" class="input-text full-width" value="" placeholder="나머지 주소를 입력해 주세요." id="zipResult" required/>
-=======
-									<input type="text" class="input-text full-width" value=""
-										placeholder="나머지 주소를 입력해 주세요." id="zipResult"/>
->>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
+
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
 
@@ -439,25 +342,18 @@ $(function(){
 							<div class="form-group">
 								<div class="checkbox">
 									<label> <input type="checkbox" id="chkConfirm">
-<<<<<<< HEAD
+
 										<span class="skin-color">이용약관, 개인정보 수집</span>에 모두 동의합니다.</label>
-=======
-										<span class="skin-color">이용약관, 개인정보 수집</span>에 모두 동의합니다.
-									</label>
->>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
+
 								</div>
 							</div>
 						</div>
 
 						<div class="form-group row">
 							<div class="col-sm-6 col-md-5">
-<<<<<<< HEAD
+
 								<button  class="full-width btn-large" style="font-size: 20px; font-weight: bold;" id="btnsignup">가입하기</button>
-=======
-								<button type="button" type="button" type="button" type="button"
-									type="button" type="submit" class="full-width btn-large"
-									style="font-size: 20px; font-weight: bold;" id="btnsignup">가입하기</button>
->>>>>>> 32bbac487b9adc31706cc160171e783ff9d4a41b
+
 							</div>
 						</div>
 					</form>

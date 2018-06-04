@@ -106,4 +106,14 @@
 		<servlet-name>AdminController</servlet-name>
 		<url-pattern>/AdminController</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>IdchkServlet</display-name>
+		<servlet-name>IdchkServlet</servlet-name>
+		<servlet-class>member.IdchkServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>IdchkServlet</servlet-name>
+		<url-pattern>/user/mypage/IdchkServlet</url-pattern>
+	</servlet-mapping>
 </web-app>

@@ -32,7 +32,7 @@ public class IdchkServlet extends HttpServlet {
 		}	
 		
 		RequestDispatcher rd;
-		String forwardURL = "idcheckresult.jsp";
+		String forwardURL = "idcheckrslt.jsp";
 		rd =request.getRequestDispatcher(forwardURL);
 		rd.forward(request, response);
 
