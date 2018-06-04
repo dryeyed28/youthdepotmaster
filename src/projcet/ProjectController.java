@@ -121,7 +121,6 @@ public class ProjectController extends HttpServlet {
 			forwardURL = "user/mypage/made.jsp";
 		} else if(type.equals("rewardMain")) {
 			metalist = service.metalist();
-			System.out.println(metalist.size());
 			request.setAttribute("metalist", metalist);
 			forwardURL = "user/pages/rewardmain.jsp";
 		} else if (type.equals("rewardDetail")) {
