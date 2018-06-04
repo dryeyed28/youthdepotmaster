@@ -13,6 +13,8 @@
 					<div class="booking-section travelo-box">
 
 						<form name="f" action="<%=request.getContextPath()%>/PostController?type=boardupdateok" method="post">
+						 <input type="hidden" name="brd" value="<%= request.getParameter("brd")%>">
+						 <input type="hidden" name="post_id" value="<%= request.getParameter("post_id")%>">
 							<div class="alert small-box" style="display: none;"></div>
 							<div class="person-information">
 								<h2>게시판</h2>
@@ -20,7 +22,7 @@
 								<div class="form-group row">
 									<div class="col-sm-6 col-md-4">
 										<h4>작성자</h4>
-										<input type="text" name="name" class="input-text full-width" value="<%="admin"%>" readonly>
+										<input type="text" name="name" class="input-text full-width" value="<%=p.getAdmin_id()%>" readonly>
 									</div>
 								</div>
 								<div class="form-group row">
@@ -52,16 +54,16 @@
 
 							<div class="form-group row">
 								<div class="col-sm-6 col-md-3">
-									<button type="submit" class="green">등록</button>
+									<button class="green">등록</button>
 
-									<button type="submit" class="green">취소</button>
+									<!-- <button type="submit" class="green">취소</button> -->
 								</div>
 							</div>
 						</form>
 					</div>
 				</div>
 
-				<div class="sidebar col-sm-4 col-md-3">
+				<!-- <div class="sidebar col-sm-4 col-md-3">
 					<div class="travelo-box contact-box">
 						<h4>Need Travelo Help?</h4>
 						<p>We would be more than happy to help you. Our team advisor
@@ -91,7 +93,7 @@
 								<p>Nunc cursus libero pur congue arut nimspnty.</p></li>
 						</ul>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</section>

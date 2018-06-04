@@ -38,11 +38,5 @@ public class PostServiceImpl implements PostService {
 	public int findCount(int brd_id) {
 		return dao.selectCount(brd_id);
 	}
-
-	public void boardupdateok(Post post) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
+	
 }

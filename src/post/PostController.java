@@ -49,25 +49,34 @@ public class PostController extends HttpServlet {
 			//System.out.println("data!!! + " + data);
 			forwardURL = "user/boards/boardlist.jsp";
 		} else if(type.equals("boardView")) {
-			//brd_id = Integer.parseInt(request.getParameter("brd"));
+			p = new Post();
+			b = new Board();
+			brd_id = Integer.parseInt(request.getParameter("brd"));
 			post_id = Integer.parseInt(request.getParameter("id"));
 			p = service.getPostMenu(brd_id, post_id);
+			b.setBrd_id(brd_id);
+			p.setBoard_id(b);
 			request.setAttribute("p", p);
 			forwardURL = "user/boards/boardview.jsp";
 		}else if(type.equals("boardupdate")) {
 			p = new Post();
-			p.setAdmin_id(request.getParameter("id"));
-			p.setPost_title(request.getParameter("title"));
-			p.setPost_content(request.getParameter("content"));
-			service.updatePost(p);
-			forwardURL = "user/boards/boardupdate.jsp";
-		}else if(type.equals("boardupdateok")) {
-			p = new Post();
+			p.setPost_id(Integer.parseInt(request.getParameter("post_id")));
 			p.setAdmin_id(request.getParameter("id"));
 			p.setPost_title(request.getParameter("title"));
 			p.setPost_content(request.getParameter("content"));
 			request.setAttribute("p", p);
-			forwardURL = "/PostController?type=boardView.jsp?id="+ request.getParameter("id");
+			forwardURL = "user/boards/boardupdate.jsp";
+		}else if(type.equals("boardupdateok")) {
+			p = new Post();
+			b = new Board();
+			b.setBrd_id(Integer.parseInt(request.getParameter("brd")));
+			p.setBoard_id(b);
+			p.setPost_id(Integer.parseInt(request.getParameter("post_id")));
+			p.setAdmin_id(request.getParameter("name"));
+			p.setPost_title(request.getParameter("title"));
+			p.setPost_content(request.getParameter("content"));
+			service.updatePost(p);
+			forwardURL = "/PostController?type=boardView&id="+ request.getParameter("post_id")+ "&brd=" + request.getParameter("brd");
 		} else if (type.equals("boardwrite")) {
 			System.out.println("서블릿 호출");
 			HttpSession session = request.getSession();
@@ -106,7 +115,7 @@ public class PostController extends HttpServlet {
 			p.setPost_content(request.getParameter("content"));
 			p.setAdmin_id("admin");
 			service.wirtePost(p);
-			forwardURL = "/BoardController?type=?";
+			forwardURL = "/BoardController?type=boardmenu";
 		}
 		RequestDispatcher  dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);

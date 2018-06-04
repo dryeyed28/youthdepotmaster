@@ -122,11 +122,13 @@ public class PostDaoOracle implements PostDao {
 			con.setAutoCommit(false);
 			String sql = "UPDATE post "
 					+ "SET POST_TITLE = ?,POST_CONTENT = ? "
-					+ "WHERE post_id = ?";
+					+ "WHERE post_id = ?"
+					+ "AND brd_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,post.getPost_title());
 			pstmt.setString(2, post.getPost_content());
 			pstmt.setInt(3,post.getPost_id());
+			pstmt.setInt(4, post.getBoard_id().getBrd_id());
 			int commit = pstmt.executeUpdate();
 			if(commit == 1) {
 				con.commit();
@@ -191,34 +193,5 @@ public class PostDaoOracle implements PostDao {
 			OracleConnection.close(rs, pstmt, con);
 		} return 0;
 	}
-
-	@Override
-	public void boardupdateok(Post post_id) {
-		// TODO Auto-generated method stub
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		try {
-			con = OracleConnection.getConnection();
-			con.setAutoCommit(false);
-			String sql = "UPDATE post "
-					+ "SET POST_TITLE = ?,POST_CONTENT = ? "
-					+ "WHERE post_id = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1,post.getPost_title());
-			pstmt.setString(2, post.getPost_content());
-			pstmt.setInt(3,post.getPost_id());
-			int commit = pstmt.executeUpdate();
-			if(commit == 1) {
-				con.commit();
-			} else {
-				con.rollback();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			OracleConnection.close(pstmt, con);
-		}
-	}
-
 
 }
