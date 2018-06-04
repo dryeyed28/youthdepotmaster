@@ -42,8 +42,8 @@ public class MemberController extends HttpServlet {
 			String id = request.getParameter("id");
 			try {
 				System.out.println("아이디체크");
-				int rslt = MemberService.idCheck(id);
-				request.setAttribute("rslt", rslt);
+				//int rslt = MemberService.idCheck(id);
+				//request.setAttribute("rslt", rslt);
 				forwardURL = "user/mypage/idcheckrslt.jsp";
 			} catch (Exception e) {
 				e.printStackTrace();
