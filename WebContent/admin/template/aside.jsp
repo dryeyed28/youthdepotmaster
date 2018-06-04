@@ -47,7 +47,7 @@ String root = request.getContextPath();
                         <a href="#"><i class="fa fa-credit-card fa-fw"></i> 결제현황 관리<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="<%=root%>/admin/payMng/totalpay.jsp">전체결제 관리</a>
+                                <a href="<%=root%>/TotalPayController?type=totalpay">전체결제 관리</a>
                             </li>
                             <li>
                                 <a href="<%=root%>/admin/payMng/yeoljeongpay.jsp">열정결제 관리</a>

@@ -117,7 +117,7 @@ $(function(){
                          </div>
                      </div>
                  </div>
-                 <a href="<%=root%>/payMgr/totalpay.jsp">
+                 <a href="<%=root%>/TotalPayController?type=totalpay">
                      <div class="panel-footer">
                          <span class="pull-left">상세보기</span>
                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

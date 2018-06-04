@@ -12,11 +12,13 @@ public class RewardPay {
 	private String rPay_phone;
 	private String rPay_request;
 	private int rPay_total;
+	private String rPay_date;
 	public RewardPay() {
 		super();
 	}
 	public RewardPay(int rPay_id, int mem_id, String mem_name, int rPJT_id, int rProduct_id, int rProduct_ea,
-			int rAddPay, String rPay_address, String rPay_phone, String rPay_request, int rPay_total) {
+			int rAddPay, String rPay_address, String rPay_phone, String rPay_request, int rPay_total,
+			String rPay_date) {
 		super();
 		this.rPay_id = rPay_id;
 		this.mem_id = mem_id;
@@ -29,6 +31,7 @@ public class RewardPay {
 		this.rPay_phone = rPay_phone;
 		this.rPay_request = rPay_request;
 		this.rPay_total = rPay_total;
+		this.rPay_date = rPay_date;
 	}
 	public int getrPay_id() {
 		return rPay_id;
@@ -95,6 +98,12 @@ public class RewardPay {
 	}
 	public void setrPay_total(int rPay_total) {
 		this.rPay_total = rPay_total;
+	}
+	public String getrPay_date() {
+		return rPay_date;
+	}
+	public void setrPay_date(String rPay_date) {
+		this.rPay_date = rPay_date;
 	}
 	
 }

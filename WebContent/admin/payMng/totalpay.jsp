@@ -1,3 +1,5 @@
+<%@page import="vo.RewardPay"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../template/top.jsp"%>
@@ -29,10 +31,8 @@
 		<table width="100%" class="table table-bordered table-hover" id="dataTables-example">
            <thead>
               <tr>
-            	<th><input type="checkbox"></th>
                 <th>결제번호</th>
                 <th>아이디</th>
-                <th>종류</th>
                 <th>프로젝트ID</th>
                 <th>금액</th>
                 <th>수량</th>
@@ -41,39 +41,18 @@
               </tr>
            </thead>
            <tbody>
+           <%ArrayList<RewardPay> totalpay = (ArrayList)request.getAttribute("totalpay");
+           for(RewardPay rpay : totalpay){%>
               <tr>
-                <td><input type="checkbox"></td>
-                <td>3</td>
-	            <td>id3</td>
-	            <td>투자</td>
-	            <td>12678</td>
-	            <td>100,000</td>
-	            <td>1</td>
-	            <td>2018-05-07</td>
+                <td><%=rpay.getrPay_id() %></td>
+	            <td><a href=""><%=rpay.getMem_id() %></a></td>
+	            <td><%=rpay.getrPJT_id() %></td>
+	            <td><%=rpay.getrPay_total() %></td>
+	            <td><%=rpay.getrProduct_ea() %></td>
+	            <td><%=rpay.getrPay_date() %></td>
 	            <td>입금완료</td>
               </tr>
-              <tr>
-                  <td><input type="checkbox"></td>
-                  <td>2</td>
-                  <td>id2</td>
-                  <td>리워드</td>
-                  <td>12345678</td>
-                  <td>36,000</td>
-                  <td>2</td>
-                  <td>2018-05-01</td>
-                  <td>입금완료</td>
-              </tr>
-              <tr>
-                  <td><input type="checkbox"></td>
-                  <td>1</td>
-                  <td>id1</td>
-                  <td>리워드</td>
-                  <td>12345678</td>
-                  <td>18,000</td>
-                  <td>1</td>
-                  <td>2018-04-23</td>
-                  <td>입금완료</td>
-              </tr>
+           <%} %>
            </tbody>
         </table>
         
