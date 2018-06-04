@@ -12,4 +12,6 @@ public interface MemberService {
 	public int findCount() throws Exception;
 
 	public int idCheck1(String mem_userId) throws Exception;
+
+	public void signup(Member member);
 }

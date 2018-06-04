@@ -28,10 +28,11 @@ public class MemberController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		
+		MemberService service = new MemberServiceImpl();
 		String type = "";
 		String result = "";
 		String forwardURL = "";
+		Member m =null;
 		int intPage = 0;
 		
 		MemberService svic = new MemberServiceImpl();
@@ -87,7 +88,24 @@ public class MemberController extends HttpServlet {
 				request.setAttribute("result", e.getMessage());
 			}
 			result = "/admin/pages/memberlistresult.jsp";
+			
+		}else if (type.equals("signup")) {
+			m= new Member();
+			m.setMem_userId(request.getParameter("id"));
+			m.setMem_email(request.getParameter("email"));
+			m.setMem_password(request.getParameter("password"));
+			m.setMem_userName(request.getParameter("username"));
+			m.setMem_nickName(request.getParameter("nickname"));
+			m.setMem_phone(request.getParameter("tel"));
+			//m.setMem_sex(request.getParameter(("radioAnswer")));
+			service.signup(m);
+			request.setAttribute("m", m);
+			forwardURL="user/mypage/signup.jsp";
 		}
+		
+		
+		
+		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(result);
 		dispatcher.forward(request, response);
