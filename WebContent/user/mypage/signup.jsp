@@ -42,9 +42,14 @@ $(function(){
 		    return false;
 		}
 				
+		
+		
+		console.log($('input[name=id]').val());
+		
 		if(idfield<=2 || idfield>=14){
 		alert("아이디를 3자-13자 사이로 입력해 주세요")	
 		}else {
+			
 		$.ajax({ 
 			method:'get',
 			data:{'id':$('input[name=id]').val()},
@@ -149,8 +154,6 @@ $(function(){
 			}
 			return false;
 		});
-		
-		
 		
 	 
 	  $("#user_pass").keyup(function(){

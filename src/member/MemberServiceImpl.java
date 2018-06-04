@@ -31,19 +31,7 @@ public class MemberServiceImpl implements MemberService {
 		// 멤버테이블 행수 출력
 		return dao.selectCount();
 	}
-
-	public static int idCheck(String mem_userId) throws Exception {
-		Member member = dao.idCheck(mem_userId);
-
-		if (member == null) {
-			return 1;
-		} else {
-			return 0;
-
-		}
-	}
-	
-	// 메인메소드
+/*	// 메인메소드
 	public static void main(String[] args) {
 		MemberServiceImpl service = new MemberServiceImpl();
 		try {
@@ -51,6 +39,18 @@ public class MemberServiceImpl implements MemberService {
 			System.out.println("findAll() 결과 : " + list);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}*/
+
+	@Override
+	public int idCheck1(String mem_userId) throws Exception {
+		Member member = dao.idCheck(mem_userId);
+
+		if (member == null) {
+			return 1;
+		} else {
+			return 0;
+
 		}
 	}
 }

@@ -48,3 +48,15 @@ RewardCommentInsertController.java // 보류
 PayCheckController.java // 보류
 UserBoardWrietController.java // 완료
 RewardInsertController.java // 완료
+
+
+회원 - 명선형
+IdCheckController.java 3
+LoginController.java 1
+LogoutController.java 1
+MyPageBoardController.java 1
+MyPageSerchController.java 1
+NickNameCheckController.java 3 
+PhoneUpdateController.java 2
+PointAddController.java 1
+ZipSerchController.java //보류
