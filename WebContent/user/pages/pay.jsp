@@ -41,7 +41,7 @@ div.text {
 <%@include file="../template/header.jsp"%>
 <section id="content" class="gray-area">
 	<div class="container">
-	<form name="f" action="<%=request.getContextPath()%>/ProjectController?type=payaddress" method="post">
+	<form name="f" action="<%=request.getContextPath()%>/ProjectController?type=payaddress&rPJT_id=1&reward_id=10" method="post">
 		<div class="row">
 			<div class="icondiv">리워드 선택</div>
 			<br>
@@ -67,8 +67,8 @@ div.text {
 			</div>
 			<hr>
 			<div class="text">집에서도,밖에서도 자유로운 당신만의 라이프웨어에 0 원을 펀딩합니다.</div>
-			<div style="margin: 0 auto; width: 200px; height: 100px;">
-				<button style="width: 200px; height: 100px; border-radius: 20px;">다음
+			<div style="margin: 0 auto; width: 200px; height: 100px; text-align:center;">
+				<button style="width: 120px; height: 30px;">다음
 					단계로</button>
 			</div>
 		</div>

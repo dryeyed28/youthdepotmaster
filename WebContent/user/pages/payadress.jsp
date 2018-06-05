@@ -1,3 +1,4 @@
+<%@page import="vo.Deposit"%>
 <%@page import="vo.ROption"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -85,12 +86,13 @@ div.right {
 			<div class="box">
 				<div class="icon">리워드</div>
 				<br>
+				<%-- <%Deposit deposit = (Deposit)request.getAttribute("deposit"); %> --%>
 				<%ROption payaddress = (ROption)request.getAttribute("payaddress"); %>
 				<div>
 					<h1 style="padding-left: 10px"><%=payaddress.getrPJT_name()%></h1>
 					<h3 style="padding-left: 10px">선택항목 상세내용</h3>
 					<div class="textright">
-						수량 : 0 개 <span> 00000열정</span>
+						남은 열정: &nbsp;<span> <%-- <%=deposit.getDep_balance()%> --%>00열정</span>
 					</div>
 					<hr>
 					<div class="left">펀딩금액</div>

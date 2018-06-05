@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 
 import projcet.RenamePolicy;
+import vo.Deposit;
 import vo.RApply;
 import vo.RKeeper;
 import vo.RMeta;
@@ -56,6 +57,7 @@ public class ProjectController extends HttpServlet {
 		RKeeper keeper = null;
 		ArrayList<RMeta> metalist = null;
 		RMeta meta = null;
+		Deposit deposit = null;
 		if (type.equals("apply")) {
 			String root = "C:/";
 			MultipartRequest mr = null;
