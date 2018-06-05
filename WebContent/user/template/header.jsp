@@ -77,7 +77,7 @@
 	<header id="header" class="navbar-static-top style4">
 		<div class="container">
 			<h1 class="logo navbar-brand">
-				<a href="index.html" title="YouthDepot"> <img
+				<a href="<%=request.getContextPath()%>/user/pages/index.jsp" title="YouthDepot"> <img
 					src="/images/logo.png" alt="YouthDeopot welcome" />
 				</a>
 			</h1>
@@ -105,9 +105,7 @@
 			<div class="container">
 				<nav id="main-menu" role="navigation">
 					<ul class="menu">
-						<li class="menu-item-has-children"><a href="investment.html">청년창고</a>
-							</li>
-						<li class="menu-item-has-children"><a href="investment.html">투자·후원</a>
+						<li class="menu-item-has-children"><a href="<%=request.getContextPath()%>/user/pages/index.jsp">청년창고</a>
 							</li>
 						<li class="menu-item-has-children"><a href="<%=request.getContextPath()%>/ProjectController?type=rewardMain">리워드·후원</a>
 							</li>
@@ -122,16 +120,6 @@
 						</li>
 					</ul>
 				</nav>
-				<div class="topnav">
-					<ul class="quick-menu pull-right clearfix">
-						<li><a href="#">ACCOUNT</a></li>
-						<li class="ribbon"><a href="#" class="lang-flag en-kor">KOR</a>
-							<ul class="menu mini">
-								<li class="active"><a href="#" title="English"
-									class="lang-flag en-us">English (US)</a></li>
-							</ul></li>
-					</ul>
-				</div>
 			</div>
 		</div>
 

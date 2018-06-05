@@ -1,3 +1,4 @@
+<%@page import="vo.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../template/top.jsp"%>
@@ -28,7 +29,7 @@
 									name="board" value="일반" /> 일반</label></td>
 						</tr>
 					</table>
-					<button class="btn btn-primary">확인</button>
+					<button class="btn btn-primary" >확인</button>
 					<a class="btn btn-primary" href='javascript:history.back()'> 취소</a>
 				</form>
 			</div>
