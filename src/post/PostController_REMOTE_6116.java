@@ -73,9 +73,7 @@ public class PostController extends HttpServlet {
 			request.setAttribute("p", p);
 			forwardURL = "user/boards/boardview.jsp";
 		}else if(type.equals("boardupdate")) {
-			b = new Board();
 			p = new Post();
-			b.setBrd_id(Integer.parseInt(request.getParameter("brd")));
 			p.setPost_id(Integer.parseInt(request.getParameter("post_id")));
 			p.setAdmin_id(request.getParameter("id"));
 			p.setPost_title(request.getParameter("title"));
@@ -150,14 +148,9 @@ public class PostController extends HttpServlet {
 
 			/*forwardURL = "admin/boardMng/board1.jsp";*/
 		} else if(type.equals("search")) {
-<<<<<<< HEAD
-			String searchText = request.getParameter("searchText");
-		} 
-=======
 			searchText = request.getParameter("searchText");
 		}
  		
->>>>>>> 6e68ec30b10bd026e28833a40731df86c4ee2585
 		RequestDispatcher  dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
 	}

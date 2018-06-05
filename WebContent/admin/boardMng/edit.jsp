@@ -1,3 +1,4 @@
+<%@page import="vo.Post"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../template/top.jsp"%>
@@ -43,7 +44,12 @@ $(document).ready(function() {
 <div id="page-wrapper">
   <div class="row">
 	<div class="col-lg-12">
-		<div class="container" style="padding-top: 100px;">
+	  <h2 class="page-header">게시 관리 > 공지사항 수정</h2>
+	</div>
+  </div>
+  <div class="row">
+	<div class="col-lg-12">
+		<div class="container" style=" margin:0px; padding:0px;padding-top: 20px;">
 		  <form class="boardSubmit" action="<%=request.getContextPath()%>/PostController?type=adminboardwrite" method="post" enctype="multipart/form-data">
 		    <input type="hidden" name="bid" value="20">
 		    <table class="table table-bordered" style="width: 100%;">

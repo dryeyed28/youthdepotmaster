@@ -72,7 +72,6 @@
                                 <td><%=b.getBrd_name()%></td>
                                 <td class="center"><%=b.getBrd_type()%></td>
                                 <td class="center"><%=b.getBrd_count()%></td>
-                                <td><button ></button></td>
                             </tr>
                         <% } %>
                         </tbody>
