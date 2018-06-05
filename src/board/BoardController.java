@@ -38,8 +38,9 @@ public class BoardController extends HttpServlet {
 		} else if (type.equals("make")) {
 			Board board = new Board();
 			board.setBrd_name(request.getParameter("title"));
+			board.setBrd_type(request.getParameter("board"));
 			service.makeboard(board);
-			forwardURL = "admin/boardMng/tables.jsp";
+			forwardURL = "BoardController?type=boardmenu";
 		} else if (type.equals("update")) {
 			
 		}
