@@ -37,7 +37,7 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>번호</th>
+							<th>글 번호</th>
 							<th>제목</th>
 							<th>작성자</th>
 							<th>등록 일시</th>
