@@ -41,7 +41,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> findAll(String mem_nickname, String post_title, String post_content) {
+	public ArrayList<Post> findAll(String mem_nickname, String post_title, String post_content) {
 		return dao.searchAll(mem_nickname, post_title, post_content);
 	}
 	
@@ -50,7 +50,7 @@ public class PostServiceImpl implements PostService {
 		String mem_nickname = "빠른";
 		String post_title= "빠른"; 
 		String post_content= "빠른";
-		List<Post> list = service.findAll(mem_nickname, post_title, post_content);
+		ArrayList<Post> list = service.findAll(mem_nickname, post_title, post_content);
 		System.out.println("service list 값 " + list);	
 	}
 }

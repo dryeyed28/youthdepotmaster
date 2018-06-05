@@ -187,12 +187,12 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public List<Post> searchAll(String mem_nickname, String post_title, String post_content) {
+	public ArrayList<Post> searchAll(String mem_nickname, String post_title, String post_content) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		List<Post> list = new ArrayList<Post>();
+		ArrayList<Post> list = new ArrayList<Post>();
 		try {
 			con = OracleConnection.getConnection();
 			String searchAll = "select rownum, p.*, b.brd_name, b.brd_type\r\n" + "from post p\r\n" + "join board b\r\n"
@@ -220,12 +220,12 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public List<Post> searchTitle(String post_title) {
+	public ArrayList<Post> searchTitle(String post_title) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		List<Post> list = new ArrayList<Post>();
+		ArrayList<Post> list = new ArrayList<Post>();
 		String searchTitle = "select rownum, p.*, b.brd_name, b.brd_type\r\n" + 
 				"from post p\r\n" + 
 				"join board b\r\n" + 
@@ -255,12 +255,12 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public List<Post> searchWriter(String mem_nickname) {
+	public ArrayList<Post> searchWriter(String mem_nickname) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		List<Post> list = new ArrayList<Post>();
+		ArrayList<Post> list = new ArrayList<Post>();
 		
 		String searchWriter = "select rownum, p.*, b.brd_name, b.brd_type\r\n" + 
 				"from post p\r\n" + 
@@ -290,7 +290,7 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public List<Post> searchContent(String post_content) {
+	public ArrayList<Post> searchContent(String post_content) {
 
 		return null;
 	}
