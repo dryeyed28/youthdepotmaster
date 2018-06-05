@@ -14,4 +14,6 @@ public interface MemberService {
 	public int idCheck1(String mem_userId) throws Exception;
 
 	public void signup(Member member);
+	
+	public Member login(Member member);	
 }

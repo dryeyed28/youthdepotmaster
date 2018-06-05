@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import member.MemberService;
 import vo.Member;
@@ -31,21 +32,24 @@ public class MemberController extends HttpServlet {
 		MemberService service = new MemberServiceImpl();
 		String type = "";
 		String result = "";
-		String forwardURL = "";
+		
 		Member m =null;
+		String userId="";
 		int intPage = 0;
+		boolean flag=false;
+		HttpSession session = null;
 		
 		MemberService svic = new MemberServiceImpl();
 		
 		type = request.getParameter("type");
 		System.out.println("성공");
 		if (type.equals("idcheck")) {
-			String id = request.getParameter("id");
+			
 			try {
 				System.out.println("아이디체크");
 				//int rslt = MemberService.idCheck(id);
 				//request.setAttribute("rslt", rslt);
-				forwardURL = "user/mypage/idcheckrslt.jsp";
+			
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -90,23 +94,45 @@ public class MemberController extends HttpServlet {
 			result = "/admin/pages/memberlistresult.jsp";
 			
 		}else if (type.equals("signup")) {
+			//System.out.println("회원가입");
+			
+			int sex=Integer.parseInt(request.getParameter("radioAnswer"));
+			
 			m= new Member();
-			m.setMem_userId(request.getParameter("id"));
+			m.setMem_userId(request.getParameter("userid"));
 			m.setMem_email(request.getParameter("email"));
 			m.setMem_password(request.getParameter("password"));
 			m.setMem_userName(request.getParameter("username"));
 			m.setMem_nickName(request.getParameter("nickname"));
 			m.setMem_phone(request.getParameter("tel"));
-			m.setMem_sex(request.getParameter(valueOf(("radioAnswer").checked));
+			m.setMem_sex(sex);
+			
 			service.signup(m);
 			request.setAttribute("m", m);
-			forwardURL="user/mypage/signup.jsp";
+			result="user/mypage/login.jsp";
+		
+		}else if(type.equals("login")) {
+			System.out.println("로그인");
+			m = new Member();
+			m.setMem_userId(request.getParameter("userid"));
+			m.setMem_password(request.getParameter("pwd"));
+			System.out.println(m);
+			m = service.login(m);
+			
+			if (m != null) {
+				session = request.getSession();
+				session.setAttribute("userid", userId);
+				result = "user/pages/index.jsp";
+				request.setAttribute("rslt", "0");
+				
+			} else {
+			
+				result = "user/mypage/login.jsp";
+				
+			}
+			
 		}
-		
-		
-		
-		
-		
+	
 		RequestDispatcher dispatcher = request.getRequestDispatcher(result);
 		dispatcher.forward(request, response);
 	}

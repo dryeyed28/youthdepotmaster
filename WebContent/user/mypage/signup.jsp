@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <%@include file="../template/header.jsp"%>
-
 <script>
 
 
@@ -103,6 +102,7 @@ $(function(){
 		//	if($('#chkConfirm').is(":checked")){	
 		if($('#chkConfirm').prop("checked")){
 			alert('가입을 진행합니다');
+			//document.location.href="login.jsp"
 			} else {
 				alert('약관에 동의해 주세요');
 				return false;
@@ -183,7 +183,7 @@ $(function(){
 		<div class="row">
 			<div id="main" class="col-sm-8 col-md-9">
 				<div class="booking-section travelo-box">
-					<form class="cruise-booking-form" name="f" action="<%=request.getContextPath()%>/PostController?type=signup" method="post">
+					<form class="cruise-booking-form" name="f" action="<%=request.getContextPath()%>/MemberController?type=signup" method="post">
 						<div class="person-information">
 
 							<div class="row">
@@ -203,8 +203,7 @@ $(function(){
 								</div>
 								<div class=" form-group col-sm-6 col-md-5">
 									<label> &nbsp; </label>
-									<button type="button" class="button" id="idchkbtn" style="width: 150px; height: 30px; font-size: 12px;">아이디
-										중복확인</button>
+									<button type="button" class="button" id="idchkbtn" style="width: 150px; height: 30px; font-size: 12px;">아이디중복확인</button>
 								</div>
 							</div>
 
@@ -253,7 +252,7 @@ $(function(){
 											<input type="radio" name="radioAnswer" value="1">남자
 											</label>
 											<label class="radio radio-inline radio-square"> 
-											<input type="radio" name="radioAnswer" value="2">여자
+											<input type="radio" name="radioAnswer" value="0">여자
 											</label>
 										</div>
 									</div>
@@ -321,9 +320,7 @@ $(function(){
 							<hr />
 							<div class="form-group">
 								<div class="checkbox">
-									<label> <input type="checkbox" id="chkConfirm">
-
-										<span class="skin-color">이용약관, 개인정보 수집</span>에 모두 동의합니다.</label>
+									<label> <input type="checkbox" id="chkConfirm"><span class="skin-color">이용약관, 개인정보 수집</span>에 모두 동의합니다.</label>
 
 								</div>
 							</div>

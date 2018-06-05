@@ -128,7 +128,7 @@ public class MemberDaoOracle implements MemberDao {
 			con = OracleConnection.getConnection();
 			pstmt = con.prepareStatement(idCheck);
 			rs = pstmt.executeQuery();
-			System.out.println("member");
+			
 			return member;
 			
 		} finally {
@@ -155,6 +155,9 @@ public class MemberDaoOracle implements MemberDao {
 			pstmt.setString(5,member.getMem_nickName());
 			pstmt.setString(6,member.getMem_phone());
 			pstmt.setInt(7,member.getMem_sex());
+			
+			System.out.println("memberdao");
+			
 			int commit = pstmt.executeUpdate();
 			if(commit == 1) {
 				con.commit();
@@ -167,9 +170,39 @@ public class MemberDaoOracle implements MemberDao {
 			OracleConnection.close(pstmt, con);
 		}
 			
+	}
+
+	@Override
+	public Member login(Member member) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String mem_userId= member.getMem_userId();
+		String mem_password= member.getMem_password();
+		String login="SELECT mem_id, mem_userid, mem_password  FROM members WHERE mem_userid=? and mem_password=?";
+
+		try {
+			con = OracleConnection.getConnection();
+			pstmt = con.prepareStatement(login);
 			
+			pstmt. setString(1,mem_userId);
+			pstmt. setString(2,mem_password);
+			rs = pstmt.executeQuery();
+			rs.next();
+			member.setMem_userId(rs.getString("mem_userId"));
+			
+			
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
 		
-		
+		return member;
 		
 	}
+	
 }
