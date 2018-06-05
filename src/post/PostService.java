@@ -1,6 +1,7 @@
 package post;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import vo.Post;
 
@@ -11,4 +12,5 @@ public interface PostService {
 	public void updatePost(Post post);
 	public void wirtePost(Post post);
 	public int findCount(int brd_id);
+	public List<Post> findAll(String mem_nickname, String post_title, String post_content);
 }

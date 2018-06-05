@@ -21,16 +21,16 @@
 				<h3>공지사항</h3>
 				<%-- <h3><%=p.getBoard_id().getBrd_name() %></h3> --%>
 				<p style="text-align: right">
-					<select name="searchType">
-						<option value="ALL">전체검색</option>
-						<option value="TITLE">제목</option>
-						<option value="WRITER">작성자</option>
-						<option value="CONTENTS">내용</option>
-					</select> 
 					<% String root = request.getContextPath(); %>
-					<form name="f" method="GET" action="<%= root %>PostController?type=search">
-					<input type="text" name="searchText" value="" /> <input
-						type="submit" value="검색" />
+					<form name="f" method="GET" action="<%= root %>/PostController">
+					<select name="type">
+						<option value="searchAll">전체검색</option>
+						<option value="searchTitle">제목</option>
+						<option value="searchWriter">작성자</option>
+						<option value="searchContent">내용</option>
+					</select> 
+					<input type="text" name="searchText" value="" /> 
+					<input type="submit" value="검색" />
 					</form>
 				</p>
 				<form name="f" action="<%=request.getContextPath()%>/PostController?type=boardView" method="get">

@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="vo.Deposit"%>
 <%@page import="vo.ROption"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -87,23 +88,28 @@ div.right {
 				<div class="icon">리워드</div>
 				<br>
 				<%-- <%Deposit deposit = (Deposit)request.getAttribute("deposit"); %> --%>
-				<%ROption payaddress = (ROption)request.getAttribute("payaddress"); %>
+				<%ArrayList<ROption> payaddress = (ArrayList)request.getAttribute("payaddress"); 
+				int price = 0;
+				int charge = 0;%>
 				<div>
-					<h1 style="padding-left: 10px"><%=payaddress.getrPJT_name()%></h1>
+				<%for(ROption ro : payaddress) { 
+					price += ro.getrPJT_price();%>
+					<h1 style="padding-left: 10px"><%=ro.getrPJT_name()%></h1>
+				<%} %>
 					<h3 style="padding-left: 10px">선택항목 상세내용</h3>
 					<div class="textright">
 						남은 열정: &nbsp;<span> <%-- <%=deposit.getDep_balance()%> --%>00열정</span>
 					</div>
 					<hr>
 					<div class="left">펀딩금액</div>
-					<div class="right"><%=payaddress.getrPJT_price()%>원</div>
+					<div class="right"><%=price%>원</div>
 					<hr>
 					<div class="left">추가 후원금</div>
 					<div class="right">0원</div>
 					<br>
 					<br>
 					<div class="left">배송비</div>
-					<div class="right"><%=payaddress.getrPJT_charge()%>원</div>
+					<div class="right"><%=payaddress.get(0).getrPJT_charge()%>원</div>
 					<br>
 					<br>
 					<div class="left">차감금액</div>
@@ -139,9 +145,9 @@ div.right {
 					</div>
 					<div class=" col-md-4" style="background: white;">
 						<div class="icondiv">리워드 선택</div>
-						<label><input type="radio"> 기존배송지</label> <input
+						<label><input type="radio" name="post"> 기존배송지</label> <input
 							type="text" value="기존배송지"><br> <label><input
-							type="radio"> 새로입력</label> <input type="text" value="새로입력">
+							type="radio" name="post"> 새로입력</label> <input type="text" value="새로입력">
 						<hr>
 						<div class="leftwight">
 							<h2>배송시 요청사항 (선택)</h2>

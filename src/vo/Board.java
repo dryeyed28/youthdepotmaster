@@ -39,5 +39,10 @@ public class Board {
 	public void setBrd_count(int brd_count) {
 		this.brd_count = brd_count;
 	}
-			
+	
+	@Override
+	public String toString() {
+		return "Board [brd_id=" + brd_id + ", brd_name=" + brd_name + ", brd_type=" + brd_type + ", brd_count="
+				+ brd_count + "]";
+	}		
 }

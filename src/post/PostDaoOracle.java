@@ -197,7 +197,7 @@ public class PostDaoOracle implements PostDao {
 			con = OracleConnection.getConnection();
 			String searchAll = "select rownum, p.*, b.brd_name, b.brd_type\r\n" + "from post p\r\n" + "join board b\r\n"
 					+ "on p.brd_id = b.brd_id \r\n"
-					+ "and mem_nickname like ? or post_title like ? or post_content like ?\r\n" + "and rownum <=10;";
+					+ "and mem_nickname like ? or post_title like ? or post_content like ?\r\n" + "and rownum <=10";
 			pstmt = con.prepareStatement(searchAll);
 			pstmt.setString(1, "%" + mem_nickname + "%");
 			pstmt.setString(2, "%" + post_title + "%");
@@ -294,5 +294,4 @@ public class PostDaoOracle implements PostDao {
 
 		return null;
 	}
-
 }
