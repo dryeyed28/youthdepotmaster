@@ -40,6 +40,7 @@ public class PostController extends HttpServlet {
 		System.out.println("타입명 출력");
 		String searchText = request.getParameter("searchText");
 
+
 		int brd_id = 20;
 		String forwardURL = "";
 		String page = request.getParameter("page");
@@ -130,6 +131,7 @@ public class PostController extends HttpServlet {
 			p.setAdmin_id("admin");
 			service.wirtePost(p);
 			forwardURL = "/BoardController?type=boardmenu";
+
 
 		} else if(type.equals("searchAll")) {
 			String mem_nickname = searchText;
