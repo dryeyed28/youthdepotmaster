@@ -35,12 +35,13 @@ public class PostController extends HttpServlet {
 		PostService service = new PostServiceImpl();
 		ArrayList<Post> data;
 		String type = request.getParameter("type");
+		int brd_id = 20;
 		String forwardURL = "";
 		String page = request.getParameter("page");
 		Post p = null;
 		Board b = null;
+		
 		int intPage = 1;
-		int brd_id = 20;
 		int post_id = 0;
 		if(type.equals("boardList")) {
 			//brd_id = Integer.parseInt(request.getParameter("brd_id"));
@@ -48,6 +49,13 @@ public class PostController extends HttpServlet {
 			request.setAttribute("data", data);
 			//System.out.println("data!!! + " + data);
 			forwardURL = "user/boards/boardlist.jsp";
+		}else if(type.equals("boardListResult")) {
+			brd_id = Integer.parseInt(request.getParameter("brd_id"));
+			System.out.println(brd_id);
+			data = service.boardList(brd_id);
+			request.setAttribute("data", data);
+			//System.out.println("data!!! + " + data);
+			forwardURL = "user/boards/boardlistResult.jsp";
 		} else if(type.equals("boardView")) {
 			p = new Post();
 			b = new Board();
