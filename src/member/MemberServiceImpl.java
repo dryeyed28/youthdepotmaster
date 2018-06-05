@@ -1,6 +1,5 @@
 package member;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import member.MemberDao;
@@ -62,8 +61,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Member login(Member member) {
-		Member m= dao.login(member);
-	return m;
+		Member mem= dao.login(member);
+	return mem;
 	
 	}
 }
