@@ -146,18 +146,10 @@ public class PostController extends HttpServlet {
 		} else if(type.equals("searchWriter")) {
 			
 		} else if(type.equals("searchContent")) {
-			
-
 			/*forwardURL = "admin/boardMng/board1.jsp";*/
 		} else if(type.equals("search")) {
-<<<<<<< HEAD
-			String searchText = request.getParameter("searchText");
-		} 
-=======
 			searchText = request.getParameter("searchText");
-		}
- 		
->>>>>>> 6e68ec30b10bd026e28833a40731df86c4ee2585
+		} 
 		RequestDispatcher  dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
 	}
