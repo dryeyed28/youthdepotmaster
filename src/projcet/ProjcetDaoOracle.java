@@ -214,43 +214,6 @@ public class ProjcetDaoOracle implements ProjcetDao {
 	}
 
 	@Override
-	public ArrayList<ROption> getOptionPay(int rPJT_id, int reward_id) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		ArrayList<ROption> list = new ArrayList<ROption>();
-		try {
-			con = OracleConnection.getConnection();
-			String sql = "";
-			sql += "select ro.rpjt_id, ro.reward_id, ro.RPJT_PRICE, ro.RPJT_NAME, ro.RPJT_DETAIL, \n";
-			sql += "ro.RPJT_LIMIT, to_char(ro.RPJT_SEND, 'yyyy.mm.dd') RPJT_SEND, ro.RPJT_CHARGE \n";
-			sql += "from r_option ro, r_project rp \n";
-			sql += "where ro.rPJT_id = rp.rPJT_id and ro.rPJT_id = ? and ro.reward_id = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, rPJT_id);
-			pstmt.setInt(2, reward_id);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				ROption payaddress = new ROption(
-						new RProject(rs.getInt("rPJT_id"), 0, 0, 0, null),
-						rs.getInt("reward_id"),
-						rs.getInt("rPJT_price"),
-						rs.getString("rPJT_name"),
-						rs.getString("rPJT_detail"),
-						rs.getInt("rPJT_limit"),
-						rs.getString("rPJT_send"),
-						rs.getInt("rPJT_charge"));
-				list.add(payaddress);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			OracleConnection.close(rs, pstmt, con);
-		}
-		return list;
-	}
-
-	@Override
 	public RewardPay getOrderReward(int mem_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
