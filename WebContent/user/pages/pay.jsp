@@ -49,15 +49,15 @@ div.text {
 			<%ArrayList<ROption> option = (ArrayList)request.getAttribute("option");
 			for(ROption o : option) {%>
 			<div class="paybox">
-				<input type="checkbox" name='pqy1'>
+				<input type="checkbox" name='pqy1' value="<%= o.getReward_id()%>">
 				<h1><%=o.getrPJT_price()%>원 펀딩합니다.</h1>
 				<p>
 					<%=o.getrPJT_name()%> <br>
 					<%=o.getrPJT_detail()%> <br>
 				</p>
 			</div>
-			<input type="hidden">
 			<%} %>
+			<input type="hidden" name="rPJT_id" value="<%= option.get(0).getrProject().getrPJT_id()%>">
 			<br>
 			<br>
 			<div class="icondiv">리워드 선택</div>
@@ -67,8 +67,8 @@ div.text {
 			</div>
 			<hr>
 			<div class="text">집에서도,밖에서도 자유로운 당신만의 라이프웨어에 0 원을 펀딩합니다.</div>
-			<div style="margin: 0 auto; width: 200px; height: 100px;">
-				<button style="width: 200px; height: 100px; border-radius: 20px;">다음
+			<div style="margin: 0 auto; width: 200px; height: 100px; text-align:center;">
+				<button style="width: 120px; height: 30px;">다음
 					단계로</button>
 			</div>
 		</div>
