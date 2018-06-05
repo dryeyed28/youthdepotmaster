@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 
 import projcet.RenamePolicy;
+import vo.Deposit;
 import vo.RApply;
 import vo.RKeeper;
 import vo.RMeta;
@@ -56,6 +57,7 @@ public class ProjectController extends HttpServlet {
 		RKeeper keeper = null;
 		ArrayList<RMeta> metalist = null;
 		RMeta meta = null;
+		Deposit deposit = null;
 		if (type.equals("apply")) {
 			String root = "C:/";
 			MultipartRequest mr = null;
@@ -143,7 +145,9 @@ public class ProjectController extends HttpServlet {
 			forwardURL = "user/pages/pay.jsp";
 		} else if (type.equals("payaddress")) {
 			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
-			int reward_id = Integer.parseInt(request.getParameter("reward_id"));
+			int reward_id[] = Integer.request.getParameterValues("reward_id");
+			int[] exampleNo = (int[]) new IntegerArrayConverter().convert(null, str);
+
 			ROption payaddress = service.optionPay(rPJT_id, reward_id);
 			request.setAttribute("payaddress", payaddress);
 			forwardURL = "user/pages/payadress.jsp";

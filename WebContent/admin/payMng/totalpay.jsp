@@ -31,26 +31,28 @@
 		<table width="100%" class="table table-bordered table-hover" id="dataTables-example">
            <thead>
               <tr>
+              	<td><input type="checkbox"></td>
                 <th>결제번호</th>
                 <th>아이디</th>
                 <th>프로젝트ID</th>
                 <th>금액</th>
                 <th>수량</th>
-                <th>날짜</th>
-                <th>상태</th>
+                <th>결제시간</th>
+                <!-- <th>상태</th> -->
               </tr>
            </thead>
            <tbody>
            <%ArrayList<RewardPay> totalpay = (ArrayList)request.getAttribute("totalpay");
            for(RewardPay rpay : totalpay){%>
               <tr>
+              	<td><input type="checkbox"></td>
                 <td><%=rpay.getrPay_id() %></td>
-	            <td><a href=""><%=rpay.getMem_name() %></a></td>
+	            <td><%=rpay.getMem_name() %></td>
 	            <td><%=rpay.getrPJT_id() %></td>
 	            <td><%=rpay.getrPay_total() %></td>
 	            <td><%=rpay.getrProduct_ea() %></td>
 	            <td><%=rpay.getrPay_date() %></td>
-	            <td>입금완료</td>
+	            <!-- <td>입금완료</td> -->
               </tr>
            <%} %>
            </tbody>

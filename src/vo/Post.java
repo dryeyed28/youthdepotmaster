@@ -111,5 +111,12 @@ public class Post {
 	public void setPost_del(int post_del) {
 		this.post_del = post_del;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Post [post_id=" + post_id + ", board_id=" + board_id + ", mem_id=" + mem_id + ", mem_nickName="
+				+ mem_nickName + ", admin_id=" + admin_id + ", post_title=" + post_title + ", post_content="
+				+ post_content + ", post_dateTime=" + post_dateTime + ", post_view_count=" + post_view_count
+				+ ", post_del=" + post_del + "]";
+	}
 }
