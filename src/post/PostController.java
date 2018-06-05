@@ -108,6 +108,7 @@ public class PostController extends HttpServlet {
 				dir.mkdirs();
 			String attachedfileroot = root + "files/attachedfile/" + attachedfile.getName();
 			attachedfile.renameTo(new File(attachedfileroot));
+			
 			b = new Board();
 			p = new Post();
 			b.setBrd_id(Integer.parseInt(request.getParameter("bid")));
@@ -116,6 +117,7 @@ public class PostController extends HttpServlet {
 			p.setAdmin_id("admin");
 			service.wirtePost(p);
 			forwardURL = "/BoardController?type=boardmenu";
+			/*forwardURL = "admin/boardMng/board1.jsp";*/
 		} else if(type.equals("search")) {
 			String searchText = request.getParameter("searchText");
 		}
