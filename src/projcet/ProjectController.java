@@ -145,10 +145,12 @@ public class ProjectController extends HttpServlet {
 			forwardURL = "user/pages/pay.jsp";
 		} else if (type.equals("payaddress")) {
 			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
-			int reward_id[] = Integer.request.getParameterValues("reward_id");
-			int[] exampleNo = (int[]) new IntegerArrayConverter().convert(null, str);
-
-			ROption payaddress = service.optionPay(rPJT_id, reward_id);
+			String str[] = request.getParameterValues("pqy1");
+			int reward_id[] =  new int[str.length];
+			for(int i = 0;i<str.length;i++){
+				reward_id[i] = Integer.parseInt(str[i]);	
+			}
+			ArrayList<ROption> payaddress = service.optionPay(rPJT_id, reward_id);
 			request.setAttribute("payaddress", payaddress);
 			forwardURL = "user/pages/payadress.jsp";
 		} else if (type.equals("payresult")) {

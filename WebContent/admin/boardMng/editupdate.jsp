@@ -46,6 +46,7 @@ $(document).ready(function() {
 		<div class="container" style="padding-top: 100px;">
 		  <form class="boardSubmit" action="<%=request.getContextPath()%>/PostController?type=adminboardupdate" method="post" enctype="multipart/form-data">
 		    <input type="hidden" name="bid" value="20">
+		    <input type="hidden" name="post_id" value="1">
 		    <table class="table table-bordered" style="width: 100%;">
 		      <tr>
 		        <th>글 제목</th>
