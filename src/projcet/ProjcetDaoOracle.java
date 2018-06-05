@@ -41,12 +41,12 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			pstmt.setString(9,rApply.getrMeta().getrPJT_category());
 			pstmt.setString(10,rApply.getrMeta().getrPJT_paper());
 			pstmt.setString(11, rApply.getrMeta().getrPJT_endDay());
-			pstmt.setInt(12, rApply.getrOption().getrPJT_price());
-			pstmt.setString(13, rApply.getrOption().getrPJT_name());
-			pstmt.setString(14, rApply.getrOption().getrPJT_detail());
-			pstmt.setInt(15, rApply.getrOption().getrPJT_limit());
-			pstmt.setString(16, rApply.getrOption().getrPJT_send());
-			pstmt.setInt(17, rApply.getrOption().getrPJT_charge());
+			pstmt.setInt(12, rApply.getrOption().get(0).getrPJT_price());
+			pstmt.setString(13, rApply.getrOption().get(0).getrPJT_name());
+			pstmt.setString(14, rApply.getrOption().get(0).getrPJT_detail());
+			pstmt.setInt(15, rApply.getrOption().get(0).getrPJT_limit());
+			pstmt.setString(16, rApply.getrOption().get(0).getrPJT_send());
+			pstmt.setInt(17, rApply.getrOption().get(0).getrPJT_charge());
 			pstmt.setString(18, rApply.getrStory().getrPJT_url());
 			pstmt.setString(19, rApply.getrStory().getrPJT_sumnail());
 			pstmt.setString(20, rApply.getrStory().getrPJT_story());
@@ -214,11 +214,11 @@ public class ProjcetDaoOracle implements ProjcetDao {
 	}
 
 	@Override
-	public ROption getOptionPay(int rPJT_id, int reward_id) {
+	public ArrayList<ROption> getOptionPay(int rPJT_id, int reward_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ROption payaddress = null;
+		ArrayList<ROption> list = new ArrayList<ROption>();
 		try {
 			con = OracleConnection.getConnection();
 			String sql = "";
@@ -231,7 +231,7 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			pstmt.setInt(2, reward_id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				payaddress = new ROption(
+				ROption payaddress = new ROption(
 						new RProject(rs.getInt("rPJT_id"), 0, 0, 0, null),
 						rs.getInt("reward_id"),
 						rs.getInt("rPJT_price"),
@@ -239,15 +239,15 @@ public class ProjcetDaoOracle implements ProjcetDao {
 						rs.getString("rPJT_detail"),
 						rs.getInt("rPJT_limit"),
 						rs.getString("rPJT_send"),
-						rs.getInt("rPJT_charge")
-						);
+						rs.getInt("rPJT_charge"));
+				list.add(payaddress);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			OracleConnection.close(rs, pstmt, con);
 		}
-		return payaddress;
+		return list;
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 
 import projcet.RenamePolicy;
+import vo.Deposit;
 import vo.RApply;
 import vo.RKeeper;
 import vo.RMeta;
@@ -55,7 +56,9 @@ public class ProjectController extends HttpServlet {
 		int rPJT_id = 0;
 		RKeeper keeper = null;
 		ArrayList<RMeta> metalist = null;
+		ArrayList<ROption> option = null;
 		RMeta meta = null;
+		Deposit deposit = null;
 		if (type.equals("apply")) {
 			String root = "C:/";
 			MultipartRequest mr = null;
@@ -87,6 +90,7 @@ public class ProjectController extends HttpServlet {
 			RKeeper rk = new RKeeper();
 			RMeta rm = new RMeta();
 			RProject rp = new RProject();
+			ArrayList<ROption> ro_list = new ArrayList<ROption>();
 			ROption ro = new ROption();
 			RStory rs = new RStory();
 			HttpSession session = request.getSession();
@@ -112,11 +116,12 @@ public class ProjectController extends HttpServlet {
 			ro.setrPJT_limit(Integer.parseInt(mr.getParameter("limit")));
 			ro.setrPJT_send(mr.getParameter("send"));
 			ro.setrPJT_charge(Integer.parseInt(mr.getParameter("charge")));
+			ro_list.add(ro);
 			rs.setrPJT_url(mr.getParameter("UCCurl"));
 			rs.setrPJT_sumnail(mr.getParameter("sumnail"));
 			rs.setrPJT_tag(mr.getParameter("tag"));
 			rs.setrPJT_story(mr.getParameter("story"));
-			RApply ra = new RApply(rk, rm, ro, rp, rs);
+			RApply ra = new RApply(rk, rm, ro_list, rp, rs);
 			service.applyinsert(ra);
 			forwardURL = "user/mypage/made.jsp";
 		} else if(type.equals("rewardMain")) {
@@ -127,7 +132,7 @@ public class ProjectController extends HttpServlet {
 			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
 			keeper = service.keeper(rPJT_id);
 			meta = service.meta(rPJT_id);
-			ArrayList<ROption> option = service.option(rPJT_id);
+			option = service.option(rPJT_id);
 			ArrayList<RPost> rpost = service.rpost(rPJT_id);
 			request.setAttribute("rpost", rpost);
 			request.setAttribute("option", option);
@@ -136,13 +141,17 @@ public class ProjectController extends HttpServlet {
 			forwardURL = "user/pages/rewarddetaile.jsp";
 		} else if (type.equals("pay")) {
 			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
-			ArrayList<ROption> option = service.option(rPJT_id);
+			option = service.option(rPJT_id);
 			request.setAttribute("option", option);
 			forwardURL = "user/pages/pay.jsp";
 		} else if (type.equals("payaddress")) {
 			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
-			int reward_id = Integer.parseInt(request.getParameter("reward_id"));
-			ROption payaddress = service.optionPay(rPJT_id, reward_id);
+			String str[] = request.getParameterValues("pqy1");
+			int reward_id[] =  new int[str.length];
+			for(int i = 0;i<str.length;i++){
+				reward_id[i] = Integer.parseInt(str[i]);	
+			}
+			ArrayList<ROption> payaddress = service.optionPay(rPJT_id, reward_id);
 			request.setAttribute("payaddress", payaddress);
 			forwardURL = "user/pages/payadress.jsp";
 		} else if (type.equals("payresult")) {

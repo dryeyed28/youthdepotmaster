@@ -1,9 +1,11 @@
 package vo;
 
+import java.util.ArrayList;
+
 public class RApply {
 	RKeeper rKeeper;
 	RMeta rMeta;
-	ROption rOption;
+	ArrayList<ROption> rOption_list;
 	RProject rProject;
 	RStory rStory;
 	
@@ -11,11 +13,11 @@ public class RApply {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public RApply(RKeeper rKeeper, RMeta rMeta, ROption rOption, RProject rProject, RStory rStory) {
+	public RApply(RKeeper rKeeper, RMeta rMeta, ArrayList<ROption> rOption_list, RProject rProject, RStory rStory) {
 		super();
 		this.rKeeper = rKeeper;
 		this.rMeta = rMeta;
-		this.rOption = rOption;
+		this.rOption_list = rOption_list;
 		this.rProject = rProject;
 		this.rStory = rStory;
 	}
@@ -31,11 +33,11 @@ public class RApply {
 	public void setrMeta(RMeta rMeta) {
 		this.rMeta = rMeta;
 	}
-	public ROption getrOption() {
-		return rOption;
+	public ArrayList<ROption> getrOption() {
+		return rOption_list;
 	}
-	public void setrOption(ROption rOption) {
-		this.rOption = rOption;
+	public void setrOption(ArrayList<ROption> rOption_list) {
+		this.rOption_list = rOption_list;
 	}
 	public RProject getrProject() {
 		return rProject;

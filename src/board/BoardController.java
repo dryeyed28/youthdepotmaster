@@ -40,6 +40,8 @@ public class BoardController extends HttpServlet {
 			board.setBrd_name(request.getParameter("title"));
 			service.makeboard(board);
 			forwardURL = "admin/boardMng/tables.jsp";
+		} else if (type.equals("update")) {
+			
 		}
 		RequestDispatcher  dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
