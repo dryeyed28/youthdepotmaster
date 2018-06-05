@@ -20,7 +20,6 @@ public class PostDaoOracle implements PostDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			brd_id = 20;
 			con = OracleConnection.getConnection();
 			String sql = "";
 			sql += "select rownum, p.brd_id, b.brd_name, b.brd_type, p.mem_id, p.mem_nickname, p.admin_id, \n";
@@ -36,7 +35,6 @@ public class PostDaoOracle implements PostDao {
 						rs.getInt("mem_id"), rs.getString("mem_nickname"), rs.getString("admin_id"),
 						rs.getString("post_title"), rs.getString("post_content"), rs.getString("post_datetime"),
 						rs.getInt("post_view_count"), rs.getInt("post_del"));
-
 				data.add(post);
 			}
 		} catch (SQLException e) {
