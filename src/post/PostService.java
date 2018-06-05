@@ -11,5 +11,8 @@ public interface PostService {
 	public void updatePost(Post post);
 	public void wirtePost(Post post);
 	public int findCount(int brd_id);
-	public ArrayList<Post> findAll(String mem_nickname, String post_title, String post_content);
+	public ArrayList<Post> findAll(String mem_nickName, String post_title, String post_content);
+	public ArrayList<Post> findTitle(String post_title);
+	public ArrayList<Post> findWriter(String mem_nickName);
+	public ArrayList<Post> findContent(String post_content);
 }

@@ -4,32 +4,34 @@ public class Post {
 	private int post_id;
 	private Board board_id;
 	private int mem_id;
-	private String mem_nickName;
 	private String admin_id;
+	private String mem_nickName;
 	private String post_title;
 	private String post_content;
 	private String post_dateTime;
 	/*private int post_comment_count;*/
 	private int post_view_count;
 	private int post_del;
+	private String post_file;
 	
-	public Post() {
-		super();
-	}
-
-	public Post(int post_id, Board board_id, int mem_id, String mem_nickName, String admin_id, String post_title,
-			String post_content, String post_dateTime, int post_view_count, int post_del) {
+	public Post(int post_id, Board board_id, int mem_id, String admin_id, String mem_nickName, String post_title,
+			String post_content, String post_dateTime, int post_view_count, int post_del, String post_file) {
 		super();
 		this.post_id = post_id;
 		this.board_id = board_id;
 		this.mem_id = mem_id;
-		this.mem_nickName = mem_nickName;
 		this.admin_id = admin_id;
+		this.mem_nickName = mem_nickName;
 		this.post_title = post_title;
 		this.post_content = post_content;
 		this.post_dateTime = post_dateTime;
 		this.post_view_count = post_view_count;
 		this.post_del = post_del;
+		this.post_file = post_file;
+	}
+
+	public Post() {
+		
 	}
 
 	public int getPost_id() {
@@ -111,12 +113,20 @@ public class Post {
 	public void setPost_del(int post_del) {
 		this.post_del = post_del;
 	}
+	
+	public String getPost_file() {
+		return post_file;
+	}
+
+	public void setPost_file(String post_file) {
+		this.post_file = post_file;
+	}
 
 	@Override
 	public String toString() {
-		return "Post [post_id=" + post_id + ", board_id=" + board_id + ", mem_id=" + mem_id + ", mem_nickName="
-				+ mem_nickName + ", admin_id=" + admin_id + ", post_title=" + post_title + ", post_content="
-				+ post_content + ", post_dateTime=" + post_dateTime + ", post_view_count=" + post_view_count
-				+ ", post_del=" + post_del + "]";
+		return "Post [post_id=" + post_id + ", board_id=" + board_id + ", mem_id=" + mem_id + ", admin_id=" + admin_id
+				+ ", mem_nickName=" + mem_nickName + ", post_title=" + post_title + ", post_content=" + post_content
+				+ ", post_dateTime=" + post_dateTime + ", post_view_count=" + post_view_count + ", post_del=" + post_del
+				+ ", post_file=" + post_file + "]";
 	}
 }

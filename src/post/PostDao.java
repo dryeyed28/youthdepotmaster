@@ -11,9 +11,9 @@ public interface PostDao {
 	void updatePost(Post post);
 	void insertPost(Post post);
 	int selectCount(int brd_id);
-	ArrayList<Post> searchAll(String mem_nickname, String post_title, String post_content);
+	ArrayList<Post> searchAll(String mem_nickName, String post_title, String post_content);
 	ArrayList<Post> searchTitle(String post_title);
-	ArrayList<Post> searchWriter(String mem_nickname);
+	ArrayList<Post> searchWriter(String mem_nickName);
 	ArrayList<Post> searchContent(String post_content);
 	
 }

@@ -36,18 +36,15 @@ public class PostController extends HttpServlet {
 		PostService service = new PostServiceImpl();
 		ArrayList<Post> data;
 		String type = request.getParameter("type");
-
-		System.out.println("타입명 출력");
 		String searchText = request.getParameter("searchText");
-
-
-		int brd_id = 20;
 		String forwardURL = "";
-		Post p = null;
-		Board b = null;
-		
+		String redirectURL = "";
+		int brd_id = 20;
 		int intPage = 1;
 		int post_id = 0;
+		Post p = null;
+		Board b = null;
+				
 		if(type.equals("boardList")) {
 			//brd_id = Integer.parseInt(request.getParameter("brd_id"));
 			data = service.boardList(brd_id);
@@ -142,25 +139,60 @@ public class PostController extends HttpServlet {
 			p.setAdmin_id("admin");
 			service.wirtePost(p);
 			forwardURL = "/BoardController?type=boardmenu";
-
-
 		} else if(type.equals("searchAll")) {
-			String mem_nickname = searchText;
-			String post_title = searchText;
-			String post_content = searchText;
-			List<Post> list = service.findAll(mem_nickname, post_title, post_content);
-			System.out.println("list 값" + list);
+			if (!"".equals(searchText)) {
+				//검색문자열이 있는 경우
+				String mem_nickName = searchText;
+				String post_title = searchText;
+				String post_content = searchText;
+				data = service.findAll(mem_nickName, post_title, post_content);
+				request.setAttribute("data", data);
+				forwardURL = "/user/boards/boardlist.jsp";
+			} else {
+				//빈문자열을 검색할 경우 = 전체 검색
+				data = service.boardList(brd_id);
+				request.setAttribute("data", data);
+				forwardURL = "/user/boards/boardlist.jsp";
+			}
 		} else if(type.equals("searchTitle")) {
-		
+			if (!"".equals(searchText)) {
+			String post_title = searchText;
+			ArrayList<Post> list = service.findTitle(post_title);
+			request.setAttribute("data", list);
+			forwardURL = "/user/boards/boardlist.jsp";
+			} else {
+				//빈문자열을 검색할 경우 = 전체 검색
+				data = service.boardList(brd_id);
+				request.setAttribute("data", data);
+				forwardURL = "/user/boards/boardlist.jsp";
+			}
 		} else if(type.equals("searchWriter")) {
-			
+			if (!"".equals(searchText)) {
+			String mem_nickName = searchText;
+			ArrayList<Post> list = service.findWriter(mem_nickName);
+			request.setAttribute("data", list);
+			forwardURL = "/user/boards/boardlist.jsp";
+			} else {
+				//빈문자열을 검색할 경우 = 전체 검색
+				data = service.boardList(brd_id);
+				request.setAttribute("data", data);
+				forwardURL = "/user/boards/boardlist.jsp";
+			}
 		} else if(type.equals("searchContent")) {
 			/*forwardURL = "admin/boardMng/board1.jsp";*/
-		} else if(type.equals("search")) {
-			searchText = request.getParameter("searchText");
-		} 
+			if (!"".equals(searchText)) {
+			String post_content = searchText;
+			ArrayList<Post> list = service.findContent(post_content);
+			request.setAttribute("data", list);
+			forwardURL = "/user/boards/boardlist.jsp";
+			}else {
+				//빈문자열을 검색할 경우 = 전체 검색
+				data = service.boardList(brd_id);
+				request.setAttribute("data", data);
+				forwardURL = "/user/boards/boardlist.jsp";
+			}
+		}
 		RequestDispatcher  dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
 	}
-
 }

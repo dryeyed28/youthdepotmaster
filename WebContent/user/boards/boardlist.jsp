@@ -2,6 +2,7 @@
 <%@page import="vo.Post"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--페이지 요청됬을때 : UserBoardListController >> 받은데이터 출력 --%>
 <%--검색기능 : ajax요청 >> UserBoardSerchController >> boardserchrslt.jsp에서 데이터받아옴  --%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
