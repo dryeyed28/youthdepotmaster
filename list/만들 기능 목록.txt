@@ -17,7 +17,7 @@ MngUpdatePageController.java
 RewardCommentUpdateController.java
 UserBoradUpdateController.java//완료
 UserBoardViewController.java//완료
-
+makeboard
 paycheck.jsp에서 pay테이블에 insert
 board1.jsp에서 editr로 넘어가서 post 테이블에 insert
 
