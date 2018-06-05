@@ -37,7 +37,6 @@ public class PostController extends HttpServlet {
 		String type = request.getParameter("type");
 		int brd_id = 20;
 		String forwardURL = "";
-		String page = request.getParameter("page");
 		Post p = null;
 		Board b = null;
 		
@@ -46,6 +45,17 @@ public class PostController extends HttpServlet {
 		if(type.equals("boardList")) {
 			//brd_id = Integer.parseInt(request.getParameter("brd_id"));
 			data = service.boardList(brd_id);
+			String page = request.getParameter("page");
+			int totalCount = service.findCount(brd_id);
+			int realpage = 0;
+			if (page == null) {
+				realpage = 1;
+			} else {				
+				realpage = Integer.parseInt(page);
+				int totalPage = 0;
+				int cntPerPage = 10;
+				totalPage = (int) Math.ceil((double) totalCount / cntPerPage);
+			}
 			request.setAttribute("data", data);
 			//System.out.println("data!!! + " + data);
 			forwardURL = "user/boards/boardlist.jsp";
@@ -54,7 +64,6 @@ public class PostController extends HttpServlet {
 			System.out.println(brd_id);
 			data = service.boardList(brd_id);
 			request.setAttribute("data", data);
-			//System.out.println("data!!! + " + data);
 			forwardURL = "user/boards/boardlistResult.jsp";
 		} else if(type.equals("boardView")) {
 			p = new Post();
