@@ -214,11 +214,11 @@ public class ProjcetDaoOracle implements ProjcetDao {
 	}
 
 	@Override
-	public ROption getOptionPay(int rPJT_id, int reward_id) {
+	public ArrayList<ROption> getOptionPay(int rPJT_id, int reward_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ROption payaddress = null;
+		ArrayList<ROption> list = new ArrayList<ROption>();
 		try {
 			con = OracleConnection.getConnection();
 			String sql = "";
@@ -231,7 +231,7 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			pstmt.setInt(2, reward_id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				payaddress = new ROption(
+				ROption payaddress = new ROption(
 						new RProject(rs.getInt("rPJT_id"), 0, 0, 0, null),
 						rs.getInt("reward_id"),
 						rs.getInt("rPJT_price"),
@@ -239,15 +239,15 @@ public class ProjcetDaoOracle implements ProjcetDao {
 						rs.getString("rPJT_detail"),
 						rs.getInt("rPJT_limit"),
 						rs.getString("rPJT_send"),
-						rs.getInt("rPJT_charge")
-						);
+						rs.getInt("rPJT_charge"));
+				list.add(payaddress);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			OracleConnection.close(rs, pstmt, con);
 		}
-		return payaddress;
+		return list;
 	}
 
 	@Override
