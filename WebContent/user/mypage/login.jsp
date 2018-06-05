@@ -1,8 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 <%@include file="../template/header.jsp"%>
+
+<script>
+$(function(){
+	
+	$('form').summit(){
+		if (requset.getAttribute("0")){
+			alert("로그인 완료");
+		}
+		
+		alert("아이디 또는 비밀번호를 확인해 주세요");
+	}
+
+});
+
+
+</script>
+
+
 <!-- <body class="soap-login-page style3 body-blank"> -->
 		<section id="content">
 			<div class="container">
