@@ -90,34 +90,31 @@ div.right {
 				<%-- <%Deposit deposit = (Deposit)request.getAttribute("deposit"); %> --%>
 				<%ArrayList<ROption> payaddress = (ArrayList)request.getAttribute("payaddress"); 
 				int price = 0;
-				int charge = 0;%>
+				int charge = payaddress.get(0).getrPJT_charge();%>
 				<div>
+				<h1 style="padding-left: 10px; font-weight: bold;">주문 선택내용</h1>
+				<hr>
 				<%for(ROption ro : payaddress) { 
 					price += ro.getrPJT_price();%>
-					<h1 style="padding-left: 10px"><%=ro.getrPJT_name()%></h1>
+					<h3 style="padding-left: 10px"><%=ro.getrPJT_name()%></h3>
 				<%} %>
-					<h3 style="padding-left: 10px">선택항목 상세내용</h3>
-					<div class="textright">
-						남은 열정: &nbsp;<span> <%-- <%=deposit.getDep_balance()%> --%>00열정</span>
-					</div>
 					<hr>
 					<div class="left">펀딩금액</div>
 					<div class="right"><%=price%>원</div>
-					<hr>
+					<br>
+					<br>
 					<div class="left">추가 후원금</div>
 					<div class="right">0원</div>
 					<br>
 					<br>
 					<div class="left">배송비</div>
-					<div class="right"><%=payaddress.get(0).getrPJT_charge()%>원</div>
+					<div class="right"><%=charge%>원</div>
 					<br>
 					<br>
-					<div class="left">차감금액</div>
-					<div class="right">0원</div>
-					<br>
-					<br>
+					<%int total = price + charge;
+					String comma = String.format("%,d",total);%>
 					<div class="left">최종결제열정</div>
-					<div class="right">0원</div>
+					<div class="right"><%=comma%>열정</div>
 					<br>
 					<br>
 					<div class=" col-md-4" style="background: white;">
