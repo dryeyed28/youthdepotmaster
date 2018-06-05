@@ -97,7 +97,7 @@ public class MemberController extends HttpServlet {
 			m.setMem_userName(request.getParameter("username"));
 			m.setMem_nickName(request.getParameter("nickname"));
 			m.setMem_phone(request.getParameter("tel"));
-			m.setMem_sex(request.getParameter(valueOf(("radioAnswer").checked));
+			/*m.setMem_sex(request.getParameter(valueOf(("radioAnswer").checked));*/
 			service.signup(m);
 			request.setAttribute("m", m);
 			forwardURL="user/mypage/signup.jsp";
