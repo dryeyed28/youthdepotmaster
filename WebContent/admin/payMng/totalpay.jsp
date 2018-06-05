@@ -45,7 +45,7 @@
            for(RewardPay rpay : totalpay){%>
               <tr>
                 <td><%=rpay.getrPay_id() %></td>
-	            <td><a href=""><%=rpay.getMem_id() %></a></td>
+	            <td><a href=""><%=rpay.getMem_name() %></a></td>
 	            <td><%=rpay.getrPJT_id() %></td>
 	            <td><%=rpay.getrPay_total() %></td>
 	            <td><%=rpay.getrProduct_ea() %></td>
