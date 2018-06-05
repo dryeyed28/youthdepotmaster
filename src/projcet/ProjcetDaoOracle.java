@@ -41,12 +41,12 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			pstmt.setString(9,rApply.getrMeta().getrPJT_category());
 			pstmt.setString(10,rApply.getrMeta().getrPJT_paper());
 			pstmt.setString(11, rApply.getrMeta().getrPJT_endDay());
-			pstmt.setInt(12, rApply.getrOption().getrPJT_price());
-			pstmt.setString(13, rApply.getrOption().getrPJT_name());
-			pstmt.setString(14, rApply.getrOption().getrPJT_detail());
-			pstmt.setInt(15, rApply.getrOption().getrPJT_limit());
-			pstmt.setString(16, rApply.getrOption().getrPJT_send());
-			pstmt.setInt(17, rApply.getrOption().getrPJT_charge());
+			pstmt.setInt(12, rApply.getrOption().get(0).getrPJT_price());
+			pstmt.setString(13, rApply.getrOption().get(0).getrPJT_name());
+			pstmt.setString(14, rApply.getrOption().get(0).getrPJT_detail());
+			pstmt.setInt(15, rApply.getrOption().get(0).getrPJT_limit());
+			pstmt.setString(16, rApply.getrOption().get(0).getrPJT_send());
+			pstmt.setInt(17, rApply.getrOption().get(0).getrPJT_charge());
 			pstmt.setString(18, rApply.getrStory().getrPJT_url());
 			pstmt.setString(19, rApply.getrStory().getrPJT_sumnail());
 			pstmt.setString(20, rApply.getrStory().getrPJT_story());

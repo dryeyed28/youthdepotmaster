@@ -87,6 +87,7 @@ public class ProjectController extends HttpServlet {
 			RKeeper rk = new RKeeper();
 			RMeta rm = new RMeta();
 			RProject rp = new RProject();
+			ArrayList<ROption> ro_list = new ArrayList<ROption>();
 			ROption ro = new ROption();
 			RStory rs = new RStory();
 			HttpSession session = request.getSession();
@@ -112,11 +113,12 @@ public class ProjectController extends HttpServlet {
 			ro.setrPJT_limit(Integer.parseInt(mr.getParameter("limit")));
 			ro.setrPJT_send(mr.getParameter("send"));
 			ro.setrPJT_charge(Integer.parseInt(mr.getParameter("charge")));
+			ro_list.add(ro);
 			rs.setrPJT_url(mr.getParameter("UCCurl"));
 			rs.setrPJT_sumnail(mr.getParameter("sumnail"));
 			rs.setrPJT_tag(mr.getParameter("tag"));
 			rs.setrPJT_story(mr.getParameter("story"));
-			RApply ra = new RApply(rk, rm, ro, rp, rs);
+			RApply ra = new RApply(rk, rm, ro_list, rp, rs);
 			service.applyinsert(ra);
 			forwardURL = "user/mypage/made.jsp";
 		} else if(type.equals("rewardMain")) {
