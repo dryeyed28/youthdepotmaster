@@ -41,7 +41,7 @@ div.text {
 <%@include file="../template/header.jsp"%>
 <section id="content" class="gray-area">
 	<div class="container">
-	<form name="f" action="<%=request.getContextPath()%>/ProjectController?type=payaddress&rPJT_id=1&reward_id=10" method="post">
+	<form name="f" action="<%=request.getContextPath()%>/ProjectController?type=payaddress" method="post">
 		<div class="row">
 			<div class="icondiv">리워드 선택</div>
 			<br>
@@ -49,15 +49,15 @@ div.text {
 			<%ArrayList<ROption> option = (ArrayList)request.getAttribute("option");
 			for(ROption o : option) {%>
 			<div class="paybox">
-				<input type="checkbox" name='pqy1'>
+				<input type="checkbox" name='pqy1' value="<%= o.getReward_id()%>">
 				<h1><%=o.getrPJT_price()%>원 펀딩합니다.</h1>
 				<p>
 					<%=o.getrPJT_name()%> <br>
 					<%=o.getrPJT_detail()%> <br>
 				</p>
 			</div>
-			<input type="hidden">
 			<%} %>
+			<input type="hidden" name="rPJT_id" value="<%= option.get(0).getrProject().getrPJT_id()%>">
 			<br>
 			<br>
 			<div class="icondiv">리워드 선택</div>

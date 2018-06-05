@@ -145,7 +145,9 @@ public class ProjectController extends HttpServlet {
 			forwardURL = "user/pages/pay.jsp";
 		} else if (type.equals("payaddress")) {
 			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
-			int reward_id = Integer.parseInt(request.getParameter("reward_id"));
+			int reward_id[] = Integer.request.getParameterValues("reward_id");
+			int[] exampleNo = (int[]) new IntegerArrayConverter().convert(null, str);
+
 			ROption payaddress = service.optionPay(rPJT_id, reward_id);
 			request.setAttribute("payaddress", payaddress);
 			forwardURL = "user/pages/payadress.jsp";
