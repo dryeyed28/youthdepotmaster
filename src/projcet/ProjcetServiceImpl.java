@@ -32,8 +32,17 @@ public class ProjcetServiceImpl implements ProjcetService {
 		return dao.getRPost(rPJT_id);
 	}
 	@Override
-	public ROption optionPay(int rPJT_id, int reward_id) {
-		return dao.getOptionPay(rPJT_id, reward_id);
+	public ArrayList<ROption> optionPay(int rPJT_id, int reward_id[]) {
+		ArrayList<ROption> list = dao.getOption(rPJT_id);
+		ArrayList<ROption> payadress = new ArrayList<ROption>();
+		for (int i = 0; i < reward_id.length; i++) {
+			for (int j = 0; j < list.size(); j++) {
+				if (reward_id[i] == list.get(j).getReward_id()) {
+					payadress.add(list.get(j));
+				}
+			}
+		}
+		return payadress;
 	}
 	@Override
 	public RewardPay orderReward(int mem_id) {

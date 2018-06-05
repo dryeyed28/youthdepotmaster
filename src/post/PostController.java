@@ -3,6 +3,7 @@ package post;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,6 +36,11 @@ public class PostController extends HttpServlet {
 		PostService service = new PostServiceImpl();
 		ArrayList<Post> data;
 		String type = request.getParameter("type");
+
+		System.out.println("타입명 출력");
+		String searchText = request.getParameter("searchText");
+
+
 		int brd_id = 20;
 		String forwardURL = "";
 		String page = request.getParameter("page");
@@ -67,7 +73,9 @@ public class PostController extends HttpServlet {
 			request.setAttribute("p", p);
 			forwardURL = "user/boards/boardview.jsp";
 		}else if(type.equals("boardupdate")) {
+			b = new Board();
 			p = new Post();
+			b.setBrd_id(Integer.parseInt(request.getParameter("brd")));
 			p.setPost_id(Integer.parseInt(request.getParameter("post_id")));
 			p.setAdmin_id(request.getParameter("id"));
 			p.setPost_title(request.getParameter("title"));
@@ -125,10 +133,23 @@ public class PostController extends HttpServlet {
 			p.setAdmin_id("admin");
 			service.wirtePost(p);
 			forwardURL = "/BoardController?type=boardmenu";
+
+
+		} else if(type.equals("searchAll")) {
+			String mem_nickname = searchText;
+			String post_title = searchText;
+			String post_content = searchText;
+			List<Post> list = service.findAll(mem_nickname, post_title, post_content);
+			System.out.println("list 값" + list);
+		} else if(type.equals("searchTitle")) {
+		
+		} else if(type.equals("searchWriter")) {
+			
+		} else if(type.equals("searchContent")) {
 			/*forwardURL = "admin/boardMng/board1.jsp";*/
 		} else if(type.equals("search")) {
-			String searchText = request.getParameter("searchText");
-		}
+			searchText = request.getParameter("searchText");
+		} 
 		RequestDispatcher  dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
 	}

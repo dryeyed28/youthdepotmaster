@@ -25,7 +25,8 @@ public class PostDaoOracle implements PostDao {
 			sql += "select rownum, p.brd_id, b.brd_name, b.brd_type, p.mem_id, p.mem_nickname, p.admin_id, \n";
 			sql += "p.POST_TITLE, p.POST_CONTENT, TO_CHAR(p.POST_DATETIME, 'yyyy.mm.dd') post_datetime, p.POST_VIEW_COUNT ,p.POST_DEL \n";
 			sql += "from board b, post p \n";
-			sql += "where b.brd_id = p.brd_id and p.post_del=0 and p.brd_id = ? and rownum <= 10";
+			sql += "where b.brd_id = p.brd_id and p.post_del=0 and p.brd_id = ? ";
+			sql += "order by rownum desc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, brd_id);
 			rs = pstmt.executeQuery();
@@ -196,7 +197,7 @@ public class PostDaoOracle implements PostDao {
 			con = OracleConnection.getConnection();
 			String searchAll = "select rownum, p.*, b.brd_name, b.brd_type\r\n" + "from post p\r\n" + "join board b\r\n"
 					+ "on p.brd_id = b.brd_id \r\n"
-					+ "and mem_nickname like ? or post_title like ? or post_content like ?\r\n" + "and rownum <=10;";
+					+ "and mem_nickname like ? or post_title like ? or post_content like ?\r\n" + "and rownum <=10";
 			pstmt = con.prepareStatement(searchAll);
 			pstmt.setString(1, "%" + mem_nickname + "%");
 			pstmt.setString(2, "%" + post_title + "%");
@@ -293,5 +294,4 @@ public class PostDaoOracle implements PostDao {
 
 		return null;
 	}
-
 }
