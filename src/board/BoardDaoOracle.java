@@ -10,7 +10,7 @@ import sql.OracleConnection;
 import vo.Board;
 
 public class BoardDaoOracle implements BoardDao {
-	
+/*	
 	@Override
 	public ArrayList<Board> boardList() {
 		ArrayList<Board> list = new ArrayList<Board>();
@@ -41,8 +41,8 @@ public class BoardDaoOracle implements BoardDao {
 		}
 		return list;
 	}
-
-	/*@Override
+*/
+	@Override
 	public ArrayList<Board> boardList() {
 		ArrayList<Board> list = new ArrayList<Board>();
 		Connection con = null;
@@ -50,7 +50,7 @@ public class BoardDaoOracle implements BoardDao {
 		ResultSet rs = null;
 		try {
 			con = OracleConnection.getConnection();
-			String sql = "select brd_id, brd_name \n"
+			String sql = "select brd_id, brd_name, brd_type \n"
 					+ "from board \n"
 					+ "order by brd_id";
 			pstmt = con.prepareStatement(sql);
@@ -59,6 +59,7 @@ public class BoardDaoOracle implements BoardDao {
 				Board board = new Board();
 				board.setBrd_id(rs.getInt("brd_id"));
 				board.setBrd_name(rs.getString("brd_name"));
+				board.setBrd_type(rs.getString("brd_type"));
 				
 				list.add(board);
 			}
@@ -68,7 +69,7 @@ public class BoardDaoOracle implements BoardDao {
 			OracleConnection.close(rs, pstmt, con);
 		}
 		return list;
-	}*/
+	}
 
 	@Override
 	public void insertboard(Board board) {
