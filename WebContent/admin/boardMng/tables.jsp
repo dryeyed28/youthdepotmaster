@@ -5,7 +5,7 @@
 <%@include file="../template/top.jsp"%>
 <%@include file="../template/aside.jsp"%>
 <script>
-$(function() {
+/* $(function() {
 	$('button#create').click(function() {
 		$.ajax({
 			url:"makeboard.jsp",
@@ -27,7 +27,7 @@ $(function() {
 		});
 		return false;
 	});
-});
+}); */
 </script>
 <style>
   div.btn-center > a{
