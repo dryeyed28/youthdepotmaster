@@ -5,7 +5,7 @@
 <%@include file="../template/top.jsp"%>
 <%@include file="../template/aside.jsp"%>
 <script>
-$(function() {
+/* $(function() {
 	$('button#create').click(function() {
 		$.ajax({
 			url:"makeboard.jsp",
@@ -27,7 +27,7 @@ $(function() {
 		});
 		return false;
 	});
-});
+}); */
 </script>
 <style>
   div.btn-center > a{
@@ -72,13 +72,14 @@ $(function() {
                                 <td><%=b.getBrd_name()%></td>
                                 <td class="center"><%=b.getBrd_type()%></td>
                                 <td class="center"><%=b.getBrd_count()%></td>
+                                <td><button ></button></td>
                             </tr>
                         <% } %>
                         </tbody>
                     </table>
                     <hr>
                     <div class="btn-center" style="text-align: center">
-                      <button id="create" class="btn btn-default btn-outline btn-primary">게시판 생성</button>
+                      <button id="create" class="btn btn-default btn-outline btn-primary" onclick="location.href='<%=request.getContextPath()%>/admin/boardMng/makeboard.jsp'">게시판 생성</button>
                       <button id="modify" class="btn btn-default btn-outline btn-primary">게시판 수정</button>
                       <button class="btn btn-default btn-outline btn-primary">게시판 삭제</button>
                     </div>
