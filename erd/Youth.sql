@@ -52,8 +52,8 @@ DROP TABLE ADMIN
 
 /* 리워드 댓글 */
 CREATE TABLE R_COMMENT (
-	RCMT_ID NUMBER(10) NOT NULL, /* 글번호 */
-	RCMT_PARENT VARCHAR2(100) NOT NULL, /* 부모글번호 */
+	RCMT_ID NUMBER(10) NOT NULL, /* 댓글번호 */
+	RCMT_PARENT NUMBER(10) NOT NULL, /* 부모글번호 */
 	RPJT_ID NUMBER(10) NOT NULL, /* 리워드번호 */
 	RCMT_USERID VARCHAR2(50) NOT NULL, /* 유저아이디 */
 	RCMT_CONTENT VARCHAR2(600), /* 댓글내용 */
@@ -62,20 +62,27 @@ CREATE TABLE R_COMMENT (
 	RCMT_DEL NUMBER(10) /* 게시물삭제여부 */
 );
 
+ALTER TABLE R_COMMENT
+	ADD
+		CONSTRAINT R_COMMENT
+		PRIMARY KEY (
+			RCMT_ID
+		);
+
 /* 리워드결제 */
 CREATE TABLE REWARD_PAY (
 	RPAY_ID NUMBER(10) NOT NULL, /* PAY_PK */
 	MEM_ID NUMBER(10), /* MEM_ID */
-    MEM_NAME VARCHAR2(20), /*주문자 이름*/
+	MEM_NAME VARCHAR2(20), /* MEM_NAME */
 	RPJT_ID NUMBER(10), /* 리워드번호 */
-    RPRODUCT_ID NUMBER(10), /* 아이템번호 */
+	RPRODUCT_ID NUMBER(10), /* 아이템번호 */
 	RPRODUCT_EA NUMBER(10), /* 수량 */
 	RADDPAY NUMBER(10), /* 추가후원금 */
 	RPAY_ADDRESS VARCHAR2(50), /* 배송지 */
 	RPAY_PHONE VARCHAR2(20), /* 휴대폰번호 */
 	RPAY_REQUEST VARCHAR2(50), /* 배송요청사항 */
 	RPAY_TOTAL NUMBER(10), /* 총금액 */
-    RPAY_DATE DATE /* 결제시간 */
+	RPAY_DATE DATE /* 결제시간 */
 );
 
 ALTER TABLE REWARD_PAY
@@ -98,7 +105,8 @@ CREATE TABLE MEMBERS (
 	MEM_REGISTER_DATETIME DATE, /* 회원등록일 */
 	MEM_LASTLOGIN_DATETIME DATE, /* 최종로그인시간 */
 	MEM_TREASURER NUMBER(10), /* 창고지기여부 */
-	MEM_PASSION NUMBER(10) /* 보유열정 */
+	MEM_PASSION NUMBER(10), /* 보유열정 */
+	MEM_ADDRESS VARCHAR2(50) /* 주소 */
 );
 
 ALTER TABLE MEMBERS
@@ -129,10 +137,11 @@ ALTER TABLE R_STORY
 /* 리워드 게시물 */
 CREATE TABLE R_POST (
 	RPJT_ID NUMBER(10) NOT NULL, /* 리워드번호 */
-    RPOST_TITLE VARCHAR2(100), /* 게시글제목 */
-	RPOST_CONTENT CLOB, /* 게시글제목 */
+	RPOST_TITLE VARCHAR2(200), /* 게시글제목 */
 	RPOST_USERID VARCHAR2(50), /* 작성자회원아이디 */
-	RPOST_DATETIME DATE /* 게시물작성일자 */
+	RPOST_DATETIME DATE, /* 게시물작성일자 */
+	RPOST_UPDATED_DATETIME DATE, /* 최종수정시간 */
+	RPOST_CONTENT CLOB /* 게시글내용 */
 );
 
 ALTER TABLE R_POST
@@ -171,7 +180,8 @@ CREATE TABLE R_PROJECT (
 	MEM_ID NUMBER(10), /* MEM_ID */
 	RPJT_STATE NUMBER(10), /* 프로젝트상태 */
 	RPJT_PROGRESS NUMBER(10), /* (진행중/마감) */
-	RPJT_SUBMISSION DATE /* 제출일 */
+	RPJT_SUBMISSION DATE, /* 제출일 */
+	RPJT_PROFIT NUMBER(10) /* 프로젝트입금상태 */
 );
 
 ALTER TABLE R_PROJECT
@@ -222,7 +232,7 @@ ALTER TABLE R_KEEPER
 /* 리워드 옵션 */
 CREATE TABLE R_OPTION (
 	REWARD_ID NUMBER(10) NOT NULL, /* 아이템번호 */
-	RPJT_ID NUMBER(10), /* 리워드번호 */
+	RPJT_ID NUMBER(10) NOT NULL, /* 리워드번호 */
 	RPJT_PRICE NUMBER(10), /* 금액 */
 	RPJT_NAME VARCHAR2(50), /* 아이템이름 */
 	RPJT_DETAIL CLOB, /* 상세설명 */
@@ -260,7 +270,7 @@ ALTER TABLE DEPOSIT
 CREATE TABLE BOARD (
 	BRD_ID NUMBER(10) NOT NULL, /* BRD_ID */
 	BRD_NAME VARCHAR2(20), /* 게시판명 */
-    BRD_TYPE VARCHAR2(10) NOT NULL /* 게시판 분류 */
+	BRD_TYPE VARCHAR2(10) NOT NULL /* 게시판분류 */
 );
 
 ALTER TABLE BOARD
@@ -394,23 +404,22 @@ ALTER TABLE DEPOSIT
 			MEM_ID
 		);
         
-        
 SELECT /*insert*/ *
 FROM MEMBERS;
 
 --MEMBERS--
-Insert into MEMBERS (MEM_ID,MEM_USERID,MEM_EMAIL,MEM_PASSWORD,MEM_USERNAME,MEM_NICKNAME,MEM_PHONE,MEM_SEX,MEM_REGISTER_DATETIME,MEM_LASTLOGIN_DATETIME,MEM_TREASURER,MEM_PASSION) 
-values (1,'id1','123@abc.de','p1','주현우','에인젤','01012345678',1,to_date('18/05/20','RR/MM/DD'),to_date('18/05/25','RR/MM/DD'),1,10000);
-Insert into MEMBERS (MEM_ID,MEM_USERID,MEM_EMAIL,MEM_PASSWORD,MEM_USERNAME,MEM_NICKNAME,MEM_PHONE,MEM_SEX,MEM_REGISTER_DATETIME,MEM_LASTLOGIN_DATETIME,MEM_TREASURER,MEM_PASSION) 
-values (2,'id2','456@abc.de','p2','김조운','빠른94','010159647896',1,to_date('18/05/21','RR/MM/DD'),to_date('18/05/22','RR/MM/DD'),1,50000);
-Insert into MEMBERS (MEM_ID,MEM_USERID,MEM_EMAIL,MEM_PASSWORD,MEM_USERNAME,MEM_NICKNAME,MEM_PHONE,MEM_SEX,MEM_REGISTER_DATETIME,MEM_LASTLOGIN_DATETIME,MEM_TREASURER,MEM_PASSION) 
-values (3,'id3','789@abc.de','p3','최은정','별명없음','01075311563',0,to_date('18/05/23','RR/MM/DD'),to_date('18/05/23','RR/MM/DD'),1,0);
-Insert into MEMBERS (MEM_ID,MEM_USERID,MEM_EMAIL,MEM_PASSWORD,MEM_USERNAME,MEM_NICKNAME,MEM_PHONE,MEM_SEX,MEM_REGISTER_DATETIME,MEM_LASTLOGIN_DATETIME,MEM_TREASURER,MEM_PASSION) 
-values (4,'id4','159@abc.de','p4','명선형','센세','01098745632',0,to_date('18/05/24','RR/MM/DD'),to_date('18/05/24','RR/MM/DD'),1,0);
-Insert into MEMBERS (MEM_ID,MEM_USERID,MEM_EMAIL,MEM_PASSWORD,MEM_USERNAME,MEM_NICKNAME,MEM_PHONE,MEM_SEX,MEM_REGISTER_DATETIME,MEM_LASTLOGIN_DATETIME,MEM_TREASURER,MEM_PASSION) 
-values (5,'id5','951@abc.de','p5','서동환','동동동동','01014782365',1,to_date('18/05/25','RR/MM/DD'),to_date('18/05/25','RR/MM/DD'),1,90000);
-Insert into MEMBERS (MEM_ID,MEM_USERID,MEM_EMAIL,MEM_PASSWORD,MEM_USERNAME,MEM_NICKNAME,MEM_PHONE,MEM_SEX,MEM_REGISTER_DATETIME,MEM_LASTLOGIN_DATETIME,MEM_TREASURER,MEM_PASSION) 
-values (6,'id6','951@abc.de','p6','강전욱','강고래','01098999899',0,to_date('18/05/25','RR/MM/DD'),to_date('18/05/25','RR/MM/DD'),1,2000);
+Insert into MEMBERS (MEM_ID,MEM_USERID,MEM_EMAIL,MEM_PASSWORD,MEM_USERNAME,MEM_NICKNAME,MEM_PHONE,MEM_SEX,MEM_REGISTER_DATETIME,MEM_LASTLOGIN_DATETIME,MEM_TREASURER,MEM_PASSION,MEM_ADDRESS) 
+values (1,'id1','123@abc.de','p1','주현우','에인젤','01012345678',1,to_date('18/05/20','RR/MM/DD'),to_date('18/05/25','RR/MM/DD'),1,10000,'서울 특별시 관악구 난곡동');
+Insert into MEMBERS (MEM_ID,MEM_USERID,MEM_EMAIL,MEM_PASSWORD,MEM_USERNAME,MEM_NICKNAME,MEM_PHONE,MEM_SEX,MEM_REGISTER_DATETIME,MEM_LASTLOGIN_DATETIME,MEM_TREASURER,MEM_PASSION,MEM_ADDRESS) 
+values (2,'id2','456@abc.de','p2','김조운','빠른94','010159647896',1,to_date('18/05/21','RR/MM/DD'),to_date('18/05/22','RR/MM/DD'),1,50000,'서울 특별시 관악구 조원동');
+Insert into MEMBERS (MEM_ID,MEM_USERID,MEM_EMAIL,MEM_PASSWORD,MEM_USERNAME,MEM_NICKNAME,MEM_PHONE,MEM_SEX,MEM_REGISTER_DATETIME,MEM_LASTLOGIN_DATETIME,MEM_TREASURER,MEM_PASSION,MEM_ADDRESS) 
+values (3,'id3','789@abc.de','p3','최은정','별명없음','01075311563',0,to_date('18/05/23','RR/MM/DD'),to_date('18/05/23','RR/MM/DD'),1,0,'서울 특별시 관악구 난곡동');
+Insert into MEMBERS (MEM_ID,MEM_USERID,MEM_EMAIL,MEM_PASSWORD,MEM_USERNAME,MEM_NICKNAME,MEM_PHONE,MEM_SEX,MEM_REGISTER_DATETIME,MEM_LASTLOGIN_DATETIME,MEM_TREASURER,MEM_PASSION,MEM_ADDRESS) 
+values (4,'id4','159@abc.de','p4','명선형','센세','01098745632',0,to_date('18/05/24','RR/MM/DD'),to_date('18/05/24','RR/MM/DD'),1,0,'서울 특별시 관악구 난곡동');
+Insert into MEMBERS (MEM_ID,MEM_USERID,MEM_EMAIL,MEM_PASSWORD,MEM_USERNAME,MEM_NICKNAME,MEM_PHONE,MEM_SEX,MEM_REGISTER_DATETIME,MEM_LASTLOGIN_DATETIME,MEM_TREASURER,MEM_PASSION,MEM_ADDRESS) 
+values (5,'id5','951@abc.de','p5','서동환','동동동동','01014782365',1,to_date('18/05/25','RR/MM/DD'),to_date('18/05/25','RR/MM/DD'),1,90000,'서울 특별시 관악구 난곡동');
+Insert into MEMBERS (MEM_ID,MEM_USERID,MEM_EMAIL,MEM_PASSWORD,MEM_USERNAME,MEM_NICKNAME,MEM_PHONE,MEM_SEX,MEM_REGISTER_DATETIME,MEM_LASTLOGIN_DATETIME,MEM_TREASURER,MEM_PASSION,MEM_ADDRESS) 
+values (6,'id6','951@abc.de','p6','강전욱','강고래','01098999899',0,to_date('18/05/25','RR/MM/DD'),to_date('18/05/25','RR/MM/DD'),1,2000,'서울 특별시 관악구 난곡동');
 
 
 SELECT /*insert*/ *
@@ -422,12 +431,12 @@ Insert into R_PROJECT (RPJT_ID,MEM_ID,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION)
 values (1,1,1,1,to_date('18/05/25','RR/MM/DD'));
 Insert into R_PROJECT (RPJT_ID,MEM_ID,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION) 
 values (2,2,2,1,to_date('18/05/25','RR/MM/DD'));
-Insert into R_PROJECT (RPJT_ID,MEM_ID,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION) 
-values (3,3,3,1,to_date('18/05/25','RR/MM/DD'));
-Insert into R_PROJECT (RPJT_ID,MEM_ID,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION) 
-values (4,4,1,1,to_date('18/05/25','RR/MM/DD'));
-Insert into R_PROJECT (RPJT_ID,MEM_ID,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION) 
-values (5,5,1,1,to_date('18/05/25','RR/MM/DD'));
+Insert into R_PROJECT (RPJT_ID,MEM_ID,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION,RPJT_PROFIT) 
+values (3,3,3,2,to_date('18/05/25','RR/MM/DD'),1);
+Insert into R_PROJECT (RPJT_ID,MEM_ID,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION,RPJT_PROFIT) 
+values (4,4,1,2,to_date('18/05/25','RR/MM/DD'),2);
+Insert into R_PROJECT (RPJT_ID,MEM_ID,RPJT_STATE,RPJT_PROGRESS,RPJT_SUBMISSION,RPJT_PROFIT) 
+values (5,5,1,3,to_date('18/05/25','RR/MM/DD'),3);
 
 
 
@@ -485,6 +494,14 @@ Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_DA
 Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) values (30,20,3,'admin','별명없음','30',to_date('18/06/02','RR/MM/DD'),0,0);
 
 
+Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL,POST_FILE) 
+values (33,20,null,'admin',null,'조장 주현우입니다.','<p>조장 너무 힘들어요,,,</p><h1>살려주세요...</h1><p>저에게 은정누나란... 그저 <span style="background-color: rgb(255, 255, 0);">빛</span>..<span style="font-family: &quot;Arial Black&quot;;">？</span></p><p><span style="font-family: &quot;Comic Sans MS&quot;;">ㅎ..</span></p><p><span style="font-family: &quot;Comic Sans MS&quot;;">아ㅏ아ㅏ..넘 힘드네요..</span></p><p><br></p>',to_date('18/06/06','RR/MM/DD'),0,0,null);
+Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL,POST_FILE) 
+values (32,20,null,'admin',null,'다들 이 공지를 보세요','<h1>아주 중요한 공지입니다.</h1><blockquote><p>준비되셧나요?</p></blockquote><p>그렇다면 이<span style="background-color: rgb(255, 255, 0);"> 혹등고래</span>를 보세요!</p><p>이것은 고래의 브리칭 입니다.</p><p><br></p><p><br></p>',to_date('18/06/06','RR/MM/DD'),0,0,'P20160616_174443000_319FB043-3842-4BA4-9D85-DB7D69F48722_6b9acdde-408c-4b3d-9f2e-5aa4e5d00f53.JPG');
+Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL,POST_FILE) 
+values (34,20,null,'admin',null,'펀딩하기는 쇼핑하기가 아닙니다!',TO_CLOB('<p style="margin-bottom: 0px; padding: 0px; color: rgb(229, 69, 69); font-family: Roboto, &quot;Noto Sans KR&quot;, sans-serif; font-size: 12px; letter-spacing: -0.3px; background-color: rgb(250, 251, 252);">투자위험고지</p><p style="margin-bottom: 0px; padding: 0px; color: rgb(229, 69, 69); font-family: Roboto, &quot;Noto Sans KR&quot;, sans-serif; font-size: 12px; letter-spacing: -0.3px; background-color: rgb(250, 251, 252);">비상장 기업에 대한 투자는 높은 기대수익만큼 손실가능성을 가지고 있습니다. 투자 전에 투자위험에 대한 내용을 꼭 확인해 주세요.&nb')
+|| TO_CLOB('sp;<button type="button" id="open-equity-warning" style="font-family: Roboto, &quot;Noto Sans KR&quot;, -apple-system, Dotum, sans-serif; font-weight: 400; border-radius: 0px; border-width: 0px; border-style: initial; border-color: initial; padding: 0px; color: rgb(229, 69, 69); background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; text-decoration-line: unde')
+|| TO_CLOB('rline; line-height: 18px; font-size: 12px;">자세한 내용 보기</button></p><p class="equity-notice" style="margin-top: 10px; margin-bottom: 0px; padding: 0px; color: rgb(115, 115, 116); font-family: Roboto, &quot;Noto Sans KR&quot;, sans-serif; font-size: 12px; letter-spacing: -0.3px; background-color: rgb(250, 251, 252);">와디즈(주)는 플랫폼을 제공하는 중개자(온라인소액투자중개자 및 통신판매중개자)로 크라우드펀딩으로 자금을 모집하는 당사자가 아니며, 투자손실의 위험을 보전하거나 보상품 제공을 보장해 드리지 못합니다.</p>'),to_date('18/06/06','RR/MM/DD'),0,0,null);
 
 
 SELECT /*insert*/ *
@@ -662,22 +679,22 @@ FROM r_comment;
 --r_comment(리워드 댓글)
 
 Insert into R_COMMENT (RCMT_ID,RCMT_PARENT,RPJT_ID,RCMT_USERID,RCMT_CONTENT,RCMT_UPDATED_DATETIME,RCMT_NICKNAME,RCMT_DEL) 
-values (1,'1',1,'rrid1','지지서명 완료했어요 :)요즘 미세먼지 때문에 환기시키기 힘들어서 걱정했는데 좋은제품이 나왔네요~ 아기방에 달아놔야겠어요^^',to_date('18/05/28','RR/MM/DD'),'노숙형',0);
+values (1,1,1,'rrid1','지지서명 완료했어요 :)요즘 미세먼지 때문에 환기시키기 힘들어서 걱정했는데 좋은제품이 나왔네요~ 아기방에 달아놔야겠어요^^',to_date('18/05/28','RR/MM/DD'),'노숙형',0);
 Insert into R_COMMENT (RCMT_ID,RCMT_PARENT,RPJT_ID,RCMT_USERID,RCMT_CONTENT,RCMT_UPDATED_DATETIME,RCMT_NICKNAME,RCMT_DEL) 
-values (2,'1',1,'rrid2','지지서명 했습니다!원룸살면서 고양이 키우는데 워낙 응아냄새가 집안 가득차서 디퓨저는 냄새가 섞이고 탈취제는 그때 뿐이더라구요 ㅠㅠ 스멜탄 기대해볼게요!',to_date('18/05/28','RR/MM/DD'),'keumddhj',0);
+values (2,1,1,'rrid2','지지서명 했습니다!원룸살면서 고양이 키우는데 워낙 응아냄새가 집안 가득차서 디퓨저는 냄새가 섞이고 탈취제는 그때 뿐이더라구요 ㅠㅠ 스멜탄 기대해볼게요!',to_date('18/05/28','RR/MM/DD'),'keumddhj',0);
 Insert into R_COMMENT (RCMT_ID,RCMT_PARENT,RPJT_ID,RCMT_USERID,RCMT_CONTENT,RCMT_UPDATED_DATETIME,RCMT_NICKNAME,RCMT_DEL) 
-values (3,'1',1,'rrid3','부엌 개수대에서 악취가 올라오는데 스멜탄으류 잘 해결 할 수 있길 기대합니다.:D',to_date('18/05/28','RR/MM/DD'),'소룡',0);
+values (3,1,1,'rrid3','부엌 개수대에서 악취가 올라오는데 스멜탄으류 잘 해결 할 수 있길 기대합니다.:D',to_date('18/05/28','RR/MM/DD'),'소룡',0);
 Insert into R_COMMENT (RCMT_ID,RCMT_PARENT,RPJT_ID,RCMT_USERID,RCMT_CONTENT,RCMT_UPDATED_DATETIME,RCMT_NICKNAME,RCMT_DEL) 
-values (1,'2',2,'rrid4','홍조에도 효과가 있을까요?',to_date('18/05/28','RR/MM/DD'),'김도라지',0);
+values (4,1,2,'rrid4','홍조에도 효과가 있을까요?',to_date('18/05/28','RR/MM/DD'),'김도라지',0);
 Insert into R_COMMENT (RCMT_ID,RCMT_PARENT,RPJT_ID,RCMT_USERID,RCMT_CONTENT,RCMT_UPDATED_DATETIME,RCMT_NICKNAME,RCMT_DEL) 
-values (2,'2',2,'rrid5','스토리 내 마스크팩의 가격이 잘못 입력되었어요. 슈퍼얼리버드 가격과 얼리버드가격의 할인비율이 다른데 할인가는 같게 기재되어 수정이 필요해 보입니다',to_date('18/05/28','RR/MM/DD'),'rossugosa',0);
+values (5,2,2,'rrid5','스토리 내 마스크팩의 가격이 잘못 입력되었어요. 슈퍼얼리버드 가격과 얼리버드가격의 할인비율이 다른데 할인가는 같게 기재되어 수정이 필요해 보입니다',to_date('18/05/28','RR/MM/DD'),'rossugosa',0);
 Insert into R_COMMENT (RCMT_ID,RCMT_PARENT,RPJT_ID,RCMT_USERID,RCMT_CONTENT,RCMT_UPDATED_DATETIME,RCMT_NICKNAME,RCMT_DEL) 
-values (1,'3',3,'rrid6','매일 차량 이동이 많은 일을 하는데 특히 올 해 공기가 안좋아 코와 목이 너무 안좋아 병원을 지난 달부터 계속 다니는 중에 이 제품을 보니 기대가 됩니다. 기존에 차량용 환풍기에 꼽아 쓰는 제품에 대핸 기대가 안되었었는데 좋은 제품 만들어 주시길 바랍니다. 
+values (6,2,3,'rrid6','매일 차량 이동이 많은 일을 하는데 특히 올 해 공기가 안좋아 코와 목이 너무 안좋아 병원을 지난 달부터 계속 다니는 중에 이 제품을 보니 기대가 됩니다. 기존에 차량용 환풍기에 꼽아 쓰는 제품에 대핸 기대가 안되었었는데 좋은 제품 만들어 주시길 바랍니다. 
 이쪽 계열에 대해 잘 모르지만 아래의 글 내용과 달린 댓글을 읽고 조금 더 기대를 해봅니다.',to_date('18/05/28','RR/MM/DD'),'익명',0);
 Insert into R_COMMENT (RCMT_ID,RCMT_PARENT,RPJT_ID,RCMT_USERID,RCMT_CONTENT,RCMT_UPDATED_DATETIME,RCMT_NICKNAME,RCMT_DEL) 
-values (1,'4',4,'rrid7','응원합니다!!',to_date('18/05/28','RR/MM/DD'),'윤징수',0);
+values (7,4,4,'rrid7','응원합니다!!',to_date('18/05/28','RR/MM/DD'),'윤징수',0);
 Insert into R_COMMENT (RCMT_ID,RCMT_PARENT,RPJT_ID,RCMT_USERID,RCMT_CONTENT,RCMT_UPDATED_DATETIME,RCMT_NICKNAME,RCMT_DEL) 
-values (1,'5',5,'rrid8','얼리패밀리버드랑 패밀리버드랑 똑같은거죠?
+values (8,5,5,'rrid8','얼리패밀리버드랑 패밀리버드랑 똑같은거죠?
 첫펀딩입니다 기대가되네요',to_date('18/05/28','RR/MM/DD'),'권행성',0);
 
 

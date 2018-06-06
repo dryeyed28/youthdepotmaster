@@ -32,7 +32,7 @@ public class MemberDaoOracle implements MemberDao {
 				list.add(new Member(rs.getInt("mem_id"), rs.getString("mem_userId"), rs.getString("mem_email"),
 						rs.getString("mem_password"), rs.getString("mem_userName"), rs.getString("mem_nickName"),
 						rs.getString("mem_phone"), rs.getInt("mem_sex"), rs.getString("mem_register_dateTime"),
-						rs.getString("mem_lastLogin_dateTime"), rs.getInt("mem_treasurer"), rs.getInt("mem_passion")));
+						rs.getString("mem_lastLogin_dateTime"), rs.getInt("mem_treasurer"), rs.getInt("mem_passion"),rs.getString("mem_address")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

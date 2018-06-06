@@ -31,7 +31,8 @@ public class PostController extends HttpServlet {
 		doPost(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -46,7 +47,6 @@ public class PostController extends HttpServlet {
 		int realPage = 0;
 		Post p = null;
 		Board b = null;
-				
 		if(type.equals("boardList")) {
 			//brd_id = Integer.parseInt(request.getParameter("brd_id"));
 			realPage = 3;
@@ -59,11 +59,11 @@ public class PostController extends HttpServlet {
 				realPage = Integer.parseInt(page);
 			}
 			int totalPage = (int) Math.ceil((double) totalCount / cntPerPage);
-			int cntPerPageGroup = 5; //페이지 그룹별 5페이지씩 보여준다.
-			int startPage = (int)(realPage/cntPerPageGroup+0.8) * cntPerPageGroup - cntPerPageGroup+1;
-			int endPage = startPage + cntPerPageGroup-1;
-			if(endPage > totalPage) {
-					endPage = totalPage;
+			int cntPerPageGroup = 5; // 페이지 그룹별 5페이지씩 보여준다.
+			int startPage = (int) (realPage / cntPerPageGroup + 0.8) * cntPerPageGroup - cntPerPageGroup + 1;
+			int endPage = startPage + cntPerPageGroup - 1;
+			if (endPage > totalPage) {
+				endPage = totalPage;
 			}
 			PageBean<Post> pb = new PageBean<>();
 			pb.setCurrentPage(realPage);
@@ -91,7 +91,7 @@ public class PostController extends HttpServlet {
 			p.setBoard_id(b);
 			request.setAttribute("p", p);
 			forwardURL = "user/boards/boardview.jsp";
-		}else if(type.equals("boardupdate")) {
+		} else if (type.equals("boardupdate")) {
 			b = new Board();
 			p = new Post();
 			b.setBrd_id(Integer.parseInt(request.getParameter("brd")));
@@ -101,7 +101,7 @@ public class PostController extends HttpServlet {
 			p.setPost_content(request.getParameter("content"));
 			request.setAttribute("p", p);
 			forwardURL = "user/boards/boardupdate.jsp";
-		}else if(type.equals("boardupdateok")) {
+		} else if (type.equals("boardupdateok")) {
 			p = new Post();
 			b = new Board();
 			b.setBrd_id(Integer.parseInt(request.getParameter("brd")));
@@ -111,7 +111,8 @@ public class PostController extends HttpServlet {
 			p.setPost_title(request.getParameter("title"));
 			p.setPost_content(request.getParameter("content"));
 			service.updatePost(p);
-			forwardURL = "/PostController?type=boardView&id="+ request.getParameter("post_id")+ "&brd=" + request.getParameter("brd");
+			forwardURL = "/PostController?type=boardView&id=" + request.getParameter("post_id") + "&brd="
+					+ request.getParameter("brd");
 		} else if (type.equals("boardwrite")) {
 			System.out.println("서블릿 호출");
 			HttpSession session = request.getSession();
@@ -157,10 +158,9 @@ public class PostController extends HttpServlet {
 			p.setAdmin_id("admin");
 			service.wirtePost(p);
 			forwardURL = "/admin/boardMng/board1.jsp";
-/*			forwardURL = "/BoardController?type=boardmenu";
-*/		} else if(type.equals("searchAll")) {
+		} else if (type.equals("searchAll")) {
 			if (!"".equals(searchText)) {
-				//검색문자열이 있는 경우
+				// 검색문자열이 있는 경우
 				String mem_nickName = searchText;
 				String post_title = searchText;
 				String post_content = searchText;
@@ -173,32 +173,32 @@ public class PostController extends HttpServlet {
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";
 			}
-		} else if(type.equals("searchTitle")) {
+		} else if (type.equals("searchTitle")) {
 			if (!"".equals(searchText)) {
-			String post_title = searchText;
-			ArrayList<Post> list = service.findTitle(post_title);
-			request.setAttribute("data", list);
-			forwardURL = "/user/boards/boardlist.jsp";
+				String post_title = searchText;
+				ArrayList<Post> list = service.findTitle(post_title);
+				request.setAttribute("data", list);
+				forwardURL = "/user/boards/boardlist.jsp";
 			} else {
 				//빈문자열을 검색할 경우 = 전체 검색
 				data = service.boardList(brd_id, realPage);
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";
 			}
-		} else if(type.equals("searchWriter")) {
+		} else if (type.equals("searchWriter")) {
 			if (!"".equals(searchText)) {
-			String mem_nickName = searchText;
-			ArrayList<Post> list = service.findWriter(mem_nickName);
-			request.setAttribute("data", list);
-			forwardURL = "/user/boards/boardlist.jsp";
+				String mem_nickName = searchText;
+				ArrayList<Post> list = service.findWriter(mem_nickName);
+				request.setAttribute("data", list);
+				forwardURL = "/user/boards/boardlist.jsp";
 			} else {
 				//빈문자열을 검색할 경우 = 전체 검색
 				data = service.boardList(brd_id, realPage);
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";
 			}
-		} else if(type.equals("searchContent")) {
-			/*forwardURL = "admin/boardMng/board1.jsp";*/
+		} else if (type.equals("searchContent")) {
+			/* forwardURL = "admin/boardMng/board1.jsp"; */
 			if (!"".equals(searchText)) {
 			String post_content = searchText;
 			ArrayList<Post> list = service.findContent(post_content);
@@ -211,7 +211,7 @@ public class PostController extends HttpServlet {
 				forwardURL = "/user/boards/boardlist.jsp";
 			}
 		}
-		RequestDispatcher  dispatcher = request.getRequestDispatcher(forwardURL);
+		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
 	}
 }

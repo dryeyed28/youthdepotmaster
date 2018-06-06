@@ -28,7 +28,7 @@
         <!-- /.panel-heading -->
         
       <div class="panel-body">
-		<table class="table table-bordered table-hover" id="dataTables-example">
+		<table width="100%"  class="table table-bordered table-hover" id="dataTables-example">
            <thead>
               <tr>
             	<td><input type="checkbox"></td>

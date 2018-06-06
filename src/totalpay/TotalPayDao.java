@@ -10,4 +10,5 @@ public interface TotalPayDao {
 	ArrayList<RewardPay> getTotalPay();
 	ArrayList<Deposit> getDepositInfo();
 	ArrayList<Deposit> getRefundInfo();
+	ArrayList<ProfitDto> getgetProfit();
 }

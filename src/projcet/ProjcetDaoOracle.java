@@ -80,7 +80,7 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			if(rs.next()) {
 				keeper = new RKeeper(
 				new RProject(rs.getInt("rPJT_id"),
-						0, 0, 0, null),
+						0, 0, 0, null, 0),
 				/*rs.getInt("mem_id"),
 				rs.getInt("rPJT_state"),
 				rs.getInt("rPJT_progress"),
@@ -120,7 +120,7 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			if(rs.next()) {
 				meta = new RMeta(
 				new RProject(rs.getInt("rPJT_id"),
-						0, 0, rs.getInt("rpjt_progress"), null),
+						0, 0, rs.getInt("rpjt_progress"), null, 0),
 				rs.getString("rPJT_title"),
 				rs.getString("rPJT_subTitle"),
 				rs.getInt("rInvesting_amount"),
@@ -158,7 +158,7 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ROption ro = new ROption(
-						new RProject(rs.getInt("rPJT_id"), 0, 0, 0, null),
+						new RProject(rs.getInt("rPJT_id"), 0, 0, 0, null, 0),
 						rs.getInt("reward_id"),
 						rs.getInt("rPJT_price"),
 						rs.getString("rPJT_name"),
@@ -196,7 +196,7 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				RPost rp = new RPost(
-						new RProject(rs.getInt("rPJT_id"), 0, 0, 0, null),
+						new RProject(rs.getInt("rPJT_id"), 0, 0, 0, null, 0),
 						rs.getString("rPost_title"),
 						rs.getString("rPost_content"),
 						rs.getString("rPost_userID"),
@@ -286,7 +286,7 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			while(rs.next()) {
 				RMeta meta = new RMeta(
 				new RProject(rs.getInt("rPJT_id"),
-						0, rs.getInt("rPJT_state"), rs.getInt("rPJT_progress"), null),
+						0, rs.getInt("rPJT_state"), rs.getInt("rPJT_progress"), null, 0),
 				rs.getString("rPJT_title"),
 				rs.getString("rPJT_subTitle"),
 				rs.getInt("rInvesting_amount"),

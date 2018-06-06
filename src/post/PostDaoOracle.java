@@ -38,15 +38,9 @@ public class PostDaoOracle implements PostDao {
 			while (rs.next()) {
 				Post post = new Post(rs.getInt(1),
 						new Board(rs.getInt("brd_id"), rs.getString("brd_name"), rs.getString("brd_type"), 0),
-						rs.getInt("mem_id"),
-						rs.getString("admin_id"),
-						rs.getString("mem_nickname"),
-						rs.getString("post_title"), 
-						rs.getString("post_content"), 
-						rs.getString("post_datetime"),
-						rs.getInt("post_view_count"), 
-						rs.getInt("post_del"),
-						rs.getString("post_file"));
+						rs.getInt("mem_id"), rs.getString("admin_id"), rs.getString("mem_nickname"),
+						rs.getString("post_title"), rs.getString("post_content"), rs.getString("post_datetime"),
+						rs.getInt("post_view_count"), rs.getInt("post_del"), rs.getString("post_file"));
 				data.add(post);
 			}
 		} catch (SQLException e) {
@@ -58,7 +52,7 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public Post postMenu(int brd_id, int post_id) { //게시글 상세보기
+	public Post postMenu(int brd_id, int post_id) { // 게시글 상세보기
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -93,7 +87,7 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public void deletePost(int post_id) { //게시글 삭제
+	public void deletePost(int post_id) { // 게시글 삭제
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -120,12 +114,12 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public void updatePost(Post post) { //게시글 수정하기
+	public void updatePost(Post post) { // 게시글 수정하기
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = OracleConnection.getConnection();
-			/*con.setAutoCommit(false);*/
+			/* con.setAutoCommit(false); */
 			String sql = "UPDATE post " + "SET POST_TITLE = ?,POST_CONTENT = ? " + "WHERE post_id = ?"
 					+ "AND brd_id = ?";
 			pstmt = con.prepareStatement(sql);
@@ -147,7 +141,7 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public void insertPost(Post post) { //게시글 작성하기
+	public void insertPost(Post post) { // 게시글 작성하기
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -156,11 +150,11 @@ public class PostDaoOracle implements PostDao {
 			String sqlinsert = "Insert into POST (POST_ID,BRD_ID,ADMIN_ID,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL,POST_FILE)"
 					+ "values ((SELECT MAX(POST_ID)+1 from post),20,?,?,?,to_date(sysdate,'RR/MM/DD'),0,0,?)";
 			System.out.println(post);
-			pstmt = con.prepareStatement(sqlinsert);/*
-//			pstmt.setInt(1, post.getBoard_id().getBrd_id());*/
-//			pstmt.setInt(2, post.getMem_id());
+			pstmt = con.prepareStatement(sqlinsert);
+			//pstmt.setInt(1, post.getBoard_id().getBrd_id());
+			// pstmt.setInt(2, post.getMem_id());
 			pstmt.setString(1, post.getAdmin_id());
-			//pstmt.setString(4, post.getMem_nickName());
+			// pstmt.setString(4, post.getMem_nickName());
 			pstmt.setString(2, post.getPost_title());
 			pstmt.setString(3, post.getPost_content());
 			pstmt.setString(4, post.getPost_file());
@@ -179,7 +173,7 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public int selectCount(int brd_id) { //게시판에서 게시글 수 확인
+	public int selectCount(int brd_id) { // 게시판에서 게시글 수 확인
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -221,15 +215,9 @@ public class PostDaoOracle implements PostDao {
 			while (rs.next()) {
 				list.add(new Post(rs.getInt("post_id"),
 						new Board(rs.getInt("brd_id"), rs.getString("brd_name"), rs.getString("brd_type"), 0),
-						rs.getInt("mem_id"),
-						rs.getString("admin_id"), 
-						rs.getString("mem_nickname"),
-						rs.getString("post_title"), 
-						rs.getString("post_content"), 
-						rs.getString("post_datetime"),
-						rs.getInt("post_view_count"), 
-						rs.getInt("post_del"),
-						rs.getString("post_file")));
+						rs.getInt("mem_id"), rs.getString("admin_id"), rs.getString("mem_nickname"),
+						rs.getString("post_title"), rs.getString("post_content"), rs.getString("post_datetime"),
+						rs.getInt("post_view_count"), rs.getInt("post_del"), rs.getString("post_file")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -238,40 +226,30 @@ public class PostDaoOracle implements PostDao {
 		}
 		return list;
 	}
-	
+
 	@Override
 	public ArrayList<Post> searchTitle(String post_title) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		ArrayList<Post> list = new ArrayList<Post>();
-		String searchTitle = "select rownum, p.*, b.brd_name, b.brd_type\r\n" + 
-				"from post p\r\n" + 
-				"join board b\r\n" + 
-				"on p.brd_id = b.brd_id \r\n" + 
-				"and post_title like ?\r\n" + 
-				"and rownum <=10";
-		
+		String searchTitle = "select rownum, p.*, b.brd_name, b.brd_type\r\n" + "from post p\r\n" + "join board b\r\n"
+				+ "on p.brd_id = b.brd_id \r\n" + "and post_title like ?\r\n" + "and rownum <=10";
+
 		try {
-		con = OracleConnection.getConnection();
-		pstmt = con.prepareStatement(searchTitle);
-		pstmt.setString(1, "%" + post_title + "%");
-		rs = pstmt.executeQuery();
-		while(rs.next()) {
-			list.add(new Post(rs.getInt("post_id"),
-					new Board(rs.getInt("brd_id"), rs.getString("brd_name"), rs.getString("brd_type"), 0),
-					rs.getInt("mem_id"), 
-					rs.getString("admin_id"), 
-					rs.getString("mem_nickname"),
-					rs.getString("post_title"), 
-					rs.getString("post_content"), 
-					rs.getString("post_datetime"),
-					rs.getInt("post_view_count"), 
-					rs.getInt("post_del"),
-					rs.getString("post_file")));
-		}
-		
+			con = OracleConnection.getConnection();
+			pstmt = con.prepareStatement(searchTitle);
+			pstmt.setString(1, "%" + post_title + "%");
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				list.add(new Post(rs.getInt("post_id"),
+						new Board(rs.getInt("brd_id"), rs.getString("brd_name"), rs.getString("brd_type"), 0),
+						rs.getInt("mem_id"), rs.getString("admin_id"), rs.getString("mem_nickname"),
+						rs.getString("post_title"), rs.getString("post_content"), rs.getString("post_datetime"),
+						rs.getInt("post_view_count"), rs.getInt("post_del"), rs.getString("post_file")));
+			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -285,40 +263,30 @@ public class PostDaoOracle implements PostDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		ArrayList<Post> list = new ArrayList<Post>();
-		
-		String searchWriter = "select rownum, p.*, b.brd_name, b.brd_type\r\n" + 
-				"from post p\r\n" + 
-				"join board b\r\n" + 
-				"on p.brd_id = b.brd_id \r\n" + 
-				"and mem_nickname like ?\r\n" + 
-				"and rownum <=10";
+
+		String searchWriter = "select rownum, p.*, b.brd_name, b.brd_type\r\n" + "from post p\r\n" + "join board b\r\n"
+				+ "on p.brd_id = b.brd_id \r\n" + "and mem_nickname like ?\r\n" + "and rownum <=10";
 		try {
 			con = OracleConnection.getConnection();
 			pstmt = con.prepareStatement(searchWriter);
 			pstmt.setString(1, "%" + mem_nickname + "%");
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				list.add(new Post(rs.getInt("post_id"),
 						new Board(rs.getInt("brd_id"), rs.getString("brd_name"), rs.getString("brd_type"), 0),
-						rs.getInt("mem_id"), 
-						rs.getString("admin_id"), 
-						rs.getString("mem_nickname"),
-						rs.getString("post_title"), 
-						rs.getString("post_content"), 
-						rs.getString("post_datetime"),
-						rs.getInt("post_view_count"), 
-						rs.getInt("post_del"),
-						rs.getString("post_file")));
+						rs.getInt("mem_id"), rs.getString("admin_id"), rs.getString("mem_nickname"),
+						rs.getString("post_title"), rs.getString("post_content"), rs.getString("post_datetime"),
+						rs.getInt("post_view_count"), rs.getInt("post_del"), rs.getString("post_file")));
 			}
-			
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				OracleConnection.close(rs, pstmt, con);
-			}
-			return list;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
+		return list;
 	}
 
 	@Override
@@ -326,42 +294,30 @@ public class PostDaoOracle implements PostDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		ArrayList<Post> list = new ArrayList<Post>();
-		
-		String searchContent = "select rownum, p.*, b.brd_name, b.brd_type\r\n" + 
-				"from post p\r\n" + 
-				"join board b\r\n" + 
-				"on p.brd_id = b.brd_id \r\n" + 
-				"and post_content like ?\r\n" + 
-				"and rownum <=10";
+
+		String searchContent = "select rownum, p.*, b.brd_name, b.brd_type\r\n" + "from post p\r\n" + "join board b\r\n"
+				+ "on p.brd_id = b.brd_id \r\n" + "and post_content like ?\r\n" + "and rownum <=10";
 		try {
 			con = OracleConnection.getConnection();
 			pstmt = con.prepareStatement(searchContent);
 			pstmt.setString(1, "%" + post_content + "%");
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				list.add(new Post(rs.getInt("post_id"),
 						new Board(rs.getInt("brd_id"), rs.getString("brd_name"), rs.getString("brd_type"), 0),
-						rs.getInt("mem_id"), 
-						rs.getString("admin_id"), 
-						rs.getString("mem_nickname"),
-						rs.getString("post_title"), 
-						rs.getString("post_content"), 
-						rs.getString("post_datetime"),
-						rs.getInt("post_view_count"), 
-						rs.getInt("post_del"),
-						rs.getString("post_file")));
+						rs.getInt("mem_id"), rs.getString("admin_id"), rs.getString("mem_nickname"),
+						rs.getString("post_title"), rs.getString("post_content"), rs.getString("post_datetime"),
+						rs.getInt("post_view_count"), rs.getInt("post_del"), rs.getString("post_file")));
 			}
-			
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				OracleConnection.close(rs, pstmt, con);
-			}
-			return list;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
+		return list;
 	}
 
-
-	
 }
