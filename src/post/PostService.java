@@ -2,6 +2,7 @@ package post;
 
 import java.util.ArrayList;
 
+import vo.PageBean;
 import vo.Post;
 
 public interface PostService {
