@@ -1,6 +1,8 @@
 <%@ page import="vo.PageBean" %>
 <%@ page import="vo.Member" %>
 <%@ page import="java.util.List" %>
+<%@include file="../template/top.jsp"%>
+<%@include file="../template/aside.jsp"%> 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -65,7 +67,7 @@ $('button#modify').click(function() {
            <thead>
               <tr>
             	<th><input type="checkbox"></th>
-            	<th>멤버고유번호</th>
+            	<th>회원번호</th>
                 <th>아이디</th>
                 <th>이메일</th>
                 <th>비밀번호</th>

@@ -200,7 +200,7 @@ CREATE TABLE R_META (
 	RTARGET_AMOUNT NUMBER(10), /* 목표금액 */
 	RPJT_IMAGE VARCHAR2(100), /* 프로젝트대표이미지 */
 	RPJT_CATEGORY VARCHAR2(20), /* 카테고리 */
-	RPJT_PAPER VARCHAR2(50), /* 인증서류 */
+	RPJT_PAPER VARCHAR2(100), /* 인증서류 */
 	RPJT_STARTDAY DATE, /* 프로젝트시작일 */
 	RPJT_ENDDAY DATE /* 프로젝트종료일 */
 );

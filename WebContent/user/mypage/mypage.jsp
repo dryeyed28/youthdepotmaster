@@ -10,12 +10,12 @@
 					<form class="cruise-booking-form"name="f" action="<%=request.getContextPath()%>/MemberController?type=mypage" method="post">
 						<div class="person-information">
 							<div class="row">
-							<% Member m = (Member)request.getAttribute("m");%>
+							<% Member m = (Member)request.getAttribute("member");%>
 								<div class="form-group col-sm-6 col-md-5">
 									<label>아이디 </label>
 								</div>
 								<div class=" form-group col-sm-6 col-md-5">
-								<h1><%=m.getMem_userId()%></h1>
+								<h5><%=m.getMem_userId()%></h5>
 								</div>
 							</div>
 							<div class="row">
@@ -23,7 +23,7 @@
 									<label>이름 </label>
 								</div>
 								<div class=" form-group col-sm-6 col-md-5">
-								<h1><%=m.getMem_userName()%></h1>
+								<h5><%=m.getMem_userName()%></h5>
 								</div>
 							</div>
 
@@ -57,7 +57,7 @@
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
 									<label>휴대전화 번호 </label>
-									<h1><%=m.getMem_phone()%></h1>
+									<h5><%=m.getMem_phone()%></h5>
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
 									<a href="cruise-detailed.html" class="button" style="width: 100px; height: 30px;">변경하기</a>
@@ -67,7 +67,7 @@
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
 									<label>주소</label>
-									<h1><%=m.getMem_address()%></h1> 
+									<h5><%=m.getMem_address()%></h5> 
 									
 								</div>
 								<div class="form-group col-sm-6 col-md-5">

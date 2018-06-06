@@ -14,7 +14,7 @@ String root = request.getContextPath();
                         <a href="<%=root%>/admin/pages/index.jsp"><i class="fa fa-dashboard fa-fw"></i> home</a>
                     </li>
                     <li class=member>
-                        <a href="#"><i class="fa fa-user fa-fw"></i>회원관리</a>
+                        <a href="<%=root%>/MemberController?type=selectAll"><i class="fa fa-user fa-fw"></i>회원관리</a>
                     </li>
                     <li>
                         <a href="<%=root%>/ProjectController?type=projectrequest"><i class="fa fa-table fa-fw"></i> 프로젝트 신청관리</a>

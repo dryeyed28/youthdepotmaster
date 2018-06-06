@@ -122,7 +122,7 @@ public class MemberController extends HttpServlet {
 			if (member != null) {
 				session = request.getSession();
 				session.setAttribute("mem_id", member.getMem_id());
-				session.setAttribute("nickname", member.getMem_nickName());
+				session.setAttribute("nickName", member.getMem_nickName());
 				result = "user/pages/index.jsp";
 				request.setAttribute("rslt", "0");
 				
@@ -135,11 +135,13 @@ public class MemberController extends HttpServlet {
 		}else if(type.equals("mypage")){
 			System.out.println("마이페이지");
 			m = new Member();
-			mem_id = Integer.parseInt(request.getParameter("mem_id"));
-			
+			session = request.getSession();
+			mem_id = Integer.parseInt(session.getAttribute("mem_id").toString());
 			m = service.mypage(mem_id);
+			System.out.println(m);
 			request.setAttribute("member", m);
-		
+			
+			result = "user/mypage/mypage.jsp";
 		
 			
 		}

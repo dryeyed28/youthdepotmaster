@@ -41,13 +41,13 @@ public class PostController extends HttpServlet {
 		String searchText = request.getParameter("searchText");
 		String forwardURL = "";
 		String redirectURL = "";
-		int brd_id = 20;
+		int brd_id = 0;
 		int post_id = 0;
 		int realPage = 1;
 		Post p = null;
 		Board b = null;
 		if(type.equals("boardList")) {
-			//brd_id = Integer.parseInt(request.getParameter("brd_id"));
+			brd_id = Integer.parseInt(request.getParameter("brd_id"));
 			data = service.boardList(brd_id, realPage);
 			String page = request.getParameter("page");
 			int totalCount = service.findCount(brd_id);
@@ -57,7 +57,8 @@ public class PostController extends HttpServlet {
 			}
 			int totalPage = (int) Math.ceil((double) totalCount / cntPerPage);
 			int cntPerPageGroup = 5; // 페이지 그룹별 5페이지씩 보여준다.
-			int startPage = (int) (realPage / cntPerPageGroup + 0.8) * cntPerPageGroup - cntPerPageGroup + 1;
+			int startPage = (int) ((realPage/cntPerPageGroup)+0.8)*cntPerPageGroup+1;
+			System.out.println(startPage);
 			int endPage = startPage + cntPerPageGroup - 1;
 			if (endPage > totalPage) {
 				endPage = totalPage;
@@ -74,17 +75,20 @@ public class PostController extends HttpServlet {
 			request.setAttribute("pagebean", pb);
 			System.out.println(realPage);
 			forwardURL = "user/boards/boardlist.jsp";
+		
 		} else if(type.equals("boardView")) {
 			p = new Post();
 			b = new Board();
-			brd_id = Integer.parseInt(request.getParameter("brd"));
-			post_id = Integer.parseInt(request.getParameter("id"));
+			brd_id = Integer.parseInt(request.getParameter("brd_id"));
+			post_id = Integer.parseInt(request.getParameter("post_id"));
 			p = service.getPostMenu(brd_id, post_id);
 			b.setBrd_id(brd_id);
 			p.setBoard_id(b);
 			request.setAttribute("p", p);
 			forwardURL = "user/boards/boardview.jsp";
-		} else if (type.equals("boardupdate")) {
+		
+		}
+		else if (type.equals("boardupdate")) {
 			b = new Board();
 			p = new Post();
 			b.setBrd_id(Integer.parseInt(request.getParameter("brd")));
@@ -94,7 +98,8 @@ public class PostController extends HttpServlet {
 			p.setPost_content(request.getParameter("content"));
 			request.setAttribute("p", p);
 			forwardURL = "user/boards/boardupdate.jsp";
-		} else if (type.equals("boardupdateok")) {
+		}
+		else if (type.equals("boardupdateok")) {
 			p = new Post();
 			b = new Board();
 			b.setBrd_id(Integer.parseInt(request.getParameter("brd")));
@@ -106,22 +111,26 @@ public class PostController extends HttpServlet {
 			service.updatePost(p);
 			forwardURL = "/PostController?type=boardView&id=" + request.getParameter("post_id") + "&brd="
 					+ request.getParameter("brd");
-		} else if (type.equals("boardwrite")) {
-			System.out.println("서블릿 호출");
-			HttpSession session = request.getSession();
-			session.setAttribute("id", "1");
-			int mem_id = Integer.parseInt(session.getAttribute("id").toString());
+		} 
+		else if (type.equals("boardwrite")) {
+			System.out.println("boardwrite 호출");
+			HttpSession session1 = request.getSession();
+			int mem_id = Integer.parseInt(session1.getAttribute("id").toString());
+			System.out.println("로그인한 멤버id :" + mem_id);
+			String nickName = session1.getAttribute("nickName").toString();
+			System.out.println(nickName);
 			p = new Post();
 			b = new Board();
-			b.setBrd_id(Integer.parseInt(request.getParameter("bid")));
+			b.setBrd_id(Integer.parseInt(request.getParameter("brd_id")));
 			p.setBoard_id(b);
 			p.setMem_id(mem_id);
-			p.setMem_nickName(request.getParameter("nickname"));
+			p.setMem_nickName(nickName);
 			p.setPost_title(request.getParameter("title"));
 			p.setPost_content(request.getParameter("content"));
 			service.wirtePost(p);
-			forwardURL = "/PostController?type=boardList";
-		} else if (type.equals("adminboardwrite")) {
+			forwardURL = "/PostController?type=boardList?board_id=" + b.getBrd_id();
+		} 
+		else if (type.equals("adminboardwrite")) {
 			b = new Board();
 			p = new Post();
 			String root = "C:/";
@@ -151,7 +160,8 @@ public class PostController extends HttpServlet {
 			p.setAdmin_id("admin");
 			service.wirtePost(p);
 			forwardURL = "/admin/boardMng/board1.jsp";
-		} else if (type.equals("searchAll")) {
+		} 
+		else if (type.equals("searchAll")) {
 			if (!"".equals(searchText)) {
 				// 검색문자열이 있는 경우
 				String mem_nickName = searchText;
