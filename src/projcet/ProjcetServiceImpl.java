@@ -56,5 +56,9 @@ public class ProjcetServiceImpl implements ProjcetService {
 	public ArrayList<RMeta> project() {
 		return dao.getProjectRequest();
 	}
+	@Override
+	public ProjectContentDto content(int rPJT_id) {
+		return dao.getProjectContent(rPJT_id);
+	}
 	
 }

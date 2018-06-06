@@ -343,4 +343,42 @@ public class ProjcetDaoOracle implements ProjcetDao {
 		}
 		return list;
 	}
+
+	@Override
+	public ProjectContentDto getProjectContent(int rPJT_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ProjectContentDto pcd = null;
+		try {
+			con = OracleConnection.getConnection();
+			String sql = "";
+			sql += "select r.rpjt_id, rm.rpjt_title, rm.rtarget_amount, rm.rpjt_category, \n";
+			sql += "rm.rpjt_subtitle, rs.rpjt_story, rs.rpjt_thumbnail, rs.rpjt_paper, rs.rpjt_url \n";
+			sql += "from R_PROJECT r join R_META rm on r.rpjt_id = rm.rpjt_id \n";
+			sql += "join R_STORY rs on r.rpjt_id = rs.rpjt_id \n";
+			sql += "where r.rpjt_id = ? \n";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rPJT_id);
+			rs = pstmt.executeQuery();
+			System.out.println(rs.next());
+			if(rs.next()) {
+				pcd = new ProjectContentDto(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getInt(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getString(6),
+						rs.getString(7),
+						rs.getString(8),
+						rs.getString(9));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
+		return pcd;
+	}
 }

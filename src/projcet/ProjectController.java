@@ -154,6 +154,11 @@ public class ProjectController extends HttpServlet {
 			metalist = service.project();
 			request.setAttribute("project", metalist);
 			forwardURL = "admin/pages/projectrequest.jsp";
+		} else if(type.equals("content")) {
+			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
+			ProjectContentDto content = service.content(rPJT_id);
+			request.setAttribute("content", content);
+			forwardURL = "admin/pages/projectrequestcontent.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
