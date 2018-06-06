@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
+<% String root = request.getContextPath(); %>
 <head>
 
     <meta charset="utf-8">
@@ -35,7 +35,6 @@
 </head>
 
 <body>
-
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -44,13 +43,13 @@
                         <h3 class="panel-title">로그인</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" name="f" method="post" action="<%= root %>/AdminController?type=login">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="ID" required name="id" id="id" type="text" autofocus>
+                                    <input class="form-control" placeholder="ID" required name="admin_id" id="id" type="text" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" required name="pwd" id="pwd" type="password">
+                                    <input class="form-control" placeholder="Password" required name="admin_pwd" id="pwd" type="password">
                                 </div>
                                 <div class="checkbox">
                                     <label>
@@ -58,7 +57,9 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <button class="btn-lg btn-success btn-block">로그인</button>
+                                <button type="submint" class="btn-lg btn-success btn-block">로그인</button>
+                                <a href=<%= root %>/admin/pages/index.jsp><button type="button" class="btn-lg btn-success btn-block">홈</button></a>
+                                </form>
                             </fieldset>
                         </form>
                     </div>
@@ -82,4 +83,3 @@
 </body>
 
 </html>
-    

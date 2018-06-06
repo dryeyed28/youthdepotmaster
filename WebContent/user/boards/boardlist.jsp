@@ -71,7 +71,7 @@
 								<td><%=p.getPost_id()%></td>
 								<!-- 테이블에 post 값 담기-->
 								<td><a
-									href="<%=request.getContextPath()%>/PostController?type=boardView&brd=<%=p.getBoard_id().getBrd_id()%>&id=<%=p.getPost_id()%>"><%=p.getPost_title()%></a></td>
+									href="<%=request.getContextPath()%>/PostController?type=boardView&brd_id=<%=p.getBoard_id().getBrd_id()%>&post_id=<%=p.getPost_id()%>"><%=p.getPost_title()%></a></td>
 								<td><%=p.getMem_nickName()%></td>
 								<td><%=p.getPost_dateTime()%></td>
 								<td><%=p.getPost_view_count()%></td>
@@ -81,24 +81,33 @@
 							}
 						%>
 						<tfoot>
-							<c:set var="startPage" value="${pb.startPage}" />
-							<c:set var="endPage" value="${pb.endPage}" />
-							<tr>
-								<td align="center" colspan="5">1</td>
-							</tr>
 						</tfoot>
 					</table>
 					<ul>
-						<li class="page-item"><a class="page-link" href="#"
-							aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
-						<li class="page-item"><a class="page-link" href="#"
+						<div>
+							<c:set var="startPage" value="${pb.startPage}" />
+							<c:set var="endPage" value="${pb.endPage}" />
+							<a class="page-link" href="#"
+								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							</a>
+							<c:if test="${startPage > 1}">
+								<a href="#">&laquo;</a>
+							</c:if>
+							<c:forEach begin="${startPage}" end="${endPage}" var="i">
+								<a href="#">${i}</a>
+							</c:forEach>
+							<c:if test="${endPage < pb.totalPage}">
+								<a href="#">&raquo;</a>
+							</c:if>
+							<a class="page-link" href="#"
 							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-						</a></li>
+							</a> 
+						</div>
 					</ul>
 				</form>
 				<div align="right">
 					<a
-						href="<%=request.getContextPath()%>/user/boards/boardwrite.jsp?id=<%=data.get(0).getBoard_id().getBrd_id()%>"><button>글쓰기</button></a>
+						href="<%=request.getContextPath()%>/user/boards/boardwrite.jsp?brd_id=<%=data.get(0).getBoard_id().getBrd_id()%>"><button>글쓰기</button></a>
 				</div>
 			</div>
 		</div>

@@ -41,13 +41,14 @@ public class PostController extends HttpServlet {
 		String searchText = request.getParameter("searchText");
 		String forwardURL = "";
 		String redirectURL = "";
-		int brd_id = 20;
+		int brd_id = 0;
 		int post_id = 0;
 		int realPage = 1;
 		Post p = null;
 		Board b = null;
 		if(type.equals("boardList")) {
-			//brd_id = Integer.parseInt(request.getParameter("brd_id"));
+			brd_id = Integer.parseInt(request.getParameter("brd_id"));
+			System.out.println(brd_id);
 			data = service.boardList(brd_id, realPage);
 			String page = request.getParameter("page");
 			int totalCount = service.findCount(brd_id);
@@ -56,8 +57,10 @@ public class PostController extends HttpServlet {
 				realPage = Integer.parseInt(page);
 			}
 			int totalPage = (int) Math.ceil((double) totalCount / cntPerPage);
+			System.out.println(totalPage);
 			int cntPerPageGroup = 5; // 페이지 그룹별 5페이지씩 보여준다.
-			int startPage = (int) (realPage / cntPerPageGroup + 0.8) * cntPerPageGroup - cntPerPageGroup + 1;
+			int startPage = (int) ((realPage/cntPerPageGroup)+0.8)*cntPerPageGroup+1;
+			System.out.println(startPage);
 			int endPage = startPage + cntPerPageGroup - 1;
 			if (endPage > totalPage) {
 				endPage = totalPage;
@@ -74,16 +77,18 @@ public class PostController extends HttpServlet {
 			request.setAttribute("pagebean", pb);
 			System.out.println(realPage);
 			forwardURL = "user/boards/boardlist.jsp";
+		
 		} else if(type.equals("boardView")) {
 			p = new Post();
 			b = new Board();
-			brd_id = Integer.parseInt(request.getParameter("brd"));
-			post_id = Integer.parseInt(request.getParameter("id"));
+			brd_id = Integer.parseInt(request.getParameter("brd_id"));
+			post_id = Integer.parseInt(request.getParameter("post_id"));
 			p = service.getPostMenu(brd_id, post_id);
 			b.setBrd_id(brd_id);
 			p.setBoard_id(b);
 			request.setAttribute("p", p);
 			forwardURL = "user/boards/boardview.jsp";
+		
 		} else if (type.equals("boardupdate")) {
 			b = new Board();
 			p = new Post();
@@ -113,14 +118,14 @@ public class PostController extends HttpServlet {
 			int mem_id = Integer.parseInt(session.getAttribute("id").toString());
 			p = new Post();
 			b = new Board();
-			b.setBrd_id(Integer.parseInt(request.getParameter("bid")));
+			b.setBrd_id(Integer.parseInt(request.getParameter("brd_id")));
 			p.setBoard_id(b);
 			p.setMem_id(mem_id);
 			p.setMem_nickName(request.getParameter("nickname"));
 			p.setPost_title(request.getParameter("title"));
 			p.setPost_content(request.getParameter("content"));
 			service.wirtePost(p);
-			forwardURL = "/PostController?type=boardList";
+			forwardURL = "/PostController?type=boardList?board_id=" + b.getBrd_id();
 		} else if (type.equals("adminboardwrite")) {
 			b = new Board();
 			p = new Post();

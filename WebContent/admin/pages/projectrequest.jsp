@@ -47,14 +47,13 @@
                 <td><%=rm.getrPJT_title() %></td>
                 <td class="center"><%=rm.getrProject().getMem_id() %></td>
                 <td class="center"><%=rm.getrProject().getrPJT_submission() %></td>
-                <td><div class="btn-group">
-				  <select id="selectCategroy">
-					<option>승인</option>
-					<option>검토중</option>
-					<option>반려</option>
-				  </select>
-				</div>
-				</td>
+                <% if(rm.getrProject().getrPJT_state() == 1) { %>
+                <td>검토중</td>
+                <%} else if(rm.getrProject().getrPJT_state() == 2) { %>
+                <td>승인</td>
+                <%}else if(rm.getrProject().getrPJT_state() == 3) { %>
+                <td>반려</td>
+                <%} %>
 			  <%} %>
               </tr>
            </tbody>

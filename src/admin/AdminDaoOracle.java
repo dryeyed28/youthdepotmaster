@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import admin.AdminDao;
 import admin.AdminDaoOracle;
 import sql.OracleConnection;
+import vo.Admin;
 
 public class AdminDaoOracle implements AdminDao {
 		
@@ -45,11 +46,10 @@ public class AdminDaoOracle implements AdminDao {
 	}
 	
 	@Override
-	public String adminLogin(String admin_id, String admin_pwd) {
+	public Admin adminLogin(String admin_id, String admin_pwd) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String loginResult = "";
 		
 		try {
 			con = OracleConnection.getConnection();
@@ -62,28 +62,20 @@ public class AdminDaoOracle implements AdminDao {
 			rs = pstmt.executeQuery();
 			
 			if(!rs.next()) { //어드민계정이 없는 경우
-				loginResult = "-1"; //로그인 불가
+				return null;
 			} else {
-				loginResult = "1"; //로그인 성공
+				Admin admin = new Admin(
+						rs.getString("admin_id"),
+						rs.getString("admin_name"),
+						rs.getString("admin_pwd")
+						);
+				return admin;
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
 			OracleConnection.close(rs, pstmt, con);
 		}
-		return loginResult;
-	}
-	
-	public static void main(String[] args) {
-		AdminDaoOracle dao = new AdminDaoOracle();
-		String admin_id = "admin";
-		String admin_pwd = "admin";
-		String result;
-		try {
-			result = dao.adminLogin(admin_id, admin_pwd);
-			System.out.println(result);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		return null;
 	}
 }

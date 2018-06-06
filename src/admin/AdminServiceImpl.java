@@ -1,5 +1,7 @@
 package admin;
 
+import vo.Admin;
+
 public class AdminServiceImpl implements AdminService {
 	
 	private AdminDao dao;
@@ -9,7 +11,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 		
 	@Override
-	public String adminLogin(String admin_id, String admin_pwd) {
+	public Admin adminLogin(String admin_id, String admin_pwd) {
 		return dao.adminLogin(admin_id, admin_pwd);
 	}
 
