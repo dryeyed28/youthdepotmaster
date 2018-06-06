@@ -115,7 +115,7 @@
 							</li>
 						<li class="menu-item-has-children"><a>커뮤니티</a>
 							<ul>
-							<% ArrayList<Board> list = (ArrayList)request.getAttribute("board");
+							<% ArrayList<Board> list = (ArrayList)request.getAttribute("boardlist");
 							for (int i=0; i< list.size(); i++) {%>
 								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList&brd_id=20">공지사항</a></li>
 								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList&brd_id=20">FAQ</a></li>
