@@ -10,4 +10,5 @@ public interface TotalPayService {
 	ArrayList<RewardPay> rewardpay();
 	ArrayList<Deposit> yeoljeong();
 	ArrayList<Deposit> refund();
+	ArrayList<ProfitDto> profit();
 }

@@ -5,18 +5,17 @@
 
 <script>
 $(function(){
-	
-	$('form').summit(){
-		if (requset.getAttribute("0")){
-			alert("로그인 완료");
+	$('form').submit(function(){
+		if (session.getAttribute("0")){
+			alert("아이디 또는 비밀번호를 확인해 주세요");
+		}else{
+			alert("환영합니다")
+			
 		}
-		
-		alert("아이디 또는 비밀번호를 확인해 주세요");
-	}
+
+	});
 
 });
-
-
 </script>
 
 

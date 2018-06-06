@@ -14,13 +14,13 @@ public class Member {
 	private String mem_lastLogin_dateTime;
 	private int mem_treasurer;
 	private int mem_passion;
-	
+	private String mem_address;
 	public Member() {
 		super();
 	}
 	public Member(int mem_id, String mem_userId, String mem_email, String mem_password, String mem_userName,
 			String mem_nickName, String mem_phone, int mem_sex, String mem_register_dateTime, String mem_lastLogin_dateTime,
-			int mem_treasurer, int mem_passion) {
+			int mem_treasurer, int mem_passion,String mem_address) {
 		super();
 		this.mem_id = mem_id;
 		this.mem_userId = mem_userId;
@@ -34,6 +34,7 @@ public class Member {
 		this.mem_lastLogin_dateTime = mem_lastLogin_dateTime;
 		this.mem_treasurer = mem_treasurer;
 		this.mem_passion = mem_passion;
+		this.mem_address = mem_address;
 	}
 	public int getMem_id() {
 		return mem_id;
@@ -108,12 +109,21 @@ public class Member {
 		this.mem_passion = mem_passion;
 	}
 
+	public String getMem_address() {
+		return mem_address;
+	}
+	public void setMem_address(String mem_address) {
+		this.mem_address = mem_address;
+	}
 	@Override
 	public String toString() {
 		return "Member [mem_id=" + mem_id + ", mem_userId=" + mem_userId + ", mem_email=" + mem_email
 				+ ", mem_password=" + mem_password + ", mem_userName=" + mem_userName + ", mem_nickName=" + mem_nickName
 				+ ", mem_phone=" + mem_phone + ", mem_sex=" + mem_sex + ", mem_register_dateTime="
 				+ mem_register_dateTime + ", mem_lastLogin_dateTime=" + mem_lastLogin_dateTime + ", mem_treasurer="
-				+ mem_treasurer + ", mem_passion=" + mem_passion + "]";
+				+ mem_treasurer + ", mem_passion=" + mem_passion + ", mem_address=" + mem_address + "]";
 	}
+	
+	
+	
 }

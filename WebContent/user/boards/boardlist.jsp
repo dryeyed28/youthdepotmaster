@@ -7,6 +7,8 @@
 <%--검색기능 : ajax요청 >> UserBoardSerchController >> boardserchrslt.jsp에서 데이터받아옴  --%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
 <%@include file="../template/header.jsp"%>
+<c:set var="data" values="${requestScope.data}" />
+
 <script type="text/javascript">
 	function goUrl(url) {
 		location.href = url;
@@ -51,13 +53,13 @@
 							<td align="center" colspan="5">등록된 게시물이 없습니다.</td>
 						</tr>
 						 -->
-						<%--<c:forEach var="data" items =>  --%>
+					<%-- 	<c:forEach var="data" items =""> --%>
 <%
 	ArrayList<Post> data = (ArrayList)request.getAttribute("data");
 	for(Post p : data){
 %>
 						<tr>
-							<td><%=p.getPost_id() %></td>
+							<td><%=p.getPost_id() %></td> <!-- 테이블에 post 값 담기-->
 							<td><a href="<%=request.getContextPath()%>/PostController?type=boardView&brd=<%=p.getBoard_id().getBrd_id()%>&id=<%=p.getPost_id()%>"><%=p.getPost_title() %></a></td>
 							<td><%=p.getMem_nickName() %></td>
 							<td><%=p.getPost_dateTime() %></td>
@@ -67,17 +69,14 @@
 <%} %>
 					<tfoot>
 						<tr>
+							<td><%=request.getAttribute("startPage")%></td>
 							<td align="center" colspan="5">1</td>
 						</tr>
 					</tfoot>
 				</table>
 				</form>
 				<div align="right">
-<<<<<<< HEAD
-				  <a href="<%=request.getContextPath()%>/user/boards/boardwrite.jsp?id=<%=data.get(0).getBoard_id()%>"><button>글쓰기</button></a>
-=======
 				  <a href="<%=request.getContextPath()%>/user/boards/boardwrite.jsp?id=<%=data.get(0).getBoard_id().getBrd_id()%>"><button>글쓰기</button></a>
->>>>>>> b26faf22870288c42321b9ce3e95eb2cf8232e59
 				</div>
 			</div>
 	</div>

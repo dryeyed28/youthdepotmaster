@@ -37,7 +37,9 @@ public class BoardController extends HttpServlet {
 			boardlist = service.getBoardList();
 			request.setAttribute("boardlist", boardlist);
 			forwardURL = "admin/boardMng/tables.jsp";
-		} else if (type.equals("make")) {
+		} else if (type.equals("boardlist")) {
+			
+		}else if (type.equals("make")) {
 			b = new Board();
 			b.setBrd_name(request.getParameter("title"));
 			b.setBrd_type(request.getParameter("board"));

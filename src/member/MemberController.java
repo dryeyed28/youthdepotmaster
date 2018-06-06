@@ -1,6 +1,7 @@
 package member;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import board.BoardService;
+import board.BoardServiceImpl;
 import member.MemberService;
+import vo.Board;
 import vo.Member;
 import vo.PageBean;
 
@@ -30,8 +34,10 @@ public class MemberController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		MemberService service = new MemberServiceImpl();
+		ArrayList<Board> boardlist;
 		String type = "";
 		String result = "";
+		BoardService service1 = new BoardServiceImpl();
 		
 		Member m =null;
 		String userId="";
@@ -111,7 +117,7 @@ public class MemberController extends HttpServlet {
 			result="user/mypage/login.jsp";
 		
 		}else if(type.equals("login")) {
-			System.out.println("로그인");
+			//System.out.println("로그인");
 			m = new Member();
 			m.setMem_userId(request.getParameter("userid"));
 			m.setMem_password(request.getParameter("pwd"));
@@ -125,13 +131,23 @@ public class MemberController extends HttpServlet {
 				request.setAttribute("rslt", "0");
 				
 			} else {
-			
+				
 				result = "user/mypage/login.jsp";
 				
 			}
 			
+		}else if(type.equals("mypage")) {
+			m = new Member();
+			
+			
+			
+			
+			
+			
+			
 		}
-	
+		boardlist = service1.getBoardList();
+		request.setAttribute("boardlist", boardlist);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(result);
 		dispatcher.forward(request, response);
 	}

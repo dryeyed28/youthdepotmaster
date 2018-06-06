@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import board.BoardService;
+import board.BoardServiceImpl;
 import projcet.ProjcetService;
 import projcet.ProjcetServiceImpl;
+import vo.Board;
 import vo.Deposit;
 import vo.RewardPay;
 
@@ -29,8 +32,10 @@ public class TotalPayController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		BoardService service1 = new BoardServiceImpl();
 		TotalPayService service = new TotalPayServiceImpl();
 		String type = request.getParameter("type");
+		ArrayList<Board> boardlist;
 		String forwardURL = "";
 		ArrayList<RewardPay> totalpay = null;
 		ArrayList<Deposit> yeoljeong = null;
@@ -46,7 +51,13 @@ public class TotalPayController extends HttpServlet {
 			yeoljeong = service.refund();
 			request.setAttribute("yeoljeong", yeoljeong);
 			forwardURL = "admin/payMng/refundinfo.jsp";
+		} else if(type.equals("profit")) {
+			ArrayList<ProfitDto> profit = service.profit();
+			request.setAttribute("profit", profit);
+			forwardURL = "admin/payMng/profit.jsp";
 		}
+		boardlist = service1.getBoardList();
+		request.setAttribute("boardlist", boardlist);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
 	}

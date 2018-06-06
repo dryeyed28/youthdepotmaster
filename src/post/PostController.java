@@ -14,8 +14,11 @@ import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 
+import board.BoardService;
+import board.BoardServiceImpl;
 import projcet.RenamePolicy;
 import vo.Board;
+import vo.PageBean;
 import vo.Post;
 
 public class PostController extends HttpServlet {
@@ -36,7 +39,9 @@ public class PostController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		PostService service = new PostServiceImpl();
+		ArrayList<Board> boardlist;
 		ArrayList<Post> data;
+		BoardService service1 = new BoardServiceImpl();
 		String type = request.getParameter("type");
 		String searchText = request.getParameter("searchText");
 		String forwardURL = "";
@@ -48,7 +53,7 @@ public class PostController extends HttpServlet {
 		Board b = null;
 		if(type.equals("boardList")) {
 			//brd_id = Integer.parseInt(request.getParameter("brd_id"));
-			realPage = 2;
+			realPage = 3;
 			data = service.boardList(brd_id, realPage);
 			String page = request.getParameter("page");
 			int totalCount = service.findCount(brd_id);
@@ -64,12 +69,20 @@ public class PostController extends HttpServlet {
 			if (endPage > totalPage) {
 				endPage = totalPage;
 			}
+			PageBean<Post> pb = new PageBean<>();
+			pb.setCurrentPage(realPage);
+			pb.setTotalPage(totalPage);
+			pb.setList(data);
+			pb.setStartPage(startPage);
+			pb.setEndPage(endPage);
+			pb.setTotalCount(totalCount);
+			pb.setCntPerPage(cntPerPageGroup);
+			
 			request.setAttribute("realPage", realPage);
 			request.setAttribute("totalPage", totalPage);
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("data", data);
-			System.out.println("data!!! + " + data);
 			System.out.println(realPage);
 			forwardURL = "user/boards/boardlist.jsp";
 		} else if(type.equals("boardView")) {
@@ -202,6 +215,8 @@ public class PostController extends HttpServlet {
 				forwardURL = "/user/boards/boardlist.jsp";
 			}
 		}
+		boardlist = service1.getBoardList();
+		request.setAttribute("boardlist", boardlist);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
 	}
