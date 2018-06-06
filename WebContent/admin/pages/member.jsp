@@ -1,29 +1,50 @@
+<%@ page import="vo.PageBean" %>
+<%@ page import="vo.Member" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../template/top.jsp"%>
-<%@include file="../template/aside.jsp"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
+<html>
+<head>
+<title>memberlistresult.jsp</title>
+<style></style>
 <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-            responsive: true
-        });
+$(document).ready(function() {
+    $('#dataTables-example').DataTable({
+        responsive: true
     });
+});
 </script>
 <script>
 $(function() {
-	$('button#modify').click(function() {
-		$.ajax({
-			url:"memModify.jsp",
-			success: function(data){ 
-				$("div#page-wrapper").empty();
-				$('div#page-wrapper').html(data.trim());		
-			}
-		});
-		return false;
+$('button#modify').click(function() {
+	<%--
+	1. 체크된 인풋태그 밑에 있는 th태그 콘텐트 영역 el객체들의 값을
+	2. memModify.jsp에 포스트 방식으로 보내라.
+	
+	-input class="memberchecked"--%>
+	
+	var member = $("tr.memberchecked").siblings()
+	console.log("member 값은 : " + member);
+	 
+	$.ajax({
+		method: "POST",
+		url:"memModify.jsp",
+		success: function(data){ 
+			$("div#page-wrapper").empty();
+			$('div#page-wrapper').html(data.trim());		
+		}
 	});
+	return false;
+});
 });
 </script>
+</head>
 <body>
+<c:set var="pb" value="${requestScope.pagebean}"/>
+<c:set var="list" value="${pb.list}"/>
 <div id="page-wrapper">
   <div class="row">
 	<div class="col-lg-12">
@@ -44,54 +65,39 @@ $(function() {
            <thead>
               <tr>
             	<th><input type="checkbox"></th>
-                <th>회원번호</th>
+            	<th>멤버고유번호</th>
                 <th>아이디</th>
+                <th>이메일</th>
                 <th>비밀번호</th>
                 <th>이름</th>
-                <th>전화번호</th>
-                <th>이메일주소</th>
+                <th>별명</th>
+                <th>연락처</th>
+                <th>성별</th>
                 <th>가입일</th>
-                <th>탈퇴일</th>
+                <th>최종로그인</th>
                 <th>창고지기</th>
+                <th>열정보유액</th>
               </tr>
            </thead>
            <tbody>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>1</td>
-                <td>id1</td>
-                <td>*********</td>
-                <td>정기태</td>
-                <td>01090009000</td>
-                <td>rlxo1@naver.com</td>
-                <td>2018/05/11</td>
-                <td></td>
-                <td>투자</td>
+            <c:forEach var="member" items="${list}">
+              <tr class="memberchecked">
+                <td><input type="checkbox" value="checked"></td>
+                <td>${member.mem_id}</td>
+                <td>${member.mem_userId}</td>
+                <td>${member.mem_email}</td>
+                <td>${member.mem_password}</td>
+                <td>${member.mem_userName}</td>
+                <td>${member.mem_nickName}</td>
+                <td>${member.mem_phone}</td>
+                <td>${member.mem_sex}</td>
+                <td>${member.mem_register_dateTime}</td>
+                <td>${member.mem_lastLogin_dateTime}</td>
+                <td>${member.mem_treasurer}</td>
+                <td>${member.mem_passion}</td>
             </tr>
-            <tr>
-            	<td><input type="checkbox"></td>
-           		<td>2</td>
-                <td>id2</td>
-                <td>**********</td>
-                <td>안인오</td>
-                <td>01090009001</td>
-                <td>dlsdh1@daum.net</td>
-                <td>2017/05/11</td>
-                <td></td>
-                <td>리워드</td>
-            </tr>
-            <tr>
-            	<td><input type="checkbox"></td>
-                <td>3</td>
-                <td>id3</td>
-                <td>****</td>
-                <td>null</td>
-                <td>null</td>
-                <td>null</td>
-                <td>2017/05/10</td>
-                <td>2018/05/10</td>
-                <td>None</td>
-            </tr>
+            </c:forEach>
+     
            </tbody>
         </table>
       <br>
@@ -110,3 +116,4 @@ $(function() {
  </div>
  <!-- /#page-wrapper -->
 </body>
+</html>

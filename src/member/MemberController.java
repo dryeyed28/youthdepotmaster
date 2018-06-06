@@ -90,7 +90,7 @@ public class MemberController extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("result", e.getMessage());
 			}
-			result = "/admin/pages/memberlistresult.jsp";
+			result = "/admin/pages/member.jsp";
 			
 		}else if (type.equals("signup")) {
 			//System.out.println("회원가입");
