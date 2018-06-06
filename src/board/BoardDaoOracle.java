@@ -90,4 +90,30 @@ public class BoardDaoOracle implements BoardDao {
 		}
 	}
 
+	@Override
+	public void updateboard(Board board) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = OracleConnection.getConnection();
+			con.setAutoCommit(false);
+			String sql = "UPDATE board SET brd_name = ? , brd_type = ?\r\n" + 
+					"where brd_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, board.getBrd_name());
+			pstmt.setString(2, board.getBrd_type());
+			pstmt.setInt(3, board.getBrd_id());
+			int commit = pstmt.executeUpdate();
+			if (commit == 1) {
+				con.commit();
+			} else {
+				con.rollback();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(pstmt, con);
+		}
+	}
+
 }
