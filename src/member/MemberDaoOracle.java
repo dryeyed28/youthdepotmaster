@@ -9,6 +9,8 @@ import java.util.List;
 
 import sql.OracleConnection;
 import vo.Member;
+import vo.ROption;
+import vo.RProject;
 
 public class MemberDaoOracle implements MemberDao {
 
@@ -206,5 +208,41 @@ public class MemberDaoOracle implements MemberDao {
 		return m;
 		
 	}
+
+	@Override
+	public Member getMember(int mem_id) {
+		
+		Member m = new Member();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			
+			con = OracleConnection.getConnection();
+			String mysql = "select MEM_ID,MEM_USERID,MEM_EMAIL,MEM_USERNAME,MEM_NICKNAME,MEM_PHONE,MEM_PASSION from members where mem_id=?";
+			
+			pstmt = con.prepareStatement("mysql");
+			pstmt.setInt(1,mem_id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				m.setMem_id(rs.getInt("mem_id"));
+				m.setMem_userId(rs.getString("mem_userId"));
+				m.setMem_email(rs.getString("mem_email"));
+				m.setMem_userName(rs.getString("mem_userName"));
+				m.setMem_nickName(rs.getString("mem_nickName"));
+				m.setMem_phone(rs.getString("mem_phone"));
+				m.setMem_passion(rs.getInt("mem_passion"));
+			}
+			
+		}catch (SQLException e) {
+		}finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
+		return m;
+	}
+
+	
+
+	
 	
 }

@@ -84,7 +84,7 @@
 					<span class="price">
 					<%if (meta.getrProject().getrPJT_progress() == 1) {%>
 					진행중
-					<%} else if(meta.getrProject().getrPJT_progress() == 2) { %>
+					<%} else if(meta.getrProject().getrPJT_progress() == 2 || meta.getrProject().getrPJT_progress() == 3) { %>
 					마감
 					<%} %>
 					</span> <span><%=meta.getrPJT_category()%></span><br> <br>

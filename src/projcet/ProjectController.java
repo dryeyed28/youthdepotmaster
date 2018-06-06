@@ -29,22 +29,13 @@ public class ProjectController extends HttpServlet {
 
 	public ProjectController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doPost(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
@@ -159,6 +150,10 @@ public class ProjectController extends HttpServlet {
 			RewardPay rpay = service.orderReward(mem_id);
 			request.setAttribute("rpay", rpay);
 			forwardURL = "user/pages/paycheck.jsp";
+		} else if(type.equals("projectrequest")) {
+			metalist = service.metalist();
+			request.setAttribute("project", metalist);
+			forwardURL = "admin/pages/projectrequest.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);

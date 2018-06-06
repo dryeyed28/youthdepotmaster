@@ -1,3 +1,4 @@
+<%@page import="vo.RMeta"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../template/top.jsp"%>
@@ -29,7 +30,7 @@
 		<table class="table table-bordered table-hover" id="dataTables-example">
            <thead>
               <tr>
-            	<th><input type="checkbox"></th>
+            	<td><input type="checkbox"></td>
                 <th>프로젝트 번호</th>
                 <th>프로젝트 제목</th>
                 <th>창고지기</th>
@@ -38,108 +39,31 @@
               </tr>
            </thead>
            <tbody>
+           <%ArrayList<RMeta> project = (ArrayList)request.getAttribute("project");
+           for(RMeta rm : project) {%>
               <tr>
                 <td><input type="checkbox"></td>
-                <td>5</td>
-                <td>열정 키트리</td>
-                <td class="center">창고지기</td>
-                <td class="center">18.05.10</td>
+                <td><%=rm.getrProject().getrPJT_id() %></td>
+                <td><%=rm.getrPJT_title() %></td>
+                <td class="center"><%=rm.getrProject().getMem_id() %></td>
+                <td class="center"><%=rm.getrProject().getrPJT_submission() %></td>
                 <td><div class="btn-group">
-				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-	    		  Action <span class="caret"></span>
-	  			  </button>
-		  		  <ul class="dropdown-menu" role="menu">
-			   	   <li><a href="#">승인</a></li>
-			   	   <li><a href="#">검토중</a></li>
-			       <li class="divider"></li>
-			       <li><a href="#">반려</a></li>
-			      </ul>
+				  <select id="selectCategroy">
+					<option>승인</option>
+					<option>검토중</option>
+					<option>반려</option>
+				  </select>
 				</div>
 				</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>4</td>
-                <td>열정 키트리</td>
-                <td class="center">창고지기</td>
-                <td class="center">18.05.09</td>
-                <td><div class="btn-group">
-				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-	    		  Action <span class="caret"></span>
-	  			  </button>
-		  		  <ul class="dropdown-menu" role="menu">
-			   	   <li><a href="#">승인</a></li>
-			   	   <li><a href="#">검토중</a></li>
-			       <li class="divider"></li>
-			       <li><a href="#">반려</a></li>
-			      </ul>
-				</div>
-				</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>3</td>
-                <td>열정 키트리</td>
-                <td class="center">창고지기</td>
-                <td class="center">18.05.08</td>
-                <td><div class="btn-group">
-				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-	    		  Action <span class="caret"></span>
-	  			  </button>
-		  		  <ul class="dropdown-menu" role="menu">
-			   	   <li><a href="#">승인</a></li>
-			   	   <li><a href="#">검토중</a></li>
-			       <li class="divider"></li>
-			       <li><a href="#">반려</a></li>
-			      </ul>
-				</div>
-				</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>2</td>
-                <td>열정 키트리</td>
-                <td class="center">창고지기</td>
-                <td class="center">18.05.07</td>
-                <td><div class="btn-group">
-				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-	    		  Action <span class="caret"></span>
-	  			  </button>
-		  		  <ul class="dropdown-menu" role="menu">
-			   	   <li><a href="#">승인</a></li>
-			   	   <li><a href="#">검토중</a></li>
-			       <li class="divider"></li>
-			       <li><a href="#">반려</a></li>
-			      </ul>
-				</div>
-				</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>1</td>
-                <td>열정 키트리</td>
-                <td class="center">창고지기</td>
-                <td class="center">18.05.06</td>
-                <td><div class="btn-group">
-				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-	    		  Action <span class="caret"></span>
-	  			  </button>
-		  		  <ul class="dropdown-menu" role="menu">
-			   	   <li><a href="#">승인</a></li>
-			   	   <li><a href="#">검토중</a></li>
-			       <li class="divider"></li>
-			       <li><a href="#">반려</a></li>
-			      </ul>
-				</div>
-				</td>
+			  <%} %>
               </tr>
            </tbody>
         </table>
       <hr>
       <div class="btn-center" style="text-align: right">
-        <!-- 자세히 보기를 누르면 선택한 프로젝트의 내용 (projectrequestcontent.jsp) 보여주기 -->
+        <!-- 자세히 보기를 누르면 선택한 프로젝트의 내용 (projectrequestcontent.jsp) 보여주기 
         <button onclick="location.href='projectrequestcontent.jsp'" class="btn btn-outline btn-primary" >자세히 보기</button>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
         <button class="btn btn-primary">진행사항 수정</button>&nbsp;
         <button class="btn btn-primary">삭제</button>
       </div>
