@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import sql.OracleConnection;
+import vo.Deposit;
 import vo.RewardPay;
 
 public class TotalPayDaoOracle implements TotalPayDao {
@@ -34,6 +35,70 @@ public class TotalPayDaoOracle implements TotalPayDao {
 				rpay.setrProduct_ea(rs.getInt(5));
 				rpay.setrPay_date(rs.getString(6));
 				list.add(rpay);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
+		return list;
+	}
+
+	@Override
+	public ArrayList<Deposit> getDepositInfo() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<Deposit> list = new ArrayList<Deposit>();
+		try {
+			con = OracleConnection.getConnection();
+			String sql = "";
+			sql += "select dep.dep_id, m.mem_userid, dep.dep_request, to_char(dep.dep_date, 'yyyy-mm-dd hh:Mi:ss'), dep.dep_state \n";
+			sql += "from deposit dep join members m on dep.mem_id = m.mem_id \n";
+			sql += "where dep.dep_state is not null \n";
+			sql += "order by dep.dep_state";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Deposit dep = new Deposit();
+				dep.setDep_id(rs.getInt(1));
+				dep.setMem_userID(rs.getString(2));
+				dep.setDep_request(rs.getInt(3));
+				dep.setDep_date(rs.getString(4));
+				dep.setDep_state(rs.getInt(5));
+				list.add(dep);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
+		return list;
+	}
+
+	@Override
+	public ArrayList<Deposit> getRefundInfo() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<Deposit> list = new ArrayList<Deposit>();
+		try {
+			con = OracleConnection.getConnection();
+			String sql = "";
+			sql += "select dep.dep_id, m.mem_userid, dep.dep_request, to_char(dep.dep_date, 'yyyy-mm-dd hh:Mi:ss'), dep.dep_type \n";
+			sql += "from deposit dep join members m on dep.mem_id = m.mem_id \n";
+			sql += "where dep.dep_type = 3 or dep.dep_type = 4";
+			sql += "order by dep.dep_type desc";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Deposit dep = new Deposit();
+				dep.setDep_id(rs.getInt(1));
+				dep.setMem_userID(rs.getString(2));
+				dep.setDep_request(rs.getInt(3));
+				dep.setDep_date(rs.getString(4));
+				dep.setDep_type(rs.getInt(5));
+				list.add(dep);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

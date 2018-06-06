@@ -173,7 +173,7 @@ public class MemberDaoOracle implements MemberDao {
 	}
 
 	@Override
-	public Member login(Member member) {
+	public int login(Member member) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -181,7 +181,7 @@ public class MemberDaoOracle implements MemberDao {
 		String mem_userId= member.getMem_userId();
 		String mem_password= member.getMem_password();
 		String login="SELECT mem_id, mem_userid, mem_password  FROM members WHERE mem_userid=? and mem_password=?";
-
+		int mem_id = 0;
 		try {
 			con = OracleConnection.getConnection();
 			pstmt = con.prepareStatement(login);
@@ -189,8 +189,10 @@ public class MemberDaoOracle implements MemberDao {
 			pstmt. setString(1,mem_userId);
 			pstmt. setString(2,mem_password);
 			rs = pstmt.executeQuery();
-			rs.next();
-			member.setMem_userId(rs.getString("mem_userId"));
+			if (rs.next()) {
+				
+				mem_id = rs.getInt("mem_Id");
+			}
 			
 			
 			
@@ -201,7 +203,7 @@ public class MemberDaoOracle implements MemberDao {
 			OracleConnection.close(rs, pstmt, con);
 		}
 		
-		return member;
+		return mem_id;
 		
 	}
 	

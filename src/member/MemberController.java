@@ -36,7 +36,6 @@ public class MemberController extends HttpServlet {
 		Member m =null;
 		String userId="";
 		int intPage = 0;
-		boolean flag=false;
 		HttpSession session = null;
 		
 		MemberService svic = new MemberServiceImpl();
@@ -117,9 +116,9 @@ public class MemberController extends HttpServlet {
 			m.setMem_userId(request.getParameter("userid"));
 			m.setMem_password(request.getParameter("pwd"));
 		
-			Member mem = service.login(m);
-			System.out.println(m);
-			if (mem != null) {
+			int mem_id = service.login(m);
+			System.out.println(mem_id);
+			if (mem_id != 0) {
 				session = request.getSession();
 				session.setAttribute("userid", userId);
 				result = "user/pages/index.jsp";

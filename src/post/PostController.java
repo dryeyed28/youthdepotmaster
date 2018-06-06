@@ -22,10 +22,11 @@ public class PostController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public PostController() {
-        super();
-    }
+		super();
+	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doPost(request, response);
 	}
 
@@ -40,7 +41,6 @@ public class PostController extends HttpServlet {
 		String forwardURL = "";
 		String redirectURL = "";
 		int brd_id = 20;
-		int intPage = 1;
 		int post_id = 0;
 		Post p = null;
 		Board b = null;
@@ -50,15 +50,23 @@ public class PostController extends HttpServlet {
 			data = service.boardList(brd_id);
 			String page = request.getParameter("page");
 			int totalCount = service.findCount(brd_id);
-			int realpage = 0;
-			if (page == null) {
-				realpage = 1;
-			} else {				
-				realpage = Integer.parseInt(page);
-				int totalPage = 0;
-				int cntPerPage = 10;
-				totalPage = (int) Math.ceil((double) totalCount / cntPerPage);
+			int cntPerPage = 10; //1페이지 별 10건씩 게시글을 보여준다.
+			int realPage = 1;
+			
+			if(page != null) {
+				realPage = Integer.parseInt(page);
 			}
+			int totalPage = (int) Math.ceil((double) totalCount / cntPerPage);
+			int cntPerPageGroup = 5; //페이지 그룹별 5페이지씩 보여준다.
+			int startPage = (int)(realPage/cntPerPageGroup+0.8) * cntPerPageGroup - cntPerPageGroup+1;
+			int endPage = startPage + cntPerPageGroup-1;
+			if(endPage > totalPage) {
+					endPage = totalPage;
+			}
+			request.setAttribute("realPage", realPage);
+			request.setAttribute("totalPage", totalPage);
+			request.setAttribute("startPage", startPage);
+			request.setAttribute("endPage", endPage);
 			request.setAttribute("data", data);
 			//System.out.println("data!!! + " + data);
 			forwardURL = "user/boards/boardlist.jsp";

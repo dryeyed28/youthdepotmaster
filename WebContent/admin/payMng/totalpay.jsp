@@ -43,13 +43,14 @@
            </thead>
            <tbody>
            <%ArrayList<RewardPay> totalpay = (ArrayList)request.getAttribute("totalpay");
-           for(RewardPay rpay : totalpay){%>
+           for(RewardPay rpay : totalpay){
+           		String comma = String.format("%,d",rpay.getrPay_total());%>
               <tr>
               	<td><input type="checkbox"></td>
                 <td><%=rpay.getrPay_id() %></td>
 	            <td><%=rpay.getMem_name() %></td>
 	            <td><%=rpay.getrPJT_id() %></td>
-	            <td><%=rpay.getrPay_total() %></td>
+	            <td><%=comma %></td>
 	            <td><%=rpay.getrProduct_ea() %></td>
 	            <td><%=rpay.getrPay_date() %></td>
 	            <!-- <td>입금완료</td> -->
