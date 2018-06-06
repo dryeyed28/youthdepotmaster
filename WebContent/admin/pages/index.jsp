@@ -37,7 +37,7 @@
                         
                      </div>
                  </div>
-                 <a href="<%=root%>/memberMgr/member.jsp">
+                 <a href="<%=root%>/MemberController?type=selectAll">
                      <div class="panel-footer">
                          <span class="pull-left">상세보기</span>
                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
