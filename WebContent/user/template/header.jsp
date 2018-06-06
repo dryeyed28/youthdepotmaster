@@ -100,10 +100,17 @@ function goGo() {
 						</button>
 					</div>
 				</form>
-				<button class="btn-medium blue-bg soap-popupbox"
+				<% HttpSession session2 = request.getSession();
+					if (session2.getAttribute("mem_id") == null){
+					
+				%>
+				<button 
 					data-target="#travelo-signup" onclick="location.href='<%=request.getContextPath()%>/user/mypage/signup.jsp'">회원가입</button>
-				<button class="btn-medium soap-popupbox"
+				<button 
 					data-target="#travelo-login" onclick="location.href='<%=request.getContextPath()%>/user/mypage/login.jsp'">로그인</button>
+					<%} else {%>
+					<h4><%= session2.getAttribute("nickname") %>님환영합니다</h4>
+					<% } %>
 			</div>
 		</div>
 		<a href="#mobile-menu-01" data-toggle="collapse"
