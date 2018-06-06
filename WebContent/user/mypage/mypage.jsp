@@ -66,7 +66,8 @@
 
 							<div class="row">
 								<div class="form-group col-sm-6 col-md-5">
-									<label>주소</label> 
+									<label>주소</label>
+									<h1><%=m.getMem_address()%></h1> 
 									
 								</div>
 								<div class="form-group col-sm-6 col-md-5">

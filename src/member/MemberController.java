@@ -111,7 +111,7 @@ public class MemberController extends HttpServlet {
 			result="user/mypage/login.jsp";
 		
 		}else if(type.equals("login")) {
-			System.out.println("로그인");
+			//System.out.println("로그인");
 			m = new Member();
 			m.setMem_userId(request.getParameter("userid"));
 			m.setMem_password(request.getParameter("pwd"));
@@ -129,6 +129,15 @@ public class MemberController extends HttpServlet {
 				result = "user/mypage/login.jsp";
 				
 			}
+			
+		}else if(type.equals("mypage")) {
+			m = new Member();
+			
+			
+			
+			
+			
+			
 			
 		}
 	
