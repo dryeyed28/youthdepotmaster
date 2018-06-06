@@ -48,3 +48,6 @@ $(function() {
 			return false;
 		});
 	});
+-----------------------------------------------------------------------------------------------------------------
+HttpSession session = request.getSession();
+int mem_id = Integer.parseInt(session.getAttribute("mem_id").toString());
