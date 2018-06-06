@@ -138,12 +138,13 @@ public class PostController extends HttpServlet {
 				dir.mkdirs();
 			String attachedfileroot = root + "files/attachedfile/" + attachedfile.getName();
 			attachedfile.renameTo(new File(attachedfileroot));
-			
 			b = new Board();
 			p = new Post();/*
 			b.setBrd_id(Integer.parseInt(request.getParameter("bid")));*/
-			p.setPost_title(request.getParameter("title"));
-			p.setPost_content(request.getParameter("content"));
+			p.setPost_title(mr.getParameter("title"));
+			p.setPost_content(mr.getParameter("content"));
+			p.setPost_file(attachedfile.getName());
+			System.out.println(p);
 			p.setAdmin_id("admin");
 			service.wirtePost(p);
 			forwardURL = "/admin/boardMng/board1.jsp";

@@ -148,8 +148,9 @@ public class PostDaoOracle implements PostDao {
 		try {
 			con = OracleConnection.getConnection();
 			con.setAutoCommit(false);
-			String sqlinsert = "Insert into POST (POST_ID,BRD_ID,ADMIN_ID,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) \r\n"
-					+ "values ((SELECT MAX(POST_ID)+1 from post),20,?,?,?,to_date(sysdate,'RR/MM/DD'),0,0)";
+			String sqlinsert = "Insert into POST (POST_ID,BRD_ID,ADMIN_ID,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL,POST_FILE)"
+					+ "values ((SELECT MAX(POST_ID)+1 from post),20,?,?,?,to_date(sysdate,'RR/MM/DD'),0,0,?)";
+			System.out.println(post);
 			pstmt = con.prepareStatement(sqlinsert);/*
 //			pstmt.setInt(1, post.getBoard_id().getBrd_id());*/
 //			pstmt.setInt(2, post.getMem_id());
@@ -157,6 +158,7 @@ public class PostDaoOracle implements PostDao {
 			//pstmt.setString(4, post.getMem_nickName());
 			pstmt.setString(2, post.getPost_title());
 			pstmt.setString(3, post.getPost_content());
+			pstmt.setString(4, post.getPost_file());
 			int commit = pstmt.executeUpdate();
 			if (commit == 1) {
 				con.commit();
