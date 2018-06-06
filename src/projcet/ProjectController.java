@@ -36,6 +36,7 @@ public class ProjectController extends HttpServlet {
 		doPost(request, response);
 	}
 
+	@SuppressWarnings("null")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
@@ -45,11 +46,13 @@ public class ProjectController extends HttpServlet {
 		String type = request.getParameter("type");
 		String forwardURL = "";
 		int rPJT_id = 0;
+		int rPay_id = 0;
 		RKeeper keeper = null;
 		ArrayList<RMeta> metalist = null;
 		ArrayList<ROption> option = null;
 		RMeta meta = null;
 		Deposit deposit = null;
+		RewardPay repay = null;
 		if (type.equals("apply")) {
 			String root = "C:/";
 			MultipartRequest mr = null;
@@ -159,9 +162,15 @@ public class ProjectController extends HttpServlet {
 			ProjectContentDto content = service.content(rPJT_id);
 			request.setAttribute("content", content);
 			forwardURL = "admin/pages/projectrequestcontent.jsp";
-		} else if (type.equals("payaddress")) {
-
-			forwardURL = "/ProjectController?type=payaddressinsert";
+		} else if (type.equals("payaddressinsert")) {
+			repay.setMem_name(request.getParameter("name"));
+			repay.setrPay_address(request.getParameter("address"));
+			repay.setrPay_phone(request.getParameter("tel"));
+			repay.setrPay_request(request.getParameter("addressrequest"));
+			repay.setrPay_total(Integer.parseInt(request.getParameter("comma")));
+			repay = service.rewardPay(rPay_id);
+			request.setAttribute("payaddressinsert",repay);
+			forwardURL = "user/pages/index.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
