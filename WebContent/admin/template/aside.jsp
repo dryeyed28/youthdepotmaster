@@ -53,9 +53,6 @@ String root = request.getContextPath();
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="<%=root%>/admin/pages/morris.jsp"><i class="fa fa-bar-chart-o fa-fw"></i>통계</a>
-                    </li>
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->
