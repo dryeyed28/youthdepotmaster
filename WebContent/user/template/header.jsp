@@ -5,6 +5,12 @@
 <!DOCTYPE html>
 	<html>
 <head>
+<script>
+function goGo() {
+	onclick="location.href='address'"
+}
+</script>
+
     <!-- Page Title -->
     <title>youthdepot</title>
     
@@ -95,9 +101,9 @@
 					</div>
 				</form>
 				<button class="btn-medium blue-bg soap-popupbox"
-					data-target="#travelo-signup">회원가입</button>
+					data-target="#travelo-signup" onclick="location.href='<%=request.getContextPath()%>/user/mypage/signup.jsp'">회원가입</button>
 				<button class="btn-medium soap-popupbox"
-					data-target="#travelo-login">로그인</button>
+					data-target="#travelo-login" onclick="location.href='<%=request.getContextPath()%>/user/mypage/login.jsp'">로그인</button>
 			</div>
 		</div>
 		<a href="#mobile-menu-01" data-toggle="collapse"

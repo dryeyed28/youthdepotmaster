@@ -15,5 +15,5 @@ public interface MemberService {
 
 	public void signup(Member member);
 	
-	public int login(Member member);	
+	public Member login(Member member);	
 }

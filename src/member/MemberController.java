@@ -115,12 +115,14 @@ public class MemberController extends HttpServlet {
 			m = new Member();
 			m.setMem_userId(request.getParameter("userid"));
 			m.setMem_password(request.getParameter("pwd"));
-		
-			int mem_id = service.login(m);
-			System.out.println(mem_id);
-			if (mem_id != 0) {
+			
+			Member member = new Member(); 
+			member = service.login(m);
+			System.out.println(member);
+			if (member != null) {
 				session = request.getSession();
-				session.setAttribute("userid", userId);
+				session.setAttribute("mem_id", member.getMem_id());
+				session.setAttribute("nickname", member.getMem_nickName());
 				result = "user/pages/index.jsp";
 				request.setAttribute("rslt", "0");
 				

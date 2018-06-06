@@ -60,7 +60,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int login(Member member) {
+	public Member login(Member member) {
 	return dao.login(member);
 	
 	}
