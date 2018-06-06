@@ -181,7 +181,7 @@ public class MemberDaoOracle implements MemberDao {
 		Member m = new Member();
 		String mem_userId= member.getMem_userId();
 		String mem_password= member.getMem_password();
-		String login="SELECT mem_id, mem_userid, mem_password  FROM members WHERE mem_userid=? and mem_password=?";
+		String login="SELECT mem_id, mem_userid, mem_password, mem_nickname  FROM members WHERE mem_userid=? and mem_password=?";
 		try {
 			con = OracleConnection.getConnection();
 			pstmt = con.prepareStatement(login);
