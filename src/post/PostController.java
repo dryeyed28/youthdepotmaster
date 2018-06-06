@@ -123,6 +123,8 @@ public class PostController extends HttpServlet {
 			service.wirtePost(p);
 			forwardURL = "/PostController?type=boardList";
 		} else if (type.equals("adminboardwrite")) {
+			b = new Board();
+			p = new Post();
 			String root = "C:/";
 			MultipartRequest mr = null;
 			int maxPostSize = 1024 * 10000;
@@ -134,17 +136,19 @@ public class PostController extends HttpServlet {
 			}
 			File attachedfile = mr.getFile("uploadFiles");
 			File dir = new File(root + "files/attachedfile");
+			File dir0 = new File(root + "files");
+			if (dir0.exists())
+				dir0.mkdirs();
 			if (!dir.exists())
 				dir.mkdirs();
-			String attachedfileroot = root + "files/attachedfile/" + attachedfile.getName();
-			attachedfile.renameTo(new File(attachedfileroot));
-			b = new Board();
-			p = new Post();/*
-			b.setBrd_id(Integer.parseInt(request.getParameter("bid")));*/
+			if (attachedfile != null) {
+				String attachedfileroot = root + "files/attachedfile/" + attachedfile.getName();
+				attachedfile.renameTo(new File(attachedfileroot));
+				p.setPost_file(attachedfile.getName());
+			}
+			//b.setBrd_id(Integer.parseInt(request.getParameter("bid")));
 			p.setPost_title(mr.getParameter("title"));
 			p.setPost_content(mr.getParameter("content"));
-			p.setPost_file(attachedfile.getName());
-			System.out.println(p);
 			p.setAdmin_id("admin");
 			service.wirtePost(p);
 			forwardURL = "/admin/boardMng/board1.jsp";

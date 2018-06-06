@@ -61,6 +61,7 @@
                                 <th>게시판 타이틀</th>
                                 <th>분류</th>
                                 <th>총 게시물</th>
+                                <th>수정</th>
                             </tr>
                         </thead>
                         <tbody>
