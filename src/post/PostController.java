@@ -132,14 +132,15 @@ public class PostController extends HttpServlet {
 			attachedfile.renameTo(new File(attachedfileroot));
 			
 			b = new Board();
-			p = new Post();
-			b.setBrd_id(Integer.parseInt(request.getParameter("bid")));
+			p = new Post();/*
+			b.setBrd_id(Integer.parseInt(request.getParameter("bid")));*/
 			p.setPost_title(request.getParameter("title"));
 			p.setPost_content(request.getParameter("content"));
 			p.setAdmin_id("admin");
 			service.wirtePost(p);
-			forwardURL = "/BoardController?type=boardmenu";
-		} else if(type.equals("searchAll")) {
+			forwardURL = "/admin/boardMng/board1.jsp";
+/*			forwardURL = "/BoardController?type=boardmenu";
+*/		} else if(type.equals("searchAll")) {
 			if (!"".equals(searchText)) {
 				//검색문자열이 있는 경우
 				String mem_nickName = searchText;

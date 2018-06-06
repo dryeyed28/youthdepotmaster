@@ -1,4 +1,5 @@
 <%@page import="vo.Post"%>
+<%@page import="vo.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../template/top.jsp"%>
@@ -8,23 +9,6 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 <script>
 $(document).ready(function() {
-    /* var sendFile = function (file, el) {
-          var form_data = new FormData();
-          form_data.append('file', file);
-          $.ajax({
-            data: form_data,
-            type: "POST",
-            url: '/file',
-            cache: false,
-            contentType: false,
-            enctype: 'multipart/form-data',
-            processData: false,
-            success: function(url) {
-                    $('#summernote').summernote('insertImage', url);
-                $('#imageBoard > ul').append('<li><img src="'+ url +'" width="480" height="auto"/></li>');
-            }
-          });
-        } */
     $('#summernote').summernote({
         height: 300,
         minHeight: null,
@@ -44,7 +28,7 @@ $(document).ready(function() {
 <div id="page-wrapper">
   <div class="row">
 	<div class="col-lg-12">
-	  <h2 class="page-header">게시 관리 > 공지사항 수정</h2>
+	  <h2 class="page-header">게시 관리 > 공지사항 글쓰기</h2>
 	</div>
   </div>
   <div class="row">
