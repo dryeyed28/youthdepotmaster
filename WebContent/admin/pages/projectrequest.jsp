@@ -47,7 +47,7 @@ a:hover { color: blue; text-decoration: underline;}
            for(RMeta rm : project) {%>
               <tr>
                 <td><%=rm.getrProject().getrPJT_id() %></td>
-                <td><a href="<%=root%>/ProjectController?type=content&id=<%=rm.getrProject().getrPJT_id()%>"> <%=rm.getrPJT_title() %> </a></td>
+                <td><a href="<%=root%>/ProjectController?type=content&rPJT_id=<%=rm.getrProject().getrPJT_id()%>"> <%=rm.getrPJT_title() %> </a></td>
                 <td class="center"><%=rm.getrProject().getMem_id() %></td>
                 <td class="center"><%=rm.getrProject().getrPJT_submission() %></td>
                 <% if(rm.getrProject().getrPJT_state() == 1) { %>

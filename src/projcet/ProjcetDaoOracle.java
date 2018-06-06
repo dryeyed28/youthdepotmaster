@@ -362,7 +362,6 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, rPJT_id);
 			rs = pstmt.executeQuery();
-			System.out.println(rs.next());
 			if(rs.next()) {
 				pcd = new ProjectContentDto(
 						rs.getInt(1),

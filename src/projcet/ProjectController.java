@@ -151,9 +151,14 @@ public class ProjectController extends HttpServlet {
 			request.setAttribute("rpay", rpay);
 			forwardURL = "user/pages/paycheck.jsp";
 		} else if (type.equals("projectrequest")) {
-			metalist = service.metalist();
+			metalist = service.project();
 			request.setAttribute("project", metalist);
 			forwardURL = "admin/pages/projectrequest.jsp";
+		} else if (type.equals("content")) {
+			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
+			ProjectContentDto content = service.content(rPJT_id);
+			request.setAttribute("content", content);
+			forwardURL = "admin/pages/projectrequestcontent.jsp";
 		} else if (type.equals("payaddress")) {
 
 			forwardURL = "/ProjectController?type=payaddressinsert";
