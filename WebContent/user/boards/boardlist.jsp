@@ -51,6 +51,7 @@
 							<td align="center" colspan="5">등록된 게시물이 없습니다.</td>
 						</tr>
 						 -->
+						<%--<c:forEach var="data" items =>  --%>
 <%
 	ArrayList<Post> data = (ArrayList)request.getAttribute("data");
 	for(Post p : data){
@@ -72,7 +73,11 @@
 				</table>
 				</form>
 				<div align="right">
-				  <a href="<%=request.getContextPath()%>/user/boards/boardwrite.jsp?id=<%=data.get(0).getPost_id()%>"><button>글쓰기</button></a>
+<<<<<<< HEAD
+				  <a href="<%=request.getContextPath()%>/user/boards/boardwrite.jsp?id=<%=data.get(0).getBoard_id()%>"><button>글쓰기</button></a>
+=======
+				  <a href="<%=request.getContextPath()%>/user/boards/boardwrite.jsp?id=<%=data.get(0).getBoard_id().getBrd_id()%>"><button>글쓰기</button></a>
+>>>>>>> b26faf22870288c42321b9ce3e95eb2cf8232e59
 				</div>
 			</div>
 	</div>

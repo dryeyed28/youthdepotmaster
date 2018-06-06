@@ -10,8 +10,8 @@ public class PostServiceImpl implements PostService {
 	PostDao dao = new PostDaoOracle();
 
 	@Override
-	public ArrayList<Post> boardList(int brd_id) {
-		return dao.postList(brd_id);
+	public ArrayList<Post> boardList(int brd_id, int realPage) {
+		return dao.postList(brd_id, realPage);
 	}
 
 	@Override

@@ -43,10 +43,8 @@ public class PostController extends HttpServlet {
 		String redirectURL = "";
 		int brd_id = 20;
 		int post_id = 0;
-		int realPage = 0;
 		Post p = null;
 		Board b = null;
-<<<<<<< HEAD
 
 		if (type.equals("boardList")) {
 			// brd_id = Integer.parseInt(request.getParameter("brd_id"));
@@ -57,18 +55,6 @@ public class PostController extends HttpServlet {
 			int realPage = 1;
 
 			if (page != null) {
-=======
-				
-		if(type.equals("boardList")) {
-			//brd_id = Integer.parseInt(request.getParameter("brd_id"));
-			realPage = 2;
-			data = service.boardList(brd_id, realPage);
-			String page = request.getParameter("page");
-			int totalCount = service.findCount(brd_id);
-			int cntPerPage = 10; //1페이지 별 10건씩 게시글을 보여준다.
-			
-			if(page != null) {
->>>>>>> 7acd663cb8daa1b078d86cca110f50c8d24ed5a7
 				realPage = Integer.parseInt(page);
 			}
 			int totalPage = (int) Math.ceil((double) totalCount / cntPerPage);
@@ -83,7 +69,6 @@ public class PostController extends HttpServlet {
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("data", data);
-<<<<<<< HEAD
 			// System.out.println("data!!! + " + data);
 			forwardURL = "user/boards/boardlist.jsp";
 		} else if (type.equals("boardListResult")) {
@@ -93,12 +78,6 @@ public class PostController extends HttpServlet {
 			request.setAttribute("data", data);
 			forwardURL = "user/boards/boardlistResult.jsp";
 		} else if (type.equals("boardView")) {
-=======
-			System.out.println("data!!! + " + data);
-			System.out.println(realPage);
-			forwardURL = "user/boards/boardlist.jsp";
-		} else if(type.equals("boardView")) {
->>>>>>> 7acd663cb8daa1b078d86cca110f50c8d24ed5a7
 			p = new Post();
 			b = new Board();
 			brd_id = Integer.parseInt(request.getParameter("brd"));
@@ -185,13 +164,8 @@ public class PostController extends HttpServlet {
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";
 			} else {
-<<<<<<< HEAD
 				// 빈문자열을 검색할 경우 = 전체 검색
 				data = service.boardList(brd_id);
-=======
-				//빈문자열을 검색할 경우 = 전체 검색
-				data = service.boardList(brd_id, realPage);
->>>>>>> 7acd663cb8daa1b078d86cca110f50c8d24ed5a7
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";
 			}
@@ -202,13 +176,8 @@ public class PostController extends HttpServlet {
 				request.setAttribute("data", list);
 				forwardURL = "/user/boards/boardlist.jsp";
 			} else {
-<<<<<<< HEAD
 				// 빈문자열을 검색할 경우 = 전체 검색
 				data = service.boardList(brd_id);
-=======
-				//빈문자열을 검색할 경우 = 전체 검색
-				data = service.boardList(brd_id, realPage);
->>>>>>> 7acd663cb8daa1b078d86cca110f50c8d24ed5a7
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";
 			}
@@ -219,20 +188,14 @@ public class PostController extends HttpServlet {
 				request.setAttribute("data", list);
 				forwardURL = "/user/boards/boardlist.jsp";
 			} else {
-<<<<<<< HEAD
 				// 빈문자열을 검색할 경우 = 전체 검색
 				data = service.boardList(brd_id);
-=======
-				//빈문자열을 검색할 경우 = 전체 검색
-				data = service.boardList(brd_id, realPage);
->>>>>>> 7acd663cb8daa1b078d86cca110f50c8d24ed5a7
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";
 			}
 		} else if (type.equals("searchContent")) {
 			/* forwardURL = "admin/boardMng/board1.jsp"; */
 			if (!"".equals(searchText)) {
-<<<<<<< HEAD
 				String post_content = searchText;
 				ArrayList<Post> list = service.findContent(post_content);
 				request.setAttribute("data", list);
@@ -240,15 +203,6 @@ public class PostController extends HttpServlet {
 			} else {
 				// 빈문자열을 검색할 경우 = 전체 검색
 				data = service.boardList(brd_id);
-=======
-			String post_content = searchText;
-			ArrayList<Post> list = service.findContent(post_content);
-			request.setAttribute("data", list);
-			forwardURL = "/user/boards/boardlist.jsp";
-			}else {
-				//빈문자열을 검색할 경우 = 전체 검색
-				data = service.boardList(brd_id, realPage);
->>>>>>> 7acd663cb8daa1b078d86cca110f50c8d24ed5a7
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";
 			}
