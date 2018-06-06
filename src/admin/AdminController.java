@@ -28,8 +28,7 @@ public class AdminController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		System.out.println("AdminController doPost() 요청");
-		
+
 		String type = "";
 		String result = "";
 		String loginResult = "";
@@ -39,17 +38,19 @@ public class AdminController extends HttpServlet {
 		String admin_pwd = "";
 		HttpSession session = null;
 		type = request.getParameter("type");
-		admin_id = request.getParameter("admin_id");
-		admin_pwd = request.getParameter("admin_pwd");
-		
-		System.out.println("어드민 id, pwd값 : " + admin_id + ", " + admin_pwd);
 		
 		if(type.equals("login")) {
-			loginResult = service.adminLogin(admin_id, admin_pwd);
-			request.setAttribute("loginResult", loginResult);
-			result = "/admin/pages/loginresult.jsp";
-			System.out.println("loginResult 값 :" + loginResult);
-		}
+			admin_id = request.getParameter("admin_id");
+			admin_pwd = request.getParameter("admin_pwd");
+			admin = service.adminLogin(admin_id, admin_pwd);
+			if (admin != null) {
+				session = request.getSession();
+				session.setAttribute("admin", admin);
+				result = "/admin/pages/index.jsp";
+			} else {
+				result = "/admin/pages/login.jsp";
+			}
+		} 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(result);
 		dispatcher.forward(request, response);
 	}

@@ -12,26 +12,6 @@
 <script src="../data/morris-data.js"></script>
 <%-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--%>
 <script>
-$(function(){
-	$("li").on("click", function(){
-		var classValue = $(this).attr("class");
-		$("section").empty();
-		console.log("classValue 값은 : " + classValue);
-		switch(classValue) {
-		
-		case "member":
-			$.ajax({
-				method: "POST",
-				data: "page=1",
-				url: "<%=request.getContextPath() %>/MemberController?type=selectAll",
-				success: function(data){
-					$("section").html(data);
-				}
-			});
-			break;
-		}
-	});
-});
 </script>
 <section>
 <div id="page-wrapper">
@@ -50,12 +30,14 @@ $(function(){
                          <div class="col-xs-3">
                              <i class="fa fa-user fa-5x"></i>
                          </div>
+                         
                          <div class="col-xs-9 text-right">
                              <div style="font-size:23px">회원 관리</div>
                          </div>
+                        
                      </div>
                  </div>
-                 <a href="<%=root%>/memberMgr/member.jsp">
+                 <a href="<%=root%>/MemberController?type=selectAll">
                      <div class="panel-footer">
                          <span class="pull-left">상세보기</span>
                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -76,7 +58,7 @@ $(function(){
                          </div>
                      </div>
                  </div>
-                 <a href="<%=root%>/projectMgr/projectrequest.jsp">
+                 <a href="<%=root%>/ProjectController?type=projectrequest">
                      <div class="panel-footer">
                          <span class="pull-left">상세보기</span>
                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

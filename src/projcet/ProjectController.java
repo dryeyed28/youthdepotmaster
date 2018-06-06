@@ -88,7 +88,7 @@ public class ProjectController extends HttpServlet {
 			session.setAttribute("id", 1);
 			rp.setMem_id((int) session.getAttribute("id"));
 			rp.setrPJT_progress(3);
-			rp.setrPJT_state(2);
+			rp.setrPJT_state(1);
 			rk.setR_tel(Integer.parseInt(mr.getParameter("tel")));
 			rk.setR_name(mr.getParameter("kepper_name"));
 			rk.setR_profile(profileroot);
@@ -151,9 +151,14 @@ public class ProjectController extends HttpServlet {
 			request.setAttribute("rpay", rpay);
 			forwardURL = "user/pages/paycheck.jsp";
 		} else if(type.equals("projectrequest")) {
-			metalist = service.metalist();
+			metalist = service.project();
 			request.setAttribute("project", metalist);
 			forwardURL = "admin/pages/projectrequest.jsp";
+		} else if(type.equals("content")) {
+			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
+			ProjectContentDto content = service.content(rPJT_id);
+			request.setAttribute("content", content);
+			forwardURL = "admin/pages/projectrequestcontent.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);

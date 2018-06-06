@@ -26,7 +26,7 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			String insertSQL = "insert all\r\n" + 
 					  "into R_keeper values ((SELECT MAX(rpjt_id)+1 FROM R_keeper), ?, ?, ?, null, ?)\r\n" + 
 					  "into R_meta values ((SELECT MAX(rpjt_id)+1 FROM R_meta),?,?,0,?,?,?,?,null,to_date(?,'RR/MM/DD'))\r\n"
-					+ "into R_OPtion values ((SELECT MAX(rpjt_id)+1 FROM R_OPtion), 10,?,?,?,?,to_date(?,'RR/MM/DD'),?)\r\n"
+					+ "into R_OPtion values ((SELECT MAX(reward_id)+10 FROM R_OPtion), (SELECT MAX(rpjt_id) FROM R_project),?,?,?,?,to_date(?,'RR/MM/DD'),?)\r\n"
 					+ "into R_Story values ((SELECT MAX(rpjt_id)+1 FROM R_Story),?,0,?,?,?,?)\r\n"
 					+ "SELECT * FROM DUAL";
 			pstmt = con.prepareStatement(insertSQL);
@@ -250,11 +250,12 @@ public class ProjcetDaoOracle implements ProjcetDao {
 		PreparedStatement pstmt=null;
 		try {
 			con = sql.OracleConnection.getConnection();
-			String insertSQL = "insert into R_project values ((SELECT MAX(rpjt_id)+1 FROM R_project), ?, ?, ?, sysdate)";
+			String insertSQL = "insert into R_project values ((SELECT MAX(rpjt_id)+1 FROM R_project), ?, ?, ?, sysdate, ?)";
 			pstmt = con.prepareStatement(insertSQL);
 			pstmt.setInt(1, rProject.getMem_id());
 			pstmt.setInt(2, rProject.getrPJT_state());
 			pstmt.setInt(3, rProject.getrPJT_progress());
+			pstmt.setInt(4, 1);
 			pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -274,12 +275,51 @@ public class ProjcetDaoOracle implements ProjcetDao {
 		try {
 			con = sql.OracleConnection.getConnection();
 			String sql = "";
-			sql += "select rm.rpjt_id, rp.mem_id, rp.rpjt_state, rp.rpjt_progress, to_char(rp.RPJT_SUBMISSION, 'yyyy.mm.dd') RPJT_SUBMISSION, rm.RPJT_TITLE, rm.RPJT_SUBTITLE, rm.RINVESTING_AMOUNT, \n";
+			sql += "select rm.rpjt_id, rp.rpjt_state, rp.rpjt_progress, rm.RPJT_TITLE, rm.RPJT_SUBTITLE, rm.RINVESTING_AMOUNT, \n";
 			sql += "rm.RTARGET_AMOUNT, rm.RPJT_IMAGE, rm.RPJT_CATEGORY, rm.RPJT_PAPER, \n";
 			sql += "TO_CHAR(rm.RPJT_STARTDAY, 'yyyy.mm.dd') RPJT_STARTDAY, TO_CHAR(rm.RPJT_ENDDAY, 'yyyy.mm.dd') rPJT_endday \n";
 			sql += "from r_meta rm join r_project rp on  rm.rPJT_id = rp.rPJT_id \n";
 			sql += "where rp.rpjt_state = 1 and rp.rpjt_progress = 1 or rp.rpjt_progress = 2 or rp.rpjt_progress = 3";
 			sql += "order by rp.rpjt_progress";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				RMeta meta = new RMeta(
+				new RProject(rs.getInt("rPJT_id"),
+						0, rs.getInt("rPJT_state"), rs.getInt("rPJT_progress"), null, 0),
+				rs.getString("rPJT_title"),
+				rs.getString("rPJT_subTitle"),
+				rs.getInt("rInvesting_amount"),
+				rs.getInt("rTarget_amount"),
+				rs.getString("rPJT_image"),
+				rs.getString("rPJT_category"),
+				rs.getString("rPJT_paper"),
+				rs.getString("rPJT_startday"),
+				rs.getString("rPJT_endday"));
+				list.add(meta);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			sql.OracleConnection.close(rs, pstmt, con);
+		}
+		return list;
+	}
+
+	@Override
+	public ArrayList<RMeta> getProjectRequest() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<RMeta> list = new ArrayList<RMeta>();
+		try {
+			con = sql.OracleConnection.getConnection();
+			String sql = "";
+			sql += "select rm.rpjt_id, rp.mem_id, rp.rpjt_state, rp.rpjt_progress, to_char(rp.RPJT_SUBMISSION, 'yyyy.mm.dd') RPJT_SUBMISSION, rm.RPJT_TITLE, rm.RPJT_SUBTITLE, rm.RINVESTING_AMOUNT, \n";
+			sql += "rm.RTARGET_AMOUNT, rm.RPJT_IMAGE, rm.RPJT_CATEGORY, rm.RPJT_PAPER, \n";
+			sql += "TO_CHAR(rm.RPJT_STARTDAY, 'yyyy.mm.dd') RPJT_STARTDAY, TO_CHAR(rm.RPJT_ENDDAY, 'yyyy.mm.dd') rPJT_endday \n";
+			sql += "from r_meta rm join r_project rp on  rm.rPJT_id = rp.rPJT_id \n";
+			sql += "order by rp.rpjt_state";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -303,5 +343,43 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			sql.OracleConnection.close(rs, pstmt, con);
 		}
 		return list;
+	}
+
+	@Override
+	public ProjectContentDto getProjectContent(int rPJT_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ProjectContentDto pcd = null;
+		try {
+			con = OracleConnection.getConnection();
+			String sql = "";
+			sql += "select r.rpjt_id, rm.rpjt_title, rm.rtarget_amount, rm.rpjt_category, \n";
+			sql += "rm.rpjt_subtitle, rs.rpjt_story, rs.rpjt_thumbnail, rs.rpjt_paper, rs.rpjt_url \n";
+			sql += "from R_PROJECT r join R_META rm on r.rpjt_id = rm.rpjt_id \n";
+			sql += "join R_STORY rs on r.rpjt_id = rs.rpjt_id \n";
+			sql += "where r.rpjt_id = ? \n";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rPJT_id);
+			rs = pstmt.executeQuery();
+			System.out.println(rs.next());
+			if(rs.next()) {
+				pcd = new ProjectContentDto(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getInt(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getString(6),
+						rs.getString(7),
+						rs.getString(8),
+						rs.getString(9));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
+		return pcd;
 	}
 }
