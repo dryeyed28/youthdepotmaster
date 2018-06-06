@@ -42,16 +42,17 @@ public class PostController extends HttpServlet {
 		String redirectURL = "";
 		int brd_id = 20;
 		int post_id = 0;
+		int realPage = 0;
 		Post p = null;
 		Board b = null;
 				
 		if(type.equals("boardList")) {
 			//brd_id = Integer.parseInt(request.getParameter("brd_id"));
-			data = service.boardList(brd_id);
+			realPage = 2;
+			data = service.boardList(brd_id, realPage);
 			String page = request.getParameter("page");
 			int totalCount = service.findCount(brd_id);
 			int cntPerPage = 10; //1페이지 별 10건씩 게시글을 보여준다.
-			int realPage = 1;
 			
 			if(page != null) {
 				realPage = Integer.parseInt(page);
@@ -68,32 +69,9 @@ public class PostController extends HttpServlet {
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("data", data);
-			//System.out.println("data!!! + " + data);
+			System.out.println("data!!! + " + data);
+			System.out.println(realPage);
 			forwardURL = "user/boards/boardlist.jsp";
-		}else if(type.equals("boardListResult")) {
-			data = service.boardList(brd_id);
-			String page = request.getParameter("page");
-			int totalCount = service.findCount(brd_id);
-			int cntPerPage = 10; //1페이지 별 10건씩 게시글을 보여준다.
-			int realPage = 1;
-			
-			if(page != null) {
-				realPage = Integer.parseInt(page);
-			}
-			int totalPage = (int) Math.ceil((double) totalCount / cntPerPage);
-			int cntPerPageGroup = 5; //페이지 그룹별 5페이지씩 보여준다.
-			int startPage = (int)(realPage/cntPerPageGroup+0.8) * cntPerPageGroup - cntPerPageGroup+1;
-			int endPage = startPage + cntPerPageGroup-1;
-			if(endPage > totalPage) {
-					endPage = totalPage;
-			}
-			request.setAttribute("realPage", realPage);
-			request.setAttribute("totalPage", totalPage);
-			request.setAttribute("startPage", startPage);
-			request.setAttribute("endPage", endPage);
-			request.setAttribute("data", data);
-			//System.out.println("data!!! + " + data);
-			forwardURL = "user/boards/boardlistResult.jsp";
 		} else if(type.equals("boardView")) {
 			p = new Post();
 			b = new Board();
@@ -176,7 +154,7 @@ public class PostController extends HttpServlet {
 				forwardURL = "/user/boards/boardlist.jsp";
 			} else {
 				//빈문자열을 검색할 경우 = 전체 검색
-				data = service.boardList(brd_id);
+				data = service.boardList(brd_id, realPage);
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";
 			}
@@ -188,7 +166,7 @@ public class PostController extends HttpServlet {
 			forwardURL = "/user/boards/boardlist.jsp";
 			} else {
 				//빈문자열을 검색할 경우 = 전체 검색
-				data = service.boardList(brd_id);
+				data = service.boardList(brd_id, realPage);
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";
 			}
@@ -200,7 +178,7 @@ public class PostController extends HttpServlet {
 			forwardURL = "/user/boards/boardlist.jsp";
 			} else {
 				//빈문자열을 검색할 경우 = 전체 검색
-				data = service.boardList(brd_id);
+				data = service.boardList(brd_id, realPage);
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";
 			}
@@ -213,7 +191,7 @@ public class PostController extends HttpServlet {
 			forwardURL = "/user/boards/boardlist.jsp";
 			}else {
 				//빈문자열을 검색할 경우 = 전체 검색
-				data = service.boardList(brd_id);
+				data = service.boardList(brd_id, realPage);
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";
 			}
