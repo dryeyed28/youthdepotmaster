@@ -73,6 +73,7 @@ public class PostController extends HttpServlet {
 			pb.setEndPage(endPage);
 			pb.setTotalCount(totalCount);
 			pb.setCntPerPage(cntPerPageGroup);
+			request.setAttribute("data", data);
 			request.setAttribute("pagebean", pb);
 			System.out.println(realPage);
 			forwardURL = "user/boards/boardlist.jsp";
