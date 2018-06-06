@@ -87,7 +87,7 @@ public class TotalPayDaoOracle implements TotalPayDao {
 			String sql = "";
 			sql += "select dep.dep_id, m.mem_userid, dep.dep_request, to_char(dep.dep_date, 'yyyy-mm-dd hh:Mi:ss'), dep.dep_type \n";
 			sql += "from deposit dep join members m on dep.mem_id = m.mem_id \n";
-			sql += "where dep.dep_type = 3 or dep.dep_type = 4 /n";
+			sql += "where dep.dep_type = 3 or dep.dep_type = 4 \n";
 			sql += "order by dep.dep_type";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();

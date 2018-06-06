@@ -274,19 +274,18 @@ public class ProjcetDaoOracle implements ProjcetDao {
 		try {
 			con = sql.OracleConnection.getConnection();
 			String sql = "";
-			sql += "select rm.rpjt_id, rp.rpjt_state, rp.rpjt_progress, rm.RPJT_TITLE, rm.RPJT_SUBTITLE, rm.RINVESTING_AMOUNT, \n";
+			sql += "select rm.rpjt_id, rp.mem_id, rp.rpjt_state, rp.rpjt_progress, to_char(rp.RPJT_SUBMISSION, 'yyyy.mm.dd') RPJT_SUBMISSION, rm.RPJT_TITLE, rm.RPJT_SUBTITLE, rm.RINVESTING_AMOUNT, \n";
 			sql += "rm.RTARGET_AMOUNT, rm.RPJT_IMAGE, rm.RPJT_CATEGORY, rm.RPJT_PAPER, \n";
 			sql += "TO_CHAR(rm.RPJT_STARTDAY, 'yyyy.mm.dd') RPJT_STARTDAY, TO_CHAR(rm.RPJT_ENDDAY, 'yyyy.mm.dd') rPJT_endday \n";
 			sql += "from r_meta rm join r_project rp on  rm.rPJT_id = rp.rPJT_id \n";
-			sql += "join r_keeper rk on rm.rPJT_id = rk.rpjt_id \n";
-			sql += "where rp.rpjt_state = 1 and rp.rpjt_progress = 1 or rp.rpjt_progress = 2";
+			sql += "where rp.rpjt_state = 1 and rp.rpjt_progress = 1 or rp.rpjt_progress = 2 or rp.rpjt_progress = 3";
 			sql += "order by rp.rpjt_progress";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				RMeta meta = new RMeta(
 				new RProject(rs.getInt("rPJT_id"),
-						0, rs.getInt("rPJT_state"), rs.getInt("rPJT_progress"), null, 0),
+						rs.getInt("mem_id"), rs.getInt("rPJT_state"), rs.getInt("rPJT_progress"), rs.getString("RPJT_SUBMISSION"), 0),
 				rs.getString("rPJT_title"),
 				rs.getString("rPJT_subTitle"),
 				rs.getInt("rInvesting_amount"),
