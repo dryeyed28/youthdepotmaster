@@ -3,7 +3,6 @@ package post;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,8 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 
-import board.BoardService;
-import board.BoardServiceImpl;
 import projcet.RenamePolicy;
 import vo.Board;
 import vo.PageBean;
@@ -39,26 +36,22 @@ public class PostController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		PostService service = new PostServiceImpl();
-		ArrayList<Board> boardlist;
 		ArrayList<Post> data;
-		BoardService service1 = new BoardServiceImpl();
 		String type = request.getParameter("type");
 		String searchText = request.getParameter("searchText");
 		String forwardURL = "";
 		String redirectURL = "";
 		int brd_id = 20;
 		int post_id = 0;
-		int realPage = 0;
+		int realPage = 1;
 		Post p = null;
 		Board b = null;
 		if(type.equals("boardList")) {
 			//brd_id = Integer.parseInt(request.getParameter("brd_id"));
-			realPage = 3;
 			data = service.boardList(brd_id, realPage);
 			String page = request.getParameter("page");
 			int totalCount = service.findCount(brd_id);
 			int cntPerPage = 10; //1페이지 별 10건씩 게시글을 보여준다.
-			
 			if(page != null) {
 				realPage = Integer.parseInt(page);
 			}
@@ -77,12 +70,8 @@ public class PostController extends HttpServlet {
 			pb.setEndPage(endPage);
 			pb.setTotalCount(totalCount);
 			pb.setCntPerPage(cntPerPageGroup);
-			
-			request.setAttribute("realPage", realPage);
-			request.setAttribute("totalPage", totalPage);
-			request.setAttribute("startPage", startPage);
-			request.setAttribute("endPage", endPage);
 			request.setAttribute("data", data);
+			request.setAttribute("pagebean", pb);
 			System.out.println(realPage);
 			forwardURL = "user/boards/boardlist.jsp";
 		} else if(type.equals("boardView")) {
@@ -215,8 +204,6 @@ public class PostController extends HttpServlet {
 				forwardURL = "/user/boards/boardlist.jsp";
 			}
 		}
-		boardlist = service1.getBoardList();
-		request.setAttribute("boardlist", boardlist);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
 	}

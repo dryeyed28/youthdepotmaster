@@ -5,6 +5,12 @@
 <!DOCTYPE html>
 	<html>
 <head>
+<script>
+function goGo() {
+	onclick="location.href='address'"
+}
+</script>
+
     <!-- Page Title -->
     <title>youthdepot</title>
     
@@ -94,10 +100,17 @@
 						</button>
 					</div>
 				</form>
-				<button class="btn-medium blue-bg soap-popupbox"
-					data-target="#travelo-signup">회원가입</button>
-				<button class="btn-medium soap-popupbox"
-					data-target="#travelo-login">로그인</button>
+				<% HttpSession session2 = request.getSession();
+					if (session2.getAttribute("mem_id") == null){
+					
+				%>
+				<button 
+					data-target="#travelo-signup" onclick="location.href='<%=request.getContextPath()%>/user/mypage/signup.jsp'">회원가입</button>
+				<button 
+					data-target="#travelo-login" onclick="location.href='<%=request.getContextPath()%>/user/mypage/login.jsp'">로그인</button>
+					<%} else {%>
+					<h4><%= session2.getAttribute("nickname") %>님환영합니다</h4>
+					<% } %>
 			</div>
 		</div>
 		<a href="#mobile-menu-01" data-toggle="collapse"
@@ -115,12 +128,9 @@
 							</li>
 						<li class="menu-item-has-children"><a>커뮤니티</a>
 							<ul>
-							<% ArrayList<Board> list = (ArrayList)request.getAttribute("boardlist");
-							for (int i=0; i< list.size(); i++) {%>
 								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList&brd_id=20">공지사항</a></li>
 								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList&brd_id=20">FAQ</a></li>
 								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList">커뮤니티</a></li>
-								<%} %>
 							</ul>
 						</li>
 					</ul>
