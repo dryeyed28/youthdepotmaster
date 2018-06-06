@@ -78,13 +78,13 @@ div.right {
 	margin: 1px auto;
 	text-align: right;
 	display: inline;
-}
+}/* 
 .travelo-box {
   background: #fff;
   padding: 20px;
   margin-bottom: 30px;
   height: 400px;
-}
+} */
 
 </style>
 
@@ -139,8 +139,7 @@ div.right {
 				</div>
 
 
-				<div class="travelo-box">
-					<div class=" col-md-4" style="background: white;">
+					<div class=" col-md-4" style="background: white; height: 400px; padding:20px;">
 					<div class="icondiv">배송안내</div>
 					<hr>
 						<div class="text">내용</div>
@@ -152,7 +151,8 @@ div.right {
 						<div class="text">내용</div>
 						<div class="text">내용</div>
 					</div>
-					<div class=" col-md-4" style="background: white;">
+					
+					<div class=" col-md-4" style="background: white; height: 400px; padding:20px;">
 						<div class="icondiv">리워드 선택</div>
 						<hr>
 						<div class="leftwight">
@@ -164,8 +164,15 @@ div.right {
 						</div>
 						<input type="text" value="전화번호">
 						<hr>
+						<br>
+						<br>
+						<div style="margin: 0 auto; width: 200px; height: 100px;">
+						<button style="width: 200px; height: 50px; border-radius: 20px;">결제
+							예약하기</button>
 					</div>
-					<div class=" col-md-4" style="background: white;">
+					</div>
+					
+					<div class=" col-md-4" style="background: white; height: 400px; padding:20px;">
 						<div class="icondiv">리워드 선택</div>
 						<hr>
 						<label><input type="radio" name="post"> 기존배송지</label> <input
@@ -181,11 +188,7 @@ div.right {
 						<div class="leftwight">해당 요청사항은 배송에 관련된 내용만 적어주세요!</div>
 					</div>
 
-					<div style="margin: 0 auto; width: 200px; height: 100px;">
-						<button style="width: 200px; height: 50px; border-radius: 20px;">결제
-							예약하기</button>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 	</div>
