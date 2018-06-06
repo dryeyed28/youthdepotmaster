@@ -42,6 +42,7 @@ public class MemberController extends HttpServlet {
 		Member m =null;
 		String userId="";
 		int intPage = 0;
+		int mem_id =0;
 		HttpSession session = null;
 		
 		MemberService svic = new MemberServiceImpl();
@@ -122,7 +123,7 @@ public class MemberController extends HttpServlet {
 			m.setMem_userId(request.getParameter("userid"));
 			m.setMem_password(request.getParameter("pwd"));
 		
-			int mem_id = service.login(m);
+			mem_id = service.login(m);
 			System.out.println(mem_id);
 			if (mem_id != 0) {
 				session = request.getSession();
@@ -136,14 +137,15 @@ public class MemberController extends HttpServlet {
 				
 			}
 			
-		}else if(type.equals("mypage")) {
+		}else if(type.equals("mypage")){
+			System.out.println("마이페이지");
 			m = new Member();
+			mem_id = Integer.parseInt(request.getParameter("mem_id"));
 			
-			
-			
-			
-			
-			
+			m = service.mypage(mem_id);
+			request.setAttribute("member", m);
+		
+		
 			
 		}
 		boardlist = service1.getBoardList();

@@ -61,7 +61,14 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int login(Member member) {
-	return dao.login(member);
+		return dao.login(member);
 	
 	}
+
+	@Override
+	public Member mypage(int mem_id) {
+		return dao.getMember(mem_id);
+	}
+
+	
 }

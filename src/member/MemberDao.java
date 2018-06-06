@@ -14,5 +14,6 @@ public interface MemberDao {
 	public Member idCheck(String mem_userid) throws Exception;
 	public void memberInsert(Member member);
 	public int login(Member member);
+	public Member getMember(int mem_id);
 
 }
