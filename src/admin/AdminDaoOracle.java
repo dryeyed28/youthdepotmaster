@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import admin.AdminDao;
 import admin.AdminDaoOracle;
 import sql.OracleConnection;
-import vo.Admin;
 
 public class AdminDaoOracle implements AdminDao {
 		

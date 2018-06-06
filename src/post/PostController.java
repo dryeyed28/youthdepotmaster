@@ -3,7 +3,6 @@ package post;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,8 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 
-import board.BoardService;
-import board.BoardServiceImpl;
 import projcet.RenamePolicy;
 import vo.Board;
 import vo.PageBean;

@@ -1,7 +1,6 @@
 package member;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,10 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import board.BoardService;
-import board.BoardServiceImpl;
 import member.MemberService;
-import vo.Board;
 import vo.Member;
 import vo.PageBean;
 
