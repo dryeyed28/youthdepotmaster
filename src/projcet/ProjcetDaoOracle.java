@@ -26,7 +26,7 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			String insertSQL = "insert all\r\n" + 
 					  "into R_keeper values ((SELECT MAX(rpjt_id)+1 FROM R_keeper), ?, ?, ?, null, ?)\r\n" + 
 					  "into R_meta values ((SELECT MAX(rpjt_id)+1 FROM R_meta),?,?,0,?,?,?,?,null,to_date(?,'RR/MM/DD'))\r\n"
-					+ "into R_OPtion values ((SELECT MAX(rpjt_id)+1 FROM R_OPtion), 10,?,?,?,?,to_date(?,'RR/MM/DD'),?)\r\n"
+					+ "into R_OPtion values ((SELECT MAX(reward_id)+10 FROM R_OPtion), (SELECT MAX(rpjt_id) FROM R_project),?,?,?,?,to_date(?,'RR/MM/DD'),?)\r\n"
 					+ "into R_Story values ((SELECT MAX(rpjt_id)+1 FROM R_Story),?,0,?,?,?,?)\r\n"
 					+ "SELECT * FROM DUAL";
 			pstmt = con.prepareStatement(insertSQL);
@@ -250,11 +250,12 @@ public class ProjcetDaoOracle implements ProjcetDao {
 		PreparedStatement pstmt=null;
 		try {
 			con = sql.OracleConnection.getConnection();
-			String insertSQL = "insert into R_project values ((SELECT MAX(rpjt_id)+1 FROM R_project), ?, ?, ?, sysdate)";
+			String insertSQL = "insert into R_project values ((SELECT MAX(rpjt_id)+1 FROM R_project), ?, ?, ?, sysdate, ?)";
 			pstmt = con.prepareStatement(insertSQL);
 			pstmt.setInt(1, rProject.getMem_id());
 			pstmt.setInt(2, rProject.getrPJT_state());
 			pstmt.setInt(3, rProject.getrPJT_progress());
+			pstmt.setInt(4, 1);
 			pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();
