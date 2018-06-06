@@ -14,7 +14,7 @@ String root = request.getContextPath();
                         <a href="<%=root%>/admin/pages/index.jsp"><i class="fa fa-dashboard fa-fw"></i> home</a>
                     </li>
                     <li class=member>
-                        <a href="<%= root %>/MemberController?type=selectAll"><i class="fa fa-user fa-fw"></i>회원관리</a>
+                        <a href="<%=root%>/MemberController?type=selectAll"><i class="fa fa-user fa-fw"></i>회원관리</a>
                     </li>
                     <li>
                         <a href="<%=root%>/ProjectController?type=projectrequest"><i class="fa fa-table fa-fw"></i> 프로젝트 신청관리</a>
@@ -52,9 +52,6 @@ String root = request.getContextPath();
                                 <a href="<%=root%>/TotalPayController?type=profit">이익현황 관리</a>
                             </li>
                         </ul>
-                    </li>
-                    <li>
-                        <a href="<%=root%>/admin/pages/morris.jsp"><i class="fa fa-bar-chart-o fa-fw"></i>통계</a>
                     </li>
                 </ul>
             </div>

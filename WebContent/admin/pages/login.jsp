@@ -57,11 +57,10 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <button type="submint" class="btn-lg btn-success btn-block">로그인</button>
+                                <button type="submit" class="btn-lg btn-success btn-block">로그인</button>
                                 <a href=<%= root %>/admin/pages/index.jsp><button type="button" class="btn-lg btn-success btn-block">홈</button></a>
                                 </form>
                             </fieldset>
-                        </form>
                     </div>
                 </div>
             </div>

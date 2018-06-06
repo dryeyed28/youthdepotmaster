@@ -68,7 +68,7 @@
 								for (Post p : data) {
 							%>
 							<tr>
-								<td><%=p.getPost_id()%></td>
+								<td><%=p.getRownum()%></td>
 								<!-- 테이블에 post 값 담기-->
 								<td><a
 									href="<%=request.getContextPath()%>/PostController?type=boardView&brd_id=<%=p.getBoard_id().getBrd_id()%>&post_id=<%=p.getPost_id()%>"><%=p.getPost_title()%></a></td>
@@ -106,8 +106,7 @@
 					</ul>
 				</form>
 				<div align="right">
-					<a
-						href="<%=request.getContextPath()%>/user/boards/boardwrite.jsp?brd_id=<%=data.get(0).getBoard_id().getBrd_id()%>"><button>글쓰기</button></a>
+					<a href="<%=request.getContextPath()%>/user/boards/boardwrite.jsp?brd_id=<%=data.get(0).getBoard_id().getBrd_id()%>"><button>글쓰기</button></a>
 				</div>
 			</div>
 		</div>

@@ -19,4 +19,5 @@ public interface ProjcetService {
 	public RewardPay orderReward(int mem_id);
 	public ArrayList<RMeta> metalist();
 	public ArrayList<RMeta> project();
+	public ProjectContentDto content(int rPJT_id);
 }

@@ -10,6 +10,11 @@
         });
     });
 </script>
+<style>
+a:link { color: black; text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover { color: blue; text-decoration: underline;}
+</style>
 <body>
 <div id="page-wrapper">
   <div class="row">
@@ -30,7 +35,6 @@
 		<table class="table table-bordered table-hover" id="dataTables-example">
            <thead>
               <tr>
-            	<td><input type="checkbox"></td>
                 <th>프로젝트 번호</th>
                 <th>프로젝트 제목</th>
                 <th>창고지기</th>
@@ -42,9 +46,8 @@
            <%ArrayList<RMeta> project = (ArrayList)request.getAttribute("project");
            for(RMeta rm : project) {%>
               <tr>
-                <td><input type="checkbox"></td>
                 <td><%=rm.getrProject().getrPJT_id() %></td>
-                <td><%=rm.getrPJT_title() %></td>
+                <td><a href="<%=root%>/ProjectController?type=content&id=<%=rm.getrProject().getrPJT_id()%>"> <%=rm.getrPJT_title() %> </a></td>
                 <td class="center"><%=rm.getrProject().getMem_id() %></td>
                 <td class="center"><%=rm.getrProject().getrPJT_submission() %></td>
                 <% if(rm.getrProject().getrPJT_state() == 1) { %>
@@ -59,13 +62,6 @@
            </tbody>
         </table>
       <hr>
-      <div class="btn-center" style="text-align: right">
-        <!-- 자세히 보기를 누르면 선택한 프로젝트의 내용 (projectrequestcontent.jsp) 보여주기 
-        <button onclick="location.href='projectrequestcontent.jsp'" class="btn btn-outline btn-primary" >자세히 보기</button>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-        <button class="btn btn-primary">진행사항 수정</button>&nbsp;
-        <button class="btn btn-primary">삭제</button>
-      </div>
 	  </div>
       <!-- /.panel-body -->
       </div>

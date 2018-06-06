@@ -1,6 +1,7 @@
 package member;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -91,7 +92,7 @@ public class MemberController extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("result", e.getMessage());
 			}
-			result = "/admin/pages/member.jsp";
+			result = "/admin/memberMng/member.jsp";
 			
 		}else if (type.equals("signup")) {
 			//System.out.println("회원가입");
@@ -122,7 +123,7 @@ public class MemberController extends HttpServlet {
 			if (member != null) {
 				session = request.getSession();
 				session.setAttribute("mem_id", member.getMem_id());
-				session.setAttribute("nickname", member.getMem_nickName());
+				session.setAttribute("nickName", member.getMem_nickName());
 				result = "user/pages/index.jsp";
 				request.setAttribute("rslt", "0");
 				
@@ -144,6 +145,10 @@ public class MemberController extends HttpServlet {
 			result = "user/mypage/mypage.jsp";
 		
 			
+		} else if (type.equals("membermodify")) {
+			String mem_id2 = "";
+			 mem_id2 = request.getParameter("mem_id");
+			System.out.println("mem_id 값 : " + mem_id2);			
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(result);
 		dispatcher.forward(request, response);

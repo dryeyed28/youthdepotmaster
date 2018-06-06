@@ -115,7 +115,7 @@ public class ProjectController extends HttpServlet {
 			RApply ra = new RApply(rk, rm, ro_list, rp, rs);
 			service.applyinsert(ra);
 			forwardURL = "user/mypage/made.jsp";
-		} else if(type.equals("rewardMain")) {
+		} else if (type.equals("rewardMain")) {
 			metalist = service.metalist();
 			request.setAttribute("metalist", metalist);
 			forwardURL = "user/pages/rewardmain.jsp";
@@ -138,9 +138,9 @@ public class ProjectController extends HttpServlet {
 		} else if (type.equals("payaddress")) {
 			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
 			String str[] = request.getParameterValues("pqy1");
-			int reward_id[] =  new int[str.length];
-			for(int i = 0;i<str.length;i++){
-				reward_id[i] = Integer.parseInt(str[i]);	
+			int reward_id[] = new int[str.length];
+			for (int i = 0; i < str.length; i++) {
+				reward_id[i] = Integer.parseInt(str[i]);
 			}
 			ArrayList<ROption> payaddress = service.optionPay(rPJT_id, reward_id);
 			request.setAttribute("payaddress", payaddress);
@@ -150,10 +150,13 @@ public class ProjectController extends HttpServlet {
 			RewardPay rpay = service.orderReward(mem_id);
 			request.setAttribute("rpay", rpay);
 			forwardURL = "user/pages/paycheck.jsp";
-		} else if(type.equals("projectrequest")) {
-			metalist = service.project();
+		} else if (type.equals("projectrequest")) {
+			metalist = service.metalist();
 			request.setAttribute("project", metalist);
 			forwardURL = "admin/pages/projectrequest.jsp";
+		} else if (type.equals("payaddress")) {
+
+			forwardURL = "/ProjectController?type=payaddressinsert";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
