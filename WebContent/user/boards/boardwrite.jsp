@@ -4,8 +4,7 @@
 <%-- 페이지 요청시 : 게시글에서 값 가져와서 출력 --%>
 <%-- 답변등록 버튼누르면 : UserBoardUpdateController에 데이터 전달 --%>
 <%@include file="../template/header.jsp"%>
-<%HttpSession session1 = request.getSession();
-session1.setAttribute("nicname", "닉네임입니다.");%>
+<%HttpSession session1 = request.getSession();%>
 <div id="page-wrapper">
 	<section id="content" class="gray-area">
 		<div class="container">
@@ -14,7 +13,7 @@ session1.setAttribute("nicname", "닉네임입니다.");%>
 					<div class="booking-section travelo-box">
 
 						<form name="f" action="<%=request.getContextPath()%>/PostController?type=boardwrite" method="post">
-						  <input type="hidden" name="bid" value="20">
+						  <input type="hidden" name="brd_id" value="<%=request.getParameter("brd_id")%>">
 							<div class="alert small-box" style="display: none;"></div>
 							<div class="person-information">
 								<h2>게시판</h2>

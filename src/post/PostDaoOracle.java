@@ -24,7 +24,7 @@ public class PostDaoOracle implements PostDao {
 			String sql = 
 					"select * \r\n" + 
 					"FROM \r\n" + 
-					"(select rownum r, p.brd_id, b.brd_name, b.brd_type, p.mem_id, p.mem_nickname, p.admin_id, \r\n" + 
+					"(select rownum r, p.post_id, p.brd_id, b.brd_name, b.brd_type, p.mem_id, p.mem_nickname, p.admin_id, \r\n" + 
 					"p.POST_TITLE, p.POST_CONTENT, TO_CHAR(p.POST_DATETIME, 'yyyy.mm.dd') post_datetime, p.POST_VIEW_COUNT ,p.POST_DEL, p.post_file \r\n" + 
 					"from board b, post p \r\n" + 
 					"where b.brd_id = p.brd_id and p.post_del=0 and p.brd_id = ? \r\n" + 
@@ -37,6 +37,7 @@ public class PostDaoOracle implements PostDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Post post = new Post(rs.getInt(1),
+						rs.getInt("post_id"),
 						new Board(rs.getInt("brd_id"), rs.getString("brd_name"), rs.getString("brd_type"), 0),
 						rs.getInt("mem_id"),
 						rs.getString("admin_id"),
@@ -154,16 +155,16 @@ public class PostDaoOracle implements PostDao {
 			con = OracleConnection.getConnection();
 			con.setAutoCommit(false);
 			String sqlinsert = "Insert into POST (POST_ID,BRD_ID,ADMIN_ID,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL,POST_FILE)"
-					+ "values ((SELECT MAX(POST_ID)+1 from post),20,?,?,?,to_date(sysdate,'RR/MM/DD'),0,0,?)";
+					+ "values ((SELECT MAX(POST_ID)+1 from post),?,?,?,?,to_date(sysdate,'RR/MM/DD'),0,0,?)";
 			System.out.println(post);
-			pstmt = con.prepareStatement(sqlinsert);/*
-//			pstmt.setInt(1, post.getBoard_id().getBrd_id());*/
+			pstmt = con.prepareStatement(sqlinsert);
+			pstmt.setInt(1, post.getBoard_id().getBrd_id());
 //			pstmt.setInt(2, post.getMem_id());
-			pstmt.setString(1, post.getAdmin_id());
+			pstmt.setString(2, post.getAdmin_id());
 			//pstmt.setString(4, post.getMem_nickName());
-			pstmt.setString(2, post.getPost_title());
-			pstmt.setString(3, post.getPost_content());
-			pstmt.setString(4, post.getPost_file());
+			pstmt.setString(3, post.getPost_title());
+			pstmt.setString(4, post.getPost_content());
+			pstmt.setString(5, post.getPost_file());
 			int commit = pstmt.executeUpdate();
 			if (commit == 1) {
 				con.commit();
@@ -220,7 +221,8 @@ public class PostDaoOracle implements PostDao {
 			pstmt.setString(3, "%" + post_content + "%");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				list.add(new Post(rs.getInt("post_id"),
+				list.add(new Post(rs.getInt("rownum"),
+						rs.getInt("post_id"),
 						new Board(rs.getInt("brd_id"), rs.getString("brd_name"), rs.getString("brd_type"), 0),
 						rs.getInt("mem_id"),
 						rs.getString("admin_id"), 
@@ -260,7 +262,8 @@ public class PostDaoOracle implements PostDao {
 		pstmt.setString(1, "%" + post_title + "%");
 		rs = pstmt.executeQuery();
 		while(rs.next()) {
-			list.add(new Post(rs.getInt("post_id"),
+			list.add(new Post(rs.getInt("rownum"),
+					rs.getInt("post_id"),
 					new Board(rs.getInt("brd_id"), rs.getString("brd_name"), rs.getString("brd_type"), 0),
 					rs.getInt("mem_id"), 
 					rs.getString("admin_id"), 
@@ -301,7 +304,8 @@ public class PostDaoOracle implements PostDao {
 			pstmt.setString(1, "%" + mem_nickname + "%");
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				list.add(new Post(rs.getInt("post_id"),
+				list.add(new Post(rs.getInt("rownum"),
+						rs.getInt("post_id"),
 						new Board(rs.getInt("brd_id"), rs.getString("brd_name"), rs.getString("brd_type"), 0),
 						rs.getInt("mem_id"), 
 						rs.getString("admin_id"), 
@@ -341,7 +345,8 @@ public class PostDaoOracle implements PostDao {
 			pstmt.setString(1, "%" + post_content + "%");
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				list.add(new Post(rs.getInt("post_id"),
+				list.add(new Post(rs.getInt("rownum"),
+						rs.getInt("post_id"),
 						new Board(rs.getInt("brd_id"), rs.getString("brd_name"), rs.getString("brd_type"), 0),
 						rs.getInt("mem_id"), 
 						rs.getString("admin_id"), 

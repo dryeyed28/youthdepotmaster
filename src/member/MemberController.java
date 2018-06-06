@@ -122,7 +122,7 @@ public class MemberController extends HttpServlet {
 			if (member != null) {
 				session = request.getSession();
 				session.setAttribute("mem_id", member.getMem_id());
-				session.setAttribute("nickname", member.getMem_nickName());
+				session.setAttribute("nickName", member.getMem_nickName());
 				result = "user/pages/index.jsp";
 				request.setAttribute("rslt", "0");
 				
