@@ -38,7 +38,7 @@
 			<div class="row">
 			
 				<div class="col-md-6">
-					<h2>만든 프로젝트</h2>
+					<h2>내 펀딩내역</h2>
 					<div class="tab-container box">
 					<a href="#reward" data-toggle="tab"></a>
 						

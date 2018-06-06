@@ -1,7 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <%@page import="vo.Member"%>
 <%@include file="../template/header.jsp"%>
+<script>
+
+$(function(){
+	
+	$("#btnCharge").click(function(){
+		window.open('user/mypage/chargePopup.html', 'charge', 'width=600px height=350px, top=100px, left=300px');
+
+	});
+});
+
+</script>
 <section id="content" class="gray-area">
 	<div class="container">
 		<div class="row">
@@ -33,15 +45,14 @@
 									<label>나의 열정</label>
 								</div>
 								<div class=" form-group col-sm-6 col-md-5">
-									<a href="링크 할 주소"><u><%=m.getMem_passion()%></u></a>
-									<button type="submit" class="btn-small"
-										style="font-size: 12px; margin-left: 30px;">열정 충전하기</button>
+									<a href="<%=request.getContextPath()%>/user/mypage/charge.jsp"><u><%=m.getMem_passion()%></u></a>
+									<button type="button" class="btn-small" id= "btnCharge" style="font-size: 12px; margin-left: 30px;">열정 충전하기</button>
 								</div>
 							</div>
 							<div class="row">
-								<a class="icon-fundinglist" href="/web/wmypage/myfunding/fundinglist">
+								<a class="icon-fundinglist" href="<%=request.getContextPath()%>/user/mypage/fundingmade.jsp">
 									<img src="funding.PNG">내 펀딩내역보기</a>
-								<a class="icon-fundinglist" href="/web/wmypage/myfunding/fundinglist">
+								<a class="icon-fundinglist" href="<%=request.getContextPath()%>/user/mypage/made.jsp">
 									<img src="funding.PNG" style="margin-left: 30px;">만든 프로젝트 보기</a> 
 							</div>
 						</div>
@@ -60,7 +71,7 @@
 									<h5><%=m.getMem_phone()%></h5>
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
-									<a href="cruise-detailed.html" class="button" style="width: 100px; height: 30px;">변경하기</a>
+									<button type="button" class="btn-small" id= "btn" style="font-size: 12px; margin-left: 30px;">변경하기</button>
 								</div>
 							</div>
 
@@ -71,7 +82,7 @@
 									
 								</div>
 								<div class="form-group col-sm-6 col-md-5">
-									<label>&nbsp;</label> <a href="cruise-detailed.html" class="button" style="width: 100px; height: 30px;">변경하기</a>
+									<label>&nbsp;</label> <button type="button" class="btn-small" id= "btn" style="font-size: 12px; margin-left: 30px;">변경하기</button>
 										
 								</div>
 							</div>

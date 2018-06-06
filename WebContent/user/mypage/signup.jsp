@@ -173,7 +173,7 @@ $(function(){
 	  
 
 		  $("#zipSearchbtn").click(function(){
-				window.open('findZip.html', 'winzip', 'width=500px height=200px, top=300px, left=700px');
+				window.open('findZip.html', 'winzip', 'width=500px height=200px, top=200px, left=300px');
 			});
 	  
 	  });

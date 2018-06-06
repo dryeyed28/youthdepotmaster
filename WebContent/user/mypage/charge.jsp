@@ -10,7 +10,7 @@
                 <ul class="breadcrumbs pull-right">
                     <li><a href="#">HOME</a></li>
                     <li><a href="#">로그아웃</a></li>
-                    <li class="active">열정충전</li>
+                    <li class="active">나의열정</li>
                 </ul>
             </div>
       </div>
@@ -19,7 +19,7 @@
            <div class="row">
                <div id="main" class="col-sm-8 col-md-9">
                    <div class="booking-information travelo-box">
-                       <h2>열정충전</h2>
+                       <h2>나의열정</h2>
                        <hr />
                        <div class="booking-confirmation clearfix">
                            <i class="soap-icon-recommend icon circle"></i>
