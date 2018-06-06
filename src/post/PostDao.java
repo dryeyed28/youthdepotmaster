@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import vo.Post;
 
 public interface PostDao {
-	ArrayList<Post> postList(int brd_id);
+	ArrayList<Post> postList(int brd_id, int realPage);
 	Post postMenu(int brd_id, int post_id);
 	void deletePost(int post_id);
 	void updatePost(Post post);

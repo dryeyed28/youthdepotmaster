@@ -125,7 +125,7 @@ public class MemberController extends HttpServlet {
 				request.setAttribute("rslt", "0");
 				
 			} else {
-			
+				
 				result = "user/mypage/login.jsp";
 				
 			}
