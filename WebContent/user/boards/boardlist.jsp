@@ -51,6 +51,7 @@
 							<td align="center" colspan="5">등록된 게시물이 없습니다.</td>
 						</tr>
 						 -->
+						<%--<c:forEach var="data" items =>  --%>
 <%
 	ArrayList<Post> data = (ArrayList)request.getAttribute("data");
 	for(Post p : data){

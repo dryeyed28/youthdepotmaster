@@ -16,19 +16,25 @@ public class PostDaoOracle implements PostDao {
 	@Override
 	public ArrayList<Post> postList(int brd_id) {
 		ArrayList<Post> data = new ArrayList<Post>();
+		int start = 
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = OracleConnection.getConnection();
-			String sql = "";
-			sql += "select rownum, p.brd_id, b.brd_name, b.brd_type, p.mem_id, p.mem_nickname, p.admin_id, \n";
-			sql += "p.POST_TITLE, p.POST_CONTENT, TO_CHAR(p.POST_DATETIME, 'yyyy.mm.dd') post_datetime, p.POST_VIEW_COUNT ,p.POST_DEL, p.post_file \n";
-			sql += "from board b, post p \n";
-			sql += "where b.brd_id = p.brd_id and p.post_del=0 and p.brd_id = ? ";
-			sql += "order by rownum desc";
+			String sql = 
+					"select * \r\n" + 
+					"FROM \r\n" + 
+					"(select rownum r, p.brd_id, b.brd_name, b.brd_type, p.mem_id, p.mem_nickname, p.admin_id, \r\n" + 
+					"p.POST_TITLE, p.POST_CONTENT, TO_CHAR(p.POST_DATETIME, 'yyyy.mm.dd') post_datetime, p.POST_VIEW_COUNT ,p.POST_DEL, p.post_file \r\n" + 
+					"from board b, post p \r\n" + 
+					"where b.brd_id = p.brd_id and p.post_del=0 and p.brd_id = 20\r\n" + 
+					"order by rownum desc) \r\n" + 
+					"WHERE r>=? and r<=?;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, brd_id);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, start+9);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Post post = new Post(rs.getInt("rownum"),

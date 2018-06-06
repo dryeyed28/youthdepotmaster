@@ -71,10 +71,28 @@ public class PostController extends HttpServlet {
 			//System.out.println("data!!! + " + data);
 			forwardURL = "user/boards/boardlist.jsp";
 		}else if(type.equals("boardListResult")) {
-			brd_id = Integer.parseInt(request.getParameter("brd_id"));
-			System.out.println(brd_id);
 			data = service.boardList(brd_id);
+			String page = request.getParameter("page");
+			int totalCount = service.findCount(brd_id);
+			int cntPerPage = 10; //1페이지 별 10건씩 게시글을 보여준다.
+			int realPage = 1;
+			
+			if(page != null) {
+				realPage = Integer.parseInt(page);
+			}
+			int totalPage = (int) Math.ceil((double) totalCount / cntPerPage);
+			int cntPerPageGroup = 5; //페이지 그룹별 5페이지씩 보여준다.
+			int startPage = (int)(realPage/cntPerPageGroup+0.8) * cntPerPageGroup - cntPerPageGroup+1;
+			int endPage = startPage + cntPerPageGroup-1;
+			if(endPage > totalPage) {
+					endPage = totalPage;
+			}
+			request.setAttribute("realPage", realPage);
+			request.setAttribute("totalPage", totalPage);
+			request.setAttribute("startPage", startPage);
+			request.setAttribute("endPage", endPage);
 			request.setAttribute("data", data);
+			//System.out.println("data!!! + " + data);
 			forwardURL = "user/boards/boardlistResult.jsp";
 		} else if(type.equals("boardView")) {
 			p = new Post();
