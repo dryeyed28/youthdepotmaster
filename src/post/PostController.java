@@ -16,6 +16,7 @@ import com.oreilly.servlet.MultipartRequest;
 
 import projcet.RenamePolicy;
 import vo.Board;
+import vo.PageBean;
 import vo.Post;
 
 public class PostController extends HttpServlet {
@@ -48,7 +49,7 @@ public class PostController extends HttpServlet {
 		Board b = null;
 		if(type.equals("boardList")) {
 			//brd_id = Integer.parseInt(request.getParameter("brd_id"));
-			realPage = 2;
+			realPage = 3;
 			data = service.boardList(brd_id, realPage);
 			String page = request.getParameter("page");
 			int totalCount = service.findCount(brd_id);
@@ -64,12 +65,20 @@ public class PostController extends HttpServlet {
 			if (endPage > totalPage) {
 				endPage = totalPage;
 			}
+			PageBean<Post> pb = new PageBean<>();
+			pb.setCurrentPage(realPage);
+			pb.setTotalPage(totalPage);
+			pb.setList(data);
+			pb.setStartPage(startPage);
+			pb.setEndPage(endPage);
+			pb.setTotalCount(totalCount);
+			pb.setCntPerPage(cntPerPageGroup);
+			
 			request.setAttribute("realPage", realPage);
 			request.setAttribute("totalPage", totalPage);
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("data", data);
-			System.out.println("data!!! + " + data);
 			System.out.println(realPage);
 			forwardURL = "user/boards/boardlist.jsp";
 		} else if(type.equals("boardView")) {
