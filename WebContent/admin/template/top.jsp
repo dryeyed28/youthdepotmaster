@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="vo.Admin" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String root1 = request.getContextPath();
 %>
+<c:set var="admin" value="${sessionScope.admin}" scope="session"/>
 <head>
 
+<%--<% Admin adim = (Admin) session.getAttribute("admin"); --%>
+ 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,6 +54,12 @@ String root1 = request.getContextPath();
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+           <c:if test="${!empty admin}">
+            	<li>${admin.admin_name}님</li>
+            </c:if>
+            <c:if test="${empty admin}">
+             	<li>손님, 로그인해주세요.</li>
+            </c:if> 
                <li><a href="<%=root1%>/admin/pages/login.jsp"><i class="fa fa-sign-out fa-fw"></i> 로그아웃</a>
                </li>
             </ul>
@@ -73,5 +84,5 @@ String root1 = request.getContextPath();
     <script src="<%=root1%>/admin/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="<%=root1%>/admin/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="<%=root1%>/admin/vendor/datatables-responsive/dataTables.responsive.js"></script>
-
+  
 </body>
