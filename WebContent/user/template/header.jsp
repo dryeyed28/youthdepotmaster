@@ -115,9 +115,9 @@
 							</li>
 						<li class="menu-item-has-children"><a>커뮤니티</a>
 							<ul>
-								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList&brd_id=20">공지사항</a></li>
-								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList&brd_id=20">FAQ</a></li>
-								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList">커뮤니티</a></li>
+								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList&brd_id=10">공지사항</a></li>
+								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList&brd_id=30">FAQ</a></li>
+								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList&brd_id=20">커뮤니티</a></li>
 							</ul>
 						</li>
 					</ul>
