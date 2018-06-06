@@ -73,7 +73,11 @@
 				</table>
 				</form>
 				<div align="right">
+<<<<<<< HEAD
 				  <a href="<%=request.getContextPath()%>/user/boards/boardwrite.jsp?id=<%=data.get(0).getBoard_id()%>"><button>글쓰기</button></a>
+=======
+				  <a href="<%=request.getContextPath()%>/user/boards/boardwrite.jsp?id=<%=data.get(0).getBoard_id().getBrd_id()%>"><button>글쓰기</button></a>
+>>>>>>> b26faf22870288c42321b9ce3e95eb2cf8232e59
 				</div>
 			</div>
 	</div>

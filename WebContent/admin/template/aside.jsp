@@ -50,7 +50,10 @@ String root = request.getContextPath();
                                 <a href="<%=root%>/TotalPayController?type=totalpay">전체결제 관리</a>
                             </li>
                             <li>
-                                <a href="<%=root%>/admin/payMng/yeoljeongpay.jsp">열정결제 관리</a>
+                                <a href="<%=root%>/TotalPayController?type=yeoljeong">열정결제 관리</a>
+                            </li>
+                            <li>
+                                <a href="<%=root%>/TotalPayController?type=refund">열정환급 관리</a>
                             </li>
                             <li>
                                 <a href="<%=root%>/admin/payMng/profit.jsp">이익현황 관리</a>

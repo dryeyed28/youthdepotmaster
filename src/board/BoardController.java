@@ -14,15 +14,17 @@ import vo.Board;
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public BoardController() {
-        super();
-    }
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request,response);
+	public BoardController() {
+		super();
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -36,15 +38,27 @@ public class BoardController extends HttpServlet {
 			request.setAttribute("boardlist", boardlist);
 			forwardURL = "admin/boardMng/tables.jsp";
 		} else if (type.equals("make")) {
-			Board board = new Board();
-			board.setBrd_name(request.getParameter("title"));
-			board.setBrd_type(request.getParameter("board"));
-			service.makeboard(board);
+			b = new Board();
+			b.setBrd_name(request.getParameter("title"));
+			b.setBrd_type(request.getParameter("board"));
+			service.makeboard(b);
 			forwardURL = "BoardController?type=boardmenu";
 		} else if (type.equals("update")) {
-			
+			b = new Board();
+			b.setBrd_id(Integer.parseInt(request.getParameter("brd")));
+			b.setBrd_name(request.getParameter("name"));
+			b.setBrd_type(request.getParameter("brd_type"));
+			request.setAttribute("board", b);
+			forwardURL = "admin/boardMng/updateboard.jsp";
+		} else if (type.equals("updateok")) {
+			b = new Board();
+			b.setBrd_id(Integer.parseInt(request.getParameter("brd")));
+			b.setBrd_name(request.getParameter("name"));
+			b.setBrd_type(request.getParameter("brd_type"));
+			service.boardupdate(b);
+			forwardURL = "BoardController?type=boardmenu";
 		}
-		RequestDispatcher  dispatcher = request.getRequestDispatcher(forwardURL);
+		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
 	}
 

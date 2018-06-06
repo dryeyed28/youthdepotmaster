@@ -15,7 +15,7 @@
 <div id="page-wrapper">
   <div class="row">
 	<div class="col-lg-12">
-	  <h2 class="page-header">결제 관리 > 열정결제 관리</h2>
+	  <h2 class="page-header">결제 관리 > 열정환불 관리</h2>
 	</div>
   </div>
   
@@ -23,7 +23,7 @@
 	<div class="col-lg-12">
 	  <div class="panel panel-default">
 		<div class="panel-heading">
-			열정결제 관리
+			열정환불 관리
 		</div>
         <!-- /.panel-heading -->
         
@@ -35,8 +35,8 @@
                 <th>결제번호</th>
                 <th>아이디</th>
                 <th>신청금액</th>
-                <th>날짜</th>
-                <th>결제상태</th>
+                <th>환급신청날짜</th>
+                <th>환급여부</th>
               </tr>
            </thead>
            <tbody>
@@ -49,12 +49,10 @@
                 <td><%=d.getMem_userID() %></td>
                 <td><%=comma %></td>
                 <td><%=d.getDep_date() %></td>
-                <% if(d.getDep_state() == 1) { %>
-                <td>입금대기</td>
-                <%} else if(d.getDep_state() == 2) { %>
-                <td>입금완료</td>
-                <%} else if(d.getDep_state() == 3) { %>
-                <td>입금취소</td>
+                <% if(d.getDep_type() == 3) { %>
+                <td>환급대기</td>
+                <%} else if(d.getDep_type() == 4) { %>
+                <td>환급완료</td>
                 <%} %>
               </tr>
            <%} %>
@@ -63,6 +61,7 @@
         
       <div>
         <a class="btn btn-default btn-primary">삭제</a>&nbsp;&nbsp;
+        <a class="btn btn-default btn-primary">환급수락</a>
       </div>   
       <hr>
       

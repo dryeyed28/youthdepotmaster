@@ -7,4 +7,5 @@ import vo.Board;
 public interface BoardDao {
 	ArrayList<Board> boardList();
 	void insertboard(Board board);
+	void updateboard(Board board);
 }

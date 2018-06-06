@@ -61,6 +61,7 @@
                                 <th>게시판 타이틀</th>
                                 <th>분류</th>
                                 <th>총 게시물</th>
+                                <th>수정</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,6 +73,14 @@
                                 <td><%=b.getBrd_name()%></td>
                                 <td class="center"><%=b.getBrd_type()%></td>
                                 <td class="center"><%=b.getBrd_count()%></td>
+                                <td>
+                                <form action="<%=request.getContextPath()%>/BoardController?type=update" method="post">
+                                <input type="hidden" name="brd" value="<%=b.getBrd_id()%>">
+                                <input type="hidden" name="name" value="<%= b.getBrd_name() %>">
+                                <input type="hidden" name="brd_type" value="<%= b.getBrd_type() %>">
+                                <button id="modify" class="btn btn-default btn-outline btn-primary">수정하기</button>
+                                </form>
+                                </td>
                             </tr>
                         <% } %>
                         </tbody>

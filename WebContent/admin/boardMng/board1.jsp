@@ -67,7 +67,7 @@
         <a class="btn btn-default">이동</a>
       </div>
       <hr>
-      <button id="edit" onclick="location.href='edit.jsp'" class="btn btn-outline btn-primary">글쓰기</button>&nbsp;&nbsp;
+      <button id="edit" onclick="location.href='<%= request.getContextPath()%>/admin/boardMng/edit.jsp'" class="btn btn-outline btn-primary">글쓰기</button>&nbsp;&nbsp;
       <button id="modify" onclick="location.href='postupdaterslt.jsp'" class="btn btn-outline btn-primary">수정</button>
 	  </div>
       <!-- /.panel-body -->
