@@ -81,11 +81,20 @@
 							}
 						%>
 						<tfoot>
+							<c:set var="startPage" value="${pb.startPage}" />
+							<c:set var="endPage" value="${pb.endPage}" />
 							<tr>
 								<td align="center" colspan="5">1</td>
 							</tr>
 						</tfoot>
 					</table>
+					<ul>
+						<li class="page-item"><a class="page-link" href="#"
+							aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+						<li class="page-item"><a class="page-link" href="#"
+							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+						</a></li>
+					</ul>
 				</form>
 				<div align="right">
 					<a
