@@ -37,7 +37,7 @@ String root = request.getContextPath();
                                 <a href="#"> 게시 관리<span class="fa arrow"></span></a>
                                   <ul class="nav nav-third-level">
                              	  <li>
-                                 	<a href="<%=root%>/admin/boardMng/board1.jsp"></a>
+                                 	<a href="<%=root%>/admin/boardMng/board1.jsp">공지사항</a>
                              	  </li>
                             	  </ul>
                             </li>
