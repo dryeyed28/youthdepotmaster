@@ -17,14 +17,7 @@ String root = request.getContextPath();
                         <a href="#"><i class="fa fa-user fa-fw"></i>회원관리</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-table fa-fw"></i> 프로젝트 관리<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="<%=root%>/projectMgr/projectrequest.jsp">프로젝트 신청관리</a>
-                            <li>
-                                <a href="<%=root%>/projectMgr/projectNews.jsp">프로젝트 새소식관리</a>
-                            </li>
-                        </ul>
+                        <a href="<%=root%>/ProjectController?type=projectrequest"><i class="fa fa-table fa-fw"></i> 프로젝트 신청관리</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-heart fa-fw"></i> 커뮤니티 관리<span class="fa arrow"></span></a>

@@ -36,6 +36,7 @@ public class MemberController extends HttpServlet {
 		Member m =null;
 		String userId="";
 		int intPage = 0;
+		int mem_id =0;
 		HttpSession session = null;
 		
 		MemberService svic = new MemberServiceImpl();
@@ -115,12 +116,13 @@ public class MemberController extends HttpServlet {
 			m = new Member();
 			m.setMem_userId(request.getParameter("userid"));
 			m.setMem_password(request.getParameter("pwd"));
-		
-			int mem_id = service.login(m);
-			System.out.println(mem_id);
-			if (mem_id != 0) {
+			Member member = new Member(); 
+			member = service.login(m);
+			System.out.println(member);
+			if (member != null) {
 				session = request.getSession();
-				session.setAttribute("userid", userId);
+				session.setAttribute("mem_id", member.getMem_id());
+				session.setAttribute("nickname", member.getMem_nickName());
 				result = "user/pages/index.jsp";
 				request.setAttribute("rslt", "0");
 				
@@ -130,14 +132,15 @@ public class MemberController extends HttpServlet {
 				
 			}
 			
-		}else if(type.equals("mypage")) {
+		}else if(type.equals("mypage")){
+			System.out.println("마이페이지");
 			m = new Member();
+			mem_id = Integer.parseInt(request.getParameter("mem_id"));
 			
-			
-			
-			
-			
-			
+			m = service.mypage(mem_id);
+			request.setAttribute("member", m);
+		
+		
 			
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(result);

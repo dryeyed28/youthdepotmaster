@@ -7,7 +7,7 @@
 		<div class="row">
 			<div id="main" class="col-sm-8 col-md-9">
 				<div class="booking-section travelo-box">
-					<form class="cruise-booking-form"name="f" action="<%=request.getContextPath()%>/BoardController?type=mypage" method="post">
+					<form class="cruise-booking-form"name="f" action="<%=request.getContextPath()%>/MemberController?type=mypage" method="post">
 						<div class="person-information">
 							<div class="row">
 							<% Member m = (Member)request.getAttribute("m");%>
