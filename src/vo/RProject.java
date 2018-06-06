@@ -4,7 +4,7 @@ package vo;
 public class RProject {
 	private int rPJT_id;
 	private int mem_id;
-	/*rPJT_state 1.승인  2.검토중  3.반려*/
+	/*rPJT_state 1.검토중  2.승인  3.반려*/
 	private int rPJT_state;
 	/*rPJT_progress 1.진행  2.성공 3.실패 4.대기*/
 	private int rPJT_progress;

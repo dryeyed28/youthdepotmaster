@@ -151,7 +151,7 @@ public class ProjectController extends HttpServlet {
 			request.setAttribute("rpay", rpay);
 			forwardURL = "user/pages/paycheck.jsp";
 		} else if(type.equals("projectrequest")) {
-			metalist = service.metalist();
+			metalist = service.project();
 			request.setAttribute("project", metalist);
 			forwardURL = "admin/pages/projectrequest.jsp";
 		}
