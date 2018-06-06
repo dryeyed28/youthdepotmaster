@@ -60,13 +60,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-<<<<<<< HEAD
-	public int login(Member member) {
-		return dao.login(member);
-=======
 	public Member login(Member member) {
 	return dao.login(member);
->>>>>>> 204de20b2ca5dab7a256adb2575b7bc550bd0cee
 	
 	}
 

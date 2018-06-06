@@ -13,11 +13,7 @@ public interface MemberDao {
 	public int selectCount() throws Exception; //멤버테이블 전체행수
 	public Member idCheck(String mem_userid) throws Exception;
 	public void memberInsert(Member member);
-<<<<<<< HEAD
-	public int login(Member member);
 	public Member getMember(int mem_id);
-=======
 	public Member login(Member member);
->>>>>>> 204de20b2ca5dab7a256adb2575b7bc550bd0cee
 
 }
