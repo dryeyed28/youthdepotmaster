@@ -1,6 +1,7 @@
 package admin;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -10,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import board.BoardService;
+import board.BoardServiceImpl;
 import vo.Admin;
+import vo.Board;
 
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,7 +33,6 @@ public class AdminController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		
 		System.out.println("AdminController doPost() 요청");
 		
 		String type = "";
@@ -52,7 +55,6 @@ public class AdminController extends HttpServlet {
 			result = "/admin/pages/loginresult.jsp";
 			System.out.println("loginResult 값 :" + loginResult);
 		}
-		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(result);
 		dispatcher.forward(request, response);
 	}

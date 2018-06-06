@@ -13,7 +13,10 @@ import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 
+import board.BoardService;
+import board.BoardServiceImpl;
 import projcet.RenamePolicy;
+import vo.Board;
 import vo.Deposit;
 import vo.RApply;
 import vo.RKeeper;
