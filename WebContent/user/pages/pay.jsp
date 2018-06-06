@@ -58,7 +58,7 @@ div.text {
 							for (ROption o : option) {
 						%>
 						<div class="paybox">
-							<input type="checkbox" name='pqy1' value="<%=o.getReward_id()%>">
+							<input type="checkbox" name='pqy1' value="<%=o.getReward_id()%>" required>
 							<h1><%=o.getrPJT_price()%>원 펀딩합니다.
 							</h1>
 							<p>
