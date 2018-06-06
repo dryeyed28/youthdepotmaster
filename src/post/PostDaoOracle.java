@@ -67,10 +67,10 @@ public class PostDaoOracle implements PostDao {
 		try {
 			con = OracleConnection.getConnection();
 			String sql = "";
-			sql += "select post_id, mem_id, mem_nickname, admin_id, \n";
-			sql += "POST_TITLE, POST_CONTENT, TO_CHAR(POST_DATETIME, 'yyyy.mm.dd') post_datetime, POST_VIEW_COUNT \n";
-			sql += "from post \n";
-			sql += "where brd_id = ? and post_id = ?";
+			sql += "select p.post_id, p.mem_id, p.mem_nickname, p.admin_id, p.POST_TITLE, \n";
+			sql += "p.POST_CONTENT, TO_CHAR(p.POST_DATETIME, 'yyyy.mm.dd') post_datetime, p.POST_VIEW_COUNT, b.brd_type \n";
+			sql += "from post p, board b \n";
+			sql += "where p.brd_id = b.brd_id and p.brd_id = ? and p.post_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, brd_id);
 			pstmt.setInt(2, post_id);
@@ -84,6 +84,7 @@ public class PostDaoOracle implements PostDao {
 				post.setPost_content(rs.getString(6));
 				post.setPost_dateTime(rs.getString(7));
 				post.setPost_view_count(Integer.parseInt(rs.getString(8)));
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
