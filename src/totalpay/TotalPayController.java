@@ -46,6 +46,10 @@ public class TotalPayController extends HttpServlet {
 			yeoljeong = service.refund();
 			request.setAttribute("yeoljeong", yeoljeong);
 			forwardURL = "admin/payMng/refundinfo.jsp";
+		} else if(type.equals("profit")) {
+			ArrayList<ProfitDto> profit = service.profit();
+			request.setAttribute("profit", profit);
+			forwardURL = "admin/payMng/profit.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);

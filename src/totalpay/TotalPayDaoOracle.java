@@ -87,8 +87,8 @@ public class TotalPayDaoOracle implements TotalPayDao {
 			String sql = "";
 			sql += "select dep.dep_id, m.mem_userid, dep.dep_request, to_char(dep.dep_date, 'yyyy-mm-dd hh:Mi:ss'), dep.dep_type \n";
 			sql += "from deposit dep join members m on dep.mem_id = m.mem_id \n";
-			sql += "where dep.dep_type = 3 or dep.dep_type = 4";
-			sql += "order by dep.dep_type desc";
+			sql += "where dep.dep_type = 3 or dep.dep_type = 4 /n";
+			sql += "order by dep.dep_type";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -99,6 +99,39 @@ public class TotalPayDaoOracle implements TotalPayDao {
 				dep.setDep_date(rs.getString(4));
 				dep.setDep_type(rs.getInt(5));
 				list.add(dep);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
+		return list;
+	}
+
+	@Override
+	public ArrayList<ProfitDto> getgetProfit() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<ProfitDto> list = new ArrayList<ProfitDto>();
+		try {
+			con = OracleConnection.getConnection();
+			String sql = "";
+			sql += "select m.MEM_USERID ,r.RPJT_ID, r.rpjt_progress, to_char(rm.RPJT_ENDDAY, 'yyyy-mm-dd hh:Mi:ss'), rm.RINVESTING_AMOUNT, r.rpjt_profit \n";
+			sql += "from R_PROJECT r join MEMBERS m on r.MEM_ID = m.MEM_ID \n";
+			sql += "join R_META rm on r.RPJT_ID = rm.RPJT_ID \n";
+			sql += "where r.rpjt_progress = 2 or r.rpjt_progress = 3";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProfitDto p = new ProfitDto(
+						rs.getString(1),
+						rs.getInt(2),
+						rs.getInt(3),
+						rs.getString(4),
+						rs.getInt(5),
+						rs.getInt(6));
+				list.add(p);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

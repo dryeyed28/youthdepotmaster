@@ -56,7 +56,7 @@ String root = request.getContextPath();
                                 <a href="<%=root%>/TotalPayController?type=refund">열정환급 관리</a>
                             </li>
                             <li>
-                                <a href="<%=root%>/admin/payMng/profit.jsp">이익현황 관리</a>
+                                <a href="<%=root%>/TotalPayController?type=profit">이익현황 관리</a>
                             </li>
                         </ul>
                     </li>
