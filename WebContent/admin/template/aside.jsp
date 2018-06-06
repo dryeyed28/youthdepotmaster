@@ -1,7 +1,11 @@
+<%@page import="oracle.net.aso.r"%>
+<%@page import="vo.Board"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 String root = request.getContextPath();
+ArrayList<Board> list = (ArrayList)request.getAttribute("boardlist");
 %>
 <div id="wrapper">
         <div class="navbar-default sidebar" role="navigation">
@@ -33,12 +37,11 @@ String root = request.getContextPath();
                             <li>
                                 <a href="#"> 게시 관리<span class="fa arrow"></span></a>
                                   <ul class="nav nav-third-level">
+                                  <%for (int i =0; i < list.size(); i++ ){ %>
                              	  <li>
-                                 	<a href="<%=root%>/admin/boardMng/board1.jsp">공지사항</a>
+                                 	<a href="<%=root%>/admin/boardMng/board1.jsp"><%= list.get(i).getBrd_name() %></a>
                              	  </li>
-                             	  <li>
-                                 	<a href="<%=root%>/admin/boardMng/board2.jsp">FAQ</a>
-                             	  </li>
+                             	  <%} %>
                             	  </ul>
                             </li>
                         </ul>

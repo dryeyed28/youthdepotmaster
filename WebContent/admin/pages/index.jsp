@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../template/top.jsp"%>
-<%@include file="../template/aside.jsp"%>
+<%@include file="../template/aside.jsp"%> 
+<%-- <jsp:include page="../template/top.jsp"/> --%>
 <!-- Morris Charts CSS -->
 <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
 
