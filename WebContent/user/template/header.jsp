@@ -124,7 +124,7 @@ function goGo() {
 							</li>
 						<li class="menu-item-has-children"><a href="<%=request.getContextPath()%>/ProjectController?type=rewardMain">리워드·후원</a>
 							</li>
-						<li class="menu-item-has-children"><a href="<%=request.getContextPath()%>/user/mypage/mypage.jsp">열정창고</a>
+						<li class="menu-item-has-children"><a href="<%=request.getContextPath()%>/MemberController?type=mypage">열정창고</a>
 							</li>
 						<li class="menu-item-has-children"><a>커뮤니티</a>
 							<ul>
