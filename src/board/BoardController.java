@@ -60,7 +60,15 @@ public class BoardController extends HttpServlet {
 			b.setBrd_type(request.getParameter("brd_type"));
 			service.boardupdate(b);
 			forwardURL = "BoardController?type=boardmenu";
-		} 
+		} else if (type.equals("adminboardlist")) {
+			boardlist = service.getBoardList();
+			request.setAttribute("boardlist", boardlist);
+			forwardURL = "admin/template/adminboardrslt.jsp";
+		} else if (type.equals("userboardlist")) {
+			boardlist = service.getBoardList();
+			request.setAttribute("boardlist", boardlist);
+			forwardURL = "user/template/userboardrslt.jsp";
+		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
 	}

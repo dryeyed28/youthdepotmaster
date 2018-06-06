@@ -2,6 +2,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!DOCTYPE html>
 	<html>
 <head>
@@ -10,7 +11,22 @@ function goGo() {
 	onclick="location.href='address'"
 }
 </script>
-
+<script>
+	$(function() {
+		$('#boardlist').one('click', function () {
+			 var $board = $('input[type="hidden"]').val();
+			$.ajax({
+				method : 'get',
+				url : "<%=request.getContextPath()%>/BoardController",
+				 data: 'type='+$board,
+				success : function(data) {
+					$('#ulboardlist').append(data);
+				}
+			});
+			return false;
+		});
+	});
+</script>
     <!-- Page Title -->
     <title>youthdepot</title>
     
@@ -126,11 +142,9 @@ function goGo() {
 							</li>
 						<li class="menu-item-has-children"><a href="<%=request.getContextPath()%>/MemberController?type=mypage">열정창고</a>
 							</li>
-						<li class="menu-item-has-children"><a>커뮤니티</a>
-							<ul>
-								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList&brd_id=10">공지사항</a></li>
-								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList&brd_id=30">FAQ</a></li>
-								<li><a href="<%=request.getContextPath()%>/PostController?type=boardList&brd_id=20">커뮤니티</a></li>
+							<input type="hidden" value="userboardlist">
+						<li class="menu-item-has-children" id="boardlist"><a>커뮤니티</a>
+							<ul id="ulboardlist">
 							</ul>
 						</li>
 					</ul>
