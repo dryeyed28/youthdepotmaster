@@ -34,10 +34,8 @@ public class MemberController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		MemberService service = new MemberServiceImpl();
-		ArrayList<Board> boardlist;
 		String type = "";
 		String result = "";
-		BoardService service1 = new BoardServiceImpl();
 		
 		Member m =null;
 		String userId="";
@@ -146,8 +144,6 @@ public class MemberController extends HttpServlet {
 			
 			
 		}
-		boardlist = service1.getBoardList();
-		request.setAttribute("boardlist", boardlist);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(result);
 		dispatcher.forward(request, response);
 	}

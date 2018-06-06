@@ -53,9 +53,7 @@ public class ProjectController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		BoardService service1 = new BoardServiceImpl();
 		ProjcetService service = new ProjcetServiceImpl();
-		ArrayList<Board> boardlist;
 		String type = request.getParameter("type");
 		String forwardURL = "";
 		int rPJT_id = 0;
@@ -165,8 +163,6 @@ public class ProjectController extends HttpServlet {
 			request.setAttribute("rpay", rpay);
 			forwardURL = "user/pages/paycheck.jsp";
 		}
-		boardlist = service1.getBoardList();
-		request.setAttribute("boardlist", boardlist);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
 		// response.sendRedirect(forwardURL);

@@ -39,9 +39,7 @@ public class PostController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		PostService service = new PostServiceImpl();
-		ArrayList<Board> boardlist;
 		ArrayList<Post> data;
-		BoardService service1 = new BoardServiceImpl();
 		String type = request.getParameter("type");
 		String searchText = request.getParameter("searchText");
 		String forwardURL = "";
@@ -215,8 +213,6 @@ public class PostController extends HttpServlet {
 				forwardURL = "/user/boards/boardlist.jsp";
 			}
 		}
-		boardlist = service1.getBoardList();
-		request.setAttribute("boardlist", boardlist);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
 	}

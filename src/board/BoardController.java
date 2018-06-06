@@ -32,7 +32,7 @@ public class BoardController extends HttpServlet {
 		String forwardURL = "";
 		BoardService service = new BoardServiceImpl();
 		Board b = null;
-		ArrayList<Board> boardlist;
+		ArrayList<Board> boardlist = null;
 		if (type.equals("boardmenu")) {
 			boardlist = service.getBoardList();
 			request.setAttribute("boardlist", boardlist);
