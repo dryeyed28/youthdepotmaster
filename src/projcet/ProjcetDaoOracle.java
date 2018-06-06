@@ -380,5 +380,39 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			OracleConnection.close(rs, pstmt, con);
 		}
 		return pcd;
+	}	@Override
+	public RewardPay getrewardPay(int rPay_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		RewardPay rpay = new RewardPay();
+		try {
+			con = OracleConnection.getConnection();
+			String sql = "";
+			sql += "insert into REWARD_PAY(RPAY_ID,MEM_NAME,RPAY_ADDRESS,RPAY_PHONE,RPAY_REQUEST,RPAY_TOTAL,RPAY_DATE)" 
+			+ "values ((SELECT MAX(RPAY_ID)+1 from REWARD_PAY),?,?,?,?,?,to_date(sysdate,'RR/MM/DD'))";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rPay_id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+			/*	rpay.setMem_id(rs.getInt(1));
+				rpay.setrPay_id(rs.getInt(3));
+				rpay.setrProduct_id(rs.getInt(4));
+				rpay.setrProduct_ea(rs.getInt(2));
+				rpay.setrAddPay(rs.getInt(2));
+				*/
+				rpay.setMem_name(rs.getString(1));
+				rpay.setrPay_address(rs.getString(2));
+				rpay.setrPay_phone(rs.getString(3));
+				rpay.setrPay_request(rs.getString(4));
+				rpay.setrPay_total(rs.getInt(5));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
+		return rpay;
 	}
 }

@@ -86,7 +86,7 @@ div.right {
   height: 400px;
 } */
 input {
-    width: 80%;
+	width: 80%;
 }
 </style>
 
@@ -124,6 +124,7 @@ input {
 								}
 							%>
 							<hr>
+							
 							<div class="left">펀딩금액</div>
 							<div class="right">
 								<input type="text" name="price" value="<%=price%>원"
@@ -176,32 +177,36 @@ input {
 						<div class="leftwight">
 							<h2>이름</h2>
 						</div>
-						<input type="text" name="name" value="" placeholder="이름을 입력해주세요" required>
+						<input type="text" name="name" value="" placeholder="이름을 입력해주세요"
+							required>
 						<div class="leftwight">
 							<h2>휴대폰번호</h2>
 						</div>
-						<input type="tel" name="tel" value="" placeholder="-뺴고 입력해주세욘" required>
+						<input type="tel" name="tel" value="" placeholder="-뺴고 입력해주세욘"
+							required>
 						<hr>
 						<br> <br>
-						<div style="margin: 0 auto; width: 200px; height: 100px;">
-							<button style="width: 200px; height: 50px; border-radius: 20px;">결제
-								예약하기</button>
-						</div>
+
 					</div>
 
 					<div class=" col-md-4"
 						style="background: white; height: 400px; padding: 20px;">
 						<div class="icondiv">리워드 선택</div>
 						<hr>
-						<label><input type="radio" name="address"> 기존배송지 
-						<input type="text" placeholder="기존배송지입력"> </label> 
-						<label><input type="radio" name="address"> 새로입력</label> <input type="text"
+						<label><input type="radio" name="address"> 기존배송지 <input
+							type="text" placeholder="기존배송지입력"> </label> <label><input
+							type="radio" name="address"> 새로입력</label> <input type="text"
 							placeholder="새로운 배송지 입력">
 						<hr>
 						<div class="leftwight">
 							<h2>배송시 요청사항 (선택)</h2>
 						</div>
-						<textarea style="margin: 0px; width: 270px; height: 101px;" name="addressrequest" placeholder="배송에 관련된 내용만 적어주세요! "></textarea>
+						<textarea style="margin: 0px; width: 270px; height: 101px;"
+							name="addressrequest" placeholder="배송에 관련된 내용만 적어주세요! "></textarea>
+					</div>
+					<div style="margin: 0 auto; width: 200px; height: 100px;">
+						<button style="width: 200px; height: 50px; border-radius: 20px;">결제
+							예약하기</button>
 					</div>
 				</form>
 			</div>
