@@ -465,13 +465,14 @@ Insert into ADMIN (ADMIN_ID,ADMIN_NAME,ADMIN_PWD) values ('admin','admin','admin
 SELECT /*insert*/ *
 FROM POST;
 --POST--
-Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) values (1,10,1,'admin','에인젤','조장으로서한마디',to_date('18/05/25','RR/MM/DD'),1,0);
-Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) values (2,20,2,'admin','빠른94','리워드어떻게하나요',to_date('18/05/25','RR/MM/DD'),2,0);
-Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) values (3,20,3,'admin','별명없음','리워드가뭐여',to_date('18/05/25','RR/MM/DD'),3,0);
-Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) values (4,30,2,'admin','빠른94','나빠른94임ㅋㅋ',to_date('18/05/25','RR/MM/DD'),4,0);
+Insert into POST (POST_ID,BRD_ID,ADMIN_ID,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) values (1,10,'admin','청춘창고에서 새해를 맞아 인사드립니다','안녕하세요! 청춘창고에서 인사드립니다. 올해도 많이 이용부탁드리고 새해복 많이 받으세요~',to_date('18/01/01','RR/MM/DD'),1,0);
+Insert into POST (POST_ID,BRD_ID,ADMIN_ID,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) values (2,10,'admin','청춘창고 플랫폼 운영방향 공지','2018년 6월 5일자 금융위원회의 크라우드펀딩 활성화 정책과 관련하여 향후 청춘창고의 플랫폼 운영 방향을 아래와 같이 공지',to_date('18/06/05','RR/MM/DD'),1,0);
+Insert into POST (POST_ID,BRD_ID,ADMIN_ID,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) values (2,20,'admin','리워드는 언제 배송되나요?','각 프로젝트의 리워드 제공일을 확인해주세요! 크라우드펀딩은 쇼핑몰이 아닙니다. 프로젝트가 성공하여 리워드가 준비될 때까지는 시간이 걸릴 수 있습니다',to_date('18/05/25','RR/MM/DD'),2,0);
+Insert into POST (POST_ID,BRD_ID,ADMIN_ID,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) values (3,20,'admin','리워드를 변경하고 싶어요.','다른 금액대의 리워드로 변경하고 싶다면 환불 및 결제 취소 후에 원하는 금액대의 리워드를 다시 선택하여 결제하면 됩니다.',to_date('18/05/25','RR/MM/DD'),3,0);
+Insert into POST (POST_ID,BRD_ID,MEM_ID,MEM_NICKNAME,POST_TITLE,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) values (4,30,2,'빠른94','나빠른94임ㅋㅋ',to_date('18/05/25','RR/MM/DD'),4,0);
+Insert into POST (POST_ID,BRD_ID,MEM_ID,MEM_NICKNAME,POST_TITLE,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) values (7,30,3,'별명없음','7',to_date('18/06/02','RR/MM/DD'),0,0);
 Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) values (5,20,1,'admin','에인젤','조장못해먹겠슴',to_date('18/05/25','RR/MM/DD'),5,1);
 Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) values (6,20,3,'admin','별명없음','6',to_date('18/06/02','RR/MM/DD'),0,0);
-Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) values (7,30,3,'admin','별명없음','7',to_date('18/06/02','RR/MM/DD'),0,0);
 Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) values (8,20,3,'admin','별명없음','8',to_date('18/06/02','RR/MM/DD'),0,0);
 Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) values (9,20,3,'admin','별명없음','9',to_date('18/06/02','RR/MM/DD'),0,0);
 Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_DATETIME,POST_VIEW_COUNT,POST_DEL) values (10,20,3,'admin','별명없음','10',to_date('18/06/02','RR/MM/DD'),0,0);
@@ -545,15 +546,15 @@ SELECT /*insert*/ *
 FROM R_META;
 --R_META--
 Insert into R_META (RPJT_ID,RPJT_TITLE,RPJT_SUBTITLE,RINVESTING_AMOUNT,RTARGET_AMOUNT,RPJT_IMAGE,RPJT_CATEGORY,RPJT_PAPER,RPJT_STARTDAY,RPJT_ENDDAY) 
-values (1,'미니헤드 선풍기 프로젝트','초소형미니헤드휴대용선풍',16800,3000000,'1.jpg','테크가전','18/05/09',to_date('18/05/27','RR/MM/DD'),to_date('18/06/30','RR/MM/DD'));
+values (1,'미니헤드 선풍기 프로젝트','초소형미니헤드휴대용선풍',16800,3000000,'1.jpg','테크가전','18/05/09',to_date('18/05/27','RR/MM/DD'),to_date('18/06/28','RR/MM/DD'));
 Insert into R_META (RPJT_ID,RPJT_TITLE,RPJT_SUBTITLE,RINVESTING_AMOUNT,RTARGET_AMOUNT,RPJT_IMAGE,RPJT_CATEGORY,RPJT_PAPER,RPJT_STARTDAY,RPJT_ENDDAY) 
 values (2,'캡슐티머신','건강을마시는 메디프레소 머신',169000,3000000,'1.jpg','홈리빙','18/04/25',to_date('18/05/27','RR/MM/DD'),to_date('18/06/30','RR/MM/DD'));
 Insert into R_META (RPJT_ID,RPJT_TITLE,RPJT_SUBTITLE,RINVESTING_AMOUNT,RTARGET_AMOUNT,RPJT_IMAGE,RPJT_CATEGORY,RPJT_PAPER,RPJT_STARTDAY,RPJT_ENDDAY) 
-values (3,'알렉스텀블러','18시간 보냉되는 알렉스텀블러',59000,5000000,'1.jpg','홈리빙','18/04/24',to_date('18/05/26','RR/MM/DD'),to_date('18/06/30','RR/MM/DD'));
+values (3,'알렉스텀블러','18시간 보냉되는 알렉스텀블러',59000,5000000,'1.jpg','홈리빙','18/04/24',to_date('18/04/26','RR/MM/DD'),to_date('18/06/07','RR/MM/DD'));
 Insert into R_META (RPJT_ID,RPJT_TITLE,RPJT_SUBTITLE,RINVESTING_AMOUNT,RTARGET_AMOUNT,RPJT_IMAGE,RPJT_CATEGORY,RPJT_PAPER,RPJT_STARTDAY,RPJT_ENDDAY) 
-values (4,'크코가벼운안경','크코가벼운안경 휴즈',89000,1000000,'1.jpg','디자인소품','18/05/10',to_date('18/06/08','RR/MM/DD'),to_date('18/06/30','RR/MM/DD'));
+values (4,'크코가벼운안경','크코가벼운안경 휴즈',89000,1000000,'1.jpg','디자인소품','18/05/10',to_date('18/04/08','RR/MM/DD'),to_date('18/05/30','RR/MM/DD'));
 Insert into R_META (RPJT_ID,RPJT_TITLE,RPJT_SUBTITLE,RINVESTING_AMOUNT,RTARGET_AMOUNT,RPJT_IMAGE,RPJT_CATEGORY,RPJT_PAPER,RPJT_STARTDAY,RPJT_ENDDAY) 
-values (5,'디어넛츠','견과류로만든천사의잼 디어너츠',24900,1000000,'1.jpg','푸드','18/05/30',to_date('18/06/21','RR/MM/DD'),to_date('18/06/30','RR/MM/DD'));
+values (5,'디어넛츠','견과류로만든천사의잼 디어너츠',24900,1000000,'1.jpg','푸드','18/05/30',to_date('18/03/21','RR/MM/DD'),to_date('18/04/30','RR/MM/DD'));
 
 
 
@@ -647,15 +648,27 @@ FROM r_option;
 --r_option(리워드 옵션) 부모키r_project
 
 Insert into R_OPTION (REWARD_ID,RPJT_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND,RPJT_CHARGE) 
-values (10,1,30000,'스멜탄 3개 세트','스멜탄 1SET(검정/베이지/흰색 중 택1)',50,to_date('18/05/28','RR/MM/DD'),2500);
+values (10,1,15000,'스멜탄 1개 세트','스멜탄 1SET(검정/베이지/흰색 중 택1)',50,to_date('18/06/28','RR/MM/DD'),2500);
 Insert into R_OPTION (REWARD_ID,RPJT_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND,RPJT_CHARGE) 
-values (20,2,16900,'마유 케어 프로그램 세트/스타트팩','마유 마스크팩10개+2개<총12개>',100,to_date('18/05/28','RR/MM/DD'),2500);
+values (11,1,40000,'스멜탄 3개 세트','스멜탄 3SET(검정/베이지/흰색 중 택1)',50,to_date('18/06/28','RR/MM/DD'),2500);
 Insert into R_OPTION (REWARD_ID,RPJT_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND,RPJT_CHARGE) 
-values (30,3,118800,'수퍼커플얼리버드','리워드A:가격-198,000원/2개',30,to_date('18/05/28','RR/MM/DD'),2500);
+values (12,1,60000,'스멜탄 5개 세트','스멜탄 5SET(검정/베이지/흰색 중 택1)',30,to_date('18/06/28','RR/MM/DD'),2500);
 Insert into R_OPTION (REWARD_ID,RPJT_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND,RPJT_CHARGE) 
-values (40,4,5000,'감사메일','후원 감사드립니다!',1000,to_date('18/05/28','RR/MM/DD'),2500);
+values (20,2,16900,'마유 케어 프로그램 세트/스타트팩','마유 마스크팩10개+3개<총13개>',100,to_date('18/06/30','RR/MM/DD'),2500);
 Insert into R_OPTION (REWARD_ID,RPJT_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND,RPJT_CHARGE) 
-values (50,5,45900,'인생참치회 1~2인세트','손질참치회250그람1세트+참치해동법팜플렛+초데리+간장와사비',40,to_date('18/05/28','RR/MM/DD'),2500);
+values (21,2,30000,'마유 케어 프로그램 세트/스타트팩','마유 마스크팩20개+5개<총25개>',150,to_date('18/06/30','RR/MM/DD'),2500);
+Insert into R_OPTION (REWARD_ID,RPJT_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND,RPJT_CHARGE) 
+values (30,3,118800,'수퍼커플얼리버드','리워드A:가격-198,000원/2개',300,to_date('18/06/07','RR/MM/DD'),2500);
+Insert into R_OPTION (REWARD_ID,RPJT_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND,RPJT_CHARGE) 
+values (31,3,200000,'얼리버드','리워드B:가격-398,000원/1개',2000,to_date('18/06/07','RR/MM/DD'),2500);
+Insert into R_OPTION (REWARD_ID,RPJT_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND,RPJT_CHARGE) 
+values (40,4,5000,'감사메일','후원 감사드립니다!',10000,to_date('18/05/30','RR/MM/DD'),0);
+Insert into R_OPTION (REWARD_ID,RPJT_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND,RPJT_CHARGE) 
+values (50,5,45900,'인생참치회 1~2인세트','손질참치회250그람1세트+참치해동법팜플렛+초데리+간장와사비',50,to_date('18/04/30','RR/MM/DD'),3000);
+Insert into R_OPTION (REWARD_ID,RPJT_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND,RPJT_CHARGE) 
+values (51,5,100000,'인생참치회 3~4인세트','손질참치회250그람3세트+참치해동법팜플렛+초데리+간장와사비',30,to_date('18/04/30','RR/MM/DD'),3000);
+Insert into R_OPTION (REWARD_ID,RPJT_ID,RPJT_PRICE,RPJT_NAME,RPJT_DETAIL,RPJT_LIMIT,RPJT_SEND,RPJT_CHARGE) 
+values (52,5,400000,'인생참치회 10인세트','손질참치회250그람13세트+참치해동법팜플렛+초데리+간장와사비',20,to_date('18/04/30','RR/MM/DD'),3000);
 
 
 
@@ -723,3 +736,4 @@ values (5, '김드림(농부대첩)', '5_keeper.jpg', 'saddo112@daum.net',
 
 
 commit;
+
