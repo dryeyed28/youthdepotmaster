@@ -54,6 +54,15 @@ public class ProjectController extends HttpServlet {
 		RewardPay repay = null;
 		if (type.equals("apply")) {
 			String root = "C:/";
+			File dir1 = new File(root + "files/image");
+			File dir2 = new File(root + "files/imagedetail");
+			File dir3 = new File(root + "files/profile");
+			if (!dir1.exists())
+				dir1.mkdirs();
+			if (!dir2.exists())
+				dir2.mkdirs();
+			if (!dir3.exists())
+				dir3.mkdirs();
 			MultipartRequest mr = null;
 			int maxPostSize = 1024 * 10000;
 			String encoding = "UTF-8";
@@ -62,23 +71,17 @@ public class ProjectController extends HttpServlet {
 			} catch (IOException e) {
 				e.printStackTrace(); // maxPostSize, Posted content length
 			}
+			System.out.println(mr.getFile("image"));
+			System.out.println(mr.getFile("imagedetail"));
+			System.out.println(mr.getFile("profile"));
 			File image = mr.getFile("image");
-			File paper = mr.getFile("paper");
+			File imagedetail = mr.getFile("imagedetail");
 			File profile = mr.getFile("profile");
-			File dir1 = new File(root + "files/image");
-			File dir2 = new File(root + "files/paper");
-			File dir3 = new File(root + "files/profile");
-			if (!dir1.exists())
-				dir1.mkdirs();
-			if (!dir2.exists())
-				dir2.mkdirs();
-			if (!dir3.exists())
-				dir3.mkdirs();
 			String imageroot = root + "files/image/" + image.getName();
-			String paperroot = root + "files/paper/" + paper.getName();
+			String imagedetailroot = root + "files/imagedetail/" + imagedetail.getName();
 			String profileroot = root + "files/profile/" + profile.getName();
 			image.renameTo(new File(imageroot));
-			paper.renameTo(new File(paperroot));
+			imagedetail.renameTo(new File(imagedetailroot));
 			profile.renameTo(new File(profileroot));
 			RKeeper rk = new RKeeper();
 			RMeta rm = new RMeta();
@@ -101,7 +104,7 @@ public class ProjectController extends HttpServlet {
 			rm.setrTarget_amount(Integer.parseInt(mr.getParameter("amount")));
 			rm.setrPJT_image(imageroot);
 			rm.setrPJT_category(mr.getParameter("category"));
-			rm.setrPJT_paper(paperroot);
+			rm.setrPJT_paper(imagedetailroot);
 			rm.setrPJT_endDay((mr.getParameter("endDay")));
 			ro.setrPJT_name(mr.getParameter("name"));
 			ro.setrPJT_detail(mr.getParameter("detail"));

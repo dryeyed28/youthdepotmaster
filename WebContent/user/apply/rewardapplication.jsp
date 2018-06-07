@@ -104,7 +104,7 @@
 									<input type="text" class="input-text full-width" name="amount">
 								</div>
 							</div>
-							<div class="row form-group">
+							<div>
 								<div class="col-xs-12 col-sm-6 col-md-7">
 									<h4>프로젝트 대표 이미지</h4>
 									<p>프로젝트 카드와 공유 이미지로 사용됩니다. 이미지 등록 가이드를 반드시 확인하고 이미지를 등록해주시기
@@ -135,12 +135,12 @@
 								</div>
 							</div>
 							
-							<div class="row form-group">
+							<div>
 								<div class="col-xs-12 col-sm-6 col-md-7">
 									<h4>프로젝트 스토리 이미지</h4>
 									<p>리워드 제품에대한 스토리 이미지가 있다면 첨부해주세요</p>
 									<div class="fileinput col-sm-6 no-float no-padding">
-										<input type="file" class="input-text col-sm-6" name="image"
+										<input type="file" class="input-text col-sm-6" name="imagedetail"
 											data-placeholder="select image/s" />
 									</div>
 								</div>
