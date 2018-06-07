@@ -132,6 +132,9 @@ public class PostController extends HttpServlet {
 			b = new Board();
 			p = new Post();
 			String root = "C:/";
+			File dir = new File(root + "files/attachedfile");
+			if (!dir.exists())
+				dir.mkdirs();
 			MultipartRequest mr = null;
 			int maxPostSize = 1024 * 10000;
 			String encoding = "UTF-8";
@@ -141,18 +144,12 @@ public class PostController extends HttpServlet {
 				e.printStackTrace(); // maxPostSize, Posted content length
 			}
 			File attachedfile = mr.getFile("uploadFiles");
-			File dir = new File(root + "files/attachedfile");
-			File dir0 = new File(root + "files");
-			if (dir0.exists())
-				dir0.mkdirs();
-			if (!dir.exists())
-				dir.mkdirs();
 			if (attachedfile != null) {
 				String attachedfileroot = root + "files/attachedfile/" + attachedfile.getName();
 				attachedfile.renameTo(new File(attachedfileroot));
 				p.setPost_file(attachedfile.getName());
 			}
-			//b.setBrd_id(Integer.parseInt(request.getParameter("bid")));
+			b.setBrd_id(Integer.parseInt(mr.getParameter("bid")));
 			p.setPost_title(mr.getParameter("title"));
 			p.setPost_content(mr.getParameter("content"));
 			p.setAdmin_id("admin");
