@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 
-import projcet.RenamePolicy;
 import vo.Deposit;
 import vo.RApply;
 import vo.RKeeper;
@@ -170,7 +169,7 @@ public class ProjectController extends HttpServlet {
 			repay.setrPay_total(Integer.parseInt(request.getParameter("comma")));
 			repay = service.rewardPay(rPay_id);
 			request.setAttribute("payaddressinsert",repay);
-			forwardURL = "user/pages/index.jsp";
+			forwardURL = "user/pages/paycheck.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
