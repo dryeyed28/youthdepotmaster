@@ -13,6 +13,7 @@
 <c:set var="totalCount" value="${pb.totalCount}" />
 <c:set var="currentPage" value="${pb.currentPage}" />
 <c:set var="cntPerPage" value="${pb.cntPerPage}" />
+<c:set var="list" value="${pb.list}"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 
@@ -36,7 +37,10 @@
 					<%
 						String root = request.getContextPath();
 					%>
-				<form name="f" method="GET" action="<%=root%>/PostController">
+					<c:forEach var="post" items="${list}">
+				<form name="f" method="GET" action="<%=root%>/PostController?">
+<%-- 				<input type=hidden name="brd_id" value="<%=data.get(0).getBoard_id().getBrd_id()%>"> --%>
+					<input type=hidden name="brd_id" value="${post.board_id.brd_id}">
 					<select name="type">
 						<option value="searchAll">전체검색</option>
 						<option value="searchTitle">제목</option>
@@ -45,6 +49,7 @@
 					</select> <input type="text" name="searchText" value="" /> <input
 						type="submit" value="검색" />
 				</form>
+				</c:forEach>
 				</p>
 				<form name="f"
 					action="<%=request.getContextPath()%>/PostController?type=boardView"
