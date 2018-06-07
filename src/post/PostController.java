@@ -57,8 +57,8 @@ public class PostController extends HttpServlet {
 			}
 			int totalPage = (int) Math.ceil((double) totalCount / cntPerPage);
 			int cntPerPageGroup = 5; // 페이지 그룹별 5페이지씩 보여준다.
-			int startPage = (int) ((realPage/cntPerPageGroup)+0.8)*cntPerPageGroup+1;
-			System.out.println(startPage);
+			int startPage = ((int) ((realPage/cntPerPageGroup)+0.8))*cntPerPageGroup + 1;
+			System.out.println("startPage :" +startPage);
 			int endPage = startPage + cntPerPageGroup - 1;
 			if (endPage > totalPage) {
 				endPage = totalPage;

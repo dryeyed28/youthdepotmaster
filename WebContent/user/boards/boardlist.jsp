@@ -17,6 +17,7 @@
 	function goUrl(url) {
 		location.href = url;
 	}
+	
 </script>
 
 <section id="content" class="gray-area">
