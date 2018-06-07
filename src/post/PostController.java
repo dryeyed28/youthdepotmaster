@@ -112,10 +112,10 @@ public class PostController extends HttpServlet {
 		} 
 		else if (type.equals("boardwrite")) {
 			System.out.println("boardwrite 호출");
-			HttpSession session1 = request.getSession();
-			int mem_id = Integer.parseInt(session1.getAttribute("id").toString());
+			HttpSession session = request.getSession();
+			int mem_id = Integer.parseInt(session.getAttribute("mem_id").toString());
 			System.out.println("로그인한 멤버id :" + mem_id);
-			String nickName = session1.getAttribute("nickName").toString();
+			String nickName = session.getAttribute("nickName").toString();
 			System.out.println(nickName);
 			p = new Post();
 			b = new Board();

@@ -4,7 +4,7 @@
 <%-- 페이지 요청시 : 게시글에서 값 가져와서 출력 --%>
 <%-- 답변등록 버튼누르면 : UserBoardUpdateController에 데이터 전달 --%>
 <%@include file="../template/header.jsp"%>
-<%HttpSession session1 = request.getSession();%>
+<%session = request.getSession();%>
 <div id="page-wrapper">
 	<section id="content" class="gray-area">
 		<div class="container">
@@ -21,7 +21,7 @@
 								<div class="form-group row">
 									<div class="col-sm-6 col-md-4">
 										<h4>작성자</h4>
-										<input type="text" name="nickname" class="input-text full-width" value="<%= session1.getAttribute("nicname")%>" readonly>
+										<input type="text" name="nickName" class="input-text full-width" value="<%= session.getAttribute("nickName")%>" readonly>
 									</div>
 								</div>
 								<div class="form-group row">
