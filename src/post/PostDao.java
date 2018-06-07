@@ -15,5 +15,6 @@ public interface PostDao {
 	ArrayList<Post> searchTitle(String post_title);
 	ArrayList<Post> searchWriter(String mem_nickName);
 	ArrayList<Post> searchContent(String post_content);
+	ArrayList<Post> getPostList(int brd_id);
 	
 }

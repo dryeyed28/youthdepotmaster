@@ -56,23 +56,20 @@
                     <table class="table table-bordered table-hover" id="dataTables-example">
                         <thead>
                             <tr>
-                            	<th><input type="checkbox"></th>
                                 <th>게시판ID</th>
                                 <th>게시판 타이틀</th>
                                 <th>분류</th>
-                                <th>총 게시물</th>
                                 <th>수정</th>
+                                <th>삭제</th>
                             </tr>
                         </thead>
                         <tbody>
                         <% ArrayList<Board> boardlist = (ArrayList) request.getAttribute("boardlist");
                         for(Board b : boardlist){%>
                             <tr>
-                                <td><input type="checkbox"></td>
                                 <td><%=b.getBrd_id()%></td>
                                 <td><%=b.getBrd_name()%></td>
                                 <td class="center"><%=b.getBrd_type()%></td>
-                                <td class="center"><%=b.getBrd_count()%></td>
                                 <td>
                                 <form action="<%=request.getContextPath()%>/BoardController?type=update" method="post">
                                 <input type="hidden" name="brd" value="<%=b.getBrd_id()%>">
@@ -81,15 +78,16 @@
                                 <button id="modify" class="btn btn-default btn-outline btn-primary">수정하기</button>
                                 </form>
                                 </td>
+                                <td>
+                                <button class="btn btn-default btn-outline btn-primary">삭제</button>
+                                </td>
                             </tr>
                         <% } %>
                         </tbody>
                     </table>
                     <hr>
-                    <div class="btn-center" style="text-align: center">
+                    <div class="btn-center" style="text-align: right">
                       <button id="create" class="btn btn-default btn-outline btn-primary" onclick="location.href='<%=request.getContextPath()%>/admin/boardMng/makeboard.jsp'">게시판 생성</button>
-                      <button id="modify" class="btn btn-default btn-outline btn-primary">게시판 수정</button>
-                      <button class="btn btn-default btn-outline btn-primary">게시판 삭제</button>
                     </div>
                 </div>
                 <!-- /.panel-body -->

@@ -40,7 +40,6 @@ public class PostController extends HttpServlet {
 		String type = request.getParameter("type");
 		String searchText = request.getParameter("searchText");
 		String forwardURL = "";
-		String redirectURL = "";
 		int brd_id = 0;
 		int post_id = 0;
 		int realPage = 1;
@@ -211,6 +210,11 @@ public class PostController extends HttpServlet {
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";
 			}
+		} else if(type.equals("adminPost")) {
+			brd_id = Integer.parseInt(request.getParameter("brd_id"));
+			data = service.postList(brd_id);
+			request.setAttribute("data", data);
+			forwardURL = "/admin/boardMng/board.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);
