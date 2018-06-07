@@ -1,7 +1,6 @@
 package vo;
 
 public class Post {
-	private int rownum;
 	private int post_id;
 	private Board board_id;
 	private int mem_id;
@@ -15,10 +14,9 @@ public class Post {
 	private int post_del;
 	private String post_file;
 	
-	public Post(int rownum, int post_id, Board board_id, int mem_id, String admin_id, String mem_nickName, String post_title,
+	public Post(int post_id, Board board_id, int mem_id, String admin_id, String mem_nickName, String post_title,
 			String post_content, String post_dateTime, int post_view_count, int post_del, String post_file) {
 		super();
-		this.rownum = rownum;
 		this.post_id = post_id;
 		this.board_id = board_id;
 		this.mem_id = mem_id;
@@ -34,14 +32,6 @@ public class Post {
 
 	public Post() {
 		
-	}
-	
-	public int getRownum() {
-		return rownum;
-	}
-
-	public void setRownum(int rownum) {
-		this.rownum = rownum;
 	}
 
 	public int getPost_id() {

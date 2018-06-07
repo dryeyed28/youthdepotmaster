@@ -22,21 +22,24 @@ public class PostDaoOracle implements PostDao {
 		try {
 			con = OracleConnection.getConnection();
 			String sql = 
-					"select * \r\n" + 
-					"FROM \r\n" + 
-					"(select rownum r, p.post_id, p.brd_id, b.brd_name, b.brd_type, p.mem_id, p.mem_nickname, p.admin_id, \r\n" + 
-					"p.POST_TITLE, p.POST_CONTENT, TO_CHAR(p.POST_DATETIME, 'yyyy.mm.dd') post_datetime, p.POST_VIEW_COUNT ,p.POST_DEL, p.post_file \r\n" + 
+					"select b.* from\r\n" + 
+					"(select rownum r,a.*\r\n" + 
+					"FROM (select p.post_id, p.brd_id, b.brd_name, b.brd_type, p.mem_id,  p.admin_id, p.mem_nickname,\r\n" + 
+					"p.POST_TITLE, p.POST_CONTENT, TO_CHAR(p.POST_DATETIME, 'yyyy.mm.dd') post_datetime, p.POST_VIEW_COUNT ,p.POST_DEL, p.post_file\r\n" + 
 					"from board b, post p \r\n" + 
-					"where b.brd_id = p.brd_id and p.post_del=0 and p.brd_id = ? \r\n" + 
-					"order by rownum desc) \r\n" + 
-					"WHERE r>=? and r<=?";
+					"where b.brd_id = p.brd_id and p.post_del=0 and p.brd_id = ?\r\n" + 
+					"order by post_id desc)a)b\r\n" + 
+					"where r between ? and ?";
 			pstmt = con.prepareStatement(sql);
+			int cntPerPage = 10;
+			int endRow=cntPerPage * realPage;
+			int startRow=endRow-cntPerPage+1; 
 			pstmt.setInt(1, brd_id);
-			pstmt.setInt(2, (realPage-1)*10+1);
-			pstmt.setInt(3, realPage*10);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				Post post = new Post(rs.getInt(1),
+				Post post = new Post(
 						rs.getInt("post_id"),
 						new Board(rs.getInt("brd_id"), rs.getString("brd_name"), rs.getString("brd_type"), 0),
 						rs.getInt("mem_id"),
@@ -189,7 +192,7 @@ public class PostDaoOracle implements PostDao {
 		try {
 			con = OracleConnection.getConnection();
 			String selectCountSQL = 
-					"SELECT count(*) totalcnt " + "FROM post " + "WHERE brd_id = ?";
+					"SELECT count(*) totalcnt " + "FROM post " + "WHERE brd_id = ? and post_del=0 ";
 			pstmt = con.prepareStatement(selectCountSQL);
 			pstmt.setInt(1, brd_id);
 			rs = pstmt.executeQuery();
@@ -223,7 +226,7 @@ public class PostDaoOracle implements PostDao {
 			pstmt.setString(3, "%" + post_content + "%");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				list.add(new Post(rs.getInt("rownum"),
+				list.add(new Post(
 						rs.getInt("post_id"),
 						new Board(rs.getInt("brd_id"), rs.getString("brd_name"), rs.getString("brd_type"), 0),
 						rs.getInt("mem_id"),
@@ -264,7 +267,7 @@ public class PostDaoOracle implements PostDao {
 		pstmt.setString(1, "%" + post_title + "%");
 		rs = pstmt.executeQuery();
 		while(rs.next()) {
-			list.add(new Post(rs.getInt("rownum"),
+			list.add(new Post(
 					rs.getInt("post_id"),
 					new Board(rs.getInt("brd_id"), rs.getString("brd_name"), rs.getString("brd_type"), 0),
 					rs.getInt("mem_id"), 
@@ -306,7 +309,7 @@ public class PostDaoOracle implements PostDao {
 			pstmt.setString(1, "%" + mem_nickname + "%");
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				list.add(new Post(rs.getInt("rownum"),
+				list.add(new Post(
 						rs.getInt("post_id"),
 						new Board(rs.getInt("brd_id"), rs.getString("brd_name"), rs.getString("brd_type"), 0),
 						rs.getInt("mem_id"), 
@@ -347,7 +350,7 @@ public class PostDaoOracle implements PostDao {
 			pstmt.setString(1, "%" + post_content + "%");
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				list.add(new Post(rs.getInt("rownum"),
+				list.add(new Post(
 						rs.getInt("post_id"),
 						new Board(rs.getInt("brd_id"), rs.getString("brd_name"), rs.getString("brd_type"), 0),
 						rs.getInt("mem_id"), 

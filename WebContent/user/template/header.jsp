@@ -256,7 +256,7 @@ function goGo() {
 		<div id="travelo-login" class="travelo-login-box travelo-box">
 			<div class="login-social">
 				<a href="#" class="button login-facebook"><i
-					class="soap-icon-facebook"></i>Login with Facebook</a> <a href="#"
+					class="soap-icon-facebook"></i></a> <a href="#"
 					class="button login-googleplus"><i class="soap-icon-googleplus"></i>Login
 					with Google+</a>
 			</div>
