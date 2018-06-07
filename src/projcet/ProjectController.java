@@ -162,6 +162,7 @@ public class ProjectController extends HttpServlet {
 			request.setAttribute("content", content);
 			forwardURL = "admin/pages/projectrequestcontent.jsp";
 		} else if (type.equals("payaddressinsert")) {
+			repay = new RewardPay();
 			repay.setMem_name(request.getParameter("name"));
 			repay.setrPay_address(request.getParameter("address"));
 			repay.setrPay_phone(request.getParameter("tel"));
@@ -169,7 +170,7 @@ public class ProjectController extends HttpServlet {
 			repay.setrPay_total(Integer.parseInt(request.getParameter("comma")));
 			repay = service.rewardPay(rPay_id);
 			request.setAttribute("payaddressinsert",repay);
-			forwardURL = "user/pages/paycheck.jsp";
+			forwardURL = "ProjectController?type=rewardDetail&rPJT_id="+ request.getParameter("rpjt_id");
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);

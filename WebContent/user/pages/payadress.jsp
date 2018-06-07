@@ -108,6 +108,7 @@ input {
 							int price = 0;
 							int charge = payaddress.get(0).getrPJT_charge();
 						%>
+					<input type="hidden" name="rpjt_id" value="<%=payaddress.get(0).getrProject().getrPJT_id() %>">
 						<div>
 							<h1 style="padding-left: 10px; font-weight: bold;">주문 선택내용</h1>
 							<hr>
@@ -145,11 +146,11 @@ input {
 							<br> <br>
 							<%
 								int total = price + charge;
-								String comma = String.format("%,d", total);
+								String comma = String.format("%d", total);
 							%>
 							<div class="left">최종결제열정</div>
 							<div class="right">
-								<input type="text" name="comma" value="<%=comma%>열정"
+								<input type="text" name="comma" value="<%=comma%>"
 									style="border: 0px;" readonly>
 							</div>
 						</div>
