@@ -59,4 +59,9 @@ public class PostServiceImpl implements PostService {
 	public ArrayList<Post> findContent(String post_content) {
 		return dao.searchContent(post_content);
 	}
+
+	@Override
+	public ArrayList<Post> postList(int brd_id) {
+		return dao.getPostList(brd_id);
+	}
 }
