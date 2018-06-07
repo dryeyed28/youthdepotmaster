@@ -134,39 +134,14 @@
 									</div>
 								</div>
 							</div>
+							
 							<div class="row form-group">
-								<div>
-									<h4>투자 필수 인증서류</h4>
-									<p>와디즈는 서포터에게 투자(제품 및 서비스)를 제공하는 온라인 유통이기 때문에 최소한의 인증 서류를
-										받고 있습니다. - 심사 기간을 단축시키기 위해 심사 서류 업로드 과정이 검토 요청 이후에서 검토요청 전으로
-										변경되었습니다.</p>
-									<hr>
-									<div class="row form-group" id="border1">
-										<div>
-											<h5>서포터에게 제공하는 리워드(제품/서비스)의 종류를 선택하세요</h5>
-											<p>파트너사 파트너사를 통해 개설을 하게 되셨다면, 선택해주세요.</p>
-											<div class="selector full-width">
-												<select>
-													<option>SW(소프트웨어)</option>
-													<option>HW+SW</option>
-													<option>화장품</option>
-													<option>의약외품</option>
-													<option>디자인제품(소품,패션,잡화,액세사리)</option>
-													<option>디퓨저,향초,탈취제</option>
-													<option>가공식품</option>
-													<option>건강기능식품</option>
-													<option>문화(공연,영화)</option>
-													<option>출판</option>
-													<option>기타</option>
-												</select>
-											</div>
-										</div>
-
-										<p>리워드에 맞는 심사 첨부</p>
-										<div>
-											<input type="file" class="input-text col-sm-6"
-												data-placeholder="select image/s" name="paper" />
-										</div>
+								<div class="col-xs-12 col-sm-6 col-md-7">
+									<h4>프로젝트 스토리 이미지</h4>
+									<p>리워드 제품에대한 스토리 이미지가 있다면 첨부해주세요</p>
+									<div class="fileinput col-sm-6 no-float no-padding">
+										<input type="file" class="input-text col-sm-6" name="image"
+											data-placeholder="select image/s" />
 									</div>
 								</div>
 							</div>

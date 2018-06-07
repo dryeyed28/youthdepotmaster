@@ -17,17 +17,17 @@
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner" role="listbox">
 						<div class="item active">
-							<img class="d-block img-fluid" src="http://placehold.it/1200x600"
+							<img class="d-block img-fluid" src="../Resources/images/index1.png"
 								alt="First slide">
 							<div class="carousel-caption">...</div>
 						</div>
 						<div class="item">
-							<img class="d-block img-fluid" src="http://placehold.it/1200x600"
+							<img class="d-block img-fluid" src="../Resources/images/index2.png"
 								alt="Second slide">
 							<div class="carousel-caption">...</div>
 						</div>
 						<div class="item">
-							<img class="d-block img-fluid" src="http://placehold.it/1200x600"
+							<img class="d-block img-fluid" src="../Resources/images/index3.png"
 								alt="Third slide">
 							<div class="carousel-caption">...</div>
 						</div>
