@@ -48,7 +48,7 @@ public class AdminController extends HttpServlet {
 				session.setAttribute("admin", admin);
 				result = "/admin/pages/index.jsp";
 			} else {
-				result = "/admin/pages/login.jsp";
+				result = "/admin/pages/index.jsp";
 			}
 		} else if (type.equals("logout")) {
 			session = request.getSession();
