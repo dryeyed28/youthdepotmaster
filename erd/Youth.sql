@@ -546,15 +546,15 @@ SELECT /*insert*/ *
 FROM R_META;
 --R_META--
 Insert into R_META (RPJT_ID,RPJT_TITLE,RPJT_SUBTITLE,RINVESTING_AMOUNT,RTARGET_AMOUNT,RPJT_IMAGE,RPJT_CATEGORY,RPJT_PAPER,RPJT_STARTDAY,RPJT_ENDDAY) 
-values (1,'미니헤드 선풍기 프로젝트','초소형미니헤드휴대용선풍',16800,3000000,'1.jpg','테크가전','18/05/09',to_date('18/05/27','RR/MM/DD'),to_date('18/06/28','RR/MM/DD'));
+values (1,'미니헤드 선풍기 프로젝트','초소형미니헤드휴대용선풍',16800,3000000,'C:/files/image/titleimg2.png','테크가전','C:/files/imagedetail/story2.png',to_date('18/05/27','RR/MM/DD'),to_date('18/06/28','RR/MM/DD'));
 Insert into R_META (RPJT_ID,RPJT_TITLE,RPJT_SUBTITLE,RINVESTING_AMOUNT,RTARGET_AMOUNT,RPJT_IMAGE,RPJT_CATEGORY,RPJT_PAPER,RPJT_STARTDAY,RPJT_ENDDAY) 
-values (2,'캡슐티머신','건강을마시는 메디프레소 머신',169000,3000000,'1.jpg','홈리빙','18/04/25',to_date('18/05/27','RR/MM/DD'),to_date('18/06/30','RR/MM/DD'));
+values (2,'캡슐티머신','건강을마시는 메디프레소 머신',169000,3000000,'C:/files/image/titleimg1_52ce43ac-673e-4ea0-8e14-c520ef417ab8.png','홈리빙','C:/files/imagedetail/story1_bd395d49-610d-45d6-807b-5776e1d7f7a6.png',to_date('18/05/27','RR/MM/DD'),to_date('18/06/30','RR/MM/DD'));
 Insert into R_META (RPJT_ID,RPJT_TITLE,RPJT_SUBTITLE,RINVESTING_AMOUNT,RTARGET_AMOUNT,RPJT_IMAGE,RPJT_CATEGORY,RPJT_PAPER,RPJT_STARTDAY,RPJT_ENDDAY) 
-values (3,'알렉스텀블러','18시간 보냉되는 알렉스텀블러',59000,5000000,'1.jpg','홈리빙','18/04/24',to_date('18/04/26','RR/MM/DD'),to_date('18/06/07','RR/MM/DD'));
+values (3,'알렉스텀블러','18시간 보냉되는 알렉스텀블러',59000,5000000,'C:/files/image/titleimg4.png','홈리빙','C:/files/imagedetail/story4.png',to_date('18/04/26','RR/MM/DD'),to_date('18/06/07','RR/MM/DD'));
 Insert into R_META (RPJT_ID,RPJT_TITLE,RPJT_SUBTITLE,RINVESTING_AMOUNT,RTARGET_AMOUNT,RPJT_IMAGE,RPJT_CATEGORY,RPJT_PAPER,RPJT_STARTDAY,RPJT_ENDDAY) 
-values (4,'크코가벼운안경','크코가벼운안경 휴즈',89000,1000000,'1.jpg','디자인소품','18/05/10',to_date('18/04/08','RR/MM/DD'),to_date('18/05/30','RR/MM/DD'));
+values (4,'크코가벼운안경','크코가벼운안경 휴즈',89000,1000000,'C:/files/image/titleimg5.png','디자인소품','C:/files/imagedetail/story5.png',to_date('18/04/08','RR/MM/DD'),to_date('18/05/30','RR/MM/DD'));
 Insert into R_META (RPJT_ID,RPJT_TITLE,RPJT_SUBTITLE,RINVESTING_AMOUNT,RTARGET_AMOUNT,RPJT_IMAGE,RPJT_CATEGORY,RPJT_PAPER,RPJT_STARTDAY,RPJT_ENDDAY) 
-values (5,'디어넛츠','견과류로만든천사의잼 디어너츠',24900,1000000,'1.jpg','푸드','18/05/30',to_date('18/03/21','RR/MM/DD'),to_date('18/04/30','RR/MM/DD'));
+values (5,'디어넛츠','견과류로만든천사의잼 디어너츠',24900,1000000,'C:/files/image/titleimg3.png','푸드','C:/files/imagedetail/story3.png',to_date('18/03/21','RR/MM/DD'),to_date('18/04/30','RR/MM/DD'));
 
 
 
@@ -563,11 +563,7 @@ SELECT /*insert*/ *
 FROM r_story;
 --r_story(리워드스토리) 부모키r_project
 
-REM INSERTING into R_STORY
-SET DEFINE OFF;
-Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_STORY,RPJT_TAG,RPJT_PAPER) 
-values (1,'https://www.youtube.com/watch?v=GMMu8bgKwbc','10000000','1_thumbnail.jpg',
-'안녕하세요? 한 평생 화학연구를 해오신 진 교수님의 닥터진랩 연구소와 스타트업 파쉐어입니다.
+Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_STORY,RPJT_TAG,RPJT_PAPER) values (1,'https://www.youtube.com/watch?v=GMMu8bgKwbc','10000000','C:/files/image/titleimg1_52ce43ac-673e-4ea0-8e14-c520ef417ab8.png','안녕하세요? 한 평생 화학연구를 해오신 진 교수님의 닥터진랩 연구소와 스타트업 파쉐어입니다.
 실제 실생활에 쉽게 퍼져있는 냄새와 관련 유해 성분들 알고나면 방치하기 쉽지 않습니다. 
 스멜탄은 가벼운 비치로 실내에 잔류해있는 악취와 유해 성분들을 강력하게 제거하여 줍니다.
 악취의 유해성에 관한 이야기로 스멜탄 이야기를 시작하도록 하겠습니다.','HomeLiving','교환 / 환불 / AS 정책
@@ -583,8 +579,7 @@ values (1,'https://www.youtube.com/watch?v=GMMu8bgKwbc','10000000','1_thumbnail.
 - 메이커를 통한 교환/환불/AS 접수 절차 없이 임의로 반송한 경우
 - 복제가 가능한 리워드의 포장을 훼손한 경우
 - 펀딩/판매/생산방식 특성상, 교환/반품 시, 메이커에게 회복할 수 없는 손해가 발생한 경우 (펀딩마감 후, 개별 생산, 맞춤 제작 등)');
-Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_STORY,RPJT_TAG,RPJT_PAPER) 
-values (2,'https://www.youtube.com/watch?v=-yKqurpmCRs','1000000','2_thumbnail.jpg','세상엔 정말 수많은 화장품 원료가 있지만, 절실했던 만큼 확실한 효과와 안전성이 입증된 원료가 필요했습니다. 다양한 원료를 연구하고 사용해보며 선택한 "마유"는 이미 연구된 입증자료가 많은 가장 믿을 수 있는 원료였습니다.
+Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_STORY,RPJT_TAG,RPJT_PAPER) values (2,'https://www.youtube.com/watch?v=-yKqurpmCRs','1000000','C:/files/image/titleimg2.png','세상엔 정말 수많은 화장품 원료가 있지만, 절실했던 만큼 확실한 효과와 안전성이 입증된 원료가 필요했습니다. 다양한 원료를 연구하고 사용해보며 선택한 "마유"는 이미 연구된 입증자료가 많은 가장 믿을 수 있는 원료였습니다.
 피부 세포 성장을 촉진하는 재생효과, 손상된 피부를 회복할 수 있는 항염(진정) 효과, 높은 피부 친화력으로 세포 생존력이 높은 안전한 성분으로 알려져 딸을 위해 원하던 부분을 모두 채워주었습니다.','Beauty','교환 / 환불 / AS 정책
 
 - 리워드 수령 14일 이내 제품 하자로 인한 교환 문의는 kitri@kitri.com 로 신청 가능합니다. 
@@ -598,8 +593,7 @@ values (2,'https://www.youtube.com/watch?v=-yKqurpmCRs','1000000','2_thumbnail.j
 - 메이커를 통한 교환/환불/AS 접수 절차 없이 임의로 반송한 경우
 - 복제가 가능한 리워드의 포장을 훼손한 경우
 - 펀딩/판매/생산방식 특성상, 교환/반품 시, 메이커에게 회복할 수 없는 손해가 발생한 경우 (펀딩마감 후, 개별 생산, 맞춤 제작 등)');
-Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_STORY,RPJT_TAG,RPJT_PAPER)
-values (3,'https://www.youtube.com/watch?v=-yKqurpmCRs','3000000','3_thumbnail.jpg','아침에 눈 뜨면 제일 먼저 하는 일, 스마트폰을 켜고 미세먼지 앱을 체크하는 것이 어느새 일상이 되었습니다. 앱 속 이모티콘은 한 달에 절반은 찡그린 표정이고 초미세먼지와 이산화질소 등 오염물질은 세계보건기구 기준치를 한참 웃돕니다. 내 방, 우리 집, 자동차 안, 지하철 안. 내 일상의 공간들을 쾌적하게 만들 수는 없을까요?
+Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_STORY,RPJT_TAG,RPJT_PAPER) values (3,'https://www.youtube.com/watch?v=-yKqurpmCRs','3000000','C:/files/image/titleimg3.png','아침에 눈 뜨면 제일 먼저 하는 일, 스마트폰을 켜고 미세먼지 앱을 체크하는 것이 어느새 일상이 되었습니다. 앱 속 이모티콘은 한 달에 절반은 찡그린 표정이고 초미세먼지와 이산화질소 등 오염물질은 세계보건기구 기준치를 한참 웃돕니다. 내 방, 우리 집, 자동차 안, 지하철 안. 내 일상의 공간들을 쾌적하게 만들 수는 없을까요?
 차량용 공기청정기 에어링은 ‘내 일상의 공간에서 제대로 호흡할 수 없을까’라는 고민에서 출발한 제품입니다. 세라믹 필터 공기정화마스크, 오테라를 만든 (주)골드트룹스의 노하우가 이번에는 차량용 공기청정기에 담겼습니다.  ','Tech/Electronic','교환 / 환불 / AS 정책
 
 - 리워드 수령 14일 이내 제품 하자로 인한 교환 문의는 kitri@kitri.com 로 신청 가능합니다. 
@@ -613,8 +607,7 @@ values (3,'https://www.youtube.com/watch?v=-yKqurpmCRs','3000000','3_thumbnail.j
 - 메이커를 통한 교환/환불/AS 접수 절차 없이 임의로 반송한 경우
 - 복제가 가능한 리워드의 포장을 훼손한 경우
 - 펀딩/판매/생산방식 특성상, 교환/반품 시, 메이커에게 회복할 수 없는 손해가 발생한 경우 (펀딩마감 후, 개별 생산, 맞춤 제작 등)');
-Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_STORY,RPJT_TAG,RPJT_PAPER) 
-values (4,'https://www.youtube.com/watch?v=-yKqurpmCRs','1200000','4_thumbnail.jpg','안녕하세요. 저희는 역사 주권을 수호하는 마음을 갖고 모인 양명고의 역사지킴이 모임입니다. 학창시절에 역사 (한국사)에 대해서 루즈하고, 흥미없고, 필요없는 과목이라고 생각해 보신적이 있으신가요?  3.1운동이나 3.1운동 100주년에 대해서 어떻게 생각하시나요? 혹시 3.1운동에 대해서 생각해볼 겨를도 없으신가요? 현재 헌법에서는 3.1운동과 4.19 두 사건을 우리 민족정신의 근거로 한다는 것을 알고 계신가요? 몰랐다고 해도 괜찮습니다. 이제부터 알면 되니까요~ 지금부터 알고 다른사람에게 전달한다면 당신도 애국지사가 될 수 있습니다.','Social/Campaign','교환 / 환불 / AS 정책
+Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_STORY,RPJT_TAG,RPJT_PAPER) values (4,'https://www.youtube.com/watch?v=-yKqurpmCRs','1200000','C:/files/image/titleimg4.png','안녕하세요. 저희는 역사 주권을 수호하는 마음을 갖고 모인 양명고의 역사지킴이 모임입니다. 학창시절에 역사 (한국사)에 대해서 루즈하고, 흥미없고, 필요없는 과목이라고 생각해 보신적이 있으신가요?  3.1운동이나 3.1운동 100주년에 대해서 어떻게 생각하시나요? 혹시 3.1운동에 대해서 생각해볼 겨를도 없으신가요? 현재 헌법에서는 3.1운동과 4.19 두 사건을 우리 민족정신의 근거로 한다는 것을 알고 계신가요? 몰랐다고 해도 괜찮습니다. 이제부터 알면 되니까요~ 지금부터 알고 다른사람에게 전달한다면 당신도 애국지사가 될 수 있습니다.','Social/Campaign','교환 / 환불 / AS 정책
 
 - 리워드 수령 14일 이내 제품 하자로 인한 교환 문의는 kitri@kitri.com 로 신청 가능합니다. 
 - 교환/환불/AS 요청자 정보와 서포터 정보의 일치 여부 확인 후, 진행됩니다.
@@ -627,8 +620,7 @@ values (4,'https://www.youtube.com/watch?v=-yKqurpmCRs','1200000','4_thumbnail.j
 - 메이커를 통한 교환/환불/AS 접수 절차 없이 임의로 반송한 경우
 - 복제가 가능한 리워드의 포장을 훼손한 경우
 - 펀딩/판매/생산방식 특성상, 교환/반품 시, 메이커에게 회복할 수 없는 손해가 발생한 경우 (펀딩마감 후, 개별 생산, 맞춤 제작 등)');
-Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_STORY,RPJT_TAG,RPJT_PAPER) 
-values (5,'https://www.youtube.com/watch?v=-yKqurpmCRs','1000000','5_thumbnail.jpg','인생 참치회는 최고급 참치어종인 혼마구로(참다랑어)의 최고급부위(가마도로)를 유통과정과 불필요한 상품들 줄여 기존 식당대비 최대 3분의1가격으로 만들어내는 혁신을 이루었습니다.','Food','교환 / 환불 / AS 정책
+Insert into R_STORY (RPJT_ID,RPJT_URL,RPJT_PRICE,RPJT_THUMBNAIL,RPJT_STORY,RPJT_TAG,RPJT_PAPER) values (5,'https://www.youtube.com/watch?v=-yKqurpmCRs','1000000','C:/files/image/titleimg5.png','인생 참치회는 최고급 참치어종인 혼마구로(참다랑어)의 최고급부위(가마도로)를 유통과정과 불필요한 상품들 줄여 기존 식당대비 최대 3분의1가격으로 만들어내는 혁신을 이루었습니다.','Food','교환 / 환불 / AS 정책
 
 - 리워드 수령 14일 이내 제품 하자로 인한 교환 문의는 kitri@kitri.com 로 신청 가능합니다. 
 - 교환/환불/AS 요청자 정보와 서포터 정보의 일치 여부 확인 후, 진행됩니다.
@@ -718,21 +710,16 @@ SELECT /*insert*/ *
 FROM r_keeper;
 --r_keeper(리워드 창고지기) 부모키r_project
 
-insert into r_keeper(RPJT_ID, r_name, r_profile, r_email, r_url, r_tel)
-values (1, 'FASHARE(파쉐어)', '1_keeper.jpg', 'FASHARE@daum.net', 
-'youthdepot/reward/1', 01091008755);
-insert into r_keeper(RPJT_ID, r_name, r_profile, r_email, r_url, r_tel)
-values (2, '엠이케이', '2_keeper.jpg', 'saddo112@daum.net', 
-'youthdepot/reward/1', 07086487722);
-insert into r_keeper(RPJT_ID, r_name, r_profile, r_email, r_url, r_tel)
-values (3, '(주)골드트룹스', '3_keeper.jpg', 'saddo112@daum.net', 
-'youthdepot/reward/1', 01094891577);
-insert into r_keeper(RPJT_ID, r_name, r_profile, r_email, r_url, r_tel)
-values (4, '양명고등학교 역사지기 동아리', '4_keeper.jpg', 'saddo112@daum.net', 
-'youthdepot/reward/1', 01092723788);
-insert into r_keeper(RPJT_ID, r_name, r_profile, r_email, r_url, r_tel)
-values (5, '김드림(농부대첩)', '5_keeper.jpg', 'saddo112@daum.net', 
-'youthdepot/reward/1', 0113789922);
+Insert into R_KEEPER (RPJT_ID,R_NAME,R_PROFILE,R_EMAIL,R_URL,R_TEL) 
+values (1,'가또블랑코','C:/files/profile/depot1_5283e9c8-1047-437c-bfbd-722eeb37e000.png','FASHARE@daum.net','youthdepot/reward/1',1091008755);
+Insert into R_KEEPER (RPJT_ID,R_NAME,R_PROFILE,R_EMAIL,R_URL,R_TEL) 
+values (2,'엠이케이','C:/files/profile/depot2.png','saddo112@daum.net','youthdepot/reward/1',7086487722);
+Insert into R_KEEPER (RPJT_ID,R_NAME,R_PROFILE,R_EMAIL,R_URL,R_TEL) 
+values (3,'(주)골드트룹스','C:/files/profile/depot3.png','saddo112@daum.net','youthdepot/reward/1',1094891577);
+Insert into R_KEEPER (RPJT_ID,R_NAME,R_PROFILE,R_EMAIL,R_URL,R_TEL) 
+values (4,'양명고등학교 역사지기 동아리','C:/files/profile/depot4.png','saddo112@daum.net','youthdepot/reward/1',1092723788);
+Insert into R_KEEPER (RPJT_ID,R_NAME,R_PROFILE,R_EMAIL,R_URL,R_TEL) 
+values (5,'김드림(농부대첩)','C:/files/profile/depot5.png','saddo112@daum.net','youthdepot/reward/1',113789922);
 
 
 commit;
