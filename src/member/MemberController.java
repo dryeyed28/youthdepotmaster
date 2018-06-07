@@ -17,89 +17,76 @@ import vo.PageBean;
 
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-    public MemberController() {
-        super();
-    }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public MemberController() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doPost(request, response);
 	}
-    
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		MemberService service = new MemberServiceImpl();
 		String type = "";
 		String result = "";
-		
-		Member m =null;
-		String userId="";
+
+		Member m = null;
+		String userId = "";
 		int intPage = 0;
-		int mem_id =0;
+		int mem_id = 0;
 		HttpSession session = null;
-		
+
 		MemberService svic = new MemberServiceImpl();
-		
+
 		type = request.getParameter("type");
-		System.out.println("성공");
 		if (type.equals("idcheck")) {
-			
 			try {
 				System.out.println("아이디체크");
-				//int rslt = MemberService.idCheck(id);
-				//request.setAttribute("rslt", rslt);
-			
+				// int rslt = MemberService.idCheck(id);
+				// request.setAttribute("rslt", rslt);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(type.equals("selectAll")) {
-			//admin 회원관리
+		} else if (type.equals("selectAll")) {
+			// admin 회원관리
 			String page = request.getParameter("page");
-			
-			if(page != null) {
+			if (page != null) {
 				intPage = Integer.parseInt(page);
 			}
-			
 			try {
-			int totalCount = svic.findCount();
-			
-			int totalPage = 0;
-			int cntPerPage = 3;
-			totalPage = (int)Math.ceil((double)totalCount / cntPerPage);
-			
-			int cntPerPageGroup = 5;
-			int startPage = (int)Math.floor((double)(intPage)/(cntPerPageGroup+1))*cntPerPageGroup+1;
-			int endPage = startPage+cntPerPageGroup-1;
-			
-			if(endPage > totalPage) {
-				endPage = totalPage;
-			}
-			
-			List<Member> list = svic.findAll();
-			//request.setAttribute("member", list);
-			PageBean<Member> pb = new PageBean<>();
-			pb.setCurrentPage(intPage);
-			pb.setTotalPage(totalPage);
-			pb.setList(list);
-			pb.setStartPage(startPage);
-			pb.setEndPage(endPage);
-			
-			request.setAttribute("pagebean", pb);
-			
-			} catch(Exception e) {
+				int totalCount = svic.findCount();
+				int totalPage = 0;
+				int cntPerPage = 3;
+				totalPage = (int) Math.ceil((double) totalCount / cntPerPage);
+				int cntPerPageGroup = 5;
+				int startPage = (int) Math.floor((double) (intPage) / (cntPerPageGroup + 1)) * cntPerPageGroup + 1;
+				int endPage = startPage + cntPerPageGroup - 1;
+				if (endPage > totalPage) {
+					endPage = totalPage;
+				}
+				List<Member> list = svic.findAll();
+				// request.setAttribute("member", list);
+				PageBean<Member> pb = new PageBean<>();
+				pb.setCurrentPage(intPage);
+				pb.setTotalPage(totalPage);
+				pb.setList(list);
+				pb.setStartPage(startPage);
+				pb.setEndPage(endPage);
+				request.setAttribute("pagebean", pb);
+			} catch (Exception e) {
 				e.printStackTrace();
 				request.setAttribute("result", e.getMessage());
 			}
 			result = "/admin/memberMng/member.jsp";
-			
-		}else if (type.equals("signup")) {
-			//System.out.println("회원가입");
-			
-			int sex=Integer.parseInt(request.getParameter("radioAnswer"));
-			
-			m= new Member();
+		} else if (type.equals("signup")) {
+			int sex = Integer.parseInt(request.getParameter("radioAnswer"));
+			m = new Member();
 			m.setMem_userId(request.getParameter("userid"));
 			m.setMem_email(request.getParameter("email"));
 			m.setMem_password(request.getParameter("password"));
@@ -107,17 +94,15 @@ public class MemberController extends HttpServlet {
 			m.setMem_nickName(request.getParameter("nickname"));
 			m.setMem_phone(request.getParameter("tel"));
 			m.setMem_sex(sex);
-			
 			service.signup(m);
 			request.setAttribute("m", m);
-			result="user/mypage/login.jsp";
-		
-		}else if(type.equals("login")) {
-			//System.out.println("로그인");
+			result = "user/mypage/login.jsp";
+		} else if (type.equals("login")) {
+			// System.out.println("로그인");
 			m = new Member();
 			m.setMem_userId(request.getParameter("userid"));
 			m.setMem_password(request.getParameter("pwd"));
-			Member member = new Member(); 
+			Member member = new Member();
 			member = service.login(m);
 			System.out.println(member);
 			if (member != null) {
@@ -126,14 +111,10 @@ public class MemberController extends HttpServlet {
 				session.setAttribute("nickName", member.getMem_nickName());
 				result = "user/pages/index.jsp";
 				request.setAttribute("rslt", "0");
-				
 			} else {
-				
 				result = "user/mypage/login.jsp";
-				
 			}
-			
-		}else if(type.equals("mypage")){
+		} else if (type.equals("mypage")) {
 			System.out.println("마이페이지");
 			m = new Member();
 			session = request.getSession();
@@ -141,14 +122,15 @@ public class MemberController extends HttpServlet {
 			m = service.mypage(mem_id);
 			System.out.println(m);
 			request.setAttribute("member", m);
-			
 			result = "user/mypage/mypage.jsp";
-		
-			
 		} else if (type.equals("membermodify")) {
 			String mem_id2 = "";
-			 mem_id2 = request.getParameter("mem_id");
-			System.out.println("mem_id 값 : " + mem_id2);			
+			mem_id2 = request.getParameter("mem_id");
+			System.out.println("mem_id 값 : " + mem_id2);
+		} else if (type.equals("logout")) {
+			session = request.getSession();
+			session.invalidate();
+			result = "user/pages/index.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(result);
 		dispatcher.forward(request, response);
