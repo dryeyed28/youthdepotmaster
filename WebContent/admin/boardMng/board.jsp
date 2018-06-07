@@ -42,7 +42,7 @@
 			%>
               <tr>
                 <td><input type="checkbox"></td>
-                <td><%=p.getRownum()%></td>
+                <td><%-- <%=p.getRownum()%> --%></td>
                 <td><%=p.getPost_title()%></td>
                 <td><%=p.getPost_dateTime()%></td>
               </tr>
