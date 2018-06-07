@@ -8,4 +8,5 @@ public interface BoardService {
 	ArrayList<Board> getBoardList();
 	void makeboard(Board board);
 	void boardupdate(Board board);
+	void boardDelete(int brd_id);
 }

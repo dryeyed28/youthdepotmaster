@@ -79,7 +79,10 @@
                                 </form>
                                 </td>
                                 <td>
-                                <button class="btn btn-default btn-outline btn-primary">삭제</button>
+                                <form action="<%=request.getContextPath()%>/BoardController?type=delete" method="post">
+                                <input type="hidden" name="brd" value="<%=b.getBrd_id()%>">
+                                <button id="delete" class="btn btn-default btn-outline btn-primary">삭제</button>
+                                </form>
                                 </td>
                             </tr>
                         <% } %>

@@ -47,17 +47,18 @@ public class PostController extends HttpServlet {
 		Board b = null;
 		if(type.equals("boardList")) {
 			brd_id = Integer.parseInt(request.getParameter("brd_id"));
-			data = service.boardList(brd_id, realPage);
 			String page = request.getParameter("page");
 			int totalCount = service.findCount(brd_id);
 			int cntPerPage = 10; //1페이지 별 10건씩 게시글을 보여준다.
 			if(page != null) {
 				realPage = Integer.parseInt(page);
 			}
+			data = service.boardList(brd_id, realPage);
 			int totalPage = (int) Math.ceil((double) totalCount / cntPerPage);
 			int cntPerPageGroup = 5; // 페이지 그룹별 5페이지씩 보여준다.
 			int startPage = ((int) ((realPage/cntPerPageGroup)+0.8))*cntPerPageGroup + 1;
 			System.out.println("startPage :" +startPage);
+			System.out.println("totalPage :" +totalPage);
 			int endPage = startPage + cntPerPageGroup - 1;
 			if (endPage > totalPage) {
 				endPage = totalPage;

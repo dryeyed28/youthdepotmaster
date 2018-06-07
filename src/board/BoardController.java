@@ -68,6 +68,10 @@ public class BoardController extends HttpServlet {
 			boardlist = service.getBoardList();
 			request.setAttribute("boardlist", boardlist);
 			forwardURL = "user/template/userboardrslt.jsp";
+		}  else if (type.equals("delete")) {
+			int brd_id = Integer.parseInt(request.getParameter("brd"));
+			service.boardDelete(brd_id);
+			forwardURL = "BoardController?type=boardmenu";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);

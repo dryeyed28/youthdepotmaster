@@ -116,4 +116,28 @@ public class BoardDaoOracle implements BoardDao {
 		}
 	}
 
+	@Override
+	public void deleteBoard(int brd_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = OracleConnection.getConnection();
+			con.setAutoCommit(false);
+			String sql = "delete from board \n" + 
+					"where brd_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, brd_id);
+			int commit = pstmt.executeUpdate();
+			if (commit == 1) {
+				con.commit();
+			} else {
+				con.rollback();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(pstmt, con);
+		}
+	}
+
 }

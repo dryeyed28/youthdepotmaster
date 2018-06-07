@@ -1,3 +1,4 @@
+<%@page import="javax.crypto.interfaces.PBEKey"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.Post"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -12,29 +13,29 @@
 <c:set var="totalCount" value="${pb.totalCount}" />
 <c:set var="currentPage" value="${pb.currentPage}" />
 <c:set var="cntPerPage" value="${pb.cntPerPage}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
 
+</script>
 <script type="text/javascript">
 	function goUrl(url) {
 		location.href = url;
 	}
-	
 </script>
 
 <section id="content" class="gray-area">
 	<div class="container">
 		<div class="row">
 			<div class="booking-information travelo-box">
-			<% ArrayList<Post> data = (ArrayList) request.getAttribute("data"); %>
+			<% ArrayList<Post> data = (ArrayList)request.getAttribute("data"); %>
 				<h1>게시판</h1>
 				<hr>
 				<br>
 				<h3><%=data.get(0).getBoard_id().getBrd_name()%></h3>
-				<%-- <h3><%=p.getBoard_id().getBrd_name() %></h3> --%>
 				<p style="text-align: right">
 					<%
 						String root = request.getContextPath();
 					%>
-				
 				<form name="f" method="GET" action="<%=root%>/PostController">
 					<select name="type">
 						<option value="searchAll">전체검색</option>
@@ -69,7 +70,7 @@
 								for (Post p : data) {
 							%>
 							<tr>
-								<td><%=p.getRownum()%></td>
+								<td><%=p.getPost_id()%></td>
 								<!-- 테이블에 post 값 담기-->
 								<td><a
 									href="<%=request.getContextPath()%>/PostController?type=boardView&brd_id=<%=p.getBoard_id().getBrd_id()%>&post_id=<%=p.getPost_id()%>"><%=p.getPost_title()%></a></td>
@@ -89,7 +90,7 @@
 						</tfoot>
 					</table>
 					<ul>
-						<div>
+						<div class="pagination">
 							<c:set var="startPage" value="${pb.startPage}" />
 							<c:set var="endPage" value="${pb.endPage}" />
 							<a class="page-link" href="#"
@@ -99,7 +100,7 @@
 								<a href="#">&laquo;</a>
 							</c:if>
 							<c:forEach begin="${startPage}" end="${endPage}" var="i">
-								<a href="#">${i}</a>
+								<a href="<%=request.getContextPath()%>/PostController?type=boardList&brd_id=<%=data.get(0).getBoard_id().getBrd_id()%>&page=${i}">${i}</a>
 							</c:forEach>
 							<c:if test="${endPage < pb.totalPage}">
 								<a href="#">&raquo;</a>
