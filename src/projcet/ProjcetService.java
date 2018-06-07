@@ -20,5 +20,5 @@ public interface ProjcetService {
 	public ArrayList<RMeta> metalist();
 	public ArrayList<RMeta> project();
 	public ProjectContentDto content(int rPJT_id);
-	public RewardPay rewardPay(int rPay_id);
+	public void rewardPay(RewardPay pay);
 }

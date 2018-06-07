@@ -168,7 +168,7 @@ public class ProjectController extends HttpServlet {
 			repay.setrPay_phone(request.getParameter("tel"));
 			repay.setrPay_request(request.getParameter("addressrequest"));
 			repay.setrPay_total(Integer.parseInt(request.getParameter("comma")));
-			repay = service.rewardPay(rPay_id);
+			service.rewardPay(repay);
 			request.setAttribute("payaddressinsert",repay);
 			forwardURL = "ProjectController?type=rewardDetail&rPJT_id="+ request.getParameter("rpjt_id");
 		}
