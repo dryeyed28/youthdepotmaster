@@ -37,19 +37,17 @@
 					<%
 						String root = request.getContextPath();
 					%>
-					<c:forEach var="post" items="${list}">
 				<form name="f" method="GET" action="<%=root%>/PostController?">
-<%-- 				<input type=hidden name="brd_id" value="<%=data.get(0).getBoard_id().getBrd_id()%>"> --%>
-					<input type=hidden name="brd_id" value="${post.board_id.brd_id}">
 					<select name="type">
 						<option value="searchAll">전체검색</option>
 						<option value="searchTitle">제목</option>
 						<option value="searchWriter">작성자</option>
 						<option value="searchContent">내용</option>
-					</select> <input type="text" name="searchText" value="" /> <input
+					</select>
+					<input type=hidden name="brd_id" value="<%=data.get(0).getBoard_id().getBrd_id()%>"> 
+					<input type="text" name="searchText" value="" /> <input
 						type="submit" value="검색" />
 				</form>
-				</c:forEach>
 				</p>
 				<form name="f"
 					action="<%=request.getContextPath()%>/PostController?type=boardView"
