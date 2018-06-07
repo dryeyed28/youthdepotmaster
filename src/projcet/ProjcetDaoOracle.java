@@ -381,7 +381,7 @@ public class ProjcetDaoOracle implements ProjcetDao {
 		}
 		return pcd;
 	}	@Override
-	public RewardPay getrewardPay(RewardPay R) {
+	public void getrewardPay(RewardPay pay) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -393,30 +393,16 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			+ "values ((SELECT MAX(RPAY_ID)+1 from REWARD_PAY),?,?,?,?,?,to_date(sysdate,'RR/MM/DD'))";
 
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, rPay_id);
-			pstmt.setString(2,mem_name);
-			pstmt.setInt(3, rPay_address);
-			pstmt.setInt(4, rPay_id);
-			pstmt.setInt(5, rPay_id);
-			pstmt.setInt(6, rPay_id);
+			pstmt.setString(1, pay.getMem_name());
+			pstmt.setString(2,pay.getrPay_address());
+			pstmt.setString(3, pay.getrPay_phone());
+			pstmt.setString(4, pay.getrPay_request());
+			pstmt.setInt(5, pay.getrPay_total());
 			pstmt.executeUpdate();
-			/*	rpay.setMem_id(rs.getInt(1));
-				rpay.setrPay_id(rs.getInt(3));
-				rpay.setrProduct_id(rs.getInt(4));
-				rpay.setrProduct_ea(rs.getInt(2));
-				rpay.setrAddPay(rs.getInt(2));
-				
-				rpay.setMem_name(rs.getString(1));
-				rpay.setrPay_address(rs.getString(2));
-				rpay.setrPay_phone(rs.getString(3));
-				rpay.setrPay_request(rs.getString(4));
-				rpay.setrPay_total(rs.getInt(5));
-			}*/
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			OracleConnection.close(rs, pstmt, con);
 		}
-		return rpay;
 	}
 }

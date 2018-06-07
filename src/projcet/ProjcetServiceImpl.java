@@ -61,8 +61,8 @@ public class ProjcetServiceImpl implements ProjcetService {
 		return dao.getProjectContent(rPJT_id);
 	}
 	@Override
-	public RewardPay rewardPay(int rPay_id) {
-		return dao.getrewardPay(rPay_id);
+	public void rewardPay(RewardPay pay) {
+		dao.getrewardPay(pay);
 	}
 	
 }

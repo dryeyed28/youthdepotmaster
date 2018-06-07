@@ -21,5 +21,5 @@ public interface ProjcetDao {
 	public ArrayList<RMeta> getMetaList();
 	public ArrayList<RMeta> getProjectRequest();
 	public ProjectContentDto getProjectContent(int rPJT_id);
-	public RewardPay getrewardPay(int rPay_id);
+	public void getrewardPay(RewardPay pay);
 }

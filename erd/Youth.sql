@@ -342,7 +342,8 @@ ALTER TABLE POST
 		)
 		REFERENCES BOARD (
 			BRD_ID
-		);
+		)
+        ON DELETE CASCADE;
 
 ALTER TABLE POST
 	ADD
@@ -451,9 +452,11 @@ FROM BOARD;
 Insert into BOARD (BRD_ID,BRD_NAME,BRD_TYPE) 
 values (10,'공지사항','운영');
 Insert into BOARD (BRD_ID,BRD_NAME,BRD_TYPE) 
-values (20,'큐앤에이','운영');
+values (20,'FAQ','운영');
 Insert into BOARD (BRD_ID,BRD_NAME,BRD_TYPE) 
 values (30,'커뮤니티','일반');
+Insert into BOARD (BRD_ID,BRD_NAME,BRD_TYPE) 
+values (40,'Q&A','일반');
 
 SELECT /*insert*/ *
 FROM ADMIN;

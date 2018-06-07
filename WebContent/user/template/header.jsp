@@ -126,16 +126,15 @@ function goGo() {
 						</button>
 					</div>
 				</form>
-				<% HttpSession session2 = request.getSession();
-					if (session2.getAttribute("mem_id") == null){
-					
+				<% 
+					if (session.getAttribute("mem_id") == null){
 				%>
 				<button 
 					data-target="#travelo-signup" onclick="location.href='<%=request.getContextPath()%>/user/mypage/signup.jsp'">회원가입</button>
 				<button 
 					data-target="#travelo-login" onclick="location.href='<%=request.getContextPath()%>/user/mypage/login.jsp'">로그인</button>
 					<%} else {%>
-					<h4><%= session2.getAttribute("nickname") %>님환영합니다</h4>
+					<p><%= session.getAttribute("nickName") %>님환영합니다</p><button data-target="#travelo-login" onclick="location.href='<%=request.getContextPath()%>/MemberController?type=logout'">로그아웃</button>
 					<% } %>
 			</div>
 		</div>
