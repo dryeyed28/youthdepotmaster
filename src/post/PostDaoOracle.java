@@ -80,7 +80,9 @@ public class PostDaoOracle implements PostDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				post.setPost_id(Integer.parseInt(rs.getString(1)));
-				post.setMem_id(Integer.parseInt(rs.getString(2)));
+				if (rs.getString(2) != null) {					
+					post.setMem_id(Integer.parseInt(rs.getString(2)));
+				}
 				post.setMem_nickName(rs.getString(3));
 				post.setAdmin_id(rs.getString(4));
 				post.setPost_title(rs.getString(5));
