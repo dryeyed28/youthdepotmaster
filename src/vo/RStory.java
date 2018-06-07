@@ -4,20 +4,20 @@ public class RStory {
 	private RProject rProject;
 	private String rPJT_url;
 	private String rPJT_price;
-	private String rPJT_sumnail;
+	private String rPJT_thumbnail;
 	private String rPJT_story;
 	private String rPJT_tag;
 	private String rPJT_paper;
 	public RStory() {
 		super();
 	}
-	public RStory(RProject rProject, String rPJT_url, String rPJT_price, String rPJT_sumnail, 
+	public RStory(RProject rProject, String rPJT_url, String rPJT_price, String rPJT_thumbnail, 
 			String rPJT_story, String rPJT_tag, String rPJT_paper) {
 		super();
 		this.rProject = rProject;
 		this.rPJT_url = rPJT_url;
 		this.rPJT_price = rPJT_price;
-		this.rPJT_sumnail = rPJT_sumnail;
+		this.rPJT_thumbnail = rPJT_thumbnail;
 		this.rPJT_story = rPJT_story;
 		this.rPJT_tag = rPJT_tag;
 		this.rPJT_paper = rPJT_paper;
@@ -40,11 +40,11 @@ public class RStory {
 	public void setrPJT_price(String rPJT_price) {
 		this.rPJT_price = rPJT_price;
 	}
-	public String getrPJT_sumnail() {
-		return rPJT_sumnail;
+	public String getrPJT_thumbnail() {
+		return rPJT_thumbnail;
 	}
-	public void setrPJT_sumnail(String rPJT_sumnail) {
-		this.rPJT_sumnail = rPJT_sumnail;
+	public void setrPJT_thumbnail(String rPJT_thumbnail) {
+		this.rPJT_thumbnail = rPJT_thumbnail;
 	}
 	public String getrPJT_story() {
 		return rPJT_story;
@@ -64,5 +64,6 @@ public class RStory {
 	public void setrPJT_paper(String rPJT_paper) {
 		this.rPJT_paper = rPJT_paper;
 	}
+	
 	
 }

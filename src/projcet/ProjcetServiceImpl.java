@@ -7,6 +7,7 @@ import vo.RKeeper;
 import vo.RMeta;
 import vo.ROption;
 import vo.RPost;
+import vo.RStory;
 import vo.RewardPay;
 
 public class ProjcetServiceImpl implements ProjcetService {
@@ -63,6 +64,10 @@ public class ProjcetServiceImpl implements ProjcetService {
 	@Override
 	public void rewardPay(RewardPay pay) {
 		dao.getrewardPay(pay);
+	}
+	@Override
+	public RStory story(int rPJT_id) {
+		return dao.getStory(rPJT_id);
 	}
 	
 }

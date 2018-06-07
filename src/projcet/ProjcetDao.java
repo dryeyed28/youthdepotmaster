@@ -8,6 +8,7 @@ import vo.RMeta;
 import vo.ROption;
 import vo.RPost;
 import vo.RProject;
+import vo.RStory;
 import vo.RewardPay;
 
 public interface ProjcetDao {
@@ -22,4 +23,5 @@ public interface ProjcetDao {
 	public ArrayList<RMeta> getProjectRequest();
 	public ProjectContentDto getProjectContent(int rPJT_id);
 	public void getrewardPay(RewardPay pay);
+	public RStory getStory(int rPJT_id);
 }

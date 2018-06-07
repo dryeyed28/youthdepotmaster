@@ -1,3 +1,4 @@
+<%@page import="vo.RStory"%>
 <%@page import="vo.RPost"%>
 <%@page import="vo.ROption"%>
 <%@page import="java.util.ArrayList" %>
@@ -17,7 +18,12 @@
 						<li class=""><a href="#travel-guide-sports" data-toggle="tab">댓글</a></li>
 						<li><a href="#travel-guide-culture-history" data-toggle="tab">새소식</a></li>
 					</ul>
-					<%RMeta meta = (RMeta)request.getAttribute("meta");%>
+					<%
+					RMeta meta = (RMeta)request.getAttribute("meta");
+					RStory story = (RStory)request.getAttribute("story");
+					System.out.println(story.getrPJT_thumbnail());
+					System.out.println(meta.getrPJT_image());
+					%>
 					<div class="tab-content">
 						<div class="col-sm-12">
 							<div class="testimonial style1 box">
@@ -25,15 +31,15 @@
 								<h3><%=meta.getrPJT_subTitle()%></h3>
 							</div>
 						</div>
-						<video poster="http://placehold.it/850x500" width="850"
+						<video poster="<%=story.getrPJT_thumbnail() %>" width="850"
 							height="500" controls="controls">
-							<source src="Kalimba.mp4" type="video/mp4" />
+							<source src="<%=story.getrPJT_url() %>" type="video/mp4" />
 							<source src="Kalimba.webm" type="video/webm" />
 						</video>
 						<div class="tab-pane fade active in" id="travel-guide-info">
 							<ul>
-								<li><img src="http://placehold.it/850x500" alt="" /></li>
-								<li><img src="http://placehold.it/850x500" alt="" /></li>
+								<li><img src="<%=meta.getrPJT_image() %>" alt="" /></li>
+								<li><img src="<%=meta.getrPJT_paper() %>" alt="" /></li>
 								<li><img src="http://placehold.it/850x500" alt="" /></li>
 								<li><img src="http://placehold.it/850x500" alt="" /></li>
 								<li><img src="http://placehold.it/850x500" alt="" /></li>
@@ -134,19 +140,18 @@
 							<span class="pull-right"><%=meta.getrTarget_amount()%>원</span>
 						</span>
 						<br>
-						<h1>100명 서포터</h1>
-						<hr>
 						<%if(meta.getrProject().getrPJT_progress() == 1) { %>
 						<a class="button yellow full-width uppercase btn-small"
 						href="<%=request.getContextPath()%>/ProjectController?type=pay&rPJT_id=<%=meta.getrProject().getrPJT_id()%>">펀딩하기</a>
 						<%} %>
+						<hr>
 					</div>
 				</article>
 				<%RKeeper keeper = (RKeeper)request.getAttribute("keeper"); %>
 				<div class="travelo-box contact-box">
 					<h4>창고지기 정보</h4>
 					<div class="author clearfix">
-						<a href="#"><img src="http://placehold.it/270x270" alt=""
+						<a href="#"><img src="<%=keeper.getR_profile() %>" alt=""
 							width="74" height="74" /></a>
 						<h5 class="name">
 							<%=keeper.getR_name()%>&nbsp;<small>guest</small>

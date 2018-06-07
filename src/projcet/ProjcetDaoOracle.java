@@ -13,6 +13,7 @@ import vo.RMeta;
 import vo.ROption;
 import vo.RPost;
 import vo.RProject;
+import vo.RStory;
 import vo.RewardPay;
 
 public class ProjcetDaoOracle implements ProjcetDao {
@@ -48,7 +49,7 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			pstmt.setString(16, rApply.getrOption().get(0).getrPJT_send());
 			pstmt.setInt(17, rApply.getrOption().get(0).getrPJT_charge());
 			pstmt.setString(18, rApply.getrStory().getrPJT_url());
-			pstmt.setString(19, rApply.getrStory().getrPJT_sumnail());
+			pstmt.setString(19, rApply.getrStory().getrPJT_thumbnail());
 			pstmt.setString(20, rApply.getrStory().getrPJT_story());
 			pstmt.setString(21, rApply.getrStory().getrPJT_tag());
 			pstmt.setString(22, rApply.getrStory().getrPJT_paper());
@@ -404,5 +405,35 @@ public class ProjcetDaoOracle implements ProjcetDao {
 		} finally {
 			OracleConnection.close(rs, pstmt, con);
 		}
+	}
+
+	@Override
+	public RStory getStory(int rPJT_id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		RStory story = null;
+		try {
+			con = sql.OracleConnection.getConnection();
+			String sql = "";
+			sql += "select rs.RPJT_URL, rs.RPJT_PRICE, rs.RPJT_THUMBNAIL, rs.RPJT_TAG \n";
+			sql += "from r_story rs \n";
+			sql += "where rs.rPJT_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rPJT_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				story = new RStory();
+				story.setrPJT_url(rs.getString("rPJT_url"));
+				story.setrPJT_url(rs.getString("rPJT_price"));
+				story.setrPJT_url(rs.getString("rPJT_thumbnail"));
+				story.setrPJT_url(rs.getString("rPJT_tag"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			sql.OracleConnection.close(rs, pstmt, con);
+		}
+		return story;
 	}
 }

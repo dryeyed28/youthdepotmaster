@@ -7,6 +7,7 @@ import vo.RKeeper;
 import vo.RMeta;
 import vo.ROption;
 import vo.RPost;
+import vo.RStory;
 import vo.RewardPay;
 
 public interface ProjcetService {
@@ -21,4 +22,5 @@ public interface ProjcetService {
 	public ArrayList<RMeta> project();
 	public ProjectContentDto content(int rPJT_id);
 	public void rewardPay(RewardPay pay);
+	public RStory story(int rPJT_id);
 }

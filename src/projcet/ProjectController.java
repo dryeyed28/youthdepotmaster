@@ -114,7 +114,7 @@ public class ProjectController extends HttpServlet {
 			ro.setrPJT_charge(Integer.parseInt(mr.getParameter("charge")));
 			ro_list.add(ro);
 			rs.setrPJT_url(mr.getParameter("UCCurl"));
-			rs.setrPJT_sumnail(mr.getParameter("sumnail"));
+			rs.setrPJT_thumbnail(mr.getParameter("sumnail"));
 			rs.setrPJT_tag(mr.getParameter("tag"));
 			rs.setrPJT_story(mr.getParameter("story"));
 			RApply ra = new RApply(rk, rm, ro_list, rp, rs);
@@ -129,11 +129,13 @@ public class ProjectController extends HttpServlet {
 			keeper = service.keeper(rPJT_id);
 			meta = service.meta(rPJT_id);
 			option = service.option(rPJT_id);
+			RStory story = service.story(rPJT_id);
 			ArrayList<RPost> rpost = service.rpost(rPJT_id);
 			request.setAttribute("rpost", rpost);
 			request.setAttribute("option", option);
 			request.setAttribute("keeper", keeper);
 			request.setAttribute("meta", meta);
+			request.setAttribute("story", story);
 			forwardURL = "user/pages/rewarddetaile.jsp";
 		} else if (type.equals("pay")) {
 			rPJT_id = Integer.parseInt(request.getParameter("rPJT_id"));
