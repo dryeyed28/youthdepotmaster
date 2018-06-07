@@ -149,12 +149,13 @@ public class PostController extends HttpServlet {
 				attachedfile.renameTo(new File(attachedfileroot));
 				p.setPost_file(attachedfile.getName());
 			}
-			b.setBrd_id(Integer.parseInt(mr.getParameter("bid")));
+			b.setBrd_id(Integer.parseInt(mr.getParameter("brd_id")));
+			p.setBoard_id(b);
 			p.setPost_title(mr.getParameter("title"));
 			p.setPost_content(mr.getParameter("content"));
 			p.setAdmin_id("admin");
 			service.wirtePost(p);
-			forwardURL = "/admin/boardMng/board1.jsp";
+			forwardURL = "/PostController?type=adminPost&brd_id=" + mr.getParameter("brd_id");
 		} 
 		else if (type.equals("searchAll")) {
 			if (!"".equals(searchText)) {

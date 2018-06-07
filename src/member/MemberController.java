@@ -104,35 +104,36 @@ public class MemberController extends HttpServlet {
 			m.setMem_password(request.getParameter("pwd"));
 			Member member = new Member();
 			member = service.login(m);
-			System.out.println(member);
 			if (member != null) {
 				session = request.getSession();
 				session.setAttribute("mem_id", member.getMem_id());
 				session.setAttribute("nickName", member.getMem_nickName());
-				result = "user/pages/index.jsp";
+				result = "redirect:/user/pages/index.jsp";
 				request.setAttribute("rslt", "0");
 			} else {
-				result = "user/mypage/login.jsp";
+				result = "redirect:user/mypage/login.jsp";
 			}
 		} else if (type.equals("mypage")) {
-			System.out.println("마이페이지");
 			m = new Member();
 			session = request.getSession();
 			mem_id = Integer.parseInt(session.getAttribute("mem_id").toString());
 			m = service.mypage(mem_id);
-			System.out.println(m);
 			request.setAttribute("member", m);
 			result = "user/mypage/mypage.jsp";
 		} else if (type.equals("membermodify")) {
 			String mem_id2 = "";
 			mem_id2 = request.getParameter("mem_id");
-			System.out.println("mem_id 값 : " + mem_id2);
 		} else if (type.equals("logout")) {
 			session = request.getSession();
 			session.invalidate();
-			result = "user/pages/index.jsp";
+			result = "redirect:/user/pages/index.jsp";
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher(result);
-		dispatcher.forward(request, response);
+		if(result.contains("redirect:")) {
+			String redirectURL = result.substring("redirect:".length());
+			response.sendRedirect(request.getContextPath() + redirectURL);
+		} else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher(result);
+			dispatcher.forward(request, response);
+		}
 	}
 }

@@ -35,7 +35,7 @@ $(document).ready(function() {
 	<div class="col-lg-12">
 		<div class="container" style=" margin:0px; padding:0px;padding-top: 20px;">
 		  <form class="boardSubmit" action="<%=request.getContextPath()%>/PostController?type=adminboardwrite" method="post" enctype="multipart/form-data">
-		    <input type="hidden" name="bid" value="20">
+		    <input type="hidden" name="brd_id" value="<%= request.getParameter("brd_id") %>">
 		    <table class="table table-bordered" style="width: 100%;">
 		      <tr>
 		        <th>글 제목</th>
