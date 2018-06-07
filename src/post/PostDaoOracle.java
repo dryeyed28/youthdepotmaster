@@ -209,7 +209,7 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public ArrayList<Post> searchAll(int brd_id, String mem_nickname, String post_title, String post_content) {
+	public ArrayList<Post> searchAll(int brd_id, String mem_nickName, String post_title, String post_content) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -219,16 +219,16 @@ public class PostDaoOracle implements PostDao {
 			con = OracleConnection.getConnection();
 			String searchAll = "select a.*\r\n" + 
 					"from \r\n" + 
-					"(select p.*, b.brd_name, b.brd_type \r\n" + 
+					"(select rownum, p.*, b.brd_name, b.brd_type \r\n" + 
 					"from post p\r\n" + 
 					"join board b\r\n" + 
 					"on p.brd_id = b.brd_id\r\n" + 
-					"where b.brd_id = ?\r\n" + 
-					"and rownum <=10) a\r\n" + 
-					"where mem_nickname like ? or post_title like ? or post_content like ?";
+					"where b.brd_id = ?) a\r\n" + 
+					"where mem_nickname like ? or post_title like ? or post_content like ?\r\n" + 
+					"and rownum <=10";
 			pstmt = con.prepareStatement(searchAll);
 			pstmt.setInt(1, brd_id);
-			pstmt.setString(2, "%" + mem_nickname + "%");
+			pstmt.setString(2, "%" + mem_nickName + "%");
 			pstmt.setString(3, "%" + post_title + "%");
 			pstmt.setString(4, "%" + post_content + "%");
 			rs = pstmt.executeQuery();
@@ -310,13 +310,13 @@ public class PostDaoOracle implements PostDao {
 		
 		String searchWriter = "select a.*\r\n" + 
 				"from \r\n" + 
-				"(select p.*, b.brd_name, b.brd_type \r\n" + 
+				"(select rownum, p.*, b.brd_name, b.brd_type \r\n" + 
 				"from post p\r\n" + 
 				"join board b\r\n" + 
 				"on p.brd_id = b.brd_id\r\n" + 
-				"where b.brd_id = ?\r\n" + 
-				"and rownum <=10) a\r\n" + 
-				"where mem_nickname like ?";
+				"where b.brd_id = ?) a\r\n" + 
+				"where mem_nickname like ?" + 
+				"and rownum <=10";
 		try {
 			con = OracleConnection.getConnection();
 			pstmt = con.prepareStatement(searchWriter);
@@ -431,5 +431,16 @@ public class PostDaoOracle implements PostDao {
 			OracleConnection.close(rs, pstmt, con);
 		}
 		return data;
+	}
+	
+	public static void main(String[] args) {
+		PostDao dao = new PostDaoOracle();
+		int brd_id = 20;
+		String mem_nickName = "다들";
+		String post_title = "다들";
+		String post_content = "다들";
+		ArrayList<Post> list = new ArrayList<>();
+		list = dao.searchAll(brd_id, mem_nickName, post_title, post_content);
+		System.out.println("list 값은 : " + list);	
 	}
 }

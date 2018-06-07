@@ -165,6 +165,7 @@ public class PostController extends HttpServlet {
 				brd_id = Integer.parseInt(request.getParameter("brd_id"));
 				System.out.println("brd_id 값은 : " + brd_id);
 				data = service.findAll(brd_id, mem_nickName, post_title, post_content);
+				System.out.println("data 값 : " + data);
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";
 			} else {
