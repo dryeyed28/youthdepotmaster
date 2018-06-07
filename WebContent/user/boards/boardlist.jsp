@@ -23,10 +23,11 @@
 	<div class="container">
 		<div class="row">
 			<div class="booking-information travelo-box">
+			<% ArrayList<Post> data = (ArrayList) request.getAttribute("data"); %>
 				<h1>게시판</h1>
 				<hr>
 				<br>
-				<h3>공지사항</h3>
+				<h3><%=data.get(0).getBoard_id().getBrd_name()%></h3>
 				<%-- <h3><%=p.getBoard_id().getBrd_name() %></h3> --%>
 				<p style="text-align: right">
 					<%
@@ -64,7 +65,6 @@
 						 -->
 							<%-- 	<c:forEach var="data" items =""> --%>
 							<%
-								ArrayList<Post> data = (ArrayList) request.getAttribute("data");
 								for (Post p : data) {
 							%>
 							<tr>
@@ -72,7 +72,11 @@
 								<!-- 테이블에 post 값 담기-->
 								<td><a
 									href="<%=request.getContextPath()%>/PostController?type=boardView&brd_id=<%=p.getBoard_id().getBrd_id()%>&post_id=<%=p.getPost_id()%>"><%=p.getPost_title()%></a></td>
+								<%if(p.getMem_nickName() != null) { %>
 								<td><%=p.getMem_nickName()%></td>
+								<%} else if(p.getAdmin_id() != null) { %>
+								<td><%=p.getAdmin_id()%></td>
+								<%} %>
 								<td><%=p.getPost_dateTime()%></td>
 								<td><%=p.getPost_view_count()%></td>
 							</tr>
@@ -105,9 +109,11 @@
 						</div>
 					</ul>
 				</form>
+				<%if(data.get(0).getBoard_id().getBrd_type().equals("일반")) { %>
 				<div align="right">
 					<a href="<%=request.getContextPath()%>/user/boards/boardwrite.jsp?brd_id=<%=data.get(0).getBoard_id().getBrd_id()%>"><button>글쓰기</button></a>
 				</div>
+				<%} %>
 			</div>
 		</div>
 	</div>

@@ -15,10 +15,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
+    
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
@@ -44,23 +41,20 @@
                     </div>
                     <div class="panel-body">
                         <form role="form" name="f" method="post" action="<%= root %>/AdminController?type=login">
-                            <fieldset>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="ID" required name="admin_id" id="id" type="text" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Password" required name="admin_pwd" id="pwd" type="password">
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" >ID 저장
-                                    </label>
-                                </div>
-                                <!-- Change this to a button or input when using this as a form -->
-                                <button type="submit" class="btn-lg btn-success btn-block">로그인</button>
-                                <a href=<%= root %>/admin/pages/index.jsp><button type="button" class="btn-lg btn-success btn-block">홈</button></a>
-                                </form>
-                            </fieldset>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="ID" required name="admin_id" id="id" type="text" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Password" required name="admin_pwd" id="pwd" type="password">
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" >ID 저장
+                                </label>
+                            </div>
+                            <!-- Change this to a button or input when using this as a form -->
+                            <button type="submit" class="btn-lg btn-success btn-block">로그인</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -72,9 +66,6 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>

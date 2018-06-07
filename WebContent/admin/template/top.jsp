@@ -57,9 +57,6 @@ String root1 = request.getContextPath();
            <c:if test="${!empty admin}">
             	<li>${admin.admin_name}님</li>
             </c:if>
-            <c:if test="${empty admin}">
-             	<li>손님, 로그인해주세요.</li>
-            </c:if> 
                <li><a href="<%=root1%>/admin/pages/login.jsp"><i class="fa fa-sign-out fa-fw"></i> 로그아웃</a>
                </li>
             </ul>

@@ -78,12 +78,10 @@ public class PostController extends HttpServlet {
 		
 		} else if(type.equals("boardView")) {
 			p = new Post();
-			b = new Board();
 			brd_id = Integer.parseInt(request.getParameter("brd_id"));
 			post_id = Integer.parseInt(request.getParameter("post_id"));
 			p = service.getPostMenu(brd_id, post_id);
-			b.setBrd_id(brd_id);
-			p.setBoard_id(b);
+			System.out.println("p" + p);
 			request.setAttribute("p", p);
 			forwardURL = "user/boards/boardview.jsp";
 		
