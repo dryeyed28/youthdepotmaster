@@ -161,14 +161,12 @@ input {
 						style="background: white; height: 400px; padding: 20px;">
 						<div class="icondiv">배송안내</div>
 						<hr>
-						<div class="text">내용</div>
-						<div class="text">내용</div>
-						<div class="text">내용</div>
-						<div class="text">내용</div>
-						<div class="text">내용</div>
-						<div class="text">내용</div>
-						<div class="text">내용</div>
-						<div class="text">내용</div>
+						<div class="text" >
+						- 크라우드펀딩플랫폼은 쇼핑몰이 아닙니다. 리워드는 프로젝트 개설자가 약속한 기간에 배송이 진행됩니다.
+						</div>
+						<div class="text">
+						- 프로젝트 개설자가 약속한 기간에 배송이 되지 않는다면 1차적으로 프로젝트 개설자에게 문의해주세요. 참여한 프로젝트 개설자에게 이메일 혹은 프로필 내 연락처로 문의해주세요
+						</div>
 					</div>
 
 					<div class=" col-md-4"
