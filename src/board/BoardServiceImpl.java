@@ -23,5 +23,10 @@ public class BoardServiceImpl implements BoardService {
 		dao.updateboard(board);
 	}
 
+	@Override
+	public void boardDelete(int brd_id) {
+		dao.deleteBoard(brd_id);
+	}
+
 
 }
