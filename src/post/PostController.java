@@ -165,11 +165,14 @@ public class PostController extends HttpServlet {
 				String mem_nickName = searchText;
 				String post_title = searchText;
 				String post_content = searchText;
-				data = service.findAll(mem_nickName, post_title, post_content);
+				brd_id = Integer.parseInt(request.getParameter("brd_id"));
+				System.out.println("brd_id 값은 : " + brd_id);
+				data = service.findAll(brd_id, mem_nickName, post_title, post_content);
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";
 			} else {
 				//빈문자열을 검색할 경우 = 전체 검색
+				brd_id = Integer.parseInt(request.getParameter("brd_id"));
 				data = service.boardList(brd_id, realPage);
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";
@@ -177,11 +180,13 @@ public class PostController extends HttpServlet {
 		} else if (type.equals("searchTitle")) {
 			if (!"".equals(searchText)) {
 				String post_title = searchText;
-				ArrayList<Post> list = service.findTitle(post_title);
+				brd_id = Integer.parseInt(request.getParameter("brd_id"));
+				ArrayList<Post> list = service.findTitle(brd_id, post_title);
 				request.setAttribute("data", list);
 				forwardURL = "/user/boards/boardlist.jsp";
 			} else {
 				//빈문자열을 검색할 경우 = 전체 검색
+				brd_id = Integer.parseInt(request.getParameter("brd_id"));
 				data = service.boardList(brd_id, realPage);
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";
@@ -189,11 +194,13 @@ public class PostController extends HttpServlet {
 		} else if (type.equals("searchWriter")) {
 			if (!"".equals(searchText)) {
 				String mem_nickName = searchText;
-				ArrayList<Post> list = service.findWriter(mem_nickName);
+				brd_id = Integer.parseInt(request.getParameter("brd_id"));
+				ArrayList<Post> list = service.findWriter(brd_id, mem_nickName);
 				request.setAttribute("data", list);
 				forwardURL = "/user/boards/boardlist.jsp";
 			} else {
 				//빈문자열을 검색할 경우 = 전체 검색
+				brd_id = Integer.parseInt(request.getParameter("brd_id"));
 				data = service.boardList(brd_id, realPage);
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";
@@ -202,11 +209,13 @@ public class PostController extends HttpServlet {
 			/* forwardURL = "admin/boardMng/board1.jsp"; */
 			if (!"".equals(searchText)) {
 			String post_content = searchText;
-			ArrayList<Post> list = service.findContent(post_content);
+			brd_id = Integer.parseInt(request.getParameter("brd_id"));
+			ArrayList<Post> list = service.findContent(brd_id, post_content);
 			request.setAttribute("data", list);
 			forwardURL = "/user/boards/boardlist.jsp";
 			}else {
 				//빈문자열을 검색할 경우 = 전체 검색
+				brd_id = Integer.parseInt(request.getParameter("brd_id"));
 				data = service.boardList(brd_id, realPage);
 				request.setAttribute("data", data);
 				forwardURL = "/user/boards/boardlist.jsp";

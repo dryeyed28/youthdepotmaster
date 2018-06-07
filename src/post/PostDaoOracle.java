@@ -209,7 +209,7 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public ArrayList<Post> searchAll(String mem_nickname, String post_title, String post_content) {
+	public ArrayList<Post> searchAll(int brd_id, String mem_nickname, String post_title, String post_content) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -217,13 +217,20 @@ public class PostDaoOracle implements PostDao {
 		ArrayList<Post> list = new ArrayList<Post>();
 		try {
 			con = OracleConnection.getConnection();
-			String searchAll = "select rownum, p.*, b.brd_name, b.brd_type\r\n" + "from post p\r\n" + "join board b\r\n"
-					+ "on p.brd_id = b.brd_id \r\n"
-					+ "and mem_nickname like ? or post_title like ? or post_content like ?\r\n" + "and rownum <=10";
+			String searchAll = "select a.*\r\n" + 
+					"from \r\n" + 
+					"(select p.*, b.brd_name, b.brd_type \r\n" + 
+					"from post p\r\n" + 
+					"join board b\r\n" + 
+					"on p.brd_id = b.brd_id\r\n" + 
+					"where b.brd_id = ?\r\n" + 
+					"and rownum <=10) a\r\n" + 
+					"where mem_nickname like ? or post_title like ? or post_content like ?";
 			pstmt = con.prepareStatement(searchAll);
-			pstmt.setString(1, "%" + mem_nickname + "%");
-			pstmt.setString(2, "%" + post_title + "%");
-			pstmt.setString(3, "%" + post_content + "%");
+			pstmt.setInt(1, brd_id);
+			pstmt.setString(2, "%" + mem_nickname + "%");
+			pstmt.setString(3, "%" + post_title + "%");
+			pstmt.setString(4, "%" + post_content + "%");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				list.add(new Post(
@@ -248,23 +255,27 @@ public class PostDaoOracle implements PostDao {
 	}
 	
 	@Override
-	public ArrayList<Post> searchTitle(String post_title) {
+	public ArrayList<Post> searchTitle(int brd_id, String post_title) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		ArrayList<Post> list = new ArrayList<Post>();
-		String searchTitle = "select rownum, p.*, b.brd_name, b.brd_type\r\n" + 
+		String searchTitle = "select a.*\r\n" + 
+				"from \r\n" + 
+				"(select p.*, b.brd_name, b.brd_type \r\n" + 
 				"from post p\r\n" + 
 				"join board b\r\n" + 
-				"on p.brd_id = b.brd_id \r\n" + 
-				"and post_title like ?\r\n" + 
-				"and rownum <=10";
+				"on p.brd_id = b.brd_id\r\n" + 
+				"where b.brd_id = ?\r\n" + 
+				"and rownum <=10) a\r\n" + 
+				"where post_title like ?";
 		
 		try {
 		con = OracleConnection.getConnection();
 		pstmt = con.prepareStatement(searchTitle);
-		pstmt.setString(1, "%" + post_title + "%");
+		pstmt.setInt(1, brd_id);
+		pstmt.setString(2, "%" + post_title + "%");
 		rs = pstmt.executeQuery();
 		while(rs.next()) {
 			list.add(new Post(
@@ -290,23 +301,27 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public ArrayList<Post> searchWriter(String mem_nickname) {
+	public ArrayList<Post> searchWriter(int brd_id, String mem_nickname) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		ArrayList<Post> list = new ArrayList<Post>();
 		
-		String searchWriter = "select rownum, p.*, b.brd_name, b.brd_type\r\n" + 
+		String searchWriter = "select a.*\r\n" + 
+				"from \r\n" + 
+				"(select p.*, b.brd_name, b.brd_type \r\n" + 
 				"from post p\r\n" + 
 				"join board b\r\n" + 
-				"on p.brd_id = b.brd_id \r\n" + 
-				"and mem_nickname like ?\r\n" + 
-				"and rownum <=10";
+				"on p.brd_id = b.brd_id\r\n" + 
+				"where b.brd_id = ?\r\n" + 
+				"and rownum <=10) a\r\n" + 
+				"where mem_nickname like ?";
 		try {
 			con = OracleConnection.getConnection();
 			pstmt = con.prepareStatement(searchWriter);
-			pstmt.setString(1, "%" + mem_nickname + "%");
+			pstmt.setInt(1,  brd_id);
+			pstmt.setString(2, "%" + mem_nickname + "%");
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				list.add(new Post(
@@ -332,22 +347,26 @@ public class PostDaoOracle implements PostDao {
 	}
 
 	@Override
-	public ArrayList<Post> searchContent(String post_content) {
+	public ArrayList<Post> searchContent(int brd_id, String post_content) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<Post> list = new ArrayList<Post>();
 		
-		String searchContent = "select rownum, p.*, b.brd_name, b.brd_type\r\n" + 
+		String searchContent = "select a.*\r\n" + 
+				"from \r\n" + 
+				"(select p.*, b.brd_name, b.brd_type \r\n" + 
 				"from post p\r\n" + 
 				"join board b\r\n" + 
-				"on p.brd_id = b.brd_id \r\n" + 
-				"and post_content like ?\r\n" + 
-				"and rownum <=10";
+				"on p.brd_id = b.brd_id\r\n" + 
+				"where b.brd_id = ?\r\n" + 
+				"and rownum <=10) a\r\n" + 
+				"where  post_content like ?";
 		try {
 			con = OracleConnection.getConnection();
 			pstmt = con.prepareStatement(searchContent);
-			pstmt.setString(1, "%" + post_content + "%");
+			pstmt.setInt(1, brd_id);
+			pstmt.setString(2, "%" + post_content + "%");
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				list.add(new Post(
@@ -382,12 +401,12 @@ public class PostDaoOracle implements PostDao {
 			con = OracleConnection.getConnection();
 			String sql = 
 					"select * \r\n" + 
-					"FROM \r\n" + 
-					"(select rownum r, p.post_id, p.brd_id, b.brd_name, b.brd_type, p.mem_id, p.mem_nickname, p.admin_id, \r\n" + 
-					"p.POST_TITLE, p.POST_CONTENT, TO_CHAR(p.POST_DATETIME, 'yyyy.mm.dd') post_datetime, p.POST_VIEW_COUNT ,p.POST_DEL, p.post_file \r\n" + 
-					"from board b, post p \r\n" + 
-					"where b.brd_id = p.brd_id and p.post_del=0 and p.brd_id = ? \r\n" + 
-					"order by rownum desc) \r\n";
+							"FROM \r\n" + 
+							"(select rownum r, p.post_id, p.brd_id, b.brd_name, b.brd_type, p.mem_id, p.mem_nickname, p.admin_id, \r\n" + 
+							"p.POST_TITLE, p.POST_CONTENT, TO_CHAR(p.POST_DATETIME, 'yyyy.mm.dd') post_datetime, p.POST_VIEW_COUNT ,p.POST_DEL, p.post_file \r\n" + 
+							"from board b, post p \r\n" + 
+							"where b.brd_id = p.brd_id and p.post_del=0 and p.brd_id = ? \r\n" + 
+							"order by rownum desc) \r\n";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, brd_id);
 			rs = pstmt.executeQuery();
@@ -413,7 +432,4 @@ public class PostDaoOracle implements PostDao {
 		}
 		return data;
 	}
-
-
-	
 }

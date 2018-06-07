@@ -41,23 +41,23 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public ArrayList<Post> findAll(String mem_nickName, String post_title, String post_content) {
-		return dao.searchAll(mem_nickName, post_title, post_content);
+	public ArrayList<Post> findAll(int brd_id, String mem_nickName, String post_title, String post_content) {
+		return dao.searchAll(brd_id, mem_nickName, post_title, post_content);
 	}
 	
 	@Override
-	public ArrayList<Post> findTitle(String post_title) {
-		return dao.searchTitle(post_title);
+	public ArrayList<Post> findTitle(int brd_id, String post_title) {
+		return dao.searchTitle(brd_id, post_title);
 	}
 
 	@Override
-	public ArrayList<Post> findWriter(String mem_nickName) {
-		return dao.searchWriter(mem_nickName);
+	public ArrayList<Post> findWriter(int brd_id, String mem_nickName) {
+		return dao.searchWriter(brd_id, mem_nickName);
 	}
 
 	@Override
-	public ArrayList<Post> findContent(String post_content) {
-		return dao.searchContent(post_content);
+	public ArrayList<Post> findContent(int brd_id, String post_content) {
+		return dao.searchContent(brd_id, post_content);
 	}
 
 	@Override
