@@ -107,8 +107,7 @@ public class PostController extends HttpServlet {
 			p.setPost_title(request.getParameter("title"));
 			p.setPost_content(request.getParameter("content"));
 			service.updatePost(p);
-			forwardURL = "/PostController?type=boardView&id=" + request.getParameter("post_id") + "&brd="
-					+ request.getParameter("brd");
+			forwardURL = "/PostController?type=boardView&id=" + request.getParameter("post_id") + "&brd_id="+ request.getParameter("brd");
 		} 
 		else if (type.equals("boardwrite")) {
 			System.out.println("boardwrite 호출");
@@ -223,7 +222,7 @@ public class PostController extends HttpServlet {
 			brd_id = Integer.parseInt(request.getParameter("brd_id"));
 			data = service.postList(brd_id);
 			request.setAttribute("data", data);
-			forwardURL = "/admin/boardMng/board.jsp";
+			forwardURL = "/admin/boardMng/board.jsp?&brd_name=" + request.getParameter("brd_name");
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
 		dispatcher.forward(request, response);

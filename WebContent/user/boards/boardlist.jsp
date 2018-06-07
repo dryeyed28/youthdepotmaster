@@ -32,7 +32,7 @@
 				<h1>게시판</h1>
 				<hr>
 				<br>
-				<h3><%=data.get(0).getBoard_id().getBrd_name()%></h3>
+				<h3><%=request.getParameter("brd_name")%></h3>
 				<p style="text-align: right">
 					<%
 						String root = request.getContextPath();
@@ -44,7 +44,6 @@
 						<option value="searchWriter">작성자</option>
 						<option value="searchContent">내용</option>
 					</select>
-					<input type=hidden name="brd_id" value="<%=data.get(0).getBoard_id().getBrd_id()%>"> 
 					<input type="text" name="searchText" value="" /> <input
 						type="submit" value="검색" />
 				</form>
@@ -70,7 +69,8 @@
 						 -->
 							<%-- 	<c:forEach var="data" items =""> --%>
 							<%
-								for (Post p : data) {
+								if(data.size() != 0){
+									for (Post p : data) {
 							%>
 							<tr>
 								<td><%=p.getPost_id()%></td>
@@ -84,10 +84,12 @@
 								<%} %>
 								<td><%=p.getPost_dateTime()%></td>
 								<td><%=p.getPost_view_count()%></td>
+								<input type=hidden name="brd_id" value="<%=data.get(0).getBoard_id().getBrd_id()%>"> 
 							</tr>
 						</tbody>
 						<%
-							}
+								}
+							
 						%>
 						<tfoot>
 						</tfoot>
@@ -114,11 +116,12 @@
 						</div>
 					</ul>
 				</form>
-				<%if(data.get(0).getBoard_id().getBrd_type().equals("일반")) { %>
+				<% } %>
+				<%if(request.getParameter("brd_type").equals("일반")) { %>
 				<div align="right">
-					<a href="<%=request.getContextPath()%>/user/boards/boardwrite.jsp?brd_id=<%=data.get(0).getBoard_id().getBrd_id()%>"><button>글쓰기</button></a>
+					<a href="<%=request.getContextPath()%>/user/boards/boardwrite.jsp?brd_id=<%=request.getParameter("brd_id")%>"><button type="button">글쓰기</button></a>
 				</div>
-				<%} %>
+				<%}%>
 			</div>
 		</div>
 	</div>

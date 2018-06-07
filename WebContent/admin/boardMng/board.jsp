@@ -15,7 +15,7 @@
 <div id="page-wrapper">
   <div class="row">
 	<div class="col-lg-12">
-	  <h2 class="page-header">게시 관리 > <%=data.get(0).getBoard_id().getBrd_name()%></h2>
+	  <h2 class="page-header">게시 관리 > <%if(data.size() != 0){%><%= data.get(0).getBoard_id().getBrd_name()%><%} else{%><%=request.getParameter("brd_name")%><%} %></h2>
 	</div>
   </div>
   
@@ -23,7 +23,7 @@
 	<div class="col-lg-12">
 	  <div class="panel panel-default">
 		<div class="panel-heading">
-			<%=data.get(0).getBoard_id().getBrd_name()%>
+			<%if(data.size() != 0){%><%= data.get(0).getBoard_id().getBrd_name()%><%} else{%><%=request.getParameter("brd_name")%><%} %>
 		</div>
         <!-- /.panel-heading -->
       <div class="panel-body">
@@ -37,7 +37,7 @@
               </tr>
            </thead>
            <tbody>
-           <%
+           <%if(data.size() != 0){
 				for (Post p : data) {
 			%>
               <tr>
@@ -48,6 +48,7 @@
               </tr>
             <%
 				}
+           }
 			%>
            </tbody>
         </table>

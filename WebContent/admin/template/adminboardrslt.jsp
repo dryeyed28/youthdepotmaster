@@ -4,5 +4,5 @@
 	pageEncoding="UTF-8"%>
 	<%ArrayList<Board> list = (ArrayList)request.getAttribute("boardlist"); %>
 	<%for(int i = 0; i < list.size(); i++){ %>
-	<li><a href="<%=request.getContextPath()%>/PostController?type=adminPost&brd_id=<%=list.get(i).getBrd_id() %>"><%= list.get(i).getBrd_name() %></a></li>
+	<li><a href="<%=request.getContextPath()%>/PostController?type=adminPost&brd_id=<%=list.get(i).getBrd_id() %>&brd_name=<%=list.get(i).getBrd_name()%>"><%= list.get(i).getBrd_name() %></a></li>
 <%}  %>
