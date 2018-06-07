@@ -84,13 +84,14 @@ public class PostDaoOracle implements PostDao {
 				post.setPost_content(rs.getString(6));
 				post.setPost_dateTime(rs.getString(7));
 				post.setPost_view_count(Integer.parseInt(rs.getString(8)));
-				
+				post.setBoard_id(new Board(brd_id, null, rs.getString("brd_type"), 0));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			OracleConnection.close(rs, pstmt, con);
 		}
+		System.out.println("post~~~~~ : " +post);
 		return post;
 	}
 

@@ -19,6 +19,7 @@
 			<div class="booking-information travelo-box">
 				<%
 					Post p = (Post) request.getAttribute("p");
+				System.out.println("view" + p);
 				%>
 				<h2><%=p.getPost_title()%></h2>
 				<hr>

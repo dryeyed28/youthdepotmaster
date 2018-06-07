@@ -97,7 +97,7 @@ input {
 		<div class="row">
 			<div id="main" class="col-sm-8 col-md-10">
 				<form name="f"
-					action="<%=request.getContextPath()%>/ProjectController?type=payaddress"
+					action="<%=request.getContextPath()%>/ProjectController?type=payaddressinsert"
 					method="post">
 					<div class="travelo-box">
 						<div class="icon">리워드</div>
@@ -177,12 +177,12 @@ input {
 						<div class="leftwight">
 							<h2>이름</h2>
 						</div>
-						<input type="text" name="name" value="" placeholder="이름을 입력해주세요"
+						<input type="text" name="name" placeholder="이름을 입력해주세요"
 							required>
 						<div class="leftwight">
 							<h2>휴대폰번호</h2>
 						</div>
-						<input type="tel" name="tel" value="" placeholder="-뺴고 입력해주세욘"
+						<input type="tel" name="tel" placeholder="-뺴고 입력해주세욘"
 							required>
 						<hr>
 						<br> <br>

@@ -395,7 +395,7 @@ public class ProjcetDaoOracle implements ProjcetDao {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, rPay_id);
 			rs = pstmt.executeQuery();
-			if (rs.next()) {
+			while (rs.next()) {
 			/*	rpay.setMem_id(rs.getInt(1));
 				rpay.setrPay_id(rs.getInt(3));
 				rpay.setrProduct_id(rs.getInt(4));
