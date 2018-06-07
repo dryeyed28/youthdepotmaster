@@ -56,9 +56,13 @@ String root1 = request.getContextPath();
             <ul class="nav navbar-top-links navbar-right">
            <c:if test="${!empty admin}">
             	<li>${admin.admin_name}님</li>
-            </c:if>
-               <li><a href="<%=root1%>/admin/pages/login.jsp"><i class="fa fa-sign-out fa-fw"></i> 로그아웃</a>
+               <li><a href="<%=root1%>/AdminController?type=logout"><i class="fa fa-sign-out fa-fw"></i> 로그아웃</a>
                </li>
+               </c:if>
+          		<c:if test="${empty admin}">
+          		<li><a href="<%=root1%>/admin/pages/login.jsp"><i class="fa fa-sign-out fa-fw"></i> 로그인</a>
+               </li>
+               </c:if>
             </ul>
             <!-- /.navbar-top-links -->  
          </nav>    

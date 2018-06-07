@@ -50,7 +50,11 @@ public class AdminController extends HttpServlet {
 			} else {
 				result = "/admin/pages/login.jsp";
 			}
-		} 
+		} else if (type.equals("logout")) {
+			session = request.getSession();
+			session.invalidate();
+			result = "/admin/pages/index.jsp";
+		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(result);
 		dispatcher.forward(request, response);
 	}
