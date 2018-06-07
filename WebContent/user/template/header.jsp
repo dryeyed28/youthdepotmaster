@@ -27,6 +27,16 @@ function goGo() {
 		});
 	});
 </script>
+<style>
+	.button{
+		margin: 10px 0px 10px;
+		float: right;
+	}
+	.page-title-container {
+    height: 48px;
+    background: #2d3e52;
+    }
+</style>
     <!-- Page Title -->
     <title>youthdepot</title>
     
@@ -147,6 +157,7 @@ function goGo() {
 							<ul id="ulboardlist">
 							</ul>
 						</li>
+						<a class="button btn-small sky-blue1" href="<%=request.getContextPath()%>/user/apply/rewardapplication.jsp">창고지기 신청하기</a>
 					</ul>
 				</nav>
 			</div>
@@ -261,3 +272,4 @@ function goGo() {
 		</div>
 		<form action=""></form>
 	</header>
+<div class="page-title-container"></div>

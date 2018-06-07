@@ -6,18 +6,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../template/header.jsp"%>
-<div class="page-title-container">
-	<div class="container">
-		<div class="page-title pull-left">
-			<h2 class="entry-title">Travel Guide</h2>
-		</div>
-		<ul class="breadcrumbs pull-right">
-			<li><a href="#">HOME</a></li>
-			<li><a href="#">PAGES</a></li>
-			<li class="active">Travel Guide</li>
-		</ul>
-	</div>
-</div>
 <section id="content">
 	<div class="container">
 		<div class="row">
