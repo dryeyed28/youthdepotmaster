@@ -59,7 +59,7 @@
 									<img src="http://placehold.it/200x200" alt="" class="img">
 									<div class="a1">
 										<h4>제목</h4>
-										<h5>작성자이름</h5>
+										
 										<p>rPJT_state</p>
 										<!-- <a class="button btn-medium silver">편집하기</a> -->
 									</div>
