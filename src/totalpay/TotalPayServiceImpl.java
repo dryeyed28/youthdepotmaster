@@ -28,4 +28,9 @@ public class TotalPayServiceImpl implements TotalPayService{
 		return dao.getgetProfit();
 	}
 
+	@Override
+	public void refundok(int dep, int id) {
+		dao.getRefundOK(dep, id);
+	}
+
 }

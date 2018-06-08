@@ -85,7 +85,7 @@ public class TotalPayDaoOracle implements TotalPayDao {
 		try {
 			con = OracleConnection.getConnection();
 			String sql = "";
-			sql += "select dep.dep_id, m.mem_userid, dep.dep_request, to_char(dep.dep_date, 'yyyy-mm-dd hh:Mi:ss'), dep.dep_type \n";
+			sql += "select dep.dep_id, m.mem_userid, dep.dep_request, dep.dep_balance, to_char(dep.dep_date, 'yyyy-mm-dd hh:Mi:ss'), dep.dep_type \n";
 			sql += "from deposit dep join members m on dep.mem_id = m.mem_id \n";
 			sql += "where dep.dep_type = 3 or dep.dep_type = 4 \n";
 			sql += "order by dep.dep_type";
@@ -96,8 +96,9 @@ public class TotalPayDaoOracle implements TotalPayDao {
 				dep.setDep_id(rs.getInt(1));
 				dep.setMem_userID(rs.getString(2));
 				dep.setDep_request(rs.getInt(3));
-				dep.setDep_date(rs.getString(4));
-				dep.setDep_type(rs.getInt(5));
+				dep.setDep_balance(rs.getInt(4));
+				dep.setDep_date(rs.getString(5));
+				dep.setDep_type(rs.getInt(6));
 				list.add(dep);
 			}
 		} catch (SQLException e) {
@@ -139,6 +140,31 @@ public class TotalPayDaoOracle implements TotalPayDao {
 			OracleConnection.close(rs, pstmt, con);
 		}
 		return list;
+	}
+
+	@Override
+	public void getRefundOK(int dep, int id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = OracleConnection.getConnection();
+			con.setAutoCommit(false);
+			String sql = "UPDATE deposit SET dep_type = 4, dep_balance = dep_request + dep_balance \n" + 
+					"where dep_id = ? and dep_type = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			pstmt.setInt(2, dep);
+			int commit = pstmt.executeUpdate();
+			if (commit == 1) {
+				con.commit();
+			} else {
+				con.rollback();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleConnection.close(pstmt, con);
+		}
 	}
 
 }

@@ -11,4 +11,5 @@ public interface TotalPayDao {
 	ArrayList<Deposit> getDepositInfo();
 	ArrayList<Deposit> getRefundInfo();
 	ArrayList<ProfitDto> getgetProfit();
+	void getRefundOK(int dep, int id);
 }

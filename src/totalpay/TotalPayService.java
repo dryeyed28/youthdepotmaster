@@ -11,4 +11,5 @@ public interface TotalPayService {
 	ArrayList<Deposit> yeoljeong();
 	ArrayList<Deposit> refund();
 	ArrayList<ProfitDto> profit();
+	void refundok(int dep, int id);
 }

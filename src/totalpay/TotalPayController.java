@@ -55,6 +55,13 @@ public class TotalPayController extends HttpServlet {
 			ArrayList<ProfitDto> profit = service.profit();
 			request.setAttribute("profit", profit);
 			forwardURL = "admin/payMng/profit.jsp";
+		} else if(type.equals("refundok")) {
+			int dep = Integer.parseInt(request.getParameter("dep"));
+			int id = Integer.parseInt(request.getParameter("id"));
+			service.refundok(dep, id);
+			yeoljeong = service.refund();
+			request.setAttribute("yeoljeong", yeoljeong);
+			forwardURL = "admin/payMng/refundinfo.jsp";
 		}
 		boardlist = service1.getBoardList();
 		request.setAttribute("boardlist", boardlist);
