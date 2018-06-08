@@ -2,9 +2,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!DOCTYPE html>
-	<html>
+<html>
 <head>
 <script>
 function goGo() {
@@ -17,8 +18,9 @@ function goGo() {
 			 var $board = $('input[type="hidden"]').val();
 			$.ajax({
 				method : 'get',
-				url : "<%=request.getContextPath()%>/BoardController",
-				 data: 'type='+$board,
+				url : "<%=request.getContextPath()%>
+	/BoardController",
+				data : 'type=' + $board,
 				success : function(data) {
 					$('#ulboardlist').append(data);
 				}
@@ -28,91 +30,125 @@ function goGo() {
 	});
 </script>
 <style>
-	.button{
-		margin: 10px 0px 10px;
-		float: right;
-	}
-	.page-title-container {
-    height: 48px;
-    background: #2d3e52;
-    }
+.button {
+	margin: 10px 0px 10px;
+	float: right;
+}
+
+.page-title-container {
+	height: 48px;
+	background: #2d3e52;
+	padding-left: 50px;
+}
 </style>
-    <!-- Page Title -->
-    <title>youthdepot</title>
-    
-    <!-- Meta Tags -->
-    <meta charset="utf-8">
-    <meta name="keywords" content="HTML5 Template" />
-    <meta name="description" content="YouthDepot_kitri_2nd_project">
-    <meta name="author" content="kitri25th">
+<!-- Page Title -->
+<title>youthdepot</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    
-    <!-- Theme Styles -->
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/user/Resources/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/user/Resources/css/font-awesome.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/user/Resources/css/animate.min.css">
-    
-    <!-- Current Page Styles -->
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/user/Resources/components/revolution_slider/css/settings.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/user/Resources/components/revolution_slider/css/style.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/user/Resources/components/jquery.bxslider/jquery.bxslider.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/user/Resources/components/flexslider/flexslider.css" media="screen" />
-    
-    
-    <!-- Main Style -->
-    <link id="main-style" rel="stylesheet" href="<%=request.getContextPath() %>/user/Resources/css/style.css">
-    
-    <!-- Updated Styles -->
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/user/Resources/css/updates.css">
+<!-- Meta Tags -->
+<meta charset="utf-8">
+<meta name="keywords" content="HTML5 Template" />
+<meta name="description" content="YouthDepot_kitri_2nd_project">
+<meta name="author" content="kitri25th">
 
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/user/Resources/css/custom.css">
-    
-    <!-- Responsive Styles -->
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/user/Resources/css/responsive.css">
-    
-    
-	<script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/jquery.noconflict.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/modernizr.2.7.1.min.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/jquery.placeholder.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/jquery-ui.1.10.4.min.js"></script>
-    
-    <!-- Twitter Bootstrap -->
-    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/bootstrap.js"></script>
-    
-    <!-- load revolution slider scripts -->
-    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/components/revolution_slider/js/jquery.themepunch.tools.min.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/components/revolution_slider/js/jquery.themepunch.revolution.min.js"></script>
-    
-    <!-- load BXSlider scripts -->
-    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/components/jquery.bxslider/jquery.bxslider.min.js"></script>
-    
-	<!-- load FlexSlider scripts -->
-    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/components/flexslider/jquery.flexslider-min.js"></script>
-    
-    <!-- parallax -->
-    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/jquery.stellar.min.js"></script>
-    
-    <!-- waypoint -->
-    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/waypoints.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
-    <!-- load page Javascript -->
-    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/theme-scripts.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath() %>/user/Resources/js/scripts.js"></script>
-    
+<!-- Theme Styles -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/user/Resources/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/user/Resources/css/font-awesome.min.css">
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/user/Resources/css/animate.min.css">
+
+<!-- Current Page Styles -->
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/user/Resources/components/revolution_slider/css/settings.css"
+	media="screen" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/user/Resources/components/revolution_slider/css/style.css"
+	media="screen" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/user/Resources/components/jquery.bxslider/jquery.bxslider.css"
+	media="screen" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/user/Resources/components/flexslider/flexslider.css"
+	media="screen" />
+
+
+<!-- Main Style -->
+<link id="main-style" rel="stylesheet"
+	href="<%=request.getContextPath()%>/user/Resources/css/style.css">
+
+<!-- Updated Styles -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/user/Resources/css/updates.css">
+
+<!-- Custom Styles -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/user/Resources/css/custom.css">
+
+<!-- Responsive Styles -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/user/Resources/css/responsive.css">
+
+
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/user/Resources/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/user/Resources/js/jquery.noconflict.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/user/Resources/js/modernizr.2.7.1.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/user/Resources/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/user/Resources/js/jquery.placeholder.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/user/Resources/js/jquery-ui.1.10.4.min.js"></script>
+
+<!-- Twitter Bootstrap -->
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/user/Resources/js/bootstrap.js"></script>
+
+<!-- load revolution slider scripts -->
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/user/Resources/components/revolution_slider/js/jquery.themepunch.tools.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/user/Resources/components/revolution_slider/js/jquery.themepunch.revolution.min.js"></script>
+
+<!-- load BXSlider scripts -->
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/user/Resources/components/jquery.bxslider/jquery.bxslider.min.js"></script>
+
+<!-- load FlexSlider scripts -->
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/user/Resources/components/flexslider/jquery.flexslider-min.js"></script>
+
+<!-- parallax -->
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/user/Resources/js/jquery.stellar.min.js"></script>
+
+<!-- waypoint -->
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/user/Resources/js/waypoints.min.js"></script>
+
+<!-- load page Javascript -->
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/user/Resources/js/theme-scripts.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/user/Resources/js/scripts.js"></script>
+
 </head>
 <boby>
 <div id="page-wrapper">
 	<header id="header" class="navbar-static-top style4">
 		<div class="container">
 			<h1 class="logo navbar-brand">
-				<a href="<%=request.getContextPath()%>/user/pages/index.jsp" title="YouthDepot"> <img
-					src="/images/logo.png" alt="YouthDeopot welcome" />
+				<a href="<%=request.getContextPath()%>/user/pages/index.jsp"
+					title="YouthDepot"> <img src="/images/logo.png"
+					alt="YouthDeopot welcome" />
 				</a>
 			</h1>
 
@@ -126,16 +162,23 @@ function goGo() {
 						</button>
 					</div>
 				</form>
-				<% 
-					if (session.getAttribute("mem_id") == null){
+				<%
+					if (session.getAttribute("mem_id") == null) {
 				%>
-				<button 
-					data-target="#travelo-signup" onclick="location.href='<%=request.getContextPath()%>/user/mypage/signup.jsp'">회원가입</button>
-				<button 
-					data-target="#travelo-login" onclick="location.href='<%=request.getContextPath()%>/user/mypage/login.jsp'">로그인</button>
-					<%} else {%>
-					<p><%= session.getAttribute("nickName") %>님환영합니다</p><button data-target="#travelo-login" onclick="location.href='<%=request.getContextPath()%>/MemberController?type=logout'">로그아웃</button>
-					<% } %>
+				<button data-target="#travelo-signup"
+					onclick="location.href='<%=request.getContextPath()%>/user/mypage/signup.jsp'">회원가입</button>
+				<button data-target="#travelo-login"
+					onclick="location.href='<%=request.getContextPath()%>/user/mypage/login.jsp'">로그인</button>
+				<%
+					} else {
+				%>
+				<p><%=session.getAttribute("nickName")%>님환영합니다
+				</p>
+				<button data-target="#travelo-login"
+					onclick="location.href='<%=request.getContextPath()%>/MemberController?type=logout'">로그아웃</button>
+				<%
+					}
+				%>
 			</div>
 		</div>
 		<a href="#mobile-menu-01" data-toggle="collapse"
@@ -145,18 +188,22 @@ function goGo() {
 			<div class="container">
 				<nav id="main-menu" role="navigation">
 					<ul class="menu">
-						<li class="menu-item-has-children"><a href="<%=request.getContextPath()%>/user/pages/index.jsp">청년창고</a>
-							</li>
-						<li class="menu-item-has-children"><a href="<%=request.getContextPath()%>/ProjectController?type=rewardMain">리워드·후원</a>
-							</li>
-						<li class="menu-item-has-children"><a href="<%=request.getContextPath()%>/MemberController?type=mypage">열정창고</a>
-							</li>
-							<input type="hidden" value="userboardlist">
+						<li class="menu-item-has-children"><a
+							href="<%=request.getContextPath()%>/user/pages/index.jsp">청춘창고</a>
+						</li>
+						<li class="menu-item-has-children"><a
+							href="<%=request.getContextPath()%>/ProjectController?type=rewardMain">리워드·후원</a>
+						</li>
+						<li class="menu-item-has-children"><a
+							href="<%=request.getContextPath()%>/MemberController?type=mypage">열정창고</a>
+						</li>
+						<input type="hidden" value="userboardlist">
 						<li class="menu-item-has-children" id="boardlist"><a>커뮤니티</a>
 							<ul id="ulboardlist">
-							</ul>
-						</li>
-						<a class="button btn-small sky-blue1" href="<%=request.getContextPath()%>/user/apply/rewardapplication.jsp">창고지기 신청하기</a>
+							</ul></li>
+						<a class="button btn-small sky-blue1"
+							href="<%=request.getContextPath()%>/user/apply/rewardapplication.jsp">창고지기
+							신청하기</a>
 					</ul>
 				</nav>
 			</div>
@@ -164,14 +211,19 @@ function goGo() {
 
 		<nav id="mobile-menu-01" class="mobile-menu collapse">
 			<ul id="mobile-primary-menu" class="menu">
-				<li class="menu-item-has-children"><a href="investment.html">청년창고</a>
-					</li>
-				<li class="menu-item-has-children"><a href="investment.html">투자·후원</a>
-					</li>
-				<li class="menu-item-has-children"><a href="reward.html">리워드·후원</a>
-					</li>
-				<li class="menu-item-has-children"><a href="community.html">커뮤니티</a>
-					</li>
+				<li class="menu-item-has-children"><a
+					href="<%=request.getContextPath()%>/user/pages/index.jsp">청춘창고</a>
+				</li>
+				<li class="menu-item-has-children"><a
+					href="<%=request.getContextPath()%>/ProjectController?type=rewardMain">리워드·후원</a>
+				</li>
+				<li class="menu-item-has-children"><a
+					href="<%=request.getContextPath()%>/MemberController?type=mypage">열정창고</a>
+				</li>
+				<input type="hidden" value="userboardlist">
+				<li class="menu-item-has-children" id="boardlist"><a>커뮤니티</a>
+					<ul id="ulboardlist">
+					</ul></li>
 			</ul>
 
 			<ul class="mobile-topnav container">
@@ -271,4 +323,13 @@ function goGo() {
 		</div>
 		<form action=""></form>
 	</header>
-<div class="page-title-container"></div>
+	<div class="page-title-container">
+		<div class="container">
+			<div class="page-title pull-left">
+				<h2 class="entry-title">※YOUTHDEPOT※</h2>
+			</div>
+			<ul class="breadcrumbs pull-right">
+				<li><a href="/youthdepotmaster/user/pages/index.jsp">HOME</a></li>
+			</ul>
+		</div>
+	</div>
