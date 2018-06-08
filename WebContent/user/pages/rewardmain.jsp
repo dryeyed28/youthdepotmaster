@@ -10,32 +10,21 @@
                     <div id="photos-tab" class="tab-pane fade in active">
                                     <div class="photo-gallery style1" data-animation="slide" data-sync="#photos-tab .image-carousel">
                                         <ul class="slides">
-                                            <li><img src="http://placehold.it/900x500" alt="" /></li>
-                                            <li><img src="http://placehold.it/900x500" alt="" /></li>
-                                            <li><img src="http://placehold.it/900x500" alt="" /></li>
-                                            <li><img src="http://placehold.it/900x500" alt="" /></li>
-                                            <li><img src="http://placehold.it/900x500" alt="" /></li>
-                                            <li><img src="http://placehold.it/900x500" alt="" /></li>
-                                            <li><img src="http://placehold.it/900x500" alt="" /></li>
-                                            <li><img src="http://placehold.it/900x500" alt="" /></li>
-                                            <li><img src="http://placehold.it/900x500" alt="" /></li>
-                                            <li><img src="http://placehold.it/900x500" alt="" /></li>
-                                            <li><img src="http://placehold.it/900x500" alt="" /></li>
+                                            <li><img src="user/Resources/images/rmain_1.png" alt="" /></li>
+                                            <li><img src="user/Resources/images/rmain_2.png" alt="" /></li>
+                                            <li><img src="user/Resources/images/rmain_3.png" alt="" /></li>
+                                            <li><img src="user/Resources/images/rmain_4.png" alt="" /></li>
+                                      <!-- 
+                                            <li><img src="http://placehold.it/900x500" alt="" /></li>-->
                                         </ul>
                                     </div>
                                     <div class="image-carousel style1" data-animation="slide" data-item-width="70" data-item-margin="10" data-sync="#photos-tab .photo-gallery">
                                         <ul class="slides">
-                                            <li><img src="http://placehold.it/70x70" alt="" /></li>
-                                            <li><img src="http://placehold.it/70x70" alt="" /></li>
-                                            <li><img src="http://placehold.it/70x70" alt="" /></li>
-                                            <li><img src="http://placehold.it/70x70" alt="" /></li>
-                                            <li><img src="http://placehold.it/70x70" alt="" /></li>
-                                            <li><img src="http://placehold.it/70x70" alt="" /></li>
-                                            <li><img src="http://placehold.it/70x70" alt="" /></li>
-                                            <li><img src="http://placehold.it/70x70" alt="" /></li>
-                                            <li><img src="http://placehold.it/70x70" alt="" /></li>
-                                            <li><img src="http://placehold.it/70x70" alt="" /></li>
-                                            <li><img src="http://placehold.it/70x70" alt="" /></li>
+                                        <li><img src="user/Resources/images/rmain_1.png" alt="" /></li>
+                                            <li><img src="user/Resources/images/rmain_2.png" alt="" /></li>
+                                            <li><img src="user/Resources/images/rmain_3.png" alt="" /></li>
+                                            <li><img src="user/Resources/images/rmain_4.png" alt="" /></li>
+                                           <!--  <li><img src="http://placehold.it/70x70" alt="" /></li>-->
                                         </ul>
                                     </div>
                                 </div><hr>
