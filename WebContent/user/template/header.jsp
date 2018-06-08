@@ -28,6 +28,7 @@ function goGo() {
    });
 </script>
 <style>
+<<<<<<< HEAD
    .button{
       margin: 10px 0px 10px;
       float: right;
@@ -36,6 +37,16 @@ function goGo() {
     height: 48px;
     background: #2d3e52;
     }
+.button {
+	margin: 10px 0px 10px;
+	float: right;
+}
+
+.page-title-container {
+	height: 48px;
+	background: #2d3e52;
+	padding-left: 50px;
+}
 </style>
     <!-- Page Title -->
     <title>youthdepot</title>
