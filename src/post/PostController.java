@@ -40,30 +40,30 @@ public class PostController extends HttpServlet {
 		String type = request.getParameter("type");
 		String searchText = request.getParameter("searchText");
 		String forwardURL = "";
-		int brd_id = 0;
-		int post_id = 0;
-		int realPage = 1;
+		int brd_id = 0; //게시판 번호 
+		int post_id = 0; //게시물 번호
+		int realPage = 1; // 처음 게시판을 클릭했을 경우 1페이지 보기
 		Post p = null;
 		Board b = null;
 		if(type.equals("boardList")) {
-			brd_id = Integer.parseInt(request.getParameter("brd_id"));
-			String page = request.getParameter("page");
-			int totalCount = service.findCount(brd_id);
+			brd_id = Integer.parseInt(request.getParameter("brd_id")); //헤더에서 게시판 클릭에 따라서 brd_id 값 
+			String page = request.getParameter("page"); //페이지 번호 클릭할 경우 페이지 값 
+			int totalCount = service.findCount(brd_id); //해당 게시판 총 게시물 (삭제한 게시물은 flag로 제외 해서)
 			int cntPerPage = 10; //1페이지 별 10건씩 게시글을 보여준다.
-			if(page != null) {
+			if(page != null) { //처음 게시판 클릭은 queryString에 page값이 null, 페이지 숫자 클릭할 경우 페이지 변수 생성
 				realPage = Integer.parseInt(page);
 			}
-			data = service.boardList(brd_id, realPage);
+			data = service.boardList(brd_id, realPage); //게시판 번호와 페이지 번호에 따라서 해당 페이지의 게시물 data 값 저장
 			int totalPage = (int) Math.ceil((double) totalCount / cntPerPage);
 			int cntPerPageGroup = 5; // 페이지 그룹별 5페이지씩 보여준다.
-			int startPage = ((int) ((realPage/cntPerPageGroup)+0.8))*cntPerPageGroup + 1;
+			int startPage = ((int) ((realPage/cntPerPageGroup)+0.8))*cntPerPageGroup + 1; // 페이징 처리 번호 게시 하기 위해서
 			System.out.println("startPage :" +startPage);
 			System.out.println("totalPage :" +totalPage);
 			int endPage = startPage + cntPerPageGroup - 1;
 			if (endPage > totalPage) {
 				endPage = totalPage;
 			}
-			PageBean<Post> pb = new PageBean<>();
+			PageBean<Post> pb = new PageBean<>(); // 페이징 처리 위해서 Bean 값 저장
 			pb.setCurrentPage(realPage);
 			pb.setTotalPage(totalPage);
 			pb.setList(data);
@@ -74,7 +74,7 @@ public class PostController extends HttpServlet {
 			request.setAttribute("data", data);
 			request.setAttribute("pagebean", pb);
 			System.out.println(realPage);
-			forwardURL = "user/boards/boardlist.jsp";
+			forwardURL = "user/boards/boardlist.jsp"; // setAttribute 후 forward
 		
 		} else if(type.equals("boardView")) {
 			p = new Post();
@@ -118,9 +118,10 @@ public class PostController extends HttpServlet {
 			System.out.println(nickName);
 			p = new Post();
 			b = new Board();
-			b.setBrd_id(Integer.parseInt(request.getParameter("brd_id")));
 			p.setBoard_id(b);
+			b.setBrd_id(Integer.parseInt(request.getParameter("brd_id")));
 			p.setMem_id(mem_id);
+			p.setAdmin_id("admin_id");
 			p.setMem_nickName(nickName);
 			p.setPost_title(request.getParameter("title"));
 			p.setPost_content(request.getParameter("content"));

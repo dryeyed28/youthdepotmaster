@@ -70,7 +70,7 @@
 							<%-- 	<c:forEach var="data" items =""> --%>
 							<%
 								if(data.size() != 0){
-									for (Post p : data) {
+									for (Post p : data) { 
 							%>
 							<tr>
 								<td><%=p.getPost_id()%></td>

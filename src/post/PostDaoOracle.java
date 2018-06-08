@@ -161,17 +161,17 @@ public class PostDaoOracle implements PostDao {
 		try {
 			con = OracleConnection.getConnection();
 			con.setAutoCommit(false);
-			String sqlinsert = "Insert into POST (POST_ID,BRD_ID,ADMIN_ID,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL,POST_FILE)"
-					+ "values ((SELECT MAX(POST_ID)+1 from post),?,?,?,?,to_date(sysdate,'RR/MM/DD'),0,0,?)";
+			String sqlinsert = "Insert into POST (POST_ID,BRD_ID,MEM_ID,ADMIN_ID,MEM_NICKNAME,POST_TITLE,POST_CONTENT,POST_DATETIME,POST_VIEW_COUNT,POST_DEL,POST_FILE)"
+					+ "values ((SELECT MAX(POST_ID)+1 from post),?,?,?,?,?,?,to_date(sysdate,'RR/MM/DD'),0,0,?)";
 			System.out.println(post);
 			pstmt = con.prepareStatement(sqlinsert);
-			pstmt.setInt(1, post.getBoard_id().getBrd_id());
-//			pstmt.setInt(2, post.getMem_id());
-			pstmt.setString(2, post.getAdmin_id());
-			//pstmt.setString(4, post.getMem_nickName());
-			pstmt.setString(3, post.getPost_title());
-			pstmt.setString(4, post.getPost_content());
-			pstmt.setString(5, post.getPost_file());
+			pstmt.setInt(1, (post.getBoard_id().getBrd_id()));
+			pstmt.setInt(2, post.getMem_id());
+			pstmt.setString(3, "admin");
+			pstmt.setString(4, post.getMem_nickName());
+			pstmt.setString(5, post.getPost_title());
+			pstmt.setString(6, post.getPost_content());
+			pstmt.setString(7, post.getPost_file());
 			int commit = pstmt.executeUpdate();
 			if (commit == 1) {
 				con.commit();
@@ -377,7 +377,7 @@ public class PostDaoOracle implements PostDao {
 						rs.getInt("mem_id"), 
 						rs.getString("admin_id"), 
 						rs.getString("mem_nickname"),
-						rs.getString("post_title"), 
+						rs.getString("post_title"), 	
 						rs.getString("post_content"), 
 						rs.getString("post_datetime"),
 						rs.getInt("post_view_count"), 
