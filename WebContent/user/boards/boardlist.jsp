@@ -105,7 +105,7 @@
 								<a href="#">&laquo;</a>
 							</c:if>
 							<c:forEach begin="${startPage}" end="${endPage}" var="i">
-								<a href="<%=request.getContextPath()%>/PostController?type=boardList&brd_id=<%=data.get(0).getBoard_id().getBrd_id()%>&page=${i}">${i}</a>
+								<a href="<%=request.getContextPath()%>/PostController?type=boardList&brd_id=<%=data.get(0).getBoard_id().getBrd_id()%>&brd_type=<%=request.getParameter("brd_type")%>&page=${i}">${i}</a>
 							</c:forEach>
 							<c:if test="${endPage < pb.totalPage}">
 								<a href="#">&raquo;</a>
