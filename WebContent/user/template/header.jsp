@@ -38,7 +38,8 @@ function goGo() {
 .page-title-container {
 	height: 48px;
 	background: #2d3e52;
-	padding-left: 50px;
+	padding-left: 54px;
+	padding-right: 50px;
 }
 </style>
 <!-- Page Title -->
