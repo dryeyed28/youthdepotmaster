@@ -7,7 +7,7 @@
 <div id="page-wrapper">
 	<div class="row">
 		<div class="col-lg-12">
-			<h2 class="page-header">게시판 관리 > 게시판 수정</h2>
+			<h2 class="page-header">게시판 관리 > 게시판 생성</h2>
 		</div>
 	</div>
 	<div class="row">
