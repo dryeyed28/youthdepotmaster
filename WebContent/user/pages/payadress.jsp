@@ -1,3 +1,4 @@
+<%@page import="vo.Member"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.Deposit"%>
 <%@page import="vo.ROption"%>
@@ -96,8 +97,9 @@ input {
 	<div class="container">
 		<div class="row">
 			<div id="main" class="col-sm-8 col-md-10">
+			<%Member mem = (Member) request.getAttribute("mem"); %>
 				<form name="f"
-					action="<%=request.getContextPath()%>/ProjectController?type=payaddressinsert"
+					action="<%=request.getContextPath()%>/ProjectController?type=payresult&mem_id=<%=mem.getMem_id()%>"
 					method="post">
 					<div class="travelo-box">
 						<div class="icon">리워드</div>
@@ -168,7 +170,7 @@ input {
 						- 프로젝트 개설자가 약속한 기간에 배송이 되지 않는다면 1차적으로 프로젝트 개설자에게 문의해주세요. 참여한 프로젝트 개설자에게 이메일 혹은 프로필 내 연락처로 문의해주세요
 						</div>
 					</div>
-
+					
 					<div class=" col-md-4"
 						style="background: white; height: 400px; padding: 20px;">
 						<div class="icondiv">리워드 선택</div>
@@ -176,12 +178,12 @@ input {
 						<div class="leftwight">
 							<h2>이름</h2>
 						</div>
-						<input type="text" name="name" placeholder="이름을 입력해주세요"
+						<input type="text" name="name" value="<%=mem.getMem_userName() %>"
 							required>
 						<div class="leftwight">
 							<h2>휴대폰번호</h2>
 						</div>
-						<input type="tel" name="tel" placeholder="-뺴고 입력해주세욘"
+						<input type="tel" name="tel" value="<%=mem.getMem_phone() %>"
 							required>
 						<hr>
 						<br> <br>
@@ -189,12 +191,12 @@ input {
 					</div>
 
 					<div class=" col-md-4"
-						style="background: white; height: 400px; padding: 20px;">
+						style="background: white; height: 400px; padding: 10px;">
 						<div class="icondiv">리워드 선택</div>
 						<hr>
-						<label><input type="radio" name="address"> 기존배송지 <input
-							type="text" placeholder="기존배송지입력"> </label> <label><input
-							type="radio" name="address"> 새로입력</label> <input type="text"
+						<label><input type="radio" checked>기존배송지 <input
+							type="text" name="address" value="<%=mem.getMem_address()%>"> </label> <label><input
+							type="radio">새로입력</label> <input type="text" name="address"
 							placeholder="새로운 배송지 입력">
 						<hr>
 						<div class="leftwight">
@@ -204,8 +206,7 @@ input {
 							name="addressrequest" placeholder="배송에 관련된 내용만 적어주세요! "></textarea>
 					</div>
 					<div style="margin: 0 auto; width: 200px; height: 100px;">
-						<button style="width: 200px; height: 50px; border-radius: 20px;">결제
-							예약하기</button>
+						<button style="width: 200px; height: 50px; border-radius: 20px;">결제예약하기</button>
 					</div>
 				</form>
 			</div>

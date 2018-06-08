@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 
 import vo.Deposit;
+import vo.Member;
 import vo.RApply;
 import vo.RKeeper;
 import vo.RMeta;
@@ -150,12 +151,27 @@ public class ProjectController extends HttpServlet {
 				reward_id[i] = Integer.parseInt(str[i]);
 			}
 			ArrayList<ROption> payaddress = service.optionPay(rPJT_id, reward_id);
+			HttpSession session = request.getSession();
+			int mem_id = Integer.parseInt(session.getAttribute("mem_id").toString());
+			Member mem = service.memPay(mem_id);
+			request.setAttribute("mem", mem);
 			request.setAttribute("payaddress", payaddress);
 			forwardURL = "user/pages/payadress.jsp";
 		} else if (type.equals("payresult")) {
-			int mem_id = Integer.parseInt(request.getParameter("mem_id"));
-			RewardPay rpay = service.orderReward(mem_id);
-			request.setAttribute("rpay", rpay);
+			HttpSession session = request.getSession();
+			int mem_id = Integer.parseInt(session.getAttribute("mem_id").toString());
+			Member mem = service.memPay(mem_id);
+			request.setAttribute("mem", mem);
+			RewardPay rpay1 = service.orderReward(mem_id);
+//			request.setAttribute("rpay", rpay1);
+			repay = new RewardPay();
+			repay.setMem_name(request.getParameter("name"));
+			repay.setrPay_address(request.getParameter("address"));
+			repay.setrPay_phone(request.getParameter("tel"));
+			repay.setrPay_request(request.getParameter("addressrequest"));
+			repay.setrPay_total(Integer.parseInt(request.getParameter("comma")));
+			service.rewardPay(repay);
+			request.setAttribute("payaddressinsert",repay);
 			forwardURL = "user/pages/paycheck.jsp";
 		} else if (type.equals("projectrequest")) {
 			metalist = service.project();

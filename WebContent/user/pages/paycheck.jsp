@@ -1,3 +1,4 @@
+<%@page import="vo.Member"%>
 <%@page import="vo.RewardPay"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -12,7 +13,7 @@
 					<hr />
 					<div class="booking-confirmation clearfix">
 						<i class="soap-icon-recommend icon circle"></i>
-						<%RewardPay rpay = (RewardPay)request.getAttribute("rpay"); %>
+						<%RewardPay rpay = (RewardPay)request.getAttribute("payaddressinsert"); %>
 						<div class="message">
 							<h4 class="main-message"><%=rpay.getMem_name()%> 서포터님 감사합니다</h4>
 							<p>결제 예약 결과및 배송예상일은 나의 펀딩현황에서 확인하세요</p>

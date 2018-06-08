@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import sql.OracleConnection;
+import vo.Member;
 import vo.RApply;
 import vo.RKeeper;
 import vo.RMeta;
@@ -436,4 +437,35 @@ public class ProjcetDaoOracle implements ProjcetDao {
 		}
 		return story;
 	}
+
+	@Override
+	public Member getMemPay(int mem_id) {
+		Member m = new Member();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			
+			con = OracleConnection.getConnection();
+			String mysql = "select MEM_USERID,MEM_USERNAME,MEM_USERNAME,MEM_ADDRESS,MEM_PHONE,MEM_PASSION from members where mem_id=?";
+			
+			pstmt = con.prepareStatement(mysql);
+			pstmt.setInt(1,mem_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				m.setMem_id(mem_id);
+				m.setMem_userId(rs.getString("mem_userId"));
+				m.setMem_userName(rs.getString("mem_userName"));
+				m.setMem_userName(rs.getString("mem_userName"));
+				m.setMem_address(rs.getString("mem_address"));
+				m.setMem_phone(rs.getString("mem_phone"));
+				m.setMem_passion(rs.getInt("mem_passion"));
+			}
+		}catch (SQLException e) {
+		}finally {
+			OracleConnection.close(rs, pstmt, con);
+		}
+		return m;
+	}
+
 }

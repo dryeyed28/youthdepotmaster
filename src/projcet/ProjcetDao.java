@@ -2,6 +2,7 @@ package projcet;
 
 import java.util.ArrayList;
 
+import vo.Member;
 import vo.RApply;
 import vo.RKeeper;
 import vo.RMeta;
@@ -24,4 +25,5 @@ public interface ProjcetDao {
 	public ProjectContentDto getProjectContent(int rPJT_id);
 	public void getrewardPay(RewardPay pay);
 	public RStory getStory(int rPJT_id);
+	public Member getMemPay(int mem_id);
 }

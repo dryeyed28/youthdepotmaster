@@ -2,6 +2,7 @@ package projcet;
 
 import java.util.ArrayList;
 
+import vo.Member;
 import vo.RApply;
 import vo.RKeeper;
 import vo.RMeta;
@@ -68,6 +69,10 @@ public class ProjcetServiceImpl implements ProjcetService {
 	@Override
 	public RStory story(int rPJT_id) {
 		return dao.getStory(rPJT_id);
+	}
+	@Override
+	public Member memPay(int mem_id) {
+		return dao.getMemPay(mem_id);
 	}
 	
 }

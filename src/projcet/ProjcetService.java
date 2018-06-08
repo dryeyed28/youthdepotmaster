@@ -2,6 +2,7 @@ package projcet;
 
 import java.util.ArrayList;
 
+import vo.Member;
 import vo.RApply;
 import vo.RKeeper;
 import vo.RMeta;
@@ -23,4 +24,6 @@ public interface ProjcetService {
 	public ProjectContentDto content(int rPJT_id);
 	public void rewardPay(RewardPay pay);
 	public RStory story(int rPJT_id);
+	public Member memPay(int mem_id);
+	
 }
