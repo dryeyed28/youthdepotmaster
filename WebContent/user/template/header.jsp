@@ -156,7 +156,7 @@ function goGo() {
          <div class="container">
             <nav id="main-menu" role="navigation">
                <ul class="menu">
-                  <li class="menu-item-has-children"><a href="<%=request.getContextPath()%>/user/pages/index.jsp">청년창고</a>
+                  <li class="menu-item-has-children"><a href="<%=request.getContextPath()%>/user/pages/index.jsp">청춘창고</a>
                      </li>
                   <li class="menu-item-has-children"><a href="<%=request.getContextPath()%>/ProjectController?type=rewardMain">리워드·후원</a>
                      </li>
@@ -175,14 +175,17 @@ function goGo() {
 
       <nav id="mobile-menu-01" class="mobile-menu collapse">
          <ul id="mobile-primary-menu" class="menu">
-            <li class="menu-item-has-children"><a href="investment.html">청년창고</a>
-               </li>
-            <li class="menu-item-has-children"><a href="investment.html">투자·후원</a>
-               </li>
-            <li class="menu-item-has-children"><a href="reward.html">리워드·후원</a>
-               </li>
-            <li class="menu-item-has-children"><a href="community.html">커뮤니티</a>
-               </li>
+            <li class="menu-item-has-children"><a href="<%=request.getContextPath()%>/user/pages/index.jsp">청춘창고</a>
+                     </li>
+                  <li class="menu-item-has-children"><a href="<%=request.getContextPath()%>/ProjectController?type=rewardMain">리워드·후원</a>
+                     </li>
+                  <li class="menu-item-has-children"><a href="<%=request.getContextPath()%>/MemberController?type=mypage">열정창고</a>
+                     </li>
+                     <input type="hidden" value="userboardlist">
+                  <li class="menu-item-has-children" id="boardlist"><a>커뮤니티</a>
+                     <ul id="ulboardlist">
+                     </ul>
+                  </li>
          </ul>
 
          <ul class="mobile-topnav container">
