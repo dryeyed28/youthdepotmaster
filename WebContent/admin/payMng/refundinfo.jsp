@@ -35,25 +35,39 @@
                 <th>결제번호</th>
                 <th>아이디</th>
                 <th>신청금액</th>
+                <th>잔액</th>
                 <th>환급신청날짜</th>
                 <th>환급여부</th>
+                <th>환급수락</th>
               </tr>
            </thead>
            <tbody>
            <%ArrayList<Deposit> yeoljeong = (ArrayList)request.getAttribute("yeoljeong");
            for(Deposit d : yeoljeong){
-           		String comma = String.format("%,d",d.getDep_request());%>
+           		String comma = String.format("%,d",d.getDep_request());
+           		String comma1 = String.format("%,d",d.getDep_balance());
+           %>
               <tr>
                 <td><input type="checkbox"></td>
                 <td><%=d.getDep_id() %></td>
                 <td><%=d.getMem_userID() %></td>
                 <td><%=comma %></td>
+                <td><%=comma1 %></td>
                 <td><%=d.getDep_date() %></td>
                 <% if(d.getDep_type() == 3) { %>
                 <td>환급대기</td>
                 <%} else if(d.getDep_type() == 4) { %>
                 <td>환급완료</td>
                 <%} %>
+                <td>
+                <form action="<%=root%>/TotalPayController?type=refundok" method="post">
+                <input type="hidden"  name="dep" value="<%=d.getDep_type()%>">
+                <input type="hidden"  name="id" value="<%=d.getDep_id()%>">
+                <%if(d.getDep_type() == 3) { %>
+                <button class="btn btn-default btn-primary">환급수락</button>
+                <%} %>
+                </form>
+                </td>
               </tr>
            <%} %>
            </tbody>
@@ -61,7 +75,6 @@
         
       <div>
         <a class="btn btn-default btn-primary">삭제</a>&nbsp;&nbsp;
-        <a class="btn btn-default btn-primary">환급수락</a>
       </div>   
       <hr>
       
