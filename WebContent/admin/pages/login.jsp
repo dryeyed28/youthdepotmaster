@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% String root = request.getContextPath(); %>
+<!DOCTYPE html>
+<html>
 <head>
+<title>login.jsp</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +22,28 @@
 
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<script>
+var checkbox = document.querySelector("input[type=checkbox]");
+var idValue = document.getElementById("id").value;
+var storageId = localStorage.getItem("id");
 
+if (storageId != null) {
+	//스토리지아이디에 값이 있는 경우
+	idValue = storageId;
+	checkbox.checked = true;
+} else {
+	checkbox.checked = false;
+}
+
+document.querySelector("form").submit("click", function(){
+	idValue = storageId;
+	if (checkbox.checked) {
+		localStorage.setItem("id", idValue);
+	} else {
+		localStorage.removeItem("id");
+	}
+});
+</script>
 </head>
 
 <body>
@@ -62,3 +86,4 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
 </body>
+</html>
