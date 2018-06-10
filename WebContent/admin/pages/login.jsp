@@ -15,12 +15,12 @@
     <title>login.jsp</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+<!--     Custom CSS -->
+   <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
+<!--     Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <script>
 
@@ -42,17 +42,21 @@ if (storageValue != null) {
 document.querySelector("input[type=checkbox]").onclick = function() {myFunction()};
 
 function myFunction() {
-	localStorage.setItem("id", idValue);
+	if (checkbox.checked) {
+		localStorage.setItem("id", idValue);
+	} else
+		localStorage.removeItem("id");
+	
 }
 
 
-document.querySelector("form").submit("click", function(){
-	if (check.checked = true) {
-		localStorage.setItem("id", idValue);
-	} else {
-		localStorage.removeItem("id");
-	}
-});
+// document.querySelector("form").submit(function(){
+// 	if (check.checked = true) {
+// 		localStorage.setItem("id", idValue);
+// 	} else {
+// 		localStorage.removeItem("id");
+// 	}
+// });
 
 
 </script>
