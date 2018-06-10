@@ -23,26 +23,38 @@
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <script>
-var checkbox = document.querySelector("input[type=checkbox]");
-var idValue = document.getElementById("id").value;
-var storageId = localStorage.getItem("id");
 
-if (storageId != null) {
+var checkbox = document.querySelector("input[type=checkbox]");
+console.log("checkbox 값 : " + checkbox);
+var idValue = document.getElementById("id").value;
+console.log("idValue 값 : " + idValue);
+var storageValue = localStorage.getItem("id");
+console.log("storageValue 값 :" + storageValue);
+
+if (storageValue != null) {
 	//스토리지아이디에 값이 있는 경우
-	idValue = storageId;
+    document.getElementById("id").value = storageValue;
 	checkbox.checked = true;
 } else {
 	checkbox.checked = false;
 }
 
+document.querySelector("input[type=checkbox]").onclick = function() {myFunction()};
+
+function myFunction() {
+	localStorage.setItem("id", idValue);
+}
+
+
 document.querySelector("form").submit("click", function(){
-	idValue = storageId;
-	if (checkbox.checked) {
+	if (check.checked = true) {
 		localStorage.setItem("id", idValue);
 	} else {
 		localStorage.removeItem("id");
 	}
 });
+
+
 </script>
 </head>
 
