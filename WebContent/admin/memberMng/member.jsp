@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>memberlistresult.jsp</title>
+<title>member.jsp</title>
 <style></style>
 <script>
 $(document).ready(function() {
@@ -23,7 +23,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<c:set var="pb" value="${requestScope.pagebean}"/>
+<c:set var="pb" value="${sessionScope.pagebean}"/>
 <c:set var="list" value="${pb.list}"/>
 <div id="page-wrapper">
   <div class="row">

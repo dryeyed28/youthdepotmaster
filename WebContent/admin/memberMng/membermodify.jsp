@@ -7,9 +7,10 @@ select{
 	border:solid 1px;
 }
 </style>
-<c:set var="pagebean" value="${requestScope.pagebean}"/>
+<c:set var="pagebean" value="${sessionScope.pagebean}"/>
 <c:set var="list" value="${pagebean.list}"/>
-<c:forEach var="member" items="${list}"/>
+${param.member.mem_id}
+${param.member.mem_password}
 <div class="col-lg-12">
   <h2 class="page-header">회원수정</h2>
 </div>
@@ -18,6 +19,7 @@ select{
 	<div class="container-fluid" style="padding-top: 50px;">
 	  <form class="boardSubmit">
 	    <table class="table table-bordered">
+	    <c:forEach var="member" items="${list}">
 	      <tr>
 	        <th>아이디</th>
 	        <td>
@@ -27,7 +29,7 @@ select{
 	      <tr>
 	        <th>패스워드</th>
 	        <td>
-	          <input type="password" name="pass" value="${member.mem_password} }">
+	          <input type="password" name="pass" value="${member.mem_password}">
 	        </td>
 	      </tr>
 	      <tr>
@@ -39,7 +41,7 @@ select{
 	      <tr>
 	        <th>전화번호</th>
 	        <td>
-	          <input type="text" name="phone" value="jsp_expression">
+	          <input type="text" name="phone" value="${param.member.mem_id}">
 	        </td>
 	      </tr>
 	      <tr>
@@ -71,6 +73,7 @@ select{
 	          </select>
 	        </td>
 	      </tr>
+	      </c:forEach>
 		  <tr>
 			<td colspan="2" align="center">
 				<input type="button" value="수정완료" id="btnModify" />

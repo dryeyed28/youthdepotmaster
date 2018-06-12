@@ -78,10 +78,12 @@ public class MemberController extends HttpServlet {
 				pb.setList(list);
 				pb.setStartPage(startPage);
 				pb.setEndPage(endPage);
-				request.setAttribute("pagebean", pb);
+				
+				session = request.getSession();
+				session.setAttribute("pagebean", pb);
 			} catch (Exception e) {
 				e.printStackTrace();
-				request.setAttribute("result", e.getMessage());
+				session.setAttribute("result", e.getMessage());
 			}
 			result = "/admin/memberMng/member.jsp";
 		} else if (type.equals("signup")) {
@@ -121,8 +123,13 @@ public class MemberController extends HttpServlet {
 			request.setAttribute("member", m);
 			result = "user/mypage/mypage.jsp";
 		} else if (type.equals("membermodify")) {
-			String mem_id2 = "";
-			mem_id2 = request.getParameter("mem_id");
+			
+			session = request.getSession();
+			Member member = new Member();
+			PageBean<Member> list  = (PageBean) session.getAttribute("pagebean");
+			session.setAttribute("pagebean", list);
+			result = "admin/memberMng/membermodify.jsp";
+
 		} else if (type.equals("logout")) {
 			session = request.getSession();
 			session.invalidate();
