@@ -58,6 +58,7 @@ $(document).ready(function() {
                 <th>최종로그인</th>
                 <th>창고지기</th>
                 <th>열정보유액</th>
+                <th>주소</th>
               </tr>
            </thead>
            <tbody>
@@ -77,6 +78,7 @@ $(document).ready(function() {
                 <td>${member.mem_lastLogin_dateTime}</td>
                 <td>${member.mem_treasurer}</td>
                 <td>${member.mem_passion}</td>
+                <td>${member.mem_address}</td>
             </tr>
             </c:forEach>
            </tbody>

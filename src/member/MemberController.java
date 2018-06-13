@@ -123,18 +123,21 @@ public class MemberController extends HttpServlet {
 			request.setAttribute("member", m);
 			result = "user/mypage/mypage.jsp";
 		} else if (type.equals("membermodify")) {
-			
 			session = request.getSession();
 			Member member = new Member();
 			PageBean<Member> list  = (PageBean) session.getAttribute("pagebean");
 			session.setAttribute("pagebean", list);
 			result = "admin/memberMng/membermodify.jsp";
-
 		} else if (type.equals("logout")) {
 			session = request.getSession();
 			session.invalidate();
 			result = "redirect:/user/pages/index.jsp";
 		}
+//		} else if (type.equals("modify")) {
+//			session = request.getSession();
+//			session.getAttribute(")
+//		}
+		
 		if(result.contains("redirect:")) {
 			String redirectURL = result.substring("redirect:".length());
 			response.sendRedirect(request.getContextPath() + redirectURL);
